@@ -24,11 +24,19 @@ public class PlayerInput : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         playerMovement.moveDirection = new Vector3(horizontal, 0, vertical);
-        // TODO - Tambah code buat arah look player
 
         if(playerMovement.moveDirection != Vector3.zero)
         {
             playerMovement.lookDirection = playerMovement.moveDirection;
         }
+
+    // // // Mekanik Mouse
+    //  if (MouseLocation.Instance != null && MouseLocation.Instance.IsValid) {
+	// 		//Find the point the player should look at by subtracting the player's position from the mouse's position
+	// 		Vector3 lookPoint = MouseLocation.Instance.MousePosition - playerMovement.transform.position;
+	// 		//Tell the player what direction to look
+	// 		playerMovement.lookDirection = lookPoint;
+	// 	}
+        
     }
 }
