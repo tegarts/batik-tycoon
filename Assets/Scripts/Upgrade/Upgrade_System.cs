@@ -16,15 +16,16 @@ public class UpgradeSystem : MonoBehaviour
 
     private void Start()
     {
+        machine = GetComponent<Machine>();
         UpdateLevelText();
         UpdateUpgradeCostText();
         HideUpgradeMessage(); // Menyembunyikan panel pesan upgrade saat memulai game
 
         // Mulai coroutine untuk menambah uang secara otomatis jika mesin sudah level 3 atau lebih
-        if (machine.level >= 3)
-        {
-            autoMoneyCoroutine = StartCoroutine(AutoMoneyIncreaseCoroutine());
-        }
+        // if (machine.level >= 3)
+        // {
+        //     autoMoneyCoroutine = StartCoroutine(AutoMoneyIncreaseCoroutine());
+        // }
     }
 
     public void UpgradeMachine()
@@ -37,15 +38,15 @@ public class UpgradeSystem : MonoBehaviour
             StartCoroutine(HideUpgradeMessageDelayed(1.5f)); // Menyembunyikan pesan setelah 1.5 detik
 
             // Memulai atau hentikan coroutine untuk menambah uang secara otomatis sesuai level
-            if (machine.level >= 3 && autoMoneyCoroutine == null)
-            {
-                autoMoneyCoroutine = StartCoroutine(AutoMoneyIncreaseCoroutine());
-            }
-            else if (machine.level < 3 && autoMoneyCoroutine != null)
-            {
-                StopCoroutine(autoMoneyCoroutine);
-                autoMoneyCoroutine = null;
-            }
+            // if (machine.level >= 3 && autoMoneyCoroutine == null)
+            // {
+            //     autoMoneyCoroutine = StartCoroutine(AutoMoneyIncreaseCoroutine());
+            // }
+            // else if (machine.level < 3 && autoMoneyCoroutine != null)
+            // {
+            //     StopCoroutine(autoMoneyCoroutine);
+            //     autoMoneyCoroutine = null;
+            // }
         }
         else
         {
@@ -112,46 +113,46 @@ public class UpgradeSystem : MonoBehaviour
         HideUpgradeMessage(); // Menyembunyikan panel pesan setelah delay tertentu
     }
 
-    private IEnumerator AutoMoneyIncreaseCoroutine()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(GetAutoMoneyInterval()); // Tunggu selama interval uang otomatis
-            playerInfo.AddMoney(GetAutoMoneyAmount()); // Tambahkan uang sesuai dengan level mesin
-        }
-    }
+    // private IEnumerator AutoMoneyIncreaseCoroutine()
+    // {
+    //     while (true)
+    //     {
+    //         yield return new WaitForSeconds(GetAutoMoneyInterval()); // Tunggu selama interval uang otomatis
+    //         playerInfo.AddMoney(GetAutoMoneyAmount()); // Tambahkan uang sesuai dengan level mesin
+    //     }
+    // }
 
-    private float GetAutoMoneyInterval()
-    {
-        // Tentukan interval berdasarkan level mesin
-        switch (machine.level)
-        {
-            case 3:
-                return 3f; // Setiap 3 detik untuk level 3
-            case 4:
-                return 3f; // Setiap 2 detik untuk level 4
-            case 5:
-                return 3f; // Setiap 1 detik untuk level 5
-            default:
-                return 3f; // Default setiap 3 detik
-        }
-    }
+    // private float GetAutoMoneyInterval()
+    // {
+    //     // Tentukan interval berdasarkan level mesin
+    //     switch (machine.level)
+    //     {
+    //         case 3:
+    //             return 3f; // Setiap 3 detik untuk level 3
+    //         case 4:
+    //             return 3f; // Setiap 2 detik untuk level 4
+    //         case 5:
+    //             return 3f; // Setiap 1 detik untuk level 5
+    //         default:
+    //             return 3f; // Default setiap 3 detik
+    //     }
+    // }
 
-    private int GetAutoMoneyAmount()
-    {
-        // Tentukan jumlah uang yang ditambahkan berdasarkan level mesin
-        switch (machine.level)
-        {
-            case 3:
-                return 1; // Tambah 1 uang untuk level 3
-            case 4:
-                return 1; // Tambah 2 uang untuk level 4
-            case 5:
-                return 1; // Tambah 3 uang untuk level 5
-            default:
-                return 0; // Tidak menambah uang untuk level lainnya
-        }
-    }
+    // private int GetAutoMoneyAmount()
+    // {
+    //     // Tentukan jumlah uang yang ditambahkan berdasarkan level mesin
+    //     switch (machine.level)
+    //     {
+    //         case 3:
+    //             return 1; // Tambah 1 uang untuk level 3
+    //         case 4:
+    //             return 1; // Tambah 2 uang untuk level 4
+    //         case 5:
+    //             return 1; // Tambah 3 uang untuk level 5
+    //         default:
+    //             return 0; // Tidak menambah uang untuk level lainnya
+    //     }
+    // }
 
     private void OnDestroy()
     {
@@ -164,32 +165,7 @@ public class UpgradeSystem : MonoBehaviour
 }
 
 
-[System.Serializable]
-public class Machine
-{
-    public int level = 1;
-    public int maxLevel = 5;
-    public int[] upgradeCosts; // Array untuk menyimpan biaya upgrade untuk setiap level
 
-    public bool Upgrade(PlayerInfo playerInfo)
-    {
-        if (!IsMaxLevel())
-        {
-            int currentUpgradeCost = upgradeCosts[level - 1]; // Biaya upgrade untuk level saat ini
-            if (playerInfo.CanAfford(currentUpgradeCost))
-            {
-                playerInfo.ReduceMoney(currentUpgradeCost);
-                level++;
-                return true;
-            }
-        }
-        return false;
-    }
 
-    public bool IsMaxLevel()
-    {
-        return level >= maxLevel;
-    }
-}
 
 

@@ -25,6 +25,7 @@ public class ArrowMechanic : MonoBehaviour
     [SerializeField] bool[] isInsideTools;
     [SerializeField] GameObject popUpPressF;
     Animator anim;
+    RewardManager rewardManager;
 
     private void Awake()
     {
@@ -37,6 +38,7 @@ public class ArrowMechanic : MonoBehaviour
         playerMovement = FindAnyObjectByType<PlayerMovement>();
         popUpPressF.SetActive(false);
         anim = GetComponent<Animator>();
+        rewardManager = FindAnyObjectByType<RewardManager>();
     }
 
     private void Update()
@@ -162,6 +164,16 @@ public class ArrowMechanic : MonoBehaviour
                     if(isInsideTools[i] == true)
                     {
                         toolsDone[i] = true;
+                    }
+                }
+
+                if(toolsDone[0] == true && toolsDone[1] == true && toolsDone[2] == true && toolsDone[3] == true && toolsDone[4] == true)
+                {
+                    rewardManager.GiveRewardManual();
+
+                    for(int i = 0; i < toolsDone.Length; i++)
+                    {
+                        toolsDone[i] = false;
                     }
                 }
                 // if (isInsideTools[0] == true)

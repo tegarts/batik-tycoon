@@ -3380,6 +3380,7 @@ GameObject:
   - component: {fileID: 718624622}
   - component: {fileID: 718624621}
   - component: {fileID: 718624625}
+  - component: {fileID: 718624626}
   m_Layer: 0
   m_Name: Tools 2
   m_TagString: tools2
@@ -3506,15 +3507,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b06209237ae4164499ef9873ecc4efe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  machine:
-    level: 1
-    maxLevel: 5
-    upgradeCosts: 0d020000dc05000076160000f82a0000
+  machine: {fileID: 0}
   playerInfo: {fileID: 919132149387774122}
   levelMachineText: {fileID: 1958878759}
   upgradeCostText: {fileID: 659682227}
   upgradeMessagePanel: {fileID: 12215451}
   upgradeMessageText: {fileID: 1034417685}
+--- !u!114 &718624626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 718624619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac38f076e311a1b47a1a3c01b5b84630, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 1
+  maxLevel: 5
+  upgradeCosts: 0d020000dc05000076160000f82a0000
 --- !u!1 &721552052
 GameObject:
   m_ObjectHideFlags: 0
@@ -6188,6 +6201,7 @@ GameObject:
   - component: {fileID: 1153478749}
   - component: {fileID: 1153478748}
   - component: {fileID: 1153478752}
+  - component: {fileID: 1153478753}
   m_Layer: 0
   m_Name: Tools 4
   m_TagString: tools4
@@ -6314,15 +6328,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b06209237ae4164499ef9873ecc4efe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  machine:
-    level: 1
-    maxLevel: 5
-    upgradeCosts: 3f020000c4090000521c0000c8320000
+  machine: {fileID: 0}
   playerInfo: {fileID: 919132149387774122}
   levelMachineText: {fileID: 1055622557}
   upgradeCostText: {fileID: 1351573099}
   upgradeMessagePanel: {fileID: 12215451}
   upgradeMessageText: {fileID: 1034417685}
+--- !u!114 &1153478753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153478746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac38f076e311a1b47a1a3c01b5b84630, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 1
+  maxLevel: 5
+  upgradeCosts: 3f020000c4090000521c0000c8320000
 --- !u!1 &1156762876
 GameObject:
   m_ObjectHideFlags: 0
@@ -6469,6 +6495,7 @@ GameObject:
   - component: {fileID: 1182284802}
   - component: {fileID: 1182284801}
   - component: {fileID: 1182284805}
+  - component: {fileID: 1182284806}
   m_Layer: 0
   m_Name: Tools 5
   m_TagString: tools5
@@ -6595,15 +6622,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b06209237ae4164499ef9873ecc4efe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  machine:
-    level: 1
-    maxLevel: 5
-    upgradeCosts: 58020000b80b0000401f0000b0360000
+  machine: {fileID: 0}
   playerInfo: {fileID: 919132149387774122}
   levelMachineText: {fileID: 1308136766}
   upgradeCostText: {fileID: 1537144891}
   upgradeMessagePanel: {fileID: 12215451}
   upgradeMessageText: {fileID: 1034417685}
+--- !u!114 &1182284806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1182284799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac38f076e311a1b47a1a3c01b5b84630, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 1
+  maxLevel: 5
+  upgradeCosts: 58020000b80b0000401f0000b0360000
 --- !u!1 &1193608312
 GameObject:
   m_ObjectHideFlags: 0
@@ -6618,6 +6657,7 @@ GameObject:
   - component: {fileID: 1193608315}
   - component: {fileID: 1193608314}
   - component: {fileID: 1193608318}
+  - component: {fileID: 1193608319}
   m_Layer: 0
   m_Name: Tools 3
   m_TagString: tools3
@@ -6744,15 +6784,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b06209237ae4164499ef9873ecc4efe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  machine:
-    level: 1
-    maxLevel: 5
-    upgradeCosts: 26020000d007000064190000e02e0000
+  machine: {fileID: 0}
   playerInfo: {fileID: 919132149387774122}
   levelMachineText: {fileID: 1802484375}
   upgradeCostText: {fileID: 1605037395}
   upgradeMessagePanel: {fileID: 12215451}
   upgradeMessageText: {fileID: 1034417685}
+--- !u!114 &1193608319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193608312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac38f076e311a1b47a1a3c01b5b84630, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 1
+  maxLevel: 5
+  upgradeCosts: 26020000d007000064190000e02e0000
 --- !u!1 &1211557724
 GameObject:
   m_ObjectHideFlags: 0
@@ -8383,6 +8435,7 @@ GameObject:
   - component: {fileID: 1573419812}
   - component: {fileID: 1573419811}
   - component: {fileID: 1573419815}
+  - component: {fileID: 1573419816}
   m_Layer: 0
   m_Name: Tools 1
   m_TagString: tools1
@@ -8509,15 +8562,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b06209237ae4164499ef9873ecc4efe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  machine:
-    level: 1
-    maxLevel: 5
-    upgradeCosts: f4010000e80300008813000010270000
+  machine: {fileID: 0}
   playerInfo: {fileID: 919132149387774122}
   levelMachineText: {fileID: 488099555}
   upgradeCostText: {fileID: 821448660}
   upgradeMessagePanel: {fileID: 12215451}
   upgradeMessageText: {fileID: 1034417685}
+--- !u!114 &1573419816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1573419809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac38f076e311a1b47a1a3c01b5b84630, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 1
+  maxLevel: 5
+  upgradeCosts: f4010000e80300008813000010270000
 --- !u!1 &1605037393
 GameObject:
   m_ObjectHideFlags: 0
@@ -10480,6 +10545,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1974095351}
+  - component: {fileID: 1974095352}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -10502,6 +10568,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1974095352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1974095349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 296ac527f94133c43b761c693f3207e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptMesin:
+  - {fileID: 1573419816}
+  - {fileID: 718624626}
+  - {fileID: 1193608319}
+  - {fileID: 1153478753}
+  - {fileID: 1182284806}
+  rewardManual: fa00000077010000f401000071020000ee020000
 --- !u!1 &1991271737
 GameObject:
   m_ObjectHideFlags: 0
