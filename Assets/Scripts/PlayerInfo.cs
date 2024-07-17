@@ -3,10 +3,21 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class PlayerInfo : MonoBehaviour
+public class PlayerInfo : MonoBehaviour, IDataPersistence
 {
     public int money;
     [SerializeField] public TMP_Text moneyText;
+
+    
+    public void LoadData(GameData data)
+    {
+        money = data.money;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.money = money;
+    }
 
     void Start()
     {

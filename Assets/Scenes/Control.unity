@@ -3525,6 +3525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac38f076e311a1b47a1a3c01b5b84630, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  machineNumber: 2
   level: 1
   maxLevel: 5
   upgradeCosts: 0d020000dc05000076160000f82a0000
@@ -6346,6 +6347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac38f076e311a1b47a1a3c01b5b84630, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  machineNumber: 4
   level: 1
   maxLevel: 5
   upgradeCosts: 3f020000c4090000521c0000c8320000
@@ -6640,6 +6642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac38f076e311a1b47a1a3c01b5b84630, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  machineNumber: 5
   level: 1
   maxLevel: 5
   upgradeCosts: 58020000b80b0000401f0000b0360000
@@ -6802,6 +6805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac38f076e311a1b47a1a3c01b5b84630, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  machineNumber: 3
   level: 1
   maxLevel: 5
   upgradeCosts: 26020000d007000064190000e02e0000
@@ -8580,6 +8584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac38f076e311a1b47a1a3c01b5b84630, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  machineNumber: 1
   level: 1
   maxLevel: 5
   upgradeCosts: f4010000e80300008813000010270000

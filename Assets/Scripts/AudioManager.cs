@@ -12,8 +12,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip bgMenu;
     public AudioClip bgIngame;
     public AudioClip clickedButton;
-    public AudioClip correctSFX;
-    public AudioClip wrongSFX;
+    public AudioClip cursorArea;
 
     public static AudioManager instance;
 
@@ -41,11 +40,11 @@ public class AudioManager : MonoBehaviour
     public void PlayBackgroundMusic()
     {
         // TODO - Ganti nama scene
-        if (SceneManager.GetActiveScene().name == "")
+        if (SceneManager.GetActiveScene().name == "MainMenu")
         {
             musicSource.clip = bgMenu;
         }
-        else if (SceneManager.GetActiveScene().name == "")
+        else if (SceneManager.GetActiveScene().name == "Control")
         {
             musicSource.clip = bgIngame;
         }
