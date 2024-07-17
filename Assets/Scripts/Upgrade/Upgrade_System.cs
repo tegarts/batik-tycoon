@@ -74,11 +74,14 @@ public class UpgradeSystem : MonoBehaviour
     {
         if (upgradeCostText != null)
         {
-            int currentUpgradeCost = machine.upgradeCosts[machine.level - 1]; // Biaya upgrade untuk level saat ini
-            upgradeCostText.text = "Rp. " + currentUpgradeCost.ToString();
-            if (machine.IsMaxLevel() == true)
+            if(machine.level == 5)
             {
                 upgradeCostText.text = "Max";
+            }
+            else
+            {
+                int currentUpgradeCost = machine.upgradeCosts[machine.level - 1]; // Biaya upgrade untuk level saat ini
+                upgradeCostText.text = "Rp. " + currentUpgradeCost.ToString();
             }
         }
     }

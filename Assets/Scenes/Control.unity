@@ -598,7 +598,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 72785627}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1182284805}
+        m_TargetAssemblyTypeName: UpgradeSystem, Assembly-CSharp
+        m_MethodName: UpgradeMachine
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &72785627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3197,7 +3209,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 686256299}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1153478752}
+        m_TargetAssemblyTypeName: UpgradeSystem, Assembly-CSharp
+        m_MethodName: UpgradeMachine
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &686256299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3355,6 +3379,7 @@ GameObject:
   - component: {fileID: 718624623}
   - component: {fileID: 718624622}
   - component: {fileID: 718624621}
+  - component: {fileID: 718624625}
   m_Layer: 0
   m_Name: Tools 2
   m_TagString: tools2
@@ -3469,6 +3494,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 718624619}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &718624625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 718624619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b06209237ae4164499ef9873ecc4efe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  machine:
+    level: 1
+    maxLevel: 5
+    upgradeCosts: 0d020000dc05000076160000f82a0000
+  playerInfo: {fileID: 919132149387774122}
+  levelMachineText: {fileID: 1958878759}
+  upgradeCostText: {fileID: 659682227}
+  upgradeMessagePanel: {fileID: 12215451}
+  upgradeMessageText: {fileID: 1034417685}
 --- !u!1 &721552052
 GameObject:
   m_ObjectHideFlags: 0
@@ -5943,7 +5989,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1113103226}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 718624625}
+        m_TargetAssemblyTypeName: UpgradeSystem, Assembly-CSharp
+        m_MethodName: UpgradeMachine
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1113103226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6129,6 +6187,7 @@ GameObject:
   - component: {fileID: 1153478750}
   - component: {fileID: 1153478749}
   - component: {fileID: 1153478748}
+  - component: {fileID: 1153478752}
   m_Layer: 0
   m_Name: Tools 4
   m_TagString: tools4
@@ -6243,6 +6302,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1153478746}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1153478752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153478746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b06209237ae4164499ef9873ecc4efe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  machine:
+    level: 1
+    maxLevel: 5
+    upgradeCosts: 3f020000c4090000521c0000c8320000
+  playerInfo: {fileID: 919132149387774122}
+  levelMachineText: {fileID: 1055622557}
+  upgradeCostText: {fileID: 1351573099}
+  upgradeMessagePanel: {fileID: 12215451}
+  upgradeMessageText: {fileID: 1034417685}
 --- !u!1 &1156762876
 GameObject:
   m_ObjectHideFlags: 0
@@ -6388,6 +6468,7 @@ GameObject:
   - component: {fileID: 1182284803}
   - component: {fileID: 1182284802}
   - component: {fileID: 1182284801}
+  - component: {fileID: 1182284805}
   m_Layer: 0
   m_Name: Tools 5
   m_TagString: tools5
@@ -6502,6 +6583,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1182284799}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1182284805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1182284799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b06209237ae4164499ef9873ecc4efe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  machine:
+    level: 1
+    maxLevel: 5
+    upgradeCosts: 58020000b80b0000401f0000b0360000
+  playerInfo: {fileID: 919132149387774122}
+  levelMachineText: {fileID: 1308136766}
+  upgradeCostText: {fileID: 1537144891}
+  upgradeMessagePanel: {fileID: 12215451}
+  upgradeMessageText: {fileID: 1034417685}
 --- !u!1 &1193608312
 GameObject:
   m_ObjectHideFlags: 0
@@ -6515,6 +6617,7 @@ GameObject:
   - component: {fileID: 1193608316}
   - component: {fileID: 1193608315}
   - component: {fileID: 1193608314}
+  - component: {fileID: 1193608318}
   m_Layer: 0
   m_Name: Tools 3
   m_TagString: tools3
@@ -6629,6 +6732,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1193608312}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1193608318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193608312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b06209237ae4164499ef9873ecc4efe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  machine:
+    level: 1
+    maxLevel: 5
+    upgradeCosts: 26020000d007000064190000e02e0000
+  playerInfo: {fileID: 919132149387774122}
+  levelMachineText: {fileID: 1802484375}
+  upgradeCostText: {fileID: 1605037395}
+  upgradeMessagePanel: {fileID: 12215451}
+  upgradeMessageText: {fileID: 1034417685}
 --- !u!1 &1211557724
 GameObject:
   m_ObjectHideFlags: 0
@@ -7484,7 +7608,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1379568145}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1193608318}
+        m_TargetAssemblyTypeName: UpgradeSystem, Assembly-CSharp
+        m_MethodName: UpgradeMachine
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1379568145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8376,7 +8512,7 @@ MonoBehaviour:
   machine:
     level: 1
     maxLevel: 5
-    upgradeCosts: f4010000e8030000881300001027000010270000
+    upgradeCosts: f4010000e80300008813000010270000
   playerInfo: {fileID: 919132149387774122}
   levelMachineText: {fileID: 488099555}
   upgradeCostText: {fileID: 821448660}
