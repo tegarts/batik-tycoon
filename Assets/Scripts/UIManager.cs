@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class UIManager2 : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
     [SerializeField] GameObject panelPause;
     [SerializeField] GameObject panelOptions;
+    [SerializeField] GameObject panelUpgrade;
 
     private void Start() 
     {
@@ -31,7 +32,31 @@ public class UIManager2 : MonoBehaviour
                 Time.timeScale = 1;
             }
             
+        }
+
+        // Cek apakah tombol 'U' ditekan
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            // Jika panel belum aktif, aktifkan
+            if (!panelUpgrade.activeSelf)
+            {
+                OpenUpgradePanel();
+            }
+            else // Jika panel sudah aktif, nonaktifkan
+            {
+                CloseUpgradePanel();
+            }
         }    
+    }
+
+    public void OpenUpgradePanel()
+    {
+        panelUpgrade.SetActive(true);
+    }
+
+    public void CloseUpgradePanel()
+    {
+        panelUpgrade.SetActive(false);
     }
 
     public void PauseBack()

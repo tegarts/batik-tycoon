@@ -6823,6 +6823,7 @@ GameObject:
   - component: {fileID: 1987568397}
   - component: {fileID: 1987568396}
   - component: {fileID: 1987568399}
+  - component: {fileID: 1987568400}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -6945,7 +6946,9 @@ MonoBehaviour:
   moveDirection: {x: 0, y: 0, z: 0}
   lookDirection: {x: 0, y: 0, z: 1}
   speed: 6
+  animator: {fileID: 1987568400}
   rigidBody: {fileID: 1987568398}
+  canMove: 1
 --- !u!54 &1987568398
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6987,6 +6990,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   money: 99999
   moneyText: {fileID: 1565484676}
+--- !u!95 &1987568400
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987568391}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f49e15e27d728cb4b894ef7e6bf2c3ff, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2032372135
 GameObject:
   m_ObjectHideFlags: 0
