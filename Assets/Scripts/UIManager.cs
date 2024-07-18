@@ -3,17 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class UIManager : MonoBehaviour
+public class UIManager : MonoBehaviour, IDataPersistence
 {
     [SerializeField] GameObject panelPause;
     [SerializeField] GameObject panelOptions;
     [SerializeField] GameObject panelUpgrade;
+    [SerializeField] GameObject panelTutorial;
+    public bool isAlreadyTutor;
+
+    public void LoadData(GameData data)
+    {
+        isAlreadyTutor = data.isAlreadyTutor;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.isAlreadyTutor = isAlreadyTutor;
+    }
 
     private void Start() 
     {
         Time.timeScale = 1;
         panelPause.SetActive(false);
         panelOptions.SetActive(false);
+        if(isAlreadyTutor)
+        {
+            panelTutorial.SetActive(false);
+        }
+        else
+        {
+            panelTutorial.SetActive(true);
+            isAlreadyTutor = true;
+        }
     }
 
     private void Update() 
@@ -21,7 +42,7 @@ public class UIManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             // TODO - Tambahin pengecekan kalo ada panel lain lagi buka (contoh panel upgrade)
-            if(!panelPause.activeSelf)
+            if(!panelPause.activeSelf && !panelUpgrade.activeSelf)
             {
                 panelPause.SetActive(true);
                 Time.timeScale = 0;
@@ -38,7 +59,7 @@ public class UIManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.U))
         {
             // Jika panel belum aktif, aktifkan
-            if (!panelUpgrade.activeSelf)
+            if (!panelUpgrade.activeSelf && !panelPause.activeSelf)
             {
                 OpenUpgradePanel();
             }

@@ -7,6 +7,7 @@ public class GameData
 {
     public bool tools1, tools2, tools3, tools4, tools5;
     public int money;
+    public bool isAlreadyTutor;
     public int machineLevel1, machineLevel2, machineLevel3, machineLevel4, machineLevel5;
     public GameData()
     {
@@ -21,5 +22,6 @@ public class GameData
         machineLevel3 = 1;
         machineLevel4 = 1;
         machineLevel5 = 1;
+        isAlreadyTutor = false;
     }
 }
