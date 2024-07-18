@@ -61,4 +61,15 @@ public class AudioManager : MonoBehaviour
     {
         SFXSource.Stop();
     }
+
+    public void SFX_ClickedButton()
+    {
+        SFXSource.clip = clickedButton;
+        SFXSource.Play();
+    }
+    public void SFX_ButtonCursorArea()
+    {
+        SFXSource.clip = cursorArea;
+        SFXSource.Play();
+    }
 }
