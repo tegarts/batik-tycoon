@@ -8,23 +8,28 @@ public class Dialogue : MonoBehaviour
     public TextMeshProUGUI textComponent;
     PlayerMovement playerMovement;
     public string[] lines;
-    public bool isLine1;
     public float textSpeed;
     UIManager uiManager;
+    public bool isStartTutor;
+    public GameObject indicatorUpgrade;
+    [SerializeField] GameObject indicatorMoney;
 
     [SerializeField] private int index;
-    public GameObject glowTools1;
+    ArrowMechanic arrowMechanic;
 
     private void Awake() {
         playerMovement = FindAnyObjectByType<PlayerMovement>();
         uiManager = FindAnyObjectByType<UIManager>();
+        arrowMechanic = FindAnyObjectByType<ArrowMechanic>();
     }
     private void Start() 
     {
-        glowTools1.SetActive(false);
+        indicatorUpgrade.SetActive(false);
+        indicatorMoney.SetActive(false);
         if(!uiManager.isAlreadyTutor)
         {
             playerMovement.canMove = false;
+            isStartTutor = true;
         }
         else
         {
@@ -35,7 +40,7 @@ public class Dialogue : MonoBehaviour
     }
 
     private void Update() {
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
         {
             if(textComponent.text == lines[index])
             {
@@ -73,31 +78,65 @@ public class Dialogue : MonoBehaviour
 
     void NextLine()
     {
-        if(index < 2 && !isLine1)
+        if(index < 2)
         {
             index++;
             textComponent.text = string.Empty;
             StartCoroutine(TypeLine());
-            Debug.Log("test 1");
         }
-        else if(index == 2 && !isLine1)
+        else if(index == 2)
         {
             index++;
             playerMovement.canMove = true;
             gameObject.SetActive(false);
-            glowTools1.SetActive(true);
-            Debug.Log("test 2");
+            arrowMechanic.glowTools[0].SetActive(true);
         }
-        else if(index == 3 && isLine1)
+        else if(index == 3)
+        {
+            index++;
+            gameObject.SetActive(false);
+            playerMovement.canMove = false;
+        }
+        else if(index == 4)
+        {
+            index++;
+            playerMovement.canMove = true;
+            gameObject.SetActive(false);
+            arrowMechanic.glowTools[1].SetActive(true);
+        }
+        else if(index == 5)
+        {
+            index++;
+            textComponent.text = string.Empty;
+            indicatorMoney.SetActive(true);
+            StartCoroutine(TypeLine());
+
+        }
+        else if(index == 6)
+        {
+            index++;
+            textComponent.text = string.Empty;
+            indicatorMoney.SetActive(false);
+            indicatorUpgrade.SetActive(true);
+            StartCoroutine(TypeLine());
+        }
+        else if(index == 7)
         {
             index++;
             gameObject.SetActive(false);
         }
-        else if(index == 4 && isLine1)
+        else if(index == 8)
         {
             index++;
             textComponent.text = string.Empty;
             StartCoroutine(TypeLine());
+            
+        }
+        else if(index == 9)
+        {
+            gameObject.SetActive(false);
+            playerMovement.canMove = true;
+            isStartTutor = false;
         }
     }
 }

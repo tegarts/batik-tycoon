@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour, IDataPersistence
     [SerializeField] GameObject panelUpgrade;
     [SerializeField] GameObject panelTutorial;
     public bool isAlreadyTutor;
+    private Dialogue dialogue;
 
     public void LoadData(GameData data)
     {
@@ -21,12 +22,13 @@ public class UIManager : MonoBehaviour, IDataPersistence
         data.isAlreadyTutor = isAlreadyTutor;
     }
 
-    private void Start() 
+    private void Start()
     {
+        dialogue = FindAnyObjectByType<Dialogue>();
         Time.timeScale = 1;
         panelPause.SetActive(false);
         panelOptions.SetActive(false);
-        if(isAlreadyTutor)
+        if (isAlreadyTutor)
         {
             panelTutorial.SetActive(false);
         }
@@ -37,29 +39,29 @@ public class UIManager : MonoBehaviour, IDataPersistence
         }
     }
 
-    private void Update() 
+    private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             // TODO - Tambahin pengecekan kalo ada panel lain lagi buka (contoh panel upgrade)
-            if(!panelPause.activeSelf && !panelUpgrade.activeSelf)
+            if (!panelPause.activeSelf && !panelUpgrade.activeSelf && !panelTutorial.activeSelf)
             {
                 panelPause.SetActive(true);
                 Time.timeScale = 0;
             }
-            else if(panelPause.activeSelf && !panelOptions.activeSelf)
+            else if (panelPause.activeSelf && !panelOptions.activeSelf)
             {
                 panelPause.SetActive(false);
                 Time.timeScale = 1;
             }
-            
+
         }
 
         // Cek apakah tombol 'U' ditekan
         if (Input.GetKeyDown(KeyCode.U))
         {
             // Jika panel belum aktif, aktifkan
-            if (!panelUpgrade.activeSelf && !panelPause.activeSelf)
+            if (!panelUpgrade.activeSelf && !panelPause.activeSelf && !panelTutorial.activeSelf)
             {
                 OpenUpgradePanel();
             }
@@ -67,12 +69,17 @@ public class UIManager : MonoBehaviour, IDataPersistence
             {
                 CloseUpgradePanel();
             }
-        }    
+        }
     }
 
     public void OpenUpgradePanel()
     {
         panelUpgrade.SetActive(true);
+        if (dialogue.isStartTutor)
+        {
+            dialogue.indicatorUpgrade.SetActive(false);
+            dialogue.gameObject.SetActive(true);
+        }
     }
 
     public void CloseUpgradePanel()
@@ -106,5 +113,5 @@ public class UIManager : MonoBehaviour, IDataPersistence
         Application.Quit();
     }
 
-    
+
 }

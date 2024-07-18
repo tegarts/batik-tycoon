@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,6 +28,8 @@ public class ArrowMechanic : MonoBehaviour
     Animator anim;
     RewardManager rewardManager;
     public Dialogue dialogue;
+    public GameObject[] glowTools;
+    private bool isOnProgres;
 
     private void Awake()
     {
@@ -40,6 +43,11 @@ public class ArrowMechanic : MonoBehaviour
         popUpPressF.SetActive(false);
         anim = GetComponent<Animator>();
         rewardManager = FindAnyObjectByType<RewardManager>();
+
+        for (int i = 0; i < glowTools.Length; i++)
+        {
+            glowTools[i].SetActive(false);
+        }
     }
 
     private void Update()
@@ -49,10 +57,9 @@ public class ArrowMechanic : MonoBehaviour
             popUpPressF.SetActive(true);
             if (Input.GetKeyDown(KeyCode.F))
             {
-                if(dialogue.glowTools1.activeSelf)
+                if (glowTools[0].activeSelf)
                 {
                     dialogue.gameObject.SetActive(true);
-                    dialogue.isLine1 = true;
                 }
                 anim.SetBool("IsWalking", false);
                 popUpPressF.SetActive(false);
@@ -60,7 +67,7 @@ public class ArrowMechanic : MonoBehaviour
                 isStartArrow = true;
             }
         }
-        else if(isInsideTools[1] == true && toolsDone[0] == true && toolsDone[1] == false && !isStartArrow)
+        else if (isInsideTools[1] == true && toolsDone[0] == true && toolsDone[1] == false && !isStartArrow)
         {
             popUpPressF.SetActive(true);
             if (Input.GetKeyDown(KeyCode.F))
@@ -71,7 +78,7 @@ public class ArrowMechanic : MonoBehaviour
                 isStartArrow = true;
             }
         }
-        else if(isInsideTools[2] == true && toolsDone[1] == true && toolsDone[2] == false && !isStartArrow)
+        else if (isInsideTools[2] == true && toolsDone[1] == true && toolsDone[2] == false && !isStartArrow)
         {
             popUpPressF.SetActive(true);
             if (Input.GetKeyDown(KeyCode.F))
@@ -82,7 +89,7 @@ public class ArrowMechanic : MonoBehaviour
                 isStartArrow = true;
             }
         }
-        else if(isInsideTools[3] == true && toolsDone[2] == true && toolsDone[3] == false && !isStartArrow)
+        else if (isInsideTools[3] == true && toolsDone[2] == true && toolsDone[3] == false && !isStartArrow)
         {
             popUpPressF.SetActive(true);
             if (Input.GetKeyDown(KeyCode.F))
@@ -93,7 +100,7 @@ public class ArrowMechanic : MonoBehaviour
                 isStartArrow = true;
             }
         }
-        else if(isInsideTools[4] == true && toolsDone[3] == true && toolsDone[4] == false && !isStartArrow)
+        else if (isInsideTools[4] == true && toolsDone[3] == true && toolsDone[4] == false && !isStartArrow)
         {
             popUpPressF.SetActive(true);
             if (Input.GetKeyDown(KeyCode.F))
@@ -166,19 +173,19 @@ public class ArrowMechanic : MonoBehaviour
                 arrowGameObject.SetActive(false);
                 playerMovement.canMove = true;
 
-                for(int i = 0; i < isInsideTools.Length; i++)
+                for (int i = 0; i < isInsideTools.Length; i++)
                 {
-                    if(isInsideTools[i] == true)
+                    if (isInsideTools[i] == true)
                     {
                         toolsDone[i] = true;
                     }
                 }
 
-                if(toolsDone[0] == true && toolsDone[1] == true && toolsDone[2] == true && toolsDone[3] == true && toolsDone[4] == true)
+                if (toolsDone[0] == true && toolsDone[1] == true && toolsDone[2] == true && toolsDone[3] == true && toolsDone[4] == true)
                 {
                     rewardManager.GiveRewardManual();
 
-                    for(int i = 0; i < toolsDone.Length; i++)
+                    for (int i = 0; i < toolsDone.Length; i++)
                     {
                         toolsDone[i] = false;
                     }
@@ -188,10 +195,48 @@ public class ArrowMechanic : MonoBehaviour
                 //     toolsDone[0] = true;
                 // }
 
-                if(dialogue.glowTools1.activeSelf)
+                if (!glowTools[0].activeSelf && !glowTools[1].activeSelf && !glowTools[2].activeSelf && !glowTools[3].activeSelf && !glowTools[4].activeSelf && !isOnProgres)
                 {
-                    dialogue.glowTools1.SetActive(false);
+                    isOnProgres = true;
+                    glowTools[1].SetActive(true);
+                    return;
                 }
+
+                if (glowTools[0].activeSelf)
+                {
+                    glowTools[0].SetActive(false);
+                    dialogue.gameObject.SetActive(true);
+                    playerMovement.canMove = false;
+                }
+                else if (glowTools[1].activeSelf)
+                {
+                    glowTools[2].SetActive(true);
+                    glowTools[1].SetActive(false);
+                }
+                else if (glowTools[2].activeSelf)
+                {
+                    glowTools[3].SetActive(true);
+                    glowTools[2].SetActive(false);
+                }
+                else if (glowTools[3].activeSelf)
+                {
+                    glowTools[4].SetActive(true);
+                    glowTools[3].SetActive(false);
+                }
+                else if (glowTools[4].activeSelf && dialogue.isStartTutor)
+                {
+                    glowTools[4].SetActive(false);
+                    playerMovement.canMove = false;
+                    dialogue.gameObject.SetActive(true);
+                    isOnProgres = false;
+                }
+                else if (glowTools[4].activeSelf && !dialogue.isStartTutor)
+                {
+                    glowTools[4].SetActive(false);
+                    isOnProgres = false;
+                }
+
+
             }
         }
         else
