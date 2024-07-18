@@ -8,10 +8,12 @@ public class Dialogue : MonoBehaviour
     public TextMeshProUGUI textComponent;
     PlayerMovement playerMovement;
     public string[] lines;
+    public bool isLine1;
     public float textSpeed;
     UIManager uiManager;
 
-    private int index;
+    [SerializeField] private int index;
+    public GameObject glowTools1;
 
     private void Awake() {
         playerMovement = FindAnyObjectByType<PlayerMovement>();
@@ -19,6 +21,7 @@ public class Dialogue : MonoBehaviour
     }
     private void Start() 
     {
+        glowTools1.SetActive(false);
         if(!uiManager.isAlreadyTutor)
         {
             playerMovement.canMove = false;
@@ -46,11 +49,18 @@ public class Dialogue : MonoBehaviour
         }
     }
 
+    private void OnEnable() 
+    {
+        textComponent.text = string.Empty;
+        StartDialogue();
+    }
+
     void StartDialogue()
     {
-        index = 0;
+        //index = 0;
         StartCoroutine(TypeLine());
     }
+
 
     IEnumerator TypeLine()
     {
@@ -63,16 +73,31 @@ public class Dialogue : MonoBehaviour
 
     void NextLine()
     {
-        if(index < lines.Length - 1)
+        if(index < 2 && !isLine1)
         {
             index++;
             textComponent.text = string.Empty;
             StartCoroutine(TypeLine());
+            Debug.Log("test 1");
         }
-        else
+        else if(index == 2 && !isLine1)
         {
+            index++;
             playerMovement.canMove = true;
             gameObject.SetActive(false);
+            glowTools1.SetActive(true);
+            Debug.Log("test 2");
+        }
+        else if(index == 3 && isLine1)
+        {
+            index++;
+            gameObject.SetActive(false);
+        }
+        else if(index == 4 && isLine1)
+        {
+            index++;
+            textComponent.text = string.Empty;
+            StartCoroutine(TypeLine());
         }
     }
 }

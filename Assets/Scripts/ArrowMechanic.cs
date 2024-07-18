@@ -26,10 +26,11 @@ public class ArrowMechanic : MonoBehaviour
     [SerializeField] GameObject popUpPressF;
     Animator anim;
     RewardManager rewardManager;
+    public Dialogue dialogue;
 
     private void Awake()
     {
-        // audioManager = GameObject.FindWithTag("Audio").GetComponent<AudioManager>();
+        audioManager = GameObject.FindWithTag("Audio").GetComponent<AudioManager>();
     }
 
     private void Start()
@@ -48,6 +49,11 @@ public class ArrowMechanic : MonoBehaviour
             popUpPressF.SetActive(true);
             if (Input.GetKeyDown(KeyCode.F))
             {
+                if(dialogue.glowTools1.activeSelf)
+                {
+                    dialogue.gameObject.SetActive(true);
+                    dialogue.isLine1 = true;
+                }
                 anim.SetBool("IsWalking", false);
                 popUpPressF.SetActive(false);
                 GenerateRandomSequence();
@@ -144,12 +150,13 @@ public class ArrowMechanic : MonoBehaviour
         if (Input.GetKeyDown(currentSequence[currentButtonIndex].name))
         {
             sequenceImages[currentButtonIndex].color = Color.green;
-            // audioManager.PlaySFX(audioManager.correctSFX);
+            audioManager.PlaySFX(audioManager.correctArrow);
             currentButtonIndex++;
 
             if (currentButtonIndex >= currentSequence.Length)
             {
                 Debug.Log("Sequence Correct!");
+                audioManager.PlaySFX(audioManager.successArrow);
                 for (int i = 0; i < sequenceImages.Length; i++)
                 {
                     sequenceImages[i].color = Color.white;
@@ -180,6 +187,11 @@ public class ArrowMechanic : MonoBehaviour
                 // {
                 //     toolsDone[0] = true;
                 // }
+
+                if(dialogue.glowTools1.activeSelf)
+                {
+                    dialogue.glowTools1.SetActive(false);
+                }
             }
         }
         else
@@ -190,7 +202,7 @@ public class ArrowMechanic : MonoBehaviour
                 {
                     sequenceImages[currentButtonIndex].color = Color.red;
                     Debug.Log("Wrong button pressed. Restarting sequence.");
-                    // audioManager.PlaySFX(audioManager.wrongSFX);
+                    audioManager.PlaySFX(audioManager.wrongArrow);
                     for (int i = 0; i < sequenceImages.Length; i++)
                     {
                         sequenceImages[i].color = Color.white;

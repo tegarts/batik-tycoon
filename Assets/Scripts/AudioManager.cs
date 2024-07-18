@@ -13,6 +13,9 @@ public class AudioManager : MonoBehaviour
     public AudioClip bgIngame;
     public AudioClip clickedButton;
     public AudioClip cursorArea;
+    public AudioClip correctArrow;
+    public AudioClip wrongArrow;
+    public AudioClip successArrow;
 
     public static AudioManager instance;
 
