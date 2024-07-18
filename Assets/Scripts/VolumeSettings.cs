@@ -18,22 +18,38 @@ public class VolumeSettings : MonoBehaviour
         }
         else
         {
-            SetMusicVolume();
-            SetSFXVolume();
+            SetDefaultVolume();
         }
+
+        musicSlider.onValueChanged.AddListener(delegate { SetMusicVolume(); });
+        SFXSlider.onValueChanged.AddListener(delegate { SetSFXVolume(); });
     }
 
     public void SetMusicVolume()
     {
         float volume = musicSlider.value;
-        myMixer.SetFloat("music", Mathf.Log10(volume)*20);
+        if (volume == 0)
+        {
+            myMixer.SetFloat("music", -80); // Set to a very low value to mute
+        }
+        else
+        {
+            myMixer.SetFloat("music", Mathf.Log10(volume) * 20);
+        }
         PlayerPrefs.SetFloat("musicVolume", volume);
     }
 
     public void SetSFXVolume()
     {
         float volume = SFXSlider.value;
-        myMixer.SetFloat("SFX", Mathf.Log10(volume) * 20);
+        if (volume == 0)
+        {
+            myMixer.SetFloat("SFX", -80); // Set to a very low value to mute
+        }
+        else
+        {
+            myMixer.SetFloat("SFX", Mathf.Log10(volume) * 20);
+        }
         PlayerPrefs.SetFloat("SFXVolume", volume);
     }
 
@@ -46,4 +62,12 @@ public class VolumeSettings : MonoBehaviour
         SetSFXVolume();
     }
 
+    private void SetDefaultVolume()
+    {
+        musicSlider.value = 0.5f; // Default value for the slider
+        SFXSlider.value = 0.5f; // Default value for the slider
+
+        SetMusicVolume();
+        SetSFXVolume();
+    }
 }
