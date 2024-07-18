@@ -14,7 +14,7 @@ public class Dialogue : MonoBehaviour
     public GameObject indicatorUpgrade;
     [SerializeField] GameObject indicatorMoney;
 
-    [SerializeField] private int index;
+    public int index;
     ArrowMechanic arrowMechanic;
 
     private void Awake() {

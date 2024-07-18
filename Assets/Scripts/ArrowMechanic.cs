@@ -57,7 +57,7 @@ public class ArrowMechanic : MonoBehaviour
             popUpPressF.SetActive(true);
             if (Input.GetKeyDown(KeyCode.F))
             {
-                if (glowTools[0].activeSelf)
+                if (glowTools[0].activeSelf && dialogue.isStartTutor)
                 {
                     dialogue.gameObject.SetActive(true);
                 }
@@ -247,6 +247,12 @@ public class ArrowMechanic : MonoBehaviour
                 {
                     sequenceImages[currentButtonIndex].color = Color.red;
                     Debug.Log("Wrong button pressed. Restarting sequence.");
+
+                    if (glowTools[0].activeSelf && dialogue.isStartTutor)
+                    {
+                        dialogue.index--;
+                    }
+
                     audioManager.PlaySFX(audioManager.wrongArrow);
                     for (int i = 0; i < sequenceImages.Length; i++)
                     {
