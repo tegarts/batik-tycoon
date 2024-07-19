@@ -5,24 +5,51 @@ using UnityEngine;
 
 public class Billboard : MonoBehaviour
 {
-    Transform player;
+    [SerializeField] Transform player;
+    [SerializeField] Transform mendesain;
+    [SerializeField] Transform mencanting;
+    [SerializeField] Transform mewarnai;
+    [SerializeField] Transform menjemur;
+    [SerializeField] Transform menglodor;
     [SerializeField] float heightAbove = 2f;
+    HidePlayerManager hidePlayerManager;
 
     private void Start() 
     {
-        player = FindAnyObjectByType<PlayerMovement>().transform;
+        hidePlayerManager = FindAnyObjectByType<HidePlayerManager>();
     }
 
     private void LateUpdate() 
     {
-        if(player != null)
+        if(hidePlayerManager.isStartDesain)
         {
-            Vector3 newPosition = player.transform.position + Vector3.up * heightAbove;
+            Vector3 newPosition = mendesain.transform.position + Vector3.up * heightAbove;
+            transform.position = newPosition;
+        }
+        else if(hidePlayerManager.isStartCanting)
+        {
+            Vector3 newPosition = mencanting.transform.position + Vector3.up * heightAbove;
+            transform.position = newPosition;
+        }
+        else if(hidePlayerManager.isStartMewarnai)
+        {
+            Vector3 newPosition = mewarnai.transform.position + Vector3.up * heightAbove;
+            transform.position = newPosition;
+        }
+        else if(hidePlayerManager.isStartMenjemur)
+        {
+            Vector3 newPosition = menjemur.transform.position + Vector3.up * heightAbove;
+            transform.position = newPosition;
+        }
+        else if(hidePlayerManager.isStartMenglodor)
+        {
+            Vector3 newPosition = menglodor.transform.position + Vector3.up * heightAbove;
             transform.position = newPosition;
         }
         else
         {
-            Debug.LogWarning("Player transform is not set");
+            Vector3 newPosition = player.transform.position + Vector3.up * heightAbove;
+            transform.position = newPosition;
         }
     }
 }

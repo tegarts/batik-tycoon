@@ -6,22 +6,27 @@ using UnityEngine;
 public class PlayerInfo : MonoBehaviour, IDataPersistence
 {
     public int money;
+    public int kain;
     [SerializeField] public TMP_Text moneyText;
+    public TMP_Text kainText;
 
     
     public void LoadData(GameData data)
     {
         money = data.money;
+        kain = data.kain;
     }
 
     public void SaveData(ref GameData data)
     {
         data.money = money;
+        data.kain = kain;
     }
 
     void Start()
     {
         UpdateMoneyText();
+        UpdateKainText();
     }
 
     public bool CanAfford(int amount)
@@ -46,11 +51,31 @@ public class PlayerInfo : MonoBehaviour, IDataPersistence
         UpdateMoneyText();
     }
 
+    public void AddKain(int amount)
+    {
+        kain += amount;
+        Debug.Log("Kain nambah: " + amount);
+        UpdateKainText();
+    }
+
+    public void ReduceKain(int amount)
+    {
+        
+    }
+
     private void UpdateMoneyText()
     {
         if (moneyText != null)
         {
             moneyText.text = money.ToString();
+        }
+    }
+
+    private void UpdateKainText()
+    {
+        if(kainText != null)
+        {
+            kainText.text = kain.ToString();
         }
     }
 }

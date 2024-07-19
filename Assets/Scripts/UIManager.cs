@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour, IDataPersistence
     [SerializeField] GameObject panelTutorial;
     public bool isAlreadyTutor;
     private Dialogue dialogue;
+    TimeManager timeManager;
 
     public void LoadData(GameData data)
     {
@@ -25,6 +26,10 @@ public class UIManager : MonoBehaviour, IDataPersistence
     private void Start()
     {
         dialogue = FindAnyObjectByType<Dialogue>();
+        timeManager = FindAnyObjectByType<TimeManager>();
+        panelUpgrade.SetActive(false);
+        panelOptions.SetActive(false);
+        panelPause.SetActive(false);
         Time.timeScale = 1;
         panelPause.SetActive(false);
         panelOptions.SetActive(false);
@@ -111,6 +116,17 @@ public class UIManager : MonoBehaviour, IDataPersistence
     public void ExitButton()
     {
         Application.Quit();
+    }
+
+    public void StartDay()
+    {
+        if(!timeManager.isStartDay)
+        {
+            timeManager.isStartDay = true;
+            timeManager.day += 1;
+            timeManager.hour = 8;
+            timeManager.minute = 0;
+        }
     }
 
 

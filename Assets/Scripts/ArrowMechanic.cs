@@ -30,6 +30,9 @@ public class ArrowMechanic : MonoBehaviour
     public Dialogue dialogue;
     public GameObject[] glowTools;
     private bool isOnProgres;
+    HidePlayerManager hidePlayerManager;
+    public GameObject popUpStartDay;
+    TimeManager timeManager;
 
     private void Awake()
     {
@@ -38,6 +41,9 @@ public class ArrowMechanic : MonoBehaviour
 
     private void Start()
     {
+        hidePlayerManager = FindAnyObjectByType<HidePlayerManager>();
+        timeManager = FindAnyObjectByType<TimeManager>();
+        popUpStartDay.SetActive(false);
         arrowGameObject.SetActive(false);
         playerMovement = FindAnyObjectByType<PlayerMovement>();
         popUpPressF.SetActive(false);
@@ -52,19 +58,38 @@ public class ArrowMechanic : MonoBehaviour
 
     private void Update()
     {
+        if(!timeManager.isStartDay)
+        {
+            for(int i = 0; i < glowTools.Length; i++)
+            {
+                glowTools[i].SetActive(false);
+                toolsDone[i] = false;
+            }
+        }
+
         if (isInsideTools[0] == true && toolsDone[0] == false && !isStartArrow)
         {
             popUpPressF.SetActive(true);
             if (Input.GetKeyDown(KeyCode.F))
             {
-                if (glowTools[0].activeSelf && dialogue.isStartTutor)
+                if (!timeManager.isStartDay && !dialogue.isStartTutor)
                 {
-                    dialogue.gameObject.SetActive(true);
+                    StartCoroutine(PopUpWarning());
                 }
-                anim.SetBool("IsWalking", false);
-                popUpPressF.SetActive(false);
-                GenerateRandomSequence();
-                isStartArrow = true;
+                else
+                {
+                    if (glowTools[0].activeSelf && dialogue.isStartTutor)
+                    {
+                        dialogue.gameObject.SetActive(true);
+                    }
+                    hidePlayerManager.isStartDesain = true;
+                    anim.SetBool("IsWalking", false);
+                    popUpPressF.SetActive(false);
+                    GenerateRandomSequence();
+                    isStartArrow = true;
+                }
+
+
             }
         }
         else if (isInsideTools[1] == true && toolsDone[0] == true && toolsDone[1] == false && !isStartArrow)
@@ -72,10 +97,19 @@ public class ArrowMechanic : MonoBehaviour
             popUpPressF.SetActive(true);
             if (Input.GetKeyDown(KeyCode.F))
             {
-                anim.SetBool("IsWalking", false);
-                popUpPressF.SetActive(false);
-                GenerateRandomSequence();
-                isStartArrow = true;
+                if (!timeManager.isStartDay)
+                {
+                    StartCoroutine(PopUpWarning());
+                }
+                else
+                {
+                    anim.SetBool("IsWalking", false);
+                    hidePlayerManager.isStartCanting = true;
+                    popUpPressF.SetActive(false);
+                    GenerateRandomSequence();
+                    isStartArrow = true;
+                }
+
             }
         }
         else if (isInsideTools[2] == true && toolsDone[1] == true && toolsDone[2] == false && !isStartArrow)
@@ -83,10 +117,19 @@ public class ArrowMechanic : MonoBehaviour
             popUpPressF.SetActive(true);
             if (Input.GetKeyDown(KeyCode.F))
             {
-                anim.SetBool("IsWalking", false);
-                popUpPressF.SetActive(false);
-                GenerateRandomSequence();
-                isStartArrow = true;
+                if (!timeManager.isStartDay)
+                {
+                    StartCoroutine(PopUpWarning());
+                }
+                else
+                {
+                    anim.SetBool("IsWalking", false);
+                    hidePlayerManager.isStartMewarnai = true;
+                    popUpPressF.SetActive(false);
+                    GenerateRandomSequence();
+                    isStartArrow = true;
+                }
+
             }
         }
         else if (isInsideTools[3] == true && toolsDone[2] == true && toolsDone[3] == false && !isStartArrow)
@@ -94,10 +137,19 @@ public class ArrowMechanic : MonoBehaviour
             popUpPressF.SetActive(true);
             if (Input.GetKeyDown(KeyCode.F))
             {
-                anim.SetBool("IsWalking", false);
-                popUpPressF.SetActive(false);
-                GenerateRandomSequence();
-                isStartArrow = true;
+                if (!timeManager.isStartDay)
+                {
+                    StartCoroutine(PopUpWarning());
+                }
+                else
+                {
+                    anim.SetBool("IsWalking", false);
+                    hidePlayerManager.isStartMenjemur = true;
+                    popUpPressF.SetActive(false);
+                    GenerateRandomSequence();
+                    isStartArrow = true;
+                }
+
             }
         }
         else if (isInsideTools[4] == true && toolsDone[3] == true && toolsDone[4] == false && !isStartArrow)
@@ -105,10 +157,19 @@ public class ArrowMechanic : MonoBehaviour
             popUpPressF.SetActive(true);
             if (Input.GetKeyDown(KeyCode.F))
             {
-                anim.SetBool("IsWalking", false);
-                popUpPressF.SetActive(false);
-                GenerateRandomSequence();
-                isStartArrow = true;
+                if (!timeManager.isStartDay)
+                {
+                    StartCoroutine(PopUpWarning());
+                }
+                else
+                {
+                    anim.SetBool("IsWalking", false);
+                    hidePlayerManager.isStartMenglodor = true;
+                    popUpPressF.SetActive(false);
+                    GenerateRandomSequence();
+                    isStartArrow = true;
+                }
+
             }
         }
 
@@ -116,6 +177,13 @@ public class ArrowMechanic : MonoBehaviour
         {
             CheckButtonInput();
         }
+    }
+
+    IEnumerator PopUpWarning()
+    {
+        popUpStartDay.SetActive(true);
+        yield return new WaitForSeconds(1);
+        popUpStartDay.SetActive(false);
     }
 
     public void GenerateRandomSequence()
@@ -163,6 +231,11 @@ public class ArrowMechanic : MonoBehaviour
             if (currentButtonIndex >= currentSequence.Length)
             {
                 Debug.Log("Sequence Correct!");
+                hidePlayerManager.isStartDesain = false;
+                hidePlayerManager.isStartCanting = false;
+                hidePlayerManager.isStartMewarnai = false;
+                hidePlayerManager.isStartMenjemur = false;
+                hidePlayerManager.isStartMenglodor = false;
                 audioManager.PlaySFX(audioManager.successArrow);
                 for (int i = 0; i < sequenceImages.Length; i++)
                 {
@@ -247,6 +320,11 @@ public class ArrowMechanic : MonoBehaviour
                 {
                     sequenceImages[currentButtonIndex].color = Color.red;
                     Debug.Log("Wrong button pressed. Restarting sequence.");
+                    hidePlayerManager.isStartDesain = false;
+                    hidePlayerManager.isStartCanting = false;
+                    hidePlayerManager.isStartMewarnai = false;
+                    hidePlayerManager.isStartMenjemur = false;
+                    hidePlayerManager.isStartMenglodor = false;
 
                     if (glowTools[0].activeSelf && dialogue.isStartTutor)
                     {

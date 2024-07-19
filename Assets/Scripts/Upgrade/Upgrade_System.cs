@@ -13,9 +13,11 @@ public class UpgradeSystem : MonoBehaviour
     [SerializeField] public TMP_Text upgradeMessageText; // TMP_Text untuk menampilkan pesan upgrade
 
     private Coroutine autoMoneyCoroutine; // Coroutine untuk menambah uang secara otomatis
+    RewardManager rewardManager;
 
     private void Start()
     {
+        rewardManager = FindAnyObjectByType<RewardManager>();
         machine = GetComponent<Machine>();
         UpdateLevelText();
         UpdateUpgradeCostText();
@@ -47,6 +49,14 @@ public class UpgradeSystem : MonoBehaviour
             //     StopCoroutine(autoMoneyCoroutine);
             //     autoMoneyCoroutine = null;
             // }
+
+            // ini buat nambahin value mesin yang udah di upgrade buat auto
+            if(machine.level >= 3)
+            {
+                rewardManager.upgradeCounter++;
+                Debug.Log("cek upgradesystem");
+            }
+            
         }
         else
         {

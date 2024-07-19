@@ -6,9 +6,11 @@ using UnityEngine;
 public class GameData
 {
     public bool tools1, tools2, tools3, tools4, tools5;
-    public int money;
+    public int money, kain;
     public bool isAlreadyTutor;
     public int machineLevel1, machineLevel2, machineLevel3, machineLevel4, machineLevel5;
+    public int upgradeCounter;
+    public int day;
     public GameData()
     {
         this.tools1 = false;
@@ -17,11 +19,14 @@ public class GameData
         this.tools4 = false;
         this.tools5 = false;
         money = 0;
+        kain = 0;
         machineLevel1 = 1;
         machineLevel2 = 1;
         machineLevel3 = 1;
         machineLevel4 = 1;
         machineLevel5 = 1;
         isAlreadyTutor = false;
+        upgradeCounter = 0;
+        day = 0;
     }
 }

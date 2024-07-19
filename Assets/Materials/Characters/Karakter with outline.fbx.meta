@@ -8,22 +8,22 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Alis
-    second: {fileID: 2100000, guid: 0faad8d36dd47ef4da43b60336991c2c, type: 2}
+    second: {fileID: 2100000, guid: aebc338e7059ded498856a63d9bd2b89, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Body
-    second: {fileID: 2100000, guid: 0edac3b7e6ed2f14ea3015198ec5e171, type: 2}
+    second: {fileID: 2100000, guid: 156d31c0a2d63ef48869ffe5f27ce697, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: OH_Outline_Material
-    second: {fileID: 2100000, guid: d246af5a7f0385849ab596dcda325d4f, type: 2}
+    second: {fileID: 2100000, guid: 35887280dea0bd64d97e7aa215cf9ff1, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Pakaian
-    second: {fileID: 2100000, guid: 5d5b0c873fd8c2b4d80d3eb089af07b4, type: 2}
+    second: {fileID: 2100000, guid: 04aa50c9275245d4da134ff5da84656e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
