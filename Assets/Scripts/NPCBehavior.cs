@@ -26,12 +26,25 @@ public class NPCBehavior : MonoBehaviour
         // Jika NPC sedang menunggu, tidak melakukan gerakan
         if (isWaiting)
         {
+            anim.SetBool("IsWalking", false);
             return;
         }
-
+        anim.SetBool("IsWalking", true);
         Vector3 destination = waypoints[index].transform.position;
+        Vector3 currentPosition = transform.position;
+
+        destination.y = currentPosition.y;
+
+        Vector3 direction = destination - currentPosition;
         Vector3 newPos = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
         transform.position = newPos;
+
+        if (direction != Vector3.zero)
+        {
+            Quaternion rotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * speed);
+        }
+        
 
         float distance = Vector3.Distance(transform.position, destination);
         if (distance <= 0.05f) // Memastikan jarak cukup dekat untuk beralih waypoint
@@ -69,6 +82,7 @@ public class NPCBehavior : MonoBehaviour
         }
         else
         {
+            anim.SetBool("IsWalking", false);
             if (isLoop)
             {
                 index = 0;
