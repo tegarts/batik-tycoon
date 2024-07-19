@@ -1,0 +1,544 @@
+fileFormatVersion: 2
+guid: 9c05074ee3811e64abfb1e2f660e94be
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Alis
+    second: {fileID: 2100000, guid: 7051470b547258f45b953dc33cc0d748, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Badan
+    second: {fileID: 2100000, guid: c453222ef24cc9b4b82e8b1deb578d7c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bibir
+    second: {fileID: 2100000, guid: 922ddbdda0a83264ab556053dc50906c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Daleman
+    second: {fileID: 2100000, guid: 3ab97de2af87b424eb8028cd764e7895, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ganggang
+    second: {fileID: 2100000, guid: 379c3c7ea0b9e7c43a31edec367ca5c2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Garis Bibir
+    second: {fileID: 2100000, guid: 901aad99cab64a646a0f3e36b448c7c8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Gelang Lengan
+    second: {fileID: 2100000, guid: c4f9b39be0cea2c4381ea397a58efcfc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hiasan
+    second: {fileID: 2100000, guid: 0ab56134b2fa37342b460daa2d586098, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Kayu
+    second: {fileID: 2100000, guid: 3be962a068b644b44ad703890fcd0364, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Kebaya
+    second: {fileID: 2100000, guid: dad205617edf2a849ab4a9327f391d45, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Kebaya 2
+    second: {fileID: 2100000, guid: 1310a4e69f8c55a45af8dccac41177fb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lampu
+    second: {fileID: 2100000, guid: 573febc03958b664ab18fba0078a35b3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lapisan
+    second: {fileID: 2100000, guid: 992cf61da20f98843bc487d00a3f8e41, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mata
+    second: {fileID: 2100000, guid: c7a30b80101cb004bb38d4416f43d490, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 056d35901d35e604cb6f80e6151a7834, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: 97c50358fbd7f8642b49bd099857a694, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.002
+    second: {fileID: 2100000, guid: 9732609e2cd7d004da8b03dab1c3b972, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: OH_Outline_Material
+    second: {fileID: 2100000, guid: 260916aaf3877844c872713a4ff78920, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: OH_Outline_Material.001
+    second: {fileID: 2100000, guid: 226d6f49605b2144eba3c34223da0912, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: OH_Outline_Material.002
+    second: {fileID: 2100000, guid: 0b44d97e2e7150243b6e785a8645506a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: OH_Outline_Material.003
+    second: {fileID: 2100000, guid: 4ba017779b3a0da499db9a52cc940968, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: OH_Outline_Material.004
+    second: {fileID: 2100000, guid: 3f2d6053c79340840922fd3c49d3e663, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: OH_Outline_Material.005
+    second: {fileID: 2100000, guid: 207bb44f79bb0594a91c62353467f024, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: OH_Outline_Material.006
+    second: {fileID: 2100000, guid: c8c0b686e070643458138ecd2372c5a9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: OH_Outline_Material.007
+    second: {fileID: 2100000, guid: e6bf1e46e6eea8749ba25559891d1ff7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: OH_Outline_Material.008
+    second: {fileID: 2100000, guid: 3e4e510e3b7980e40ae9e67ec266e2bc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: OH_Outline_Material.009
+    second: {fileID: 2100000, guid: 34c67659f9b57bd43b2f863e49375f73, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: OH_Outline_Material.010
+    second: {fileID: 2100000, guid: 57d982856ddaa9a4aa13122aa11b4856, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: OH_Outline_Material.011
+    second: {fileID: 2100000, guid: dfc9538f2c2e44b4b885bcc644bc3b05, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: OH_Outline_Material.012
+    second: {fileID: 2100000, guid: a7c850e6868d0344f8c5a32707970ace, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: OH_Outline_Material.013
+    second: {fileID: 2100000, guid: be6b5c2f6f98e8744975975812a35b47, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sabuk
+    second: {fileID: 2100000, guid: a38d8e0cfc38b0949ba92edc7d039bce, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tepi Rambut
+    second: {fileID: 2100000, guid: 193c1fcd315e371418c72dd0f8993583, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Texture
+    second: {fileID: 2100000, guid: 1e7965bd2aea90045bd3183e084b6641, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Texture.001
+    second: {fileID: 2100000, guid: 72c0a736ab0cb474cbd486f140a417ef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Texture.002
+    second: {fileID: 2100000, guid: a4377acd0856b754e8df619686a2608c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Texture.003
+    second: {fileID: 2100000, guid: e25abc76481a9fd4fa70685c19785605, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Texture.004
+    second: {fileID: 2100000, guid: 23d7dc2ff90b85f4d948a7239c874a7b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Texture.005
+    second: {fileID: 2100000, guid: eba65b151365feb419cfd4bdc31443be, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Texture.006
+    second: {fileID: 2100000, guid: 787f002a04a90864eb2c8b2a9e3ca979, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Texture.007
+    second: {fileID: 2100000, guid: 8468cf2ff902a4b418f7f546b0395cd2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Texture.008
+    second: {fileID: 2100000, guid: f58bcf639ed155845aa5568262427450, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Texture.batik
+    second: {fileID: 2100000, guid: f78745fb508e8224db532ba39f7e621c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Texture.batik.002
+    second: {fileID: 2100000, guid: 0b23652c44d45cc46bd62202b259bbfc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Texture.batik.003
+    second: {fileID: 2100000, guid: b22ddf10c37040c4084a1eaf0973ab63, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Texture.batik.004
+    second: {fileID: 2100000, guid: 669f917b7036ec1409e2ca51f70321ca, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Texture.batik.005
+    second: {fileID: 2100000, guid: 46f14c3489fe4f04bbb157cf3d547077, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Texture.batik.006
+    second: {fileID: 2100000, guid: 41b208fd4595e534c9bbc59fb70d48c6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Texture.batik.007
+    second: {fileID: 2100000, guid: 1454286820ed81d4d9f7f1697f6046c9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Texture.batik.008
+    second: {fileID: 2100000, guid: deae869941d3ea84ab9104c16db6aadc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Texture.batik.009
+    second: {fileID: 2100000, guid: a5d3fa5ae18dd2345bd8499de65e03e8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Texture.batik.010
+    second: {fileID: 2100000, guid: 6e9102a6911680b47b35c0389e176575, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Texture.batik.011
+    second: {fileID: 2100000, guid: 27a8e89456f7f1948a0e660ce8cf73e4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Texture.batik.012
+    second: {fileID: 2100000, guid: 3c7107217d2ee0948879c735fff4fe88, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Texture.batik.013
+    second: {fileID: 2100000, guid: e2e833964a18b9146a6fb310165cabcf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Texture.batik.014
+    second: {fileID: 2100000, guid: aa9de43a8fff529459790421f00e2997, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Texture.batik.015
+    second: {fileID: 2100000, guid: 04bbb819ac51ea94f8f03cdac849a90f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Texture.batik.016
+    second: {fileID: 2100000, guid: 1faa68d2b28e89e4f88fe9756393ad29, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Texture.batik.017
+    second: {fileID: 2100000, guid: 28a4321dee79f0940bc80d945747e002, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Texture.batik.1
+    second: {fileID: 2100000, guid: 89af19a2c7b5e814a9f2aff8d74ec014, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Texture.kain
+    second: {fileID: 2100000, guid: 3a92c7cce02e85948ac30b99a080a073, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Texture.kain.001
+    second: {fileID: 2100000, guid: a564151ee6dfc89428f45c68fd4619be, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Texture.kain.002
+    second: {fileID: 2100000, guid: b1973791d8d7b834088b4678f5cdffba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bingkai.001
+    second: {fileID: 2100000, guid: 58b06c7dd3189144cb30ccffa4b716f6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bingkaii
+    second: {fileID: 2100000, guid: 1cce0fcc7065214468e6351b968bd7d7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: gbr_pigora.001
+    second: {fileID: 2100000, guid: e677b5ea218ebe043993dd69fe2a3db8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: kaca
+    second: {fileID: 2100000, guid: d08ad04ec55e477499439caf0e540323, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: kacaa
+    second: {fileID: 2100000, guid: 6f5c3576f8725dc4b9bbf8ecd8e93926, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pigoraaa
+    second: {fileID: 2100000, guid: 368df35de45968248bf05c1bd70fcfff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tembok
+    second: {fileID: 2100000, guid: e4399236dda7dd64f8d9b9e2afe04cb9, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: 1000_F_527997168_mSNd1DdrncQkw2Sj0YNTKhiXHA8uc7j4
+    second: {fileID: 2800000, guid: 4fd4e4bc0136fd9448962943b256ad41, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Batik 2
+    second: {fileID: 2800000, guid: 5e44684cb584311499d3550c287964a3, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Batik 4
+    second: {fileID: 2800000, guid: b9e9d7db27478b84a8112fd8b98173c9, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Batik 5
+    second: {fileID: 2800000, guid: 734de36e23af7494ab174dbf15a7c3fe, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Batik 6
+    second: {fileID: 2800000, guid: a0aa5c83ca18f0b4ea9b60e798f4d69c, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Batik 7
+    second: {fileID: 2800000, guid: b7ca94df3be7bdb4d9b59ffc9078e35f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Batik 8
+    second: {fileID: 2800000, guid: 4f52385b9e260ab41abf2bdf3eca653d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Batik di warna
+    second: {fileID: 2800000, guid: 14324fdd7eed28249967c2f973321dcb, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Batik mulai di canting
+    second: {fileID: 2800000, guid: 2ba7bd8102ad59e4bac729222428d6d0, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Pallet warna
+    second: {fileID: 2800000, guid: f7ae822c2afae184b889a82f3c125a16, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Pallet_warna
+    second: {fileID: 2800000, guid: ad3914c825ef07a44b5a0ca7fdfc8fdc, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: batik 1
+    second: {fileID: 2800000, guid: 42d443ec327d7de4c8b7a57a48e9fb75, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: batik-mandailing
+    second: {fileID: 2800000, guid: b5c0145af23bed149bb5f86777101dae, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: gambar-motif-batik-batak-toba-21
+    second: {fileID: 2800000, guid: 21742c9a6ae329a4caed9ff5472b29b7, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: gambar_batikk
+    second: {fileID: 2800000, guid: a4ae623e1344a244bb8a1c5d367ef947, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: ot4k-scaled
+    second: {fileID: 2800000, guid: 1bdf53e35d140da4e8960968261be3e8, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: sejarah_batik
+    second: {fileID: 2800000, guid: fc37c7c8cfa14724c997f6398bb46c8c, type: 3}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
