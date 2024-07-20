@@ -63,8 +63,8 @@ public class UIManager : MonoBehaviour, IDataPersistence
 
         }
 
-        // Cek apakah tombol 'U' ditekan
-        if (Input.GetKeyDown(KeyCode.U))
+        // Cek apakah tombol 'Q' ditekan
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             // Jika panel belum aktif, aktifkan
             if (!panelUpgrade.activeSelf && !panelPause.activeSelf && !panelTutorial.activeSelf)
