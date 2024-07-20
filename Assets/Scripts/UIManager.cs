@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour, IDataPersistence
     public bool isAlreadyTutor;
     private Dialogue dialogue;
     TimeManager timeManager;
+    AudioManager audioManager;
 
     public void LoadData(GameData data)
     {
@@ -77,6 +78,11 @@ public class UIManager : MonoBehaviour, IDataPersistence
         }
     }
 
+    private void Awake()
+    {
+        audioManager = GameObject.FindWithTag("Audio").GetComponent<AudioManager>();
+    }
+
     public void OpenUpgradePanel()
     {
         panelUpgrade.SetActive(true);
@@ -120,7 +126,7 @@ public class UIManager : MonoBehaviour, IDataPersistence
 
     public void StartDay()
     {
-        if(!timeManager.isStartDay)
+        if (!timeManager.isStartDay)
         {
             timeManager.isStartDay = true;
             timeManager.day += 1;
@@ -129,5 +135,12 @@ public class UIManager : MonoBehaviour, IDataPersistence
         }
     }
 
-
+    public void SFX_ClickedButton()
+    {
+        audioManager.PlaySFX(audioManager.clickedButton);
+    }
+    public void SFX_ButtonCursorArea()
+    {
+        audioManager.PlaySFX(audioManager.cursorArea);
+    }
 }
