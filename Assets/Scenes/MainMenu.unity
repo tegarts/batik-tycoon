@@ -7748,9 +7748,9 @@ MonoBehaviour:
   bgIngame: {fileID: 8300000, guid: 814872a9db696a04d83d0eda485fe35d, type: 3}
   clickedButton: {fileID: 8300000, guid: c393d1060f961404ca319de9be942f8e, type: 3}
   cursorArea: {fileID: 8300000, guid: 591b98eb916f8f14ca0e843c1b682280, type: 3}
-  correctArrow: {fileID: 0}
-  wrongArrow: {fileID: 0}
-  successArrow: {fileID: 0}
+  correctArrow: {fileID: 8300000, guid: 96958d271ce34a54c849b8897cf3cbc3, type: 3}
+  wrongArrow: {fileID: 8300000, guid: 70d8671df1367224198573edcaf0605c, type: 3}
+  successArrow: {fileID: 8300000, guid: d2e8a15be4509a645ad9e7e898588b20, type: 3}
 --- !u!1 &1914391717
 GameObject:
   m_ObjectHideFlags: 0
