@@ -14,10 +14,12 @@ public class UpgradeSystem : MonoBehaviour
 
     private Coroutine autoMoneyCoroutine; // Coroutine untuk menambah uang secara otomatis
     RewardManager rewardManager;
+    WorkerManager workerManager;
 
     private void Start()
     {
         rewardManager = FindAnyObjectByType<RewardManager>();
+        workerManager = FindAnyObjectByType<WorkerManager>();
         machine = GetComponent<Machine>();
         UpdateLevelText();
         UpdateUpgradeCostText();
@@ -53,6 +55,7 @@ public class UpgradeSystem : MonoBehaviour
             // ini buat nambahin value mesin yang udah di upgrade buat auto
             if(machine.level >= 3)
             {
+                workerManager.EnableMachines();
                 rewardManager.upgradeCounter++;
                 Debug.Log("cek upgradesystem");
             }

@@ -24,7 +24,7 @@ public class TimeManager : MonoBehaviour, IDataPersistence
 
     private void Start() 
     {
-        
+        TextCallFunction();
     }
 
     private void Update() 
