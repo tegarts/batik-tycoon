@@ -84,6 +84,7 @@ public class UIManager : MonoBehaviour, IDataPersistence
             if (!panelSmartphone.activeSelf && !panelPause.activeSelf && !panelTutorial.activeSelf)
             {
                 OpenUpgradePanel();
+
             }
             else // Jika panel sudah aktif, nonaktifkan
             {
@@ -99,11 +100,11 @@ public class UIManager : MonoBehaviour, IDataPersistence
 
     public void OpenUpgradePanel()
     {
-        if(dialogue.isStartTutor && !dialogue.isOpenUpgrade)
+        if (dialogue.isStartTutor && !dialogue.isOpenUpgrade)
         {
             return;
         }
-        else if(dialogue.isStartTutor && dialogue.isOpenUpgrade)
+        else if (dialogue.isStartTutor && dialogue.isOpenUpgrade)
         {
             panelSmartphone.SetActive(true);
             dialogue.indicatorUpgrade.SetActive(false);
@@ -117,7 +118,23 @@ public class UIManager : MonoBehaviour, IDataPersistence
 
     public void CloseUpgradePanel()
     {
+        Animator animator = panelSmartphone.GetComponent<Animator>();
+        if (animator != null)
+        {
+            animator.SetBool("isOut", true);
+            StartCoroutine(WaitForAnimation(animator));
+        }
+        else
+        {
+            panelSmartphone.SetActive(false);
+        }
+    }
+
+    private IEnumerator WaitForAnimation(Animator animator)
+    {
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
         panelSmartphone.SetActive(false);
+        animator.SetBool("isOut", false); // Reset parameter jika diperlukan
     }
 
     public void PauseBack()

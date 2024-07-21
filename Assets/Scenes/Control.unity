@@ -30683,6 +30683,7 @@ GameObject:
   - component: {fileID: 1297885121}
   - component: {fileID: 1297885123}
   - component: {fileID: 1297885122}
+  - component: {fileID: 1297885124}
   m_Layer: 5
   m_Name: Panel_Smartphone
   m_TagString: Untagged
@@ -30751,6 +30752,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1297885120}
   m_CullTransparentMesh: 1
+--- !u!95 &1297885124
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297885120}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b1cf5a23436bae346ba459bd218c3967, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1297973614
 GameObject:
   m_ObjectHideFlags: 0
