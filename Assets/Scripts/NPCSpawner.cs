@@ -72,9 +72,12 @@ public class NPCSpawner : MonoBehaviour
             }
             else
             {
+                if(elapsedTimeInMinutes >= 120)
+                {   
                     Instantiate(npcPrefab, transform.position, transform.rotation);
-                    lastHour = timeManager.hour;
-                
+                    lastSpawnTimeInMinutes = currentTimeInMinutes;
+                }
+                    
             }
         }
         else
