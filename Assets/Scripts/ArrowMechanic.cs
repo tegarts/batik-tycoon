@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -32,6 +33,7 @@ public class ArrowMechanic : MonoBehaviour
     private bool isOnProgres;
     HidePlayerManager hidePlayerManager;
     public GameObject popUpStartDay;
+    public TMP_Text popUpWarningText;
     TimeManager timeManager;
 
     private void Awake()
@@ -181,6 +183,7 @@ public class ArrowMechanic : MonoBehaviour
 
     IEnumerator PopUpWarning()
     {
+        popUpWarningText.text = "Tekan tombol Mulai Hari Berikutnya di menu upgrade (Q) sebelum memulai proses pembuatan batik";
         popUpStartDay.SetActive(true);
         yield return new WaitForSeconds(1);
         popUpStartDay.SetActive(false);

@@ -7,12 +7,15 @@ public class RewardManager : MonoBehaviour, IDataPersistence
     [SerializeField] Machine[] scriptMesin;
     PlayerInfo playerInfo;
     [SerializeField] int[] rewardManual;
+    TimeManager timeManager;
     public int upgradeCounter;
     public bool isStarted;
+    public bool isStopped;
+    IEnumerator autoKain;
 
-     public void LoadData(GameData data)
+    public void LoadData(GameData data)
     {
-       upgradeCounter = data.upgradeCounter;
+        upgradeCounter = data.upgradeCounter;
     }
 
     public void SaveData(ref GameData data)
@@ -20,42 +23,53 @@ public class RewardManager : MonoBehaviour, IDataPersistence
         data.upgradeCounter = upgradeCounter;
     }
 
-    private void Start() 
+    private void Start()
     {
         playerInfo = FindAnyObjectByType<PlayerInfo>();
-
-        
+        timeManager = FindAnyObjectByType<TimeManager>();
+        autoKain = AutoKainIncreaseCoroutine();
     }
 
-    private void Update() 
+    private void Update()
     {
-          if (scriptMesin[0].level >= 3 && !isStarted || scriptMesin[1].level >= 3 && !isStarted || scriptMesin[2].level >= 3 && !isStarted || scriptMesin[3].level >= 3 && !isStarted || scriptMesin[4].level >= 3 && !isStarted)
+        if (timeManager.isStartDay)
         {
-            Debug.Log("cek rewardmanager");
-            StartCoroutine(AutoKainIncreaseCoroutine());
-            isStarted = true;
-        }  
+            if (scriptMesin[0].level >= 3 && !isStarted || scriptMesin[1].level >= 3 && !isStarted || scriptMesin[2].level >= 3 && !isStarted || scriptMesin[3].level >= 3 && !isStarted || scriptMesin[4].level >= 3 && !isStarted)
+            {
+                Debug.Log("cek rewardmanager");
+                StartCoroutine(autoKain);
+                isStarted = true;
+                isStopped = false;
+            }
+        }
+        else if(!timeManager.isStartDay && !isStopped)
+        {
+            Debug.Log("cek false");
+            StopCoroutine(autoKain);
+            isStarted = false;
+            isStopped = true;
+        }
     }
 
     public void GiveRewardManual()
     {
-        if(scriptMesin[0].level == 5 && scriptMesin[1].level == 5 && scriptMesin[2].level == 5 && scriptMesin[3].level == 5 && scriptMesin[4].level == 5)
+        if (scriptMesin[0].level == 5 && scriptMesin[1].level == 5 && scriptMesin[2].level == 5 && scriptMesin[3].level == 5 && scriptMesin[4].level == 5)
         {
             playerInfo.AddKain(rewardManual[4]);
         }
-        else if(scriptMesin[0].level >= 4 && scriptMesin[1].level >= 4 && scriptMesin[2].level >= 4 && scriptMesin[3].level >= 4 && scriptMesin[4].level >= 4)
+        else if (scriptMesin[0].level >= 4 && scriptMesin[1].level >= 4 && scriptMesin[2].level >= 4 && scriptMesin[3].level >= 4 && scriptMesin[4].level >= 4)
         {
             playerInfo.AddKain(rewardManual[3]);
         }
-        else if(scriptMesin[0].level >= 3 && scriptMesin[1].level >= 3 && scriptMesin[2].level >= 3 && scriptMesin[3].level >= 3 && scriptMesin[4].level >= 3)
+        else if (scriptMesin[0].level >= 3 && scriptMesin[1].level >= 3 && scriptMesin[2].level >= 3 && scriptMesin[3].level >= 3 && scriptMesin[4].level >= 3)
         {
             playerInfo.AddKain(rewardManual[2]);
         }
-        else if(scriptMesin[0].level >= 2 && scriptMesin[1].level >= 2 && scriptMesin[2].level >= 2 && scriptMesin[3].level >= 2 && scriptMesin[4].level >= 2)
+        else if (scriptMesin[0].level >= 2 && scriptMesin[1].level >= 2 && scriptMesin[2].level >= 2 && scriptMesin[3].level >= 2 && scriptMesin[4].level >= 2)
         {
             playerInfo.AddKain(rewardManual[1]);
         }
-        else if(scriptMesin[0].level >= 1 && scriptMesin[1].level >= 1 && scriptMesin[2].level >= 1 && scriptMesin[3].level >= 1 && scriptMesin[4].level >= 1)
+        else if (scriptMesin[0].level >= 1 && scriptMesin[1].level >= 1 && scriptMesin[2].level >= 1 && scriptMesin[3].level >= 1 && scriptMesin[4].level >= 1)
         {
             playerInfo.AddKain(rewardManual[0]);
         }
@@ -63,18 +77,18 @@ public class RewardManager : MonoBehaviour, IDataPersistence
 
     public IEnumerator AutoKainIncreaseCoroutine()
     {
-        while(true)
+        while (true)
         {
             yield return new WaitForSeconds(GetAutoKainAmount()); // Tunggu selama interval uang otomatis
-        playerInfo.AddKain(1); // Tambahkan uang sesuai dengan level mesin
+            playerInfo.AddKain(1); // Tambahkan uang sesuai dengan level mesin
         }
-        
-    
+
+
     }
 
     private int GetAutoKainAmount()
     {
-        switch(upgradeCounter)
+        switch (upgradeCounter)
         {
             case 15:
                 return 6;
@@ -110,6 +124,6 @@ public class RewardManager : MonoBehaviour, IDataPersistence
                 return 0;
         }
 
-        
+
     }
 }

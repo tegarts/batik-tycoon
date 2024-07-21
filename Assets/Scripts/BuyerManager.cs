@@ -25,7 +25,7 @@ public class BuyerManager : MonoBehaviour
         if(playerInfo.kain > 0)
         {
             playerInfo.AddMoney(kainPrice);
-            playerInfo.kain--;
+            playerInfo.ReduceKain(1);
             GameObject instance = Instantiate(textBuying[0], textBuyingLocations[0].position, textBuyingLocations[0].rotation);
             instance.transform.parent = ParentCanvas;
         }
@@ -42,7 +42,7 @@ public class BuyerManager : MonoBehaviour
         if(playerInfo.kain > 0)
         {
             playerInfo.AddMoney(kainPrice);
-            playerInfo.kain--;
+            playerInfo.ReduceKain(1);
             GameObject instance = Instantiate(textBuying[1], textBuyingLocations[1].position, textBuyingLocations[1].rotation);
             instance.transform.parent = ParentCanvas;
         }
@@ -54,7 +54,7 @@ public class BuyerManager : MonoBehaviour
         if(playerInfo.kain > 0)
         {
             playerInfo.AddMoney(kainPrice);
-            playerInfo.kain--;
+            playerInfo.ReduceKain(1);
             GameObject instance = Instantiate(textBuying[2], textBuyingLocations[2].position, textBuyingLocations[2].rotation);
             instance.transform.parent = ParentCanvas;
         }

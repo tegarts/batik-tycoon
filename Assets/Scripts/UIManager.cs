@@ -154,6 +154,7 @@ public class UIManager : MonoBehaviour, IDataPersistence
             timeManager.day += 1;
             timeManager.hour = 8;
             timeManager.minute = 0;
+            App_SkipDay.SetActive(false);
         }
     }
 

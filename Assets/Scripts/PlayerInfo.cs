@@ -9,6 +9,7 @@ public class PlayerInfo : MonoBehaviour, IDataPersistence
     public int kain;
     [SerializeField] public TMP_Text moneyText;
     public TMP_Text kainText;
+    TimeManager timeManager;
 
     
     public void LoadData(GameData data)
@@ -19,12 +20,16 @@ public class PlayerInfo : MonoBehaviour, IDataPersistence
 
     public void SaveData(ref GameData data)
     {
-        data.money = money;
-        data.kain = kain;
+        if(!timeManager.isStartDay)
+        {
+            data.money = money;
+            data.kain = kain;
+        }
     }
 
     void Start()
     {
+        timeManager = FindAnyObjectByType<TimeManager>();
         UpdateMoneyText();
         UpdateKainText();
     }
@@ -60,7 +65,9 @@ public class PlayerInfo : MonoBehaviour, IDataPersistence
 
     public void ReduceKain(int amount)
     {
-        
+        kain -= amount;
+        Debug.Log("Kain ngurang: " + amount);
+        UpdateKainText();
     }
 
     private void UpdateMoneyText()

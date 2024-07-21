@@ -19,19 +19,26 @@ public class TimeManager : MonoBehaviour, IDataPersistence
 
     public void SaveData(ref GameData data)
     {
-        data.day = day;
+        if(!isStartDay)
+        {
+            data.day = day;
+        }
     }
 
     private void Start() 
     {
         hour = 18;
+        TextCallFunction();
     }
 
     private void Update() 
     {
         if(isStartDay)
-        TextCallFunction();
-        CalculateTime();
+        {
+            CalculateTime();
+            TextCallFunction();
+        }
+        
     }
 
     void CalculateTime()
