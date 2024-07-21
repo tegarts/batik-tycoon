@@ -5,25 +5,65 @@ using UnityEngine;
 
 public class NPCBehavior : MonoBehaviour
 {
-     public GameObject[] waypoints;
+     public GameObject[] waypoints = new GameObject[9];
     public float speed = 2;
     [SerializeField] int index = 0;
     public bool isLoop = true;
-
-    // Menambahkan variabel untuk waypoint tertentu di mana NPC akan berhenti
-    public int[] stopWaypoints;
-    public float waitTimeAtWaypoint = 2f; // Waktu tunggu di waypoint tertentu
-    private bool isWaiting = false; // Untuk memeriksa apakah NPC sedang menunggu
+    public float waitTimeAtWaypoint = 2f;
+    private bool isWaiting = false;
     Animator anim;
+    private int[] possibleStopWaypoints = {2, 5, 6};
+    public int[] stopWaypoints;
+    BuyerManager buyerManager;
+
+    private void SetRandomStopWaypoints()
+    {
+        float randomValue = Random.value * 100f;
+
+        int numStopWaypoints;
+        if (randomValue < 75f)
+        {
+            numStopWaypoints = 1;
+        }
+        else if (randomValue < 90f)
+        {
+            numStopWaypoints = 2;
+        }
+        else
+        {
+            numStopWaypoints = 3;
+        }
+
+        stopWaypoints = new int[numStopWaypoints];
+        List<int> possibleStops = new List<int>(possibleStopWaypoints);
+        for (int i = 0; i < numStopWaypoints; i++)
+        {
+            int randomIndex = Random.Range(0, possibleStops.Count);
+            stopWaypoints[i] = possibleStops[randomIndex];
+            possibleStops.RemoveAt(randomIndex);
+        }
+    }
 
     private void Start()
     {
+        buyerManager = FindAnyObjectByType<BuyerManager>();
+
         anim = GetComponent<Animator>();
+        waypoints[0] = GameObject.Find("WP1");
+        waypoints[1] = GameObject.Find("WP2");
+        waypoints[2] = GameObject.Find("WP3");
+        waypoints[3] = GameObject.Find("WP4");
+        waypoints[4] = GameObject.Find("WP5");
+        waypoints[5] = GameObject.Find("WP6");
+        waypoints[6] = GameObject.Find("WP7");
+        waypoints[7] = GameObject.Find("WP8");
+        waypoints[8] = GameObject.Find("WP9");
+        SetRandomStopWaypoints();
     }
 
     private void Update()
     {
-        // Jika NPC sedang menunggu, tidak melakukan gerakan
+       
         if (isWaiting)
         {
             anim.SetBool("IsWalking", false);
@@ -47,11 +87,28 @@ public class NPCBehavior : MonoBehaviour
         
 
         float distance = Vector3.Distance(transform.position, destination);
-        if (distance <= 0.05f) // Memastikan jarak cukup dekat untuk beralih waypoint
+        if (distance <= 0.05f) 
         {
             if (ShouldStopAtWaypoint(index))
             {
-                StartCoroutine(WaitAtWaypoint()); // Mulai coroutine untuk menunggu di waypoint tertentu
+
+                StartCoroutine(WaitAtWaypoint());
+                if(index == 2)
+                {
+                    buyerManager.NPCBuying1();
+                }
+                else if(index == 5)
+                {
+                    buyerManager.NPCBuying2();
+                }
+                else if(index == 6)
+                {
+                    buyerManager.NPCBuying3();
+                }
+                else
+                {
+                    Debug.LogError("Index tidak sesuai");
+                }
             }
             else
             {
@@ -62,7 +119,7 @@ public class NPCBehavior : MonoBehaviour
 
     private bool ShouldStopAtWaypoint(int waypointIndex)
     {
-        // Memeriksa apakah indeks waypoint saat ini ada di dalam array stopWaypoints
+ 
         foreach (int stopIndex in stopWaypoints)
         {
             if (waypointIndex == stopIndex)
@@ -75,7 +132,7 @@ public class NPCBehavior : MonoBehaviour
 
     private void MoveToNextWaypoint()
     {
-        // Pindah ke waypoint berikutnya
+
         if (index < waypoints.Length - 1)
         {
             index++;
@@ -83,6 +140,7 @@ public class NPCBehavior : MonoBehaviour
         else
         {
             anim.SetBool("IsWalking", false);
+            Destroy(gameObject);
             if (isLoop)
             {
                 index = 0;
@@ -92,13 +150,12 @@ public class NPCBehavior : MonoBehaviour
 
     private IEnumerator WaitAtWaypoint()
     {
-        isWaiting = true; // Tandai NPC sedang menunggu
+        isWaiting = true; 
 
-        // Tunggu beberapa detik
         yield return new WaitForSeconds(waitTimeAtWaypoint);
 
-        MoveToNextWaypoint(); // Pindah ke waypoint berikutnya setelah menunggu
+        MoveToNextWaypoint();
 
-        isWaiting = false; // Tandai NPC tidak sedang menunggu lagi
+        isWaiting = false; 
     }
 }

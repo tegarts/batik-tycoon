@@ -24,12 +24,13 @@ public class TimeManager : MonoBehaviour, IDataPersistence
 
     private void Start() 
     {
-        TextCallFunction();
+        hour = 18;
     }
 
     private void Update() 
     {
         if(isStartDay)
+        TextCallFunction();
         CalculateTime();
     }
 
@@ -41,19 +42,16 @@ public class TimeManager : MonoBehaviour, IDataPersistence
         {
             minute++;
             second = 0;
-            TextCallFunction();
         } 
         else if(minute>=60)
         {
             hour++;
             minute=0;
-            TextCallFunction();
         }
 
         if(hour >= 18)
         {
             isStartDay = false;
-            Debug.Log("test");
         }
     }
 
