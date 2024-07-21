@@ -58,7 +58,7 @@ public class ArrowMechanic : MonoBehaviour
 
     private void Update()
     {
-        if(!timeManager.isStartDay)
+        if(!timeManager.isStartDay && !dialogue.isStartTutor)
         {
             for(int i = 0; i < glowTools.Length; i++)
             {
@@ -97,7 +97,7 @@ public class ArrowMechanic : MonoBehaviour
             popUpPressF.SetActive(true);
             if (Input.GetKeyDown(KeyCode.F))
             {
-                if (!timeManager.isStartDay)
+                if (!timeManager.isStartDay && !dialogue.isStartTutor)
                 {
                     StartCoroutine(PopUpWarning());
                 }
@@ -117,7 +117,7 @@ public class ArrowMechanic : MonoBehaviour
             popUpPressF.SetActive(true);
             if (Input.GetKeyDown(KeyCode.F))
             {
-                if (!timeManager.isStartDay)
+                if (!timeManager.isStartDay && !dialogue.isStartTutor)
                 {
                     StartCoroutine(PopUpWarning());
                 }
@@ -137,7 +137,7 @@ public class ArrowMechanic : MonoBehaviour
             popUpPressF.SetActive(true);
             if (Input.GetKeyDown(KeyCode.F))
             {
-                if (!timeManager.isStartDay)
+                if (!timeManager.isStartDay && !dialogue.isStartTutor)
                 {
                     StartCoroutine(PopUpWarning());
                 }
@@ -157,7 +157,7 @@ public class ArrowMechanic : MonoBehaviour
             popUpPressF.SetActive(true);
             if (Input.GetKeyDown(KeyCode.F))
             {
-                if (!timeManager.isStartDay)
+                if (!timeManager.isStartDay && !dialogue.isStartTutor)
                 {
                     StartCoroutine(PopUpWarning());
                 }
@@ -173,7 +173,7 @@ public class ArrowMechanic : MonoBehaviour
             }
         }
 
-        if (isStartArrow)
+        if (isStartArrow && !dialogue.gameObject.activeSelf)
         {
             CheckButtonInput();
         }
