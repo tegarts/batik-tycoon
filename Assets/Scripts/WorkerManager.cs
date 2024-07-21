@@ -2,28 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WorkerManager : MonoBehaviour, IDataPersistence
+public class WorkerManager : MonoBehaviour
 {
     public GameObject[] machine1;
     public GameObject[] machine2;
     public GameObject[] machine3;
     public GameObject[] machine4;
     public GameObject[] machine5;
-    private int[] levelMachines = new int[5];
-    
-    public void LoadData(GameData data)
-    {
-        levelMachines[0] = data.machineLevel1;
-        levelMachines[1] = data.machineLevel2;
-        levelMachines[2] = data.machineLevel3;
-        levelMachines[3] = data.machineLevel4;
-        levelMachines[4] = data.machineLevel5;
-    }
-
-    public void SaveData(ref GameData data)
-    {
-        
-    }
+    public Machine[] machines;
 
     private void Start() 
     {
@@ -47,16 +33,16 @@ public class WorkerManager : MonoBehaviour, IDataPersistence
     public void EnableMachines()
     {
         // Mesin Mendesain
-        if(levelMachines[0] == 3)
+        if(machines[0].level == 3)
         {
             machine1[0].SetActive(true);
         }
-        else if(levelMachines[0] == 4)
+        else if(machines[0].level == 4)
         {
             machine1[0].SetActive(true);
             machine1[1].SetActive(true);
         }
-        else if(levelMachines[0] == 5)
+        else if(machines[0].level == 5)
         {
             machine1[0].SetActive(true);
             machine1[1].SetActive(true);
@@ -64,16 +50,16 @@ public class WorkerManager : MonoBehaviour, IDataPersistence
         }
 
         // Mesin Mencanting
-        if(levelMachines[1] == 3)
+        if(machines[1].level == 3)
         {
             machine2[0].SetActive(true);
         }
-        else if(levelMachines[0] == 4)
+        else if(machines[1].level == 4)
         {
             machine2[0].SetActive(true);
             machine2[1].SetActive(true);
         }
-        else if(levelMachines[0] == 5)
+        else if(machines[1].level == 5)
         {
             machine2[0].SetActive(true);
             machine2[1].SetActive(true);
@@ -81,16 +67,16 @@ public class WorkerManager : MonoBehaviour, IDataPersistence
         }
 
         // Mesin Mewarnai
-        if(levelMachines[2] == 3)
+        if(machines[2].level == 3)
         {
             machine3[0].SetActive(true);
         }
-        else if(levelMachines[2] == 4)
+        else if(machines[2].level == 4)
         {
             machine3[0].SetActive(true);
             machine3[1].SetActive(true);
         }
-        else if(levelMachines[2] == 5)
+        else if(machines[2].level == 5)
         {
             machine3[0].SetActive(true);
             machine3[1].SetActive(true);
@@ -98,16 +84,16 @@ public class WorkerManager : MonoBehaviour, IDataPersistence
         }
 
         // Mesin Menjemur
-        if(levelMachines[3] == 3)
+        if(machines[3].level == 3)
         {
             machine4[0].SetActive(true);
         }
-        else if(levelMachines[3] == 4)
+        else if(machines[3].level == 4)
         {
             machine4[0].SetActive(true);
             machine4[1].SetActive(true);
         }
-        else if(levelMachines[3] == 5)
+        else if(machines[3].level == 5)
         {
             machine4[0].SetActive(true);
             machine4[1].SetActive(true);
@@ -115,16 +101,16 @@ public class WorkerManager : MonoBehaviour, IDataPersistence
         }
 
         // Mesin Menglodor
-        if(levelMachines[4] == 3)
+        if(machines[4].level == 3)
         {
             machine5[0].SetActive(true);
         }
-        else if(levelMachines[4] == 4)
+        else if(machines[4].level == 4)
         {
             machine5[0].SetActive(true);
             machine5[1].SetActive(true);
         }
-        else if(levelMachines[4] == 5)
+        else if(machines[4].level == 5)
         {
             machine5[0].SetActive(true);
             machine5[1].SetActive(true);

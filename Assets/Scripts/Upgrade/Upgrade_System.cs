@@ -5,7 +5,7 @@ using TMPro;
 
 public class UpgradeSystem : MonoBehaviour
 {
-    [SerializeField] private Machine machine;
+    private Machine machine;
     [SerializeField] private PlayerInfo playerInfo;
     [SerializeField] public TMP_Text levelMachineText;
     [SerializeField] public TMP_Text upgradeCostText;
