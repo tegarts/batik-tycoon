@@ -11,6 +11,8 @@ public class UpgradeSystem : MonoBehaviour
     [SerializeField] public TMP_Text upgradeCostText;
     [SerializeField] public GameObject upgradeMessagePanel; // Panel untuk menampilkan pesan upgrade
     [SerializeField] public TMP_Text upgradeMessageText; // TMP_Text untuk menampilkan pesan upgrade
+    [SerializeField] public TMP_Text ExplainText;
+    [SerializeField] private string[] explanationTexts;
 
     private Coroutine autoMoneyCoroutine; // Coroutine untuk menambah uang secara otomatis
     RewardManager rewardManager;
@@ -23,6 +25,7 @@ public class UpgradeSystem : MonoBehaviour
         machine = GetComponent<Machine>();
         UpdateLevelText();
         UpdateUpgradeCostText();
+        UpdateExplanationText(); // Memperbarui teks penjelasan saat memulai game
         HideUpgradeMessage(); // Menyembunyikan panel pesan upgrade saat memulai game
 
         // Mulai coroutine untuk menambah uang secara otomatis jika mesin sudah level 3 atau lebih
@@ -40,6 +43,7 @@ public class UpgradeSystem : MonoBehaviour
             UpdateUpgradeCostText();
             ShowUpgradeMessage("Mesin di-upgrade ke level " + machine.level); // Menampilkan pesan upgrade berhasil
             StartCoroutine(HideUpgradeMessageDelayed(1.5f)); // Menyembunyikan pesan setelah 1.5 detik
+            UpdateExplanationText(); // Memperbarui teks penjelasan setelah upgrade
 
             // Memulai atau hentikan coroutine untuk menambah uang secara otomatis sesuai level
             // if (machine.level >= 3 && autoMoneyCoroutine == null)
@@ -53,13 +57,13 @@ public class UpgradeSystem : MonoBehaviour
             // }
 
             // ini buat nambahin value mesin yang udah di upgrade buat auto
-            if(machine.level >= 3)
+            if (machine.level >= 3)
             {
                 workerManager.EnableMachines();
                 rewardManager.upgradeCounter++;
                 Debug.Log("cek upgradesystem");
             }
-            
+
         }
         else
         {
@@ -80,7 +84,7 @@ public class UpgradeSystem : MonoBehaviour
     {
         if (levelMachineText != null)
         {
-            levelMachineText.text = "( " + machine.level.ToString() + " )";
+            levelMachineText.text = "Level " + machine.level.ToString();
         }
     }
 
@@ -88,7 +92,7 @@ public class UpgradeSystem : MonoBehaviour
     {
         if (upgradeCostText != null)
         {
-            if(machine.level == 5)
+            if (machine.level == 5)
             {
                 upgradeCostText.text = "Max";
             }
@@ -117,6 +121,14 @@ public class UpgradeSystem : MonoBehaviour
         if (upgradeMessagePanel != null)
         {
             upgradeMessagePanel.SetActive(false); // Menyembunyikan panel pesan upgrade
+        }
+    }
+
+    private void UpdateExplanationText()
+    {
+        if (ExplainText != null && machine.level <= explanationTexts.Length)
+        {
+            ExplainText.text = explanationTexts[machine.level - 1];
         }
     }
 
