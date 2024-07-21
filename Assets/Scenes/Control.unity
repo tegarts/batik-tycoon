@@ -5420,7 +5420,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 00:00
+  m_text: 18:00
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ef7b207435dc1d240ab2c275c91fbb7d, type: 2}
   m_sharedMaterial: {fileID: 70646902679761044, guid: ef7b207435dc1d240ab2c275c91fbb7d,
@@ -8762,6 +8762,7 @@ MonoBehaviour:
   - (ini text tutor terakhir)
   textSpeed: 0.05
   isStartTutor: 0
+  isOpenUpgrade: 0
   indicatorUpgrade: {fileID: 1351855227}
   indicatorMoney: {fileID: 1433922821}
   index: 0
@@ -13678,7 +13679,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 641546444}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1011849086}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: StartDay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &641546444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21833,6 +21846,7 @@ MonoBehaviour:
   panelOptions: {fileID: 983412560}
   panelUpgrade: {fileID: 1297885120}
   panelTutorial: {fileID: 425269394}
+  buttonUpgrade: {fileID: 1570442577}
   isAlreadyTutor: 0
 --- !u!114 &1011849087
 MonoBehaviour:
@@ -37665,9 +37679,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1784061594}
-  - {fileID: 129286978}
-  - {fileID: 184965477}
   - {fileID: 1063548487440772173}
   - {fileID: 1332449434}
   - {fileID: 2033353283}
@@ -37677,6 +37688,9 @@ Transform:
   - {fileID: 1019164238742817599}
   - {fileID: 191238762}
   - {fileID: 531006046}
+  - {fileID: 1784061594}
+  - {fileID: 129286978}
+  - {fileID: 184965477}
   - {fileID: 7259851920507102579}
   - {fileID: 543489617}
   - {fileID: 2108540950}
@@ -41802,7 +41816,7 @@ MonoBehaviour:
   mewarnai: {fileID: 3273478951204038226}
   menjemur: {fileID: 7484065761655806576}
   menglodor: {fileID: 6761556986478772238}
-  heightAbove: 2.5
+  heightAbove: 2.8
 --- !u!1 &1849435669
 GameObject:
   m_ObjectHideFlags: 0
@@ -44321,6 +44335,7 @@ GameObject:
   - component: {fileID: 1974095352}
   - component: {fileID: 1974095353}
   - component: {fileID: 1974095354}
+  - component: {fileID: 1974095355}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -44405,6 +44420,38 @@ MonoBehaviour:
   dayText: {fileID: 1211557726}
   clockText: {fileID: 243409252}
   isStartDay: 0
+--- !u!114 &1974095355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1974095349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c9e0524fed317c4aac8abbf013ee2b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  machine1:
+  - {fileID: 399038172203316983}
+  - {fileID: 1332449433}
+  - {fileID: 2033353282}
+  machine2:
+  - {fileID: 1730719533392599439}
+  - {fileID: 460820611}
+  - {fileID: 1127474732}
+  machine3:
+  - {fileID: 531006045}
+  - {fileID: 191238761}
+  - {fileID: 391563394441564549}
+  machine4:
+  - {fileID: 1784061592}
+  - {fileID: 129286977}
+  - {fileID: 184965476}
+  machine5:
+  - {fileID: 8037795551786516425}
+  - {fileID: 543489616}
+  - {fileID: 2108540949}
 --- !u!1 &1974394093
 GameObject:
   m_ObjectHideFlags: 0
@@ -83898,7 +83945,7 @@ SceneRoots:
   - {fileID: 416407125}
   - {fileID: 743209918}
   - {fileID: 1974095351}
-  - {fileID: 111939001}
   - {fileID: 7398695687510178040}
   - {fileID: 518782210}
   - {fileID: 1533213556}
+  - {fileID: 111939001}

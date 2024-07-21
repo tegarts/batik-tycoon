@@ -11,6 +11,7 @@ public class Dialogue : MonoBehaviour
     public float textSpeed;
     UIManager uiManager;
     public bool isStartTutor;
+    public bool isOpenUpgrade;
     public GameObject indicatorUpgrade;
     [SerializeField] GameObject indicatorMoney;
 
@@ -118,6 +119,7 @@ public class Dialogue : MonoBehaviour
             textComponent.text = string.Empty;
             indicatorMoney.SetActive(false);
             indicatorUpgrade.SetActive(true);
+            isOpenUpgrade = true;
             StartCoroutine(TypeLine());
         }
         else if(index == 7)

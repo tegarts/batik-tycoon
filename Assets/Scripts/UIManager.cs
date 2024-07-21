@@ -9,11 +9,12 @@ public class UIManager : MonoBehaviour, IDataPersistence
     [SerializeField] GameObject panelOptions;
     [SerializeField] GameObject panelUpgrade;
     [SerializeField] GameObject panelTutorial;
+    [SerializeField] GameObject buttonUpgrade;
     public bool isAlreadyTutor;
     private Dialogue dialogue;
     TimeManager timeManager;
     AudioManager audioManager;
-
+    
     public void LoadData(GameData data)
     {
         isAlreadyTutor = data.isAlreadyTutor;
@@ -47,9 +48,18 @@ public class UIManager : MonoBehaviour, IDataPersistence
 
     private void Update()
     {
+        if(dialogue.isStartTutor && !dialogue.isOpenUpgrade)
+        {
+            buttonUpgrade.SetActive(false);
+        }
+        else
+        {
+            buttonUpgrade.SetActive(true);
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            // TODO - Tambahin pengecekan kalo ada panel lain lagi buka (contoh panel upgrade)
+            
             if (!panelPause.activeSelf && !panelUpgrade.activeSelf && !panelTutorial.activeSelf)
             {
                 panelPause.SetActive(true);
@@ -85,11 +95,19 @@ public class UIManager : MonoBehaviour, IDataPersistence
 
     public void OpenUpgradePanel()
     {
-        panelUpgrade.SetActive(true);
-        if (dialogue.isStartTutor)
+        if(dialogue.isStartTutor && !dialogue.isOpenUpgrade)
         {
+            return;
+        }
+        else if(dialogue.isStartTutor && dialogue.isOpenUpgrade)
+        {
+            panelUpgrade.SetActive(true);
             dialogue.indicatorUpgrade.SetActive(false);
             dialogue.gameObject.SetActive(true);
+        }
+        else
+        {
+            panelUpgrade.SetActive(true);
         }
     }
 
