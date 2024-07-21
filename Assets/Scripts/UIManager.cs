@@ -7,13 +7,17 @@ public class UIManager : MonoBehaviour, IDataPersistence
 {
     [SerializeField] GameObject panelPause;
     [SerializeField] GameObject panelOptions;
-    [SerializeField] GameObject panelUpgrade;
+    [SerializeField] GameObject panelSmartphone;
     [SerializeField] GameObject panelTutorial;
     [SerializeField] GameObject buttonUpgrade;
     public bool isAlreadyTutor;
     private Dialogue dialogue;
     TimeManager timeManager;
     AudioManager audioManager;
+
+    // Smartphone UI
+    [SerializeField] GameObject App_SkipDay;
+    [SerializeField] GameObject App_MenuUpgrade;
     
     public void LoadData(GameData data)
     {
@@ -29,7 +33,7 @@ public class UIManager : MonoBehaviour, IDataPersistence
     {
         dialogue = FindAnyObjectByType<Dialogue>();
         timeManager = FindAnyObjectByType<TimeManager>();
-        panelUpgrade.SetActive(false);
+        panelSmartphone.SetActive(false);
         panelOptions.SetActive(false);
         panelPause.SetActive(false);
         Time.timeScale = 1;
@@ -60,7 +64,7 @@ public class UIManager : MonoBehaviour, IDataPersistence
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             
-            if (!panelPause.activeSelf && !panelUpgrade.activeSelf && !panelTutorial.activeSelf)
+            if (!panelPause.activeSelf && !panelSmartphone.activeSelf && !panelTutorial.activeSelf)
             {
                 panelPause.SetActive(true);
                 Time.timeScale = 0;
@@ -77,7 +81,7 @@ public class UIManager : MonoBehaviour, IDataPersistence
         if (Input.GetKeyDown(KeyCode.Q))
         {
             // Jika panel belum aktif, aktifkan
-            if (!panelUpgrade.activeSelf && !panelPause.activeSelf && !panelTutorial.activeSelf)
+            if (!panelSmartphone.activeSelf && !panelPause.activeSelf && !panelTutorial.activeSelf)
             {
                 OpenUpgradePanel();
             }
@@ -101,19 +105,19 @@ public class UIManager : MonoBehaviour, IDataPersistence
         }
         else if(dialogue.isStartTutor && dialogue.isOpenUpgrade)
         {
-            panelUpgrade.SetActive(true);
+            panelSmartphone.SetActive(true);
             dialogue.indicatorUpgrade.SetActive(false);
             dialogue.gameObject.SetActive(true);
         }
         else
         {
-            panelUpgrade.SetActive(true);
+            panelSmartphone.SetActive(true);
         }
     }
 
     public void CloseUpgradePanel()
     {
-        panelUpgrade.SetActive(false);
+        panelSmartphone.SetActive(false);
     }
 
     public void PauseBack()
@@ -160,5 +164,23 @@ public class UIManager : MonoBehaviour, IDataPersistence
     public void SFX_ButtonCursorArea()
     {
         audioManager.PlaySFX(audioManager.cursorArea);
+    }
+    public void App_SkipDayButton()
+    {
+        App_SkipDay.SetActive(true);
+    }
+
+    public void App_SkipDayBack()
+    {
+        App_SkipDay.SetActive(false);
+    }
+    public void App_MenuUpgradeButton()
+    {
+        App_MenuUpgrade.SetActive(true);
+    }
+
+    public void App_MenuUpgradeBack()
+    {
+        App_MenuUpgrade.SetActive(false);
     }
 }
