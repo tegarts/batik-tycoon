@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour, IDataPersistence
     // Smartphone UI
     [SerializeField] GameObject App_SkipDay;
     [SerializeField] GameObject App_MenuUpgrade;
+    [SerializeField] GameObject App_MenuAdv;
     
     public void LoadData(GameData data)
     {
@@ -200,5 +201,15 @@ public class UIManager : MonoBehaviour, IDataPersistence
     public void App_MenuUpgradeBack()
     {
         App_MenuUpgrade.SetActive(false);
+    }
+
+    public void App_MenuAdvButton()
+    {
+        App_MenuAdv.SetActive(true);
+    }
+
+    public void App_menuAdvBack()
+    {
+        App_MenuAdv.SetActive(false);
     }
 }

@@ -38,9 +38,9 @@ public class NPCSpawner : MonoBehaviour
                     lastSpawnTimeInMinutes = currentTimeInMinutes;
                 }
             }
-            else if (elapsedTimeInMinutes >= 90)
+            else if (advertisingManager.isPoster)
             {
-                if (lastHour != timeManager.hour)
+                if (elapsedTimeInMinutes >= 60)
                 {
                     Instantiate(npcPrefab, transform.position, transform.rotation);
                     lastSpawnTimeInMinutes = currentTimeInMinutes;

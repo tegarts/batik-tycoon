@@ -185,7 +185,7 @@ public class ArrowMechanic : MonoBehaviour
     {
         popUpWarningText.text = "Tekan tombol Mulai Hari Berikutnya di menu upgrade (Q) sebelum memulai proses pembuatan batik";
         popUpStartDay.SetActive(true);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.5f);
         popUpStartDay.SetActive(false);
     }
 
