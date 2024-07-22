@@ -13,11 +13,13 @@ public class NPCSpawner : MonoBehaviour
     private int lastHour;
     private int lastMinute;
     private int lastSpawnTimeInMinutes;
+    AudioManager audioManager;
 
     private void Start()
     {
         timeManager = FindAnyObjectByType<TimeManager>();
         advertisingManager = FindAnyObjectByType<AdvertisingManager>();
+        audioManager = FindAnyObjectByType<AudioManager>();
         lastHour = 8;
         lastMinute = 0;
         lastSpawnTimeInMinutes = 8 * 60;
@@ -35,6 +37,7 @@ public class NPCSpawner : MonoBehaviour
                 if (elapsedTimeInMinutes >= 90)
                 {
                     Instantiate(npcPrefab, transform.position, transform.rotation);
+                    audioManager.PlaySFX(audioManager.peopleIn);
                     lastSpawnTimeInMinutes = currentTimeInMinutes;
                 }
             }
@@ -43,6 +46,7 @@ public class NPCSpawner : MonoBehaviour
                 if (elapsedTimeInMinutes >= 60)
                 {
                     Instantiate(npcPrefab, transform.position, transform.rotation);
+                    audioManager.PlaySFX(audioManager.peopleIn);
                     lastSpawnTimeInMinutes = currentTimeInMinutes;
                 }
             }
@@ -51,6 +55,7 @@ public class NPCSpawner : MonoBehaviour
                 if (elapsedTimeInMinutes >= 60)
                 {
                     Instantiate(npcPrefab, transform.position, transform.rotation);
+                    audioManager.PlaySFX(audioManager.peopleIn);
                     lastSpawnTimeInMinutes = currentTimeInMinutes;
                 }
             }
@@ -59,6 +64,7 @@ public class NPCSpawner : MonoBehaviour
                 if (elapsedTimeInMinutes >= 40)
                 {
                     Instantiate(npcPrefab, transform.position, transform.rotation);
+                    audioManager.PlaySFX(audioManager.peopleIn);
                     lastSpawnTimeInMinutes = currentTimeInMinutes;
                 }
             }
@@ -67,6 +73,7 @@ public class NPCSpawner : MonoBehaviour
                 if (elapsedTimeInMinutes >= 40)
                 {
                     Instantiate(npcPrefab, transform.position, transform.rotation);
+                    audioManager.PlaySFX(audioManager.peopleIn);
                     lastSpawnTimeInMinutes = currentTimeInMinutes;
                 }
             }
@@ -75,6 +82,7 @@ public class NPCSpawner : MonoBehaviour
                 if(elapsedTimeInMinutes >= 120)
                 {   
                     Instantiate(npcPrefab, transform.position, transform.rotation);
+                    audioManager.PlaySFX(audioManager.peopleIn);
                     lastSpawnTimeInMinutes = currentTimeInMinutes;
                 }
                     

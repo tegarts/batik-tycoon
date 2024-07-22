@@ -16,7 +16,9 @@ public class AudioManager : MonoBehaviour
     public AudioClip correctArrow;
     public AudioClip wrongArrow;
     public AudioClip successArrow;
-
+    public AudioClip peopleIn;
+    public AudioClip peopleBuy;
+    public AudioClip noKain;
     public static AudioManager instance;
 
     private void Awake()
