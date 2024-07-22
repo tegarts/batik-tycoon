@@ -10883,16 +10883,18 @@ MonoBehaviour:
   lines:
   - HHalo nak, ini bisnis yang kakek janjikan untuk kamu, sebagai anak muda harus
     semangat
-  - tahap dalam membuat kain batik ada 5 yaitu blab lbalblablablablabl
-  - kakek yakin kamu jadi pengusaha batik yang keren pol pokoknya anjay gurinjay
-  - tutor arrow, harus pencet tombol arrow di keyborad sesuai sama yang digambar
-  - keren, sekarang lanjut ke mesin ke dua nantinya ada mechanic yang sama dengan
-    mesin 1, kamu pasti bisa!
-  - (text ini muncul setelah semua selesai)
-  - (ini buat jelasin uang)
-  - (ini buat nyuruh klik upgrade)
-  - (ini buat ngeliatin apa aja di menu upgrade)
-  - (ini text tutor terakhir)
+  - Tahap dalam membuat kain batik ada 5 yaitu Mendesain, Mencanting, Mewarnai, Mengeringkan,
+    dan Penglorodan
+  - Kakek yakin kamu jadi pengusaha batik yang keren dan sukses
+  - Tutorial mekanik yaitu pencet tombol arrow di keyborad sesuai dengan yang digambar
+  - Kerja bagus!, sekarang lanjut ke mesin ke dua nantinya ada mechanic yang sama
+    dengan mesin 1, kamu pasti bisa!
+  - Selamat! kamu berhasil melakukannya
+  - Uang digunakan untuk meningkatkan mesin yang kamu miliki
+  - Cobalah buka smartphone dengan tombol Q
+  - Pada smartphone, kamu bisa melakukan sesuatu seperti meningkatkan mesin yang
+    ada dan memasarkan produk
+  - Kamu telah menyelesaikan tutorial yang ada, selamat bermain!
   textSpeed: 0.05
   isStartTutor: 0
   isOpenUpgrade: 0
@@ -15628,7 +15630,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '*Coming Soon*'
+  m_text: Iklan
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ef7b207435dc1d240ab2c275c91fbb7d, type: 2}
   m_sharedMaterial: {fileID: 70646902679761044, guid: ef7b207435dc1d240ab2c275c91fbb7d,
@@ -40098,7 +40100,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b9e500540e5dad841ae4136f8b5d92d8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8bd01905b9726f841a65c220b3f907f4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
