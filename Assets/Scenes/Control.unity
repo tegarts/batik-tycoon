@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731704, g: 0.13414668, b: 0.12107805, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10881,7 +10881,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textComponent: {fileID: 575816956}
   lines:
-  - Halo nak, ini bisnis yang kakek janjikan untuk kamu, sebagai anak muda harus
+  - HHalo nak, ini bisnis yang kakek janjikan untuk kamu, sebagai anak muda harus
     semangat
   - tahap dalam membuat kain batik ada 5 yaitu blab lbalblablablablabl
   - kakek yakin kamu jadi pengusaha batik yang keren pol pokoknya anjay gurinjay

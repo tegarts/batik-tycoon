@@ -37,7 +37,7 @@ public class Dialogue : MonoBehaviour
             playerMovement.canMove = true;
         }
         textComponent.text = string.Empty;
-        StartDialogue();
+        // StartDialogue();
     }
 
     private void Update() {
