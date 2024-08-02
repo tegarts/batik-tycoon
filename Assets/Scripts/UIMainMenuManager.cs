@@ -31,13 +31,13 @@ public class UIMainMenuManager : MonoBehaviour
     {
         // audioManager.PlaySFX(audioManager.clickedButton);
         DataPersistenceManager.instance.NewGame();
-        SceneManager.LoadScene("Control");
+        SceneManager.LoadScene("Control New");
     }
 
     public void ContinueButton()
     {
         // audioManager.PlaySFX(audioManager.clickedButton);
-        SceneManager.LoadScene("Control");
+        SceneManager.LoadScene("Control New");
     }
 
     public void AboutButton()

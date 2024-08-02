@@ -9,6 +9,8 @@ public class Machine : MonoBehaviour, IDataPersistence
     public int level = 1;
     public int maxLevel = 5;
     public int[] upgradeCosts; // Array untuk menyimpan biaya upgrade untuk setiap level
+    public GameObject cloth;
+
     public void LoadData(GameData data)
     {
         if (machineNumber == 1)
@@ -84,5 +86,14 @@ public class Machine : MonoBehaviour, IDataPersistence
     private void Start()
     {
         timeManager = FindAnyObjectByType<TimeManager>();
+        if(cloth != null)
+        {
+            cloth.SetActive(false);
+        }
+    }
+
+    public void ShowCloth(bool condition)
+    {
+        cloth.SetActive(condition);
     }
 }

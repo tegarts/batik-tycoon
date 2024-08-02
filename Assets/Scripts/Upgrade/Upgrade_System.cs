@@ -138,47 +138,6 @@ public class UpgradeSystem : MonoBehaviour
         HideUpgradeMessage(); // Menyembunyikan panel pesan setelah delay tertentu
     }
 
-    // private IEnumerator AutoMoneyIncreaseCoroutine()
-    // {
-    //     while (true)
-    //     {
-    //         yield return new WaitForSeconds(GetAutoMoneyInterval()); // Tunggu selama interval uang otomatis
-    //         playerInfo.AddMoney(GetAutoMoneyAmount()); // Tambahkan uang sesuai dengan level mesin
-    //     }
-    // }
-
-    // private float GetAutoMoneyInterval()
-    // {
-    //     // Tentukan interval berdasarkan level mesin
-    //     switch (machine.level)
-    //     {
-    //         case 3:
-    //             return 3f; // Setiap 3 detik untuk level 3
-    //         case 4:
-    //             return 3f; // Setiap 2 detik untuk level 4
-    //         case 5:
-    //             return 3f; // Setiap 1 detik untuk level 5
-    //         default:
-    //             return 3f; // Default setiap 3 detik
-    //     }
-    // }
-
-    // private int GetAutoMoneyAmount()
-    // {
-    //     // Tentukan jumlah uang yang ditambahkan berdasarkan level mesin
-    //     switch (machine.level)
-    //     {
-    //         case 3:
-    //             return 1; // Tambah 1 uang untuk level 3
-    //         case 4:
-    //             return 1; // Tambah 2 uang untuk level 4
-    //         case 5:
-    //             return 1; // Tambah 3 uang untuk level 5
-    //         default:
-    //             return 0; // Tidak menambah uang untuk level lainnya
-    //     }
-    // }
-
     private void OnDestroy()
     {
         // Hentikan coroutine ketika objek dihancurkan

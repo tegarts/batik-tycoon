@@ -15,10 +15,12 @@ public class UIManager : MonoBehaviour, IDataPersistence
     TimeManager timeManager;
     AudioManager audioManager;
 
-    // Smartphone UI
+    [Header("Smartphone UI")]
     [SerializeField] GameObject App_SkipDay;
     [SerializeField] GameObject App_MenuUpgrade;
     [SerializeField] GameObject App_MenuAdv;
+    [SerializeField] GameObject App_MenuTambah;
+    [SerializeField] GameObject App_MenuHire;
     
     public void LoadData(GameData data)
     {
@@ -211,5 +213,25 @@ public class UIManager : MonoBehaviour, IDataPersistence
     public void App_menuAdvBack()
     {
         App_MenuAdv.SetActive(false);
+    }
+
+    public void App_MenuTambahButton()
+    {
+        App_MenuTambah.SetActive(true);
+    }
+
+    public void App_menuTambahBack()
+    {
+        App_MenuTambah.SetActive(false);
+    }
+
+    public void App_MenuHireButton()
+    {
+        App_MenuHire.SetActive(true);
+    }
+
+    public void App_menuHireBack()
+    {
+        App_MenuHire.SetActive(false);
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using UnityEditor.Search;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -11,6 +12,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] Rigidbody rigidBody;
     public bool canMove = true;
+
+    [Header("Printilan")]
+    [SerializeField] GameObject pensil;
+
+    private void Start() 
+    {
+        pensil.SetActive(false);
+    }
+    
 
     private void Reset() 
     {
@@ -40,5 +50,10 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("IsWalking", moveDirection.sqrMagnitude > 0);
     }
 
-    
+    public void MendesainAnimation(bool con)
+    {
+        animator.SetBool("IsMendesain", con);
+        pensil.SetActive(con);
+        animator.SetBool("IsWalking", false);
+    }
 }

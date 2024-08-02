@@ -35,6 +35,10 @@ public class ArrowMechanic : MonoBehaviour
     public GameObject popUpStartDay;
     public TMP_Text popUpWarningText;
     TimeManager timeManager;
+    private GameObject currentTools;
+    private Transform lastPosition;
+    public float rotationY = -90f;
+    public Vector3 drawingOffset = new Vector3(0.5f, 0, 0);
 
     private void Awake()
     {
@@ -84,7 +88,8 @@ public class ArrowMechanic : MonoBehaviour
                     {
                         dialogue.gameObject.SetActive(true);
                     }
-                    hidePlayerManager.isStartDesain = true;
+                    // hidePlayerManager.isStartDesain = true;
+                    MovePlayer();
                     anim.SetBool("IsWalking", false);
                     popUpPressF.SetActive(false);
                     GenerateRandomSequence();
@@ -239,6 +244,9 @@ public class ArrowMechanic : MonoBehaviour
                 hidePlayerManager.isStartMewarnai = false;
                 hidePlayerManager.isStartMenjemur = false;
                 hidePlayerManager.isStartMenglodor = false;
+
+                playerMovement.MendesainAnimation(false);
+
                 audioManager.PlaySFX(audioManager.successArrow);
                 for (int i = 0; i < sequenceImages.Length; i++)
                 {
@@ -329,6 +337,8 @@ public class ArrowMechanic : MonoBehaviour
                     hidePlayerManager.isStartMenjemur = false;
                     hidePlayerManager.isStartMenglodor = false;
 
+                    playerMovement.MendesainAnimation(false);
+
                     if (glowTools[0].activeSelf && dialogue.isStartTutor)
                     {
                         dialogue.index--;
@@ -363,6 +373,7 @@ public class ArrowMechanic : MonoBehaviour
         if (other.gameObject.tag == "tools1")
         {
             isInsideTools[0] = true;
+            currentTools = other.gameObject;
         }
         else if (other.gameObject.tag == "tools2")
         {
@@ -409,5 +420,22 @@ public class ArrowMechanic : MonoBehaviour
             isInsideTools[4] = false;
             popUpPressF.SetActive(false);
         }
+    }
+
+    private void MovePlayer()
+    {
+        playerMovement.MendesainAnimation(true);
+
+        // Vector3 targetPosition = new Vector3(currentTools.transform.position.x + 0.5f, transform.position.y, currentTools.transform.position.z);
+        float playerY = transform.position.y;
+
+        Vector3 targetPosition = currentTools.transform.TransformPoint(drawingOffset);
+        targetPosition.y = playerY;
+       
+        Quaternion targetRotation = currentTools.transform.rotation * Quaternion.Euler(0, -90, 0);
+        // Quaternion targetRotation = Quaternion.LookRotation(currentTools.transform.position);
+
+        transform.position = targetPosition;
+        transform.rotation = targetRotation;
     }
 }
