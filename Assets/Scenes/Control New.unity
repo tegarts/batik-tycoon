@@ -40582,6 +40582,61 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1213783813}
   m_CullTransparentMesh: 1
+--- !u!1 &1218863224
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1218863226}
+  - component: {fileID: 1218863225}
+  m_Layer: 0
+  m_Name: Hire System Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1218863225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218863224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b854ada0445e8adc792e1c69d6f57f4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listWorker1: []
+  listWorker2: []
+  listWorker3: []
+  listWorker4: []
+  listWorker5: []
+  hargaHire: 0
+  jumlahTimPegawai: 0
+  jumlahTimPegawaiText: {fileID: 0}
+  addingCostText: []
+  addingMessagePanel: {fileID: 12215451}
+  addingMessageText: {fileID: 1034417685}
+--- !u!4 &1218863226
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218863224}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.270521, y: 0.55470943, z: 4.2147055}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1218950972
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57104,7 +57159,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1661621714
 Transform:
   m_ObjectHideFlags: 0
@@ -77743,7 +77798,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &1144728289814757937
 Animator:
   serializedVersion: 5
@@ -103666,8 +103721,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0, y: 0.0145895835, z: 0.014599998}
-  m_Center: {x: -0.014017067, y: -0.000005207182, z: -3.240758e-20}
+  m_Size: {x: 0.0003430252, y: 0.0145895835, z: 0.014599998}
+  m_Center: {x: -0.030591652, y: -0.000005207182, z: -3.240758e-20}
 --- !u!65 &7584128509225700446
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -110291,6 +110346,7 @@ SceneRoots:
   - {fileID: 1374696537}
   - {fileID: 416407125}
   - {fileID: 743209918}
+  - {fileID: 1218863226}
   - {fileID: 2055233703}
   - {fileID: 2005896473}
   - {fileID: 1974095351}
