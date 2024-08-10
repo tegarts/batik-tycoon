@@ -10,6 +10,8 @@ TagManager:
   - tools3
   - tools4
   - tools5
+  - test
+  - Boundary
   layers:
   - Default
   - TransparentFX
