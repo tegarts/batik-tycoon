@@ -82,4 +82,11 @@ public class UIMainMenuManager : MonoBehaviour
         // audioManager.PlaySFX(audioManager.clickedButton);
         Application.Quit();
     }
+
+    public void StartTestingButton()
+    {
+        // audioManager.PlaySFX(audioManager.clickedButton);
+        DataPersistenceManager.instance.NewGame();
+        SceneManager.LoadScene("Control New");
+    }
 }
