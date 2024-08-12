@@ -5,20 +5,26 @@ using UnityEngine.UI;
 
 public class FollowMouse : MonoBehaviour
 {
-    public Camera mainCamera;           // The camera in the scene
-    public Canvas worldSpaceCanvas;     // The canvas in world space
-    public GameObject imagePrefab;      // The image prefab that will follow the mouse
-    public Collider specificArea; 
-    private GameObject instantiatedImage; // Reference to the instantiated image
+    public Camera mainCamera;
+    public Canvas worldSpaceCanvas;
+    public GameObject imagePrefab;
+    public Collider[] kawungWorkerArea;
+    public Collider[] megaWorkerArea;
+    public Collider playerArea;
+    private GameObject instantiatedImage;
     private RectTransform imageRectTransform;
     private bool isDragging;
-    
+    [SerializeField] WorkerAutomation[] kawungWorkerAutomation;
+    [SerializeField] WorkerAutomation[] megaWorkerAutomation;
+    PlayerManager playerManager;
+    [SerializeField] private string namaMotif;
+
 
     void Start()
     {
-        // Assign the button's onClick event
         Button button = GetComponent<Button>();
         button.onClick.AddListener(InstantiateImage);
+        playerManager = FindAnyObjectByType<PlayerManager>();
     }
 
     void Update()
@@ -29,44 +35,70 @@ public class FollowMouse : MonoBehaviour
         }
 
         if (isDragging && Input.GetMouseButtonDown(0))
-            {
-                CheckAndDestroy();
-            }
+        {
+            CheckAndDestroy();
+        }
     }
 
     void InstantiateImage()
     {
-        // Instantiate the image as a child of the canvas
         instantiatedImage = Instantiate(imagePrefab, worldSpaceCanvas.transform);
         imageRectTransform = instantiatedImage.GetComponent<RectTransform>();
     }
 
     void FollowTheMouse()
     {
-        // Get the mouse position in screen space
         Vector3 mousePosition = Input.mousePosition;
 
-        // Convert screen space mouse position to world space
         Vector3 worldPosition;
         if (RectTransformUtility.ScreenPointToWorldPointInRectangle(worldSpaceCanvas.GetComponent<RectTransform>(), mousePosition, mainCamera, out worldPosition))
         {
-            
-                // Set the position of the instantiated image
-                imageRectTransform.position = worldPosition;
-                isDragging = true;
-            
-            
+            imageRectTransform.position = worldPosition;
+            isDragging = true;
         }
     }
 
     void CheckAndDestroy()
     {
-        // Check if the instantiated image is within the specific area
-        if (specificArea.bounds.Contains(imageRectTransform.position))
+        if (namaMotif == "kawung")
         {
-            // Destroy the instantiated image
-            Destroy(instantiatedImage);
-            isDragging = false;
+            if (kawungWorkerArea[0].bounds.Contains(imageRectTransform.position))
+            {
+                Destroy(instantiatedImage);
+                isDragging = false;
+                if (!kawungWorkerAutomation[0].isStartAuto)
+                {
+                    kawungWorkerAutomation[0].isStartAuto = true;
+                }
+            }
+            else if (kawungWorkerArea[1].bounds.Contains(imageRectTransform.position))
+            {
+                Destroy(instantiatedImage);
+                isDragging = false;
+                if (!kawungWorkerAutomation[1].isStartAuto)
+                {
+                    kawungWorkerAutomation[1].isStartAuto = true;
+                }
+            }
+            else if (megaWorkerArea[0].bounds.Contains(imageRectTransform.position))
+            {
+                Destroy(instantiatedImage);
+                isDragging = false;
+                Debug.Log("Salah alat");
+            }
+            else if (megaWorkerArea[1].bounds.Contains(imageRectTransform.position))
+            {
+                Destroy(instantiatedImage);
+                isDragging = false;
+                Debug.Log("Salah alat");
+            }
+            else if (playerArea.bounds.Contains(imageRectTransform.position))
+            {
+                Destroy(instantiatedImage);
+                isDragging = false;
+                playerManager.CanvasController(true);
+            }
         }
+
     }
 }

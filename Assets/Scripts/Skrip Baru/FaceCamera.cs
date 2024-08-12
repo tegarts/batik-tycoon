@@ -10,7 +10,6 @@ public class FaceCamera : MonoBehaviour
     }
     private void Update()
     {
-        //transform.LookAt(Camera.transform, Vector3.up);
         transform.forward = Camera.transform.forward;
     }
 }

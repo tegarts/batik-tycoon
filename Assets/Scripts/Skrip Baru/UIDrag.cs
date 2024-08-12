@@ -11,10 +11,8 @@ public class UIDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDr
     private bool isDragging;
     private bool wasMouseReleased;
     private bool isOutside;
-
-    private Canvas canvas;
-
-
+    [SerializeField] private Canvas canvas;
+    PlayerManager playerManager;
     private LineRenderer lineRenderer;
     private int pointIndex = 0;
 
@@ -26,10 +24,10 @@ public class UIDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDr
     {
         wasMouseReleased = true;
         rectTransform = GetComponent<RectTransform>();
-        defaultPos = rectTransform.anchoredPosition; // Store the initial position
+        defaultPos = rectTransform.anchoredPosition;
         defalutPosForLineRenderer = rectTransform.position;
         canvas = GetComponentInParent<Canvas>();
-
+        playerManager = FindAnyObjectByType<PlayerManager>();
 
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.positionCount = 1;
@@ -52,35 +50,18 @@ public class UIDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDr
         if (isDragging && !isOutside && wasMouseReleased)
         {
             Vector2 movePos;
-                RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                    rectTransform.parent as RectTransform,
-                    eventData.position,
-                    eventData.pressEventCamera,
-                    out movePos);
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform.parent as RectTransform, eventData.position, eventData.pressEventCamera, out movePos);
 
                 rectTransform.anchoredPosition = movePos;
                 AddPointLine();
-            
         }
         else
         {
             rectTransform.anchoredPosition = defaultPos;
         }
-
-        
     }
 
-    private void OnTriggerStay2D(Collider2D other) 
-    {
-        if (other.gameObject.CompareTag("Boundary"))
-        {
-            isOutside = false;
-            // Reset position to the default when exiting the boundary collider
-
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerEnter(Collider other) 
     {
         if (other.gameObject.CompareTag("Boundary"))
         {
@@ -89,8 +70,19 @@ public class UIDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDr
             pointIndex = 0;
             lineRenderer.positionCount = 1;
             lineRenderer.SetPosition(0, defalutPosForLineRenderer);
-            // Reset position to the default when exiting the boundary collider
+            isOutside = false;
+        }
 
+        else if(other.gameObject.CompareTag("target"))
+        {
+            isOutside = true;
+            wasMouseReleased = false;
+            pointIndex = 0;
+            lineRenderer.positionCount = 1;
+            lineRenderer.SetPosition(0, defalutPosForLineRenderer);
+            isOutside = false;
+            rectTransform.anchoredPosition = defaultPos;
+            playerManager.CanvasController(false);
         }
     }
 
@@ -99,7 +91,7 @@ public class UIDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDr
         pointIndex++;
         lineRenderer.positionCount = pointIndex + 1;
         Vector3 currentPos = rectTransform.position;
-         currentPos.z = rectTransform.position.z + 0.1f;
+         currentPos.z = rectTransform.position.z - 0.1f;
 
         lineRenderer.SetPosition(pointIndex, currentPos);
     }

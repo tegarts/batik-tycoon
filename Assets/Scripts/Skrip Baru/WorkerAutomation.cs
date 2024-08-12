@@ -7,8 +7,9 @@ using UnityEngine.UI;
 public class WorkerAutomation : MonoBehaviour
 {
     public int progresTime;
-    private bool isStartAuto;
+    public bool isStartAuto;
     public Slider progresBar;
+    public GameObject AssignArea;
     private void Start()
     {
         if(progresBar == null)
@@ -17,19 +18,18 @@ public class WorkerAutomation : MonoBehaviour
         }
         else
         {
-            // progresBar.gameObject.SetActive(false);
+            progresBar.gameObject.SetActive(false);
         }
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F))
-        {
-            if(!isStartAuto)
+        
+            if(isStartAuto)
             {
-                isStartAuto = true;
+                isStartAuto = false;
                 StartCoroutine(StartAutomation());
             }
-        }   
+           
     }    
 
     IEnumerator StartAutomation()
@@ -55,6 +55,15 @@ public class WorkerAutomation : MonoBehaviour
     {
         progresBar.transform.SetParent(canvas.transform);
         if(progresBar.TryGetComponent<FaceCamera>(out FaceCamera faceCamera))
+        {
+            faceCamera.Camera = camera;
+        }
+    }
+
+    public void SetupAssignArea(Canvas canvas, Camera camera)
+    {
+        AssignArea.transform.SetParent(canvas.transform);
+        if(AssignArea.TryGetComponent<FaceCamera>(out FaceCamera faceCamera))
         {
             faceCamera.Camera = camera;
         }
