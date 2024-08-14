@@ -5,12 +5,12 @@ using System.Collections.Generic;
 public class NPCSpawn : MonoBehaviour
 {
     public GameObject npcPrefab; // Prefab NPC yang akan di-spawn
-    public Transform[] waypoints; // Array Waypoints yang ditentukan
+    public Transform[] waypoints;
     public float waitTime = 10f; // Waktu berhenti di waypoint
-    public int npcCount = 5; // Jumlah NPC yang akan di-spawn per batch
-    public float spawnInterval = 3f; // Interval waktu antar spawn NPC
+    public int npcCount = 5;
+    public float spawnInterval = 3f;
 
-    private List<NPCBehav> activeNPCs = new List<NPCBehav>(); // Daftar NPC yang aktif
+    private List<NPCBehav> activeNPCs = new List<NPCBehav>();
 
     void Start()
     {
@@ -40,14 +40,12 @@ public class NPCSpawn : MonoBehaviour
         npcBehav.waypoints = waypoints;
         npcBehav.waitTime = waitTime;
 
-        // Tambahkan NPC ke daftar dan beri listener untuk event kembalinya NPC
         activeNPCs.Add(npcBehav);
         npcBehav.OnNPCReturned += HandleNPCReturned;
     }
 
     void HandleNPCReturned(NPCBehav npc)
     {
-        // Hapus NPC dari daftar ketika sudah kembali
         activeNPCs.Remove(npc);
     }
 
@@ -55,7 +53,6 @@ public class NPCSpawn : MonoBehaviour
     {
         while (activeNPCs.Count > 0)
         {
-            // Tunggu hingga semua NPC kembali (daftar kosong)
             yield return null;
         }
     }
