@@ -56069,7 +56069,7 @@ MonoBehaviour:
   - {fileID: 2035712554}
   - {fileID: 1013208402}
   waitTime: 15
-  npcCount: 5
+  npcCount: 1
   spawnInterval: 3
 --- !u!1 &2007615813
 GameObject:

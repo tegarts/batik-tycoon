@@ -46,10 +46,16 @@ public class NPCBehav : MonoBehaviour
                 yield return null;
             }
 
+            // NPC sudah sampai di waypoint, berhenti sejenak
             anim.SetBool("IsWalking", false);
             isWaiting = true;
-            yield return new WaitForSeconds(waitTime);
 
+            // Print waitTime ke console
+            Debug.Log("NPC akan menunggu selama: " + waitTime + " detik di waypoint ini.");
+
+            yield return new WaitForSeconds(waitTime); // Tunggu di waypoint
+
+            // Setelah menunggu, kembali ke titik spawn
             while (Vector3.Distance(transform.position, spawnPoint) > 0.1f)
             {
                 Vector3 direction = (spawnPoint - transform.position).normalized;
