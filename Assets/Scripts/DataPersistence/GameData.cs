@@ -11,6 +11,7 @@ public class GameData
     public int machineLevel1, machineLevel2, machineLevel3, machineLevel4, machineLevel5;
     public int upgradeCounter;
     public int day;
+    public int motifUnlocked;
     public GameData()
     {
         this.tools1 = false;
@@ -28,5 +29,7 @@ public class GameData
         isAlreadyTutor = false;
         upgradeCounter = 0;
         day = 0;
+        
+        motifUnlocked = 0;
     }
 }

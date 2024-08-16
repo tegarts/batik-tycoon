@@ -39,12 +39,11 @@ public class AudioManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        PlayBackgroundMusic(); // Memainkan musik latar sesuai dengan scene yang dimuat
+        PlayBackgroundMusic(); 
     }
 
     public void PlayBackgroundMusic()
     {
-        // TODO - Ganti nama scene
         if (SceneManager.GetActiveScene().name == "MainMenu")
         {
             musicSource.clip = bgMenu;

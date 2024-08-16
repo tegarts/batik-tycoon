@@ -8,15 +8,13 @@ public class FollowMouse : MonoBehaviour
     public Camera mainCamera;
     public Canvas worldSpaceCanvas;
     public GameObject imagePrefab;
-    public Collider[] kawungWorkerArea;
-    public Collider[] megaWorkerArea;
+    public Collider[] workspaceArea;
     public Collider playerArea;
     private GameObject instantiatedImage;
     private RectTransform imageRectTransform;
     private bool isDragging;
-    [SerializeField] WorkerAutomation[] kawungWorkerAutomation;
-    [SerializeField] WorkerAutomation[] megaWorkerAutomation;
-    PlayerManager playerManager;
+    [SerializeField] WorkerAutomation[] workerAutomation;
+    DrawingManager drawingManager;
     [SerializeField] private string namaMotif;
 
 
@@ -24,7 +22,7 @@ public class FollowMouse : MonoBehaviour
     {
         Button button = GetComponent<Button>();
         button.onClick.AddListener(InstantiateImage);
-        playerManager = FindAnyObjectByType<PlayerManager>();
+        drawingManager = FindAnyObjectByType<DrawingManager>();
     }
 
     void Update()
@@ -62,32 +60,19 @@ public class FollowMouse : MonoBehaviour
     {
         if (namaMotif == "kawung")
         {
-            if (kawungWorkerArea[0].bounds.Contains(imageRectTransform.position))
+            if (workspaceArea[0].bounds.Contains(imageRectTransform.position))
             {
+                Debug.Log("test");
                 Destroy(instantiatedImage);
                 isDragging = false;
-                if (!kawungWorkerAutomation[0].isStartAuto)
+                if (!workerAutomation[0].isStartAuto)
                 {
-                    kawungWorkerAutomation[0].isStartAuto = true;
+                    workerAutomation[0].isStartAuto = true;
                 }
             }
-            else if (kawungWorkerArea[1].bounds.Contains(imageRectTransform.position))
+            else if (workspaceArea[1].bounds.Contains(imageRectTransform.position) || workspaceArea[2].bounds.Contains(imageRectTransform.position) || workspaceArea[3].bounds.Contains(imageRectTransform.position) || workspaceArea[4].bounds.Contains(imageRectTransform.position))
             {
-                Destroy(instantiatedImage);
-                isDragging = false;
-                if (!kawungWorkerAutomation[1].isStartAuto)
-                {
-                    kawungWorkerAutomation[1].isStartAuto = true;
-                }
-            }
-            else if (megaWorkerArea[0].bounds.Contains(imageRectTransform.position))
-            {
-                Destroy(instantiatedImage);
-                isDragging = false;
-                Debug.Log("Salah alat");
-            }
-            else if (megaWorkerArea[1].bounds.Contains(imageRectTransform.position))
-            {
+                // TODO - Tambah kondisi pembeli marah / gak jadi beli
                 Destroy(instantiatedImage);
                 isDragging = false;
                 Debug.Log("Salah alat");
@@ -96,7 +81,32 @@ public class FollowMouse : MonoBehaviour
             {
                 Destroy(instantiatedImage);
                 isDragging = false;
-                playerManager.CanvasController(true);
+                drawingManager.CanvasController(true);
+            }
+        }
+        else if (namaMotif == "megamendung")
+        {
+            if (workspaceArea[1].bounds.Contains(imageRectTransform.position))
+            {
+                Destroy(instantiatedImage);
+                isDragging = false;
+                if (!workerAutomation[0].isStartAuto)
+                {
+                    workerAutomation[0].isStartAuto = true;
+                }
+            }
+            else if (workspaceArea[0].bounds.Contains(imageRectTransform.position) || workspaceArea[2].bounds.Contains(imageRectTransform.position) || workspaceArea[3].bounds.Contains(imageRectTransform.position) || workspaceArea[4].bounds.Contains(imageRectTransform.position))
+            {
+                // TODO - Tambah kondisi pembeli marah / gak jadi beli
+                Destroy(instantiatedImage);
+                isDragging = false;
+                Debug.Log("Salah alat");
+            }
+            else if (playerArea.bounds.Contains(imageRectTransform.position))
+            {
+                Destroy(instantiatedImage);
+                isDragging = false;
+                drawingManager.CanvasController(true);
             }
         }
 
