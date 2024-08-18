@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DrawingManager : MonoBehaviour
 {
-    [SerializeField] GameObject canvasCanting;
+    public GameObject canvasCanting;
 
     private void Start() 
     {

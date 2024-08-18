@@ -6,7 +6,8 @@ using UnityEngine;
 public class Money : MonoBehaviour, IDataPersistence
 {
     public int moneyValue;
-    [SerializeField] TMP_Text moneyText;
+    [SerializeField] TMP_Text moneyTextInsideBook;
+    [SerializeField] TMP_Text moneyTextHUD;
 
     public void LoadData(GameData data)
     {
@@ -47,9 +48,10 @@ public class Money : MonoBehaviour, IDataPersistence
 
     private void UpdateMoneyText()
     {
-        if (moneyText != null)
+        if (moneyTextInsideBook != null && moneyTextHUD != null)
         {
-            moneyText.text = "Rp. " + moneyValue;
+            moneyTextInsideBook.text = moneyValue.ToString();
+            moneyTextHUD.text = moneyValue.ToString();
         }
     }
 }

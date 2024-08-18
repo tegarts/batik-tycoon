@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class DayManager : MonoBehaviour, IDataPersistence
 {
+    [Header("General")]
     public int day;
     public bool dayIsStarted;
+
+    [Header("UI Related")]
+    [SerializeField] GameObject bookMenuButton;
+    [Header("References")]
+    BookMenu bookMenu;
+    Tutorial tutorial;
+    
     public void LoadData(GameData data)
     {
         day = data.day;
@@ -16,11 +24,38 @@ public class DayManager : MonoBehaviour, IDataPersistence
         data.day = day;
     }
 
+    private void Start() 
+    {
+        bookMenu = FindAnyObjectByType<BookMenu>();
+        tutorial = FindAnyObjectByType<Tutorial>();
+    }
+
     private void Update() 
     {
         if(dayIsStarted)
         {
-            
+            bookMenuButton.SetActive(false);
+            bookMenu.bookPanel.SetActive(false);
+        }
+        else
+        {
+            if(tutorial.isStartTutor && !tutorial.isStepDone[4])
+            {
+                bookMenuButton.SetActive(false);
+            }
+            else
+            {
+                bookMenuButton.SetActive(true);
+            }
         }    
+    }
+
+    public void StartNextDay()
+    {
+        if(!dayIsStarted)
+        {
+            dayIsStarted = true;
+            day++;
+        }
     }
 }

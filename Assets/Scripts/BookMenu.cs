@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class BookMenu : MonoBehaviour
 {
-    [SerializeField] GameObject bookPanel;
+    public GameObject bookPanel;
     [SerializeField] GameObject reportPanel;
     [SerializeField] GameObject unlockPanel;
     [SerializeField] GameObject upgradePanel;
-    [SerializeField] GameObject nextDayPanel;
     [SerializeField] GameObject buttonReportPanel;
     [SerializeField] GameObject buttonUnlockPanel;
     [SerializeField] GameObject buttonUpgradePanel;
-    [SerializeField] GameObject buttonNextDayPanel;
 
     private void Start() 
     {
@@ -20,7 +18,6 @@ public class BookMenu : MonoBehaviour
         buttonReportPanel.SetActive(false);
         buttonUnlockPanel.SetActive(false);
         buttonUpgradePanel.SetActive(false);
-        buttonNextDayPanel.SetActive(false);
     }
     public void OpenBook()
     {
@@ -30,7 +27,6 @@ public class BookMenu : MonoBehaviour
 
         unlockPanel.SetActive(false);
         upgradePanel.SetActive(false);
-        nextDayPanel.SetActive(false);
     }
 
     public void CloseBook()
@@ -46,11 +42,9 @@ public class BookMenu : MonoBehaviour
 
         unlockPanel.SetActive(false);
         upgradePanel.SetActive(false);
-        nextDayPanel.SetActive(false);
 
         buttonUnlockPanel.SetActive(false);
         buttonUpgradePanel.SetActive(false);
-        buttonNextDayPanel.SetActive(false);
     }
 
     public void OpenUnlock()
@@ -60,11 +54,9 @@ public class BookMenu : MonoBehaviour
 
         reportPanel.SetActive(false);
         upgradePanel.SetActive(false);
-        nextDayPanel.SetActive(false);
 
         buttonReportPanel.SetActive(false);
         buttonUpgradePanel.SetActive(false);
-        buttonNextDayPanel.SetActive(false);
     }
 
     public void OpenUpgrade()
@@ -74,25 +66,9 @@ public class BookMenu : MonoBehaviour
 
         unlockPanel.SetActive(false);
         reportPanel.SetActive(false);
-        nextDayPanel.SetActive(false);
 
         buttonReportPanel.SetActive(false);
         buttonUnlockPanel.SetActive(false);
-        buttonNextDayPanel.SetActive(false);
-    }
-
-    public void OpenNextDay()
-    {
-        nextDayPanel.SetActive(true);
-        buttonNextDayPanel.SetActive(true);
-
-        unlockPanel.SetActive(false);
-        reportPanel.SetActive(false);
-        upgradePanel.SetActive(false);
-
-        buttonReportPanel.SetActive(false);
-        buttonUnlockPanel.SetActive(false);
-        buttonUpgradePanel.SetActive(false);
     }
     
 }

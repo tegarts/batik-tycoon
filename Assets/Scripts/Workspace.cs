@@ -4,10 +4,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WorkerAutomation : MonoBehaviour
+public class Workspace: MonoBehaviour
 {
     public int progresTime;
     public bool isStartAuto;
+    public bool isDone;
     public Slider progresBar;
     public GameObject AssignArea;
     private void Start()
@@ -46,9 +47,9 @@ public class WorkerAutomation : MonoBehaviour
             progresBar.value = Mathf.Clamp01(elapsedTime / waitTime);
             yield return null;
         }
-
         Debug.Log("done bang");
         progresBar.gameObject.SetActive(false);
+        isDone = true;
     }
 
     public void SetupProgresBar(Canvas canvas, Camera camera)

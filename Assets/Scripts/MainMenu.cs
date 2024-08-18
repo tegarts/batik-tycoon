@@ -5,81 +5,38 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] GameObject panelAbout;
-    [SerializeField] GameObject panelOptions;
-    [SerializeField] GameObject panelQuit;
-    [SerializeField] GameObject buttonContinue;
-
-    AudioManager audioManager;
-
+    [SerializeField] GameObject popUpLoad;
     private void Start() 
     {
-        // audioManager = GameObject.FindWithTag("Audio").GetComponent<AudioManager>();
-        Time.timeScale = 1;
-        panelAbout.SetActive(false);
-        panelOptions.SetActive(false);
-        panelQuit.SetActive(false);
-        buttonContinue.SetActive(false);
-        
+        popUpLoad.SetActive(false);
+    }
+
+    public void ButtonStart()
+    {
         if(DataPersistenceManager.instance.HasGameData())
         {
-            buttonContinue.SetActive(true);
-        }   
+            popUpLoad.SetActive(true);
+        }
+        else
+        {
+            DataPersistenceManager.instance.NewGame();
+            SceneManager.LoadScene("New Mechanic"); // TODO - Ganti nama scene
+        }
     }
 
-    public void StartButton()
+    public void ButtonLoadYes()
     {
-        // audioManager.PlaySFX(audioManager.clickedButton);
+        SceneManager.LoadScene("New Mechanic"); // TODO - Ganti nama scene
+    }
+
+    public void ButtonLoadNo()
+    {
         DataPersistenceManager.instance.NewGame();
-        SceneManager.LoadScene("Control");
+        SceneManager.LoadScene("New Mechanic"); // TODO - Ganti nama scene
     }
 
-    public void ContinueButton()
+    public void ButtonLoadExit()
     {
-        // audioManager.PlaySFX(audioManager.clickedButton);
-        SceneManager.LoadScene("Control");
-    }
-
-    public void AboutButton()
-    {
-        // audioManager.PlaySFX(audioManager.clickedButton);
-        panelAbout.SetActive(true);
-    }
-
-    public void OptionsButton()
-    {
-        // audioManager.PlaySFX(audioManager.clickedButton);
-        panelOptions.SetActive(true);
-    }
-
-    public void AboutClose()
-    {
-        // audioManager.PlaySFX(audioManager.clickedButton);
-        panelAbout.SetActive(false);
-    }
-
-    public void OptionsClose()
-    {
-        // audioManager.PlaySFX(audioManager.clickedButton);
-        panelOptions.SetActive(false);
-    }
-
-    public void QuitButton()
-    {
-        // audioManager.PlaySFX(audioManager.clickedButton);
-        panelQuit.SetActive(true);
-    }
-
-    public void QuitClose()
-    {
-        // audioManager.PlaySFX(audioManager.clickedButton);
-        panelQuit.SetActive(false);
-    }
-    
-
-    public void ExitButton()
-    {
-        // audioManager.PlaySFX(audioManager.clickedButton);
-        Application.Quit();
+        popUpLoad.SetActive(false);
     }
 }

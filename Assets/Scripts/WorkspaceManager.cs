@@ -16,7 +16,6 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
     [Header("Reference")]
     Money money;
 
-
     public void LoadData(GameData data)
     {
         motifUnlocked = data.motifUnlocked;
@@ -43,8 +42,8 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
         for (int i = 0; i < motifUnlocked + 1; i++)
         {
             workspaces[i].SetActive(true);
-            workspaces[i].GetComponent<WorkerAutomation>().SetupProgresBar(canvasWorldSpace, cam);
-            workspaces[i].GetComponent<WorkerAutomation>().SetupAssignArea(canvasWorldSpace, cam);
+            workspaces[i].GetComponent<Workspace>().SetupProgresBar(canvasWorldSpace, cam);
+            workspaces[i].GetComponent<Workspace>().SetupAssignArea(canvasWorldSpace, cam);
         }
     }
 

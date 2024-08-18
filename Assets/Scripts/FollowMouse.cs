@@ -13,9 +13,10 @@ public class FollowMouse : MonoBehaviour
     private GameObject instantiatedImage;
     private RectTransform imageRectTransform;
     private bool isDragging;
-    [SerializeField] WorkerAutomation[] workerAutomation;
+    [SerializeField] Workspace[] workspaceAutomation;
     DrawingManager drawingManager;
     [SerializeField] private string namaMotif;
+    CameraRotation cameraRotation;
 
 
     void Start()
@@ -23,6 +24,7 @@ public class FollowMouse : MonoBehaviour
         Button button = GetComponent<Button>();
         button.onClick.AddListener(InstantiateImage);
         drawingManager = FindAnyObjectByType<DrawingManager>();
+        cameraRotation = FindAnyObjectByType<CameraRotation>();
     }
 
     void Update()
@@ -65,9 +67,9 @@ public class FollowMouse : MonoBehaviour
                 Debug.Log("test");
                 Destroy(instantiatedImage);
                 isDragging = false;
-                if (!workerAutomation[0].isStartAuto)
+                if (!workspaceAutomation[0].isStartAuto)
                 {
-                    workerAutomation[0].isStartAuto = true;
+                    workspaceAutomation[0].isStartAuto = true;
                 }
             }
             else if (workspaceArea[1].bounds.Contains(imageRectTransform.position) || workspaceArea[2].bounds.Contains(imageRectTransform.position) || workspaceArea[3].bounds.Contains(imageRectTransform.position) || workspaceArea[4].bounds.Contains(imageRectTransform.position))
@@ -81,6 +83,7 @@ public class FollowMouse : MonoBehaviour
             {
                 Destroy(instantiatedImage);
                 isDragging = false;
+                cameraRotation.RotateToB(0.5f);
                 drawingManager.CanvasController(true);
             }
         }
@@ -90,9 +93,9 @@ public class FollowMouse : MonoBehaviour
             {
                 Destroy(instantiatedImage);
                 isDragging = false;
-                if (!workerAutomation[0].isStartAuto)
+                if (!workspaceAutomation[0].isStartAuto)
                 {
-                    workerAutomation[0].isStartAuto = true;
+                    workspaceAutomation[0].isStartAuto = true;
                 }
             }
             else if (workspaceArea[0].bounds.Contains(imageRectTransform.position) || workspaceArea[2].bounds.Contains(imageRectTransform.position) || workspaceArea[3].bounds.Contains(imageRectTransform.position) || workspaceArea[4].bounds.Contains(imageRectTransform.position))
