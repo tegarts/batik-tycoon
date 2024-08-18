@@ -49,9 +49,15 @@ public class NPCBehav : MonoBehaviour
             anim.SetBool("IsWalking", false);
             isWaiting = true;
 
-            Debug.Log("NPC akan menunggu selama: " + waitTime + " detik di waypoint ini.");
+            Debug.Log("NPC sedang menunggu dengan tenang selama 5 detik...");
+            
+            yield return new WaitForSeconds(5f);
 
-            yield return new WaitForSeconds(waitTime);
+            Debug.Log("NPC mulai marah! Menunggu selama 5 detik terakhir...");
+
+            yield return new WaitForSeconds(5f);
+
+            Debug.Log("NPC selesai marah dan akan kembali ke titik spawn.");
 
             while (Vector3.Distance(transform.position, spawnPoint) > 0.1f)
             {
