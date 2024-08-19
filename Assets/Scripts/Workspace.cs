@@ -8,6 +8,7 @@ public class Workspace: MonoBehaviour
 {
     public int progresTime;
     public bool isStartAuto;
+    public bool isOnProgress;
     public bool isDone;
     public Slider progresBar;
     public GameObject AssignArea;
@@ -35,6 +36,7 @@ public class Workspace: MonoBehaviour
 
     IEnumerator StartAutomation()
     {
+        isOnProgress = true;
         float waitTime = progresTime;
         float elapsedTime = 0f;
 
@@ -50,6 +52,7 @@ public class Workspace: MonoBehaviour
         Debug.Log("done bang");
         progresBar.gameObject.SetActive(false);
         isDone = true;
+        isOnProgress = false;
     }
 
     public void SetupProgresBar(Canvas canvas, Camera camera)

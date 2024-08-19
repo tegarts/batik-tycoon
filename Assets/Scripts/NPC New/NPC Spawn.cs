@@ -5,16 +5,49 @@ using System.Collections.Generic;
 public class NPCSpawn : MonoBehaviour
 {
     public GameObject npcPrefab; // Prefab NPC yang akan di-spawn
+
     public Transform[] waypoints;
     public float waitTime = 10f; // Waktu berhenti di waypoint
     public int npcCount = 5;
+    [SerializeField] int totalNPC;
     public float spawnInterval = 3f;
+    [Header("References")]
+    DayManager dayManager;
+    private bool isSpawning;
 
     private List<NPCBehav> activeNPCs = new List<NPCBehav>();
 
     void Start()
     {
-        StartCoroutine(SpawnNPCsInBatches());
+        // StartCoroutine(SpawnNPCsInBatches());
+        dayManager = FindAnyObjectByType<DayManager>();
+    }
+
+    private void Update()
+    {
+        if (dayManager.dayIsStarted)
+        {
+            if (!isSpawning)
+            {
+                if(totalNPC > 0)
+                {
+                    isSpawning = true;
+                    StartCoroutine(SpawnNPCsInBatches());
+                }
+
+                totalNPC = 10 + ((dayManager.day - 1) / 2) * 5;
+            }
+            else if(isSpawning == true && totalNPC <= 0)
+            {
+                isSpawning = false;
+                dayManager.dayIsStarted = false;
+            }
+        }
+        else if(!dayManager.dayIsStarted)
+        {
+            StopCoroutine(SpawnNPCsInBatches());    
+        }
+
     }
 
     IEnumerator SpawnNPCsInBatches()
@@ -42,6 +75,7 @@ public class NPCSpawn : MonoBehaviour
 
         activeNPCs.Add(npcBehav);
         npcBehav.OnNPCReturned += HandleNPCReturned;
+        totalNPC--;
     }
 
     void HandleNPCReturned(NPCBehav npc)

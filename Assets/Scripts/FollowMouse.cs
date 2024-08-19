@@ -7,24 +7,57 @@ public class FollowMouse : MonoBehaviour
 {
     public Camera mainCamera;
     public Canvas worldSpaceCanvas;
-    public GameObject imagePrefab;
+    public GameObject[] imagePrefabs;
+    [SerializeField] GameObject imagePrefab;
+    [SerializeField] Workspace[] workspaceAutomation;
     public Collider[] workspaceArea;
     public Collider playerArea;
     private GameObject instantiatedImage;
     private RectTransform imageRectTransform;
     private bool isDragging;
-    [SerializeField] Workspace[] workspaceAutomation;
+    [SerializeField] string[] motifNames;
+    [SerializeField] string namaMotif;
+    private int randomIndex;
+    [Header("References")]
     DrawingManager drawingManager;
-    [SerializeField] private string namaMotif;
     CameraRotation cameraRotation;
+    DayManager dayManager;
+
 
 
     void Start()
     {
+        mainCamera = FindAnyObjectByType<Camera>();
+        worldSpaceCanvas = GameObject.Find("Canvas World Space").GetComponent<Canvas>();
         Button button = GetComponent<Button>();
         button.onClick.AddListener(InstantiateImage);
         drawingManager = FindAnyObjectByType<DrawingManager>();
         cameraRotation = FindAnyObjectByType<CameraRotation>();
+        dayManager = FindAnyObjectByType<DayManager>();
+
+        for (int i = 0; i < workspaceAutomation.Length; i++)
+        {
+            string workspaceName = "Workspace Motif " + (i + 1);
+            Workspace workspaceComponent = GameObject.Find(workspaceName)?.GetComponent<Workspace>();
+            if (workspaceComponent != null)
+            {
+                workspaceAutomation[i] = workspaceComponent;
+            }
+        }
+
+        for (int i = 0; i < workspaceArea.Length; i++)
+        {
+            string workspaceAreaName = "area" + (i + 1);
+            Collider workspaceAreaComponent = GameObject.FindWithTag(workspaceAreaName)?.GetComponent<Collider>();
+            if (workspaceAreaComponent != null)
+            {
+                workspaceArea[i] = workspaceAreaComponent;
+            }
+        }
+
+        playerArea = GameObject.FindWithTag("areaplayer").GetComponent<Collider>();
+
+        RandomMotif();
     }
 
     void Update()
@@ -37,6 +70,39 @@ public class FollowMouse : MonoBehaviour
         if (isDragging && Input.GetMouseButtonDown(0))
         {
             CheckAndDestroy();
+        }
+    }
+
+    private void RandomMotif()
+    {
+        if (dayManager.day < 3)
+        {
+            randomIndex = Random.Range(0, motifNames.Length - 3);
+            namaMotif = motifNames[randomIndex];
+        }
+        else if (dayManager.day < 5)
+        {
+            randomIndex = Random.Range(0, motifNames.Length - 2);
+            namaMotif = motifNames[randomIndex];
+        }
+        else if (dayManager.day < 7)
+        {
+            randomIndex = Random.Range(0, motifNames.Length - 1);
+            namaMotif = motifNames[randomIndex];
+        }
+        else if (dayManager.day >= 7)
+        {
+            randomIndex = Random.Range(0, motifNames.Length);
+            namaMotif = motifNames[randomIndex];
+        }
+
+        if (namaMotif == "kawung")
+        {
+            imagePrefab = imagePrefabs[0];
+        }
+        else if (namaMotif == "megamendung")
+        {
+            imagePrefab = imagePrefabs[1];
         }
     }
 
@@ -64,15 +130,25 @@ public class FollowMouse : MonoBehaviour
         {
             if (workspaceArea[0].bounds.Contains(imageRectTransform.position))
             {
-                Debug.Log("test");
-                Destroy(instantiatedImage);
-                isDragging = false;
-                if (!workspaceAutomation[0].isStartAuto)
+                if (workspaceAutomation[0].isOnProgress == false)
                 {
-                    workspaceAutomation[0].isStartAuto = true;
+                    Destroy(instantiatedImage);
+                    isDragging = false;
+                    if (!workspaceAutomation[0].isStartAuto)
+                    {
+                        workspaceAutomation[0].isStartAuto = true;
+                    }
                 }
+                else
+                {
+                    Debug.Log("Proses belom selese");
+                }
+
             }
-            else if (workspaceArea[1].bounds.Contains(imageRectTransform.position) || workspaceArea[2].bounds.Contains(imageRectTransform.position) || workspaceArea[3].bounds.Contains(imageRectTransform.position) || workspaceArea[4].bounds.Contains(imageRectTransform.position))
+            else if (workspaceArea[1] != null && workspaceArea[1].bounds.Contains(imageRectTransform.position) ||
+            workspaceArea[2] != null && workspaceArea[2].bounds.Contains(imageRectTransform.position) ||
+            workspaceArea[3] != null && workspaceArea[3].bounds.Contains(imageRectTransform.position) ||
+            workspaceArea[4] != null && workspaceArea[4].bounds.Contains(imageRectTransform.position))
             {
                 // TODO - Tambah kondisi pembeli marah / gak jadi beli
                 Destroy(instantiatedImage);
@@ -89,16 +165,19 @@ public class FollowMouse : MonoBehaviour
         }
         else if (namaMotif == "megamendung")
         {
-            if (workspaceArea[1].bounds.Contains(imageRectTransform.position))
+            if (workspaceArea[1] != null && workspaceArea[1].bounds.Contains(imageRectTransform.position))
             {
                 Destroy(instantiatedImage);
                 isDragging = false;
-                if (!workspaceAutomation[0].isStartAuto)
+                if (!workspaceAutomation[1].isStartAuto)
                 {
-                    workspaceAutomation[0].isStartAuto = true;
+                    workspaceAutomation[1].isStartAuto = true;
                 }
             }
-            else if (workspaceArea[0].bounds.Contains(imageRectTransform.position) || workspaceArea[2].bounds.Contains(imageRectTransform.position) || workspaceArea[3].bounds.Contains(imageRectTransform.position) || workspaceArea[4].bounds.Contains(imageRectTransform.position))
+            else if (workspaceArea[0] != null && workspaceArea[0].bounds.Contains(imageRectTransform.position) ||
+            workspaceArea[2] != null && workspaceArea[2].bounds.Contains(imageRectTransform.position) ||
+            workspaceArea[3] != null && workspaceArea[3].bounds.Contains(imageRectTransform.position) ||
+            workspaceArea[4] != null && workspaceArea[4].bounds.Contains(imageRectTransform.position))
             {
                 // TODO - Tambah kondisi pembeli marah / gak jadi beli
                 Destroy(instantiatedImage);
