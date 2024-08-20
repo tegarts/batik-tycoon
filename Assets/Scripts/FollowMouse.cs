@@ -9,6 +9,8 @@ public class FollowMouse : MonoBehaviour
     public Canvas worldSpaceCanvas;
     public GameObject[] imagePrefabs;
     [SerializeField] GameObject imagePrefab;
+    [SerializeField] GameObject imageMotif;
+    [SerializeField] Sprite[] spriteMotif;
     [SerializeField] Workspace[] workspaceAutomation;
     public Collider[] workspaceArea;
     public Collider playerArea;
@@ -99,10 +101,12 @@ public class FollowMouse : MonoBehaviour
         if (namaMotif == "kawung")
         {
             imagePrefab = imagePrefabs[0];
+            imageMotif.GetComponent<Image>().sprite = spriteMotif[0];
         }
         else if (namaMotif == "megamendung")
         {
             imagePrefab = imagePrefabs[1];
+            imageMotif.GetComponent<Image>().sprite = spriteMotif[1];
         }
     }
 
@@ -138,6 +142,7 @@ public class FollowMouse : MonoBehaviour
                     {
                         workspaceAutomation[0].isStartAuto = true;
                     }
+                    Destroy(gameObject);
                 }
                 else
                 {
@@ -154,6 +159,7 @@ public class FollowMouse : MonoBehaviour
                 Destroy(instantiatedImage);
                 isDragging = false;
                 Debug.Log("Salah alat");
+                Destroy(gameObject);
             }
             else if (playerArea.bounds.Contains(imageRectTransform.position))
             {
@@ -161,6 +167,8 @@ public class FollowMouse : MonoBehaviour
                 isDragging = false;
                 cameraRotation.RotateToB(0.5f);
                 drawingManager.CanvasController(true);
+                drawingManager.MatchMotifKawung();
+                Destroy(gameObject);
             }
         }
         else if (namaMotif == "megamendung")
@@ -173,6 +181,7 @@ public class FollowMouse : MonoBehaviour
                 {
                     workspaceAutomation[1].isStartAuto = true;
                 }
+                Destroy(gameObject);
             }
             else if (workspaceArea[0] != null && workspaceArea[0].bounds.Contains(imageRectTransform.position) ||
             workspaceArea[2] != null && workspaceArea[2].bounds.Contains(imageRectTransform.position) ||
@@ -183,12 +192,15 @@ public class FollowMouse : MonoBehaviour
                 Destroy(instantiatedImage);
                 isDragging = false;
                 Debug.Log("Salah alat");
+                Destroy(gameObject);
             }
             else if (playerArea.bounds.Contains(imageRectTransform.position))
             {
                 Destroy(instantiatedImage);
                 isDragging = false;
                 drawingManager.CanvasController(true);
+                drawingManager.MatchMotifMega();
+                Destroy(gameObject);
             }
         }
 

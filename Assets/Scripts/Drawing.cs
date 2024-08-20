@@ -17,6 +17,7 @@ public class Drawing : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
     [SerializeField] bool[] checkpoints;
     bool isSetDefaultPos = false;
     CameraRotation cameraRotation;
+    Money money;
 
     [Header("UI Related")]
     [SerializeField] private Canvas canvas;
@@ -48,6 +49,7 @@ public class Drawing : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
         cameraRotation = FindAnyObjectByType<CameraRotation>();
 
         panelAfterCanting.SetActive(false);
+        money = FindObjectOfType<Money>();
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -115,6 +117,8 @@ public class Drawing : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
                 scoreCanting = 0;
             }
             Debug.Log("Score Canting: " + scoreCanting);
+            money.AddMoney(scoreCanting * 6000);
+            scoreCanting = 0;
         }
 
         if (other.gameObject.CompareTag("cp1"))

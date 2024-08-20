@@ -1,16 +1,21 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 
 public class NPCSpawn : MonoBehaviour
 {
-    public GameObject npcPrefab; // Prefab NPC yang akan di-spawn
-
+    public GameObject[] npcPrefabs; // Prefab NPC yang akan di-spawn
+    [SerializeField] GameObject npcPrefab;
     public Transform[] waypoints;
     public float waitTime = 10f; // Waktu berhenti di waypoint
     public int npcCount = 5;
     [SerializeField] int totalNPC;
     public float spawnInterval = 3f;
+
+    [Header("UI Related")]
+    [SerializeField] TMP_Text npcCountText;
+
     [Header("References")]
     DayManager dayManager;
     private bool isSpawning;
@@ -29,30 +34,28 @@ public class NPCSpawn : MonoBehaviour
         {
             if (!isSpawning)
             {
-                if(totalNPC > 0)
-                {
-                    isSpawning = true;
-                    StartCoroutine(SpawnNPCsInBatches());
-                }
-
                 totalNPC = 10 + ((dayManager.day - 1) / 2) * 5;
+                isSpawning = true;
+                StartCoroutine(SpawnNPCsInBatches());
             }
-            else if(isSpawning == true && totalNPC <= 0)
+            else if (isSpawning == true && totalNPC <= 0)
             {
                 isSpawning = false;
                 dayManager.dayIsStarted = false;
             }
+
+            npcCountText.text = totalNPC + " Pembeli";
         }
-        else if(!dayManager.dayIsStarted)
+        else if (!dayManager.dayIsStarted)
         {
-            StopCoroutine(SpawnNPCsInBatches());    
+            StopCoroutine(SpawnNPCsInBatches());
         }
 
     }
 
     IEnumerator SpawnNPCsInBatches()
     {
-        while (true)
+        while (totalNPC > 0)
         {
             // Spawn 5 NPC
             for (int i = 0; i < npcCount; i++)
@@ -67,6 +70,9 @@ public class NPCSpawn : MonoBehaviour
 
     void SpawnNPC()
     {
+        int randomIndex = Random.Range(0, npcPrefabs.Length);
+        npcPrefab = npcPrefabs[randomIndex];
+        
         GameObject npcObject = Instantiate(npcPrefab, transform.position, Quaternion.identity);
         NPCBehav npcBehav = npcObject.GetComponent<NPCBehav>();
 

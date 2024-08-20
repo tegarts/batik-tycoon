@@ -12,6 +12,7 @@ public class Workspace: MonoBehaviour
     public bool isDone;
     public Slider progresBar;
     public GameObject AssignArea;
+    Money money;
     private void Start()
     {
         if(progresBar == null)
@@ -22,16 +23,17 @@ public class Workspace: MonoBehaviour
         {
             progresBar.gameObject.SetActive(false);
         }
+
+        money = FindObjectOfType<Money>();
     }
     private void Update()
     {
-        
             if(isStartAuto)
             {
                 isStartAuto = false;
                 StartCoroutine(StartAutomation());
             }
-           
+            
     }    
 
     IEnumerator StartAutomation()
@@ -53,6 +55,8 @@ public class Workspace: MonoBehaviour
         progresBar.gameObject.SetActive(false);
         isDone = true;
         isOnProgress = false;
+
+        money.AddMoney(400000);
     }
 
     public void SetupProgresBar(Canvas canvas, Camera camera)
