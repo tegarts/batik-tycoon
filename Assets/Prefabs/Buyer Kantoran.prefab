@@ -2351,7 +2351,6 @@ GameObject:
   - component: {fileID: 7327075380087282237}
   - component: {fileID: 1114706173605292047}
   - component: {fileID: 3060360494464283731}
-  - component: {fileID: 7988690655287353128}
   m_Layer: 0
   m_Name: Buyer Kantoran
   m_TagString: Untagged
@@ -2470,20 +2469,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypoints: []
+  index: 0
   speed: 5
   waitTime: 2
---- !u!114 &7988690655287353128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8459074285204559375}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2cf131c0f944a8499289b5413a05b47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  isWaiting: 0
   buttonMotif: {fileID: 0}
   cam: {fileID: 0}
   canvasWorldSpace: {fileID: 0}

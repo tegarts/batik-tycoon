@@ -13,6 +13,8 @@ public class Workspace: MonoBehaviour
     public Slider progresBar;
     public GameObject AssignArea;
     Money money;
+    public delegate void WorkspaceEvent();
+    public event WorkspaceEvent OnWorkspaceCompleted;
     private void Start()
     {
         if(progresBar == null)
@@ -26,6 +28,7 @@ public class Workspace: MonoBehaviour
 
         money = FindObjectOfType<Money>();
     }
+
     private void Update()
     {
             if(isStartAuto)
@@ -53,9 +56,9 @@ public class Workspace: MonoBehaviour
         }
         Debug.Log("done bang");
         progresBar.gameObject.SetActive(false);
+        OnWorkspaceCompleted?.Invoke();
         isDone = true;
         isOnProgress = false;
-
         money.AddMoney(400000);
     }
 

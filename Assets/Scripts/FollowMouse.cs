@@ -16,17 +16,27 @@ public class FollowMouse : MonoBehaviour
     public Collider playerArea;
     private GameObject instantiatedImage;
     private RectTransform imageRectTransform;
-    private bool isDragging;
+    public bool isDragging;
     [SerializeField] string[] motifNames;
     [SerializeField] string namaMotif;
+    public bool onProgress;
     private int randomIndex;
+    public delegate void MouseDroppedRight();
+    public event MouseDroppedRight OnMouseDroppedRight;
     [Header("References")]
     DrawingManager drawingManager;
     CameraRotation cameraRotation;
     DayManager dayManager;
+    [SerializeField] NPCBehav nPCBehavParent;
 
 
-
+    private void Awake() 
+    {
+        if(gameObject.transform.parent.GetComponent<NPCBehav>() != null)
+        {
+            nPCBehavParent = gameObject.transform.parent.GetComponent<NPCBehav>();
+        }     
+    }
     void Start()
     {
         mainCamera = FindAnyObjectByType<Camera>();
@@ -79,22 +89,22 @@ public class FollowMouse : MonoBehaviour
     {
         if (dayManager.day < 3)
         {
-            randomIndex = Random.Range(0, motifNames.Length - 3);
+            randomIndex = UnityEngine.Random.Range(0, motifNames.Length - 3);
             namaMotif = motifNames[randomIndex];
         }
         else if (dayManager.day < 5)
         {
-            randomIndex = Random.Range(0, motifNames.Length - 2);
+            randomIndex = UnityEngine.Random.Range(0, motifNames.Length - 2);
             namaMotif = motifNames[randomIndex];
         }
         else if (dayManager.day < 7)
         {
-            randomIndex = Random.Range(0, motifNames.Length - 1);
+            randomIndex = UnityEngine.Random.Range(0, motifNames.Length - 1);
             namaMotif = motifNames[randomIndex];
         }
         else if (dayManager.day >= 7)
         {
-            randomIndex = Random.Range(0, motifNames.Length);
+            randomIndex = UnityEngine.Random.Range(0, motifNames.Length);
             namaMotif = motifNames[randomIndex];
         }
 
@@ -136,12 +146,14 @@ public class FollowMouse : MonoBehaviour
             {
                 if (workspaceAutomation[0].isOnProgress == false)
                 {
+                    nPCBehavParent.currentWorkspace = workspaceAutomation[0];
                     Destroy(instantiatedImage);
                     isDragging = false;
                     if (!workspaceAutomation[0].isStartAuto)
                     {
                         workspaceAutomation[0].isStartAuto = true;
                     }
+                    OnMouseDroppedRight?.Invoke();
                     Destroy(gameObject);
                 }
                 else
@@ -168,6 +180,7 @@ public class FollowMouse : MonoBehaviour
                 cameraRotation.RotateToB(0.5f);
                 drawingManager.CanvasController(true);
                 drawingManager.MatchMotifKawung();
+                OnMouseDroppedRight?.Invoke();
                 Destroy(gameObject);
             }
         }

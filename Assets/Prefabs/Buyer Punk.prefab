@@ -394,7 +394,6 @@ GameObject:
   - component: {fileID: 1745443872813656839}
   - component: {fileID: 1285227447317275100}
   - component: {fileID: 6904544232750806448}
-  - component: {fileID: 5335596665445245387}
   m_Layer: 0
   m_Name: Buyer Punk
   m_TagString: Untagged
@@ -513,20 +512,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypoints: []
+  index: 0
   speed: 5
   waitTime: 2
---- !u!114 &5335596665445245387
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1345757079338860503}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2cf131c0f944a8499289b5413a05b47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  isWaiting: 0
   buttonMotif: {fileID: 0}
   cam: {fileID: 0}
   canvasWorldSpace: {fileID: 0}
