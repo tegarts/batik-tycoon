@@ -18,6 +18,8 @@ public class Drawing : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
     bool isSetDefaultPos = false;
     CameraRotation cameraRotation;
     Money money;
+    public delegate void DrawingEvent();
+    public event DrawingEvent OnDrawingCompleted;
 
     [Header("UI Related")]
     [SerializeField] private Canvas canvas;
@@ -231,6 +233,7 @@ public class Drawing : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
 
     public void ButtonExitFromPanel()
     {
+        OnDrawingCompleted?.Invoke();
         panelAfterCanting.SetActive(false);
         drawingManager.CanvasController(false);
         cameraRotation.RotateToA(0.5f);

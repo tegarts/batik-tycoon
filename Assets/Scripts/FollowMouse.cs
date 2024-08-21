@@ -22,7 +22,9 @@ public class FollowMouse : MonoBehaviour
     public bool onProgress;
     private int randomIndex;
     public delegate void MouseDroppedRight();
+    public delegate void MouseDroppedWrong();
     public event MouseDroppedRight OnMouseDroppedRight;
+    public event MouseDroppedWrong OnMouseDroppedWrong;
     [Header("References")]
     DrawingManager drawingManager;
     CameraRotation cameraRotation;
@@ -171,6 +173,7 @@ public class FollowMouse : MonoBehaviour
                 Destroy(instantiatedImage);
                 isDragging = false;
                 Debug.Log("Salah alat");
+                OnMouseDroppedWrong?.Invoke();
                 Destroy(gameObject);
             }
             else if (playerArea.bounds.Contains(imageRectTransform.position))
@@ -188,12 +191,14 @@ public class FollowMouse : MonoBehaviour
         {
             if (workspaceArea[1] != null && workspaceArea[1].bounds.Contains(imageRectTransform.position))
             {
+                nPCBehavParent.currentWorkspace = workspaceAutomation[1];
                 Destroy(instantiatedImage);
                 isDragging = false;
                 if (!workspaceAutomation[1].isStartAuto)
                 {
                     workspaceAutomation[1].isStartAuto = true;
                 }
+                OnMouseDroppedRight?.Invoke();
                 Destroy(gameObject);
             }
             else if (workspaceArea[0] != null && workspaceArea[0].bounds.Contains(imageRectTransform.position) ||
@@ -205,6 +210,7 @@ public class FollowMouse : MonoBehaviour
                 Destroy(instantiatedImage);
                 isDragging = false;
                 Debug.Log("Salah alat");
+                OnMouseDroppedWrong?.Invoke();
                 Destroy(gameObject);
             }
             else if (playerArea.bounds.Contains(imageRectTransform.position))
@@ -213,6 +219,7 @@ public class FollowMouse : MonoBehaviour
                 isDragging = false;
                 drawingManager.CanvasController(true);
                 drawingManager.MatchMotifMega();
+                OnMouseDroppedRight?.Invoke();
                 Destroy(gameObject);
             }
         }

@@ -1432,6 +1432,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   playerArea: {fileID: 0}
+  isDragging: 0
   motifNames:
   - kawung
   - megamendung
@@ -1439,6 +1440,8 @@ MonoBehaviour:
   - parang
   - simbut
   namaMotif: 
+  onProgress: 0
+  nPCBehavParent: {fileID: 0}
 --- !u!1 &5826711008884209657
 GameObject:
   m_ObjectHideFlags: 0
@@ -2428,7 +2431,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
@@ -2450,7 +2453,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Height: 2.3
@@ -2473,6 +2476,13 @@ MonoBehaviour:
   speed: 5
   waitTime: 2
   isWaiting: 0
+  followMouse: {fileID: 0}
+  isEventRightTriggered: 0
+  isEventWrongTriggered: 0
+  isEventWorkspaceTriggered: 0
+  isEventDrawingTriggered: 0
+  currentWorkspace: {fileID: 0}
+  drawing: {fileID: 0}
   buttonMotif: {fileID: 0}
   cam: {fileID: 0}
   canvasWorldSpace: {fileID: 0}

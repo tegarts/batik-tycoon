@@ -44,7 +44,7 @@ public class NPCSpawn : MonoBehaviour
         {
             if (!isSpawning)
             {
-                totalNPC = 10 + ((dayManager.day - 1) / 2) * 5;
+                totalNPC = 30 + ((dayManager.day - 1) / 2) * 5;
                 isSpawning = true;
                 StartCoroutine(SpawnNPCsInBatches());
             }

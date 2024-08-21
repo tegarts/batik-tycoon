@@ -18,11 +18,14 @@ public class NPCBehav : MonoBehaviour
     private bool isReversing;
     [SerializeField] FollowMouse followMouse;
     public event Action<NPCBehav> OnNPCReturned;
-    [SerializeField] private bool isEventTriggered = false;
-    [SerializeField] private bool isEventWorkspaceTriggered = false;
+    [SerializeField] bool isEventRightTriggered = false;
+    [SerializeField] bool isEventWrongTriggered = false;
+    [SerializeField] bool isEventWorkspaceTriggered = false;
+    [SerializeField] bool isEventDrawingTriggered = false;
     private float elapsedTime = 0f;
     private bool isWaitTimeActive = false;
     public Workspace currentWorkspace;
+    [SerializeField] Drawing drawing;
     [Header("UI Related")]
     [SerializeField] private GameObject buttonMotif;
     [SerializeField] private Camera cam;
@@ -33,7 +36,6 @@ public class NPCBehav : MonoBehaviour
 
         anim = GetComponent<Animator>();
         spawnPoint = transform.position;
-
         buttonMotif = GetComponentInChildren<FollowMouse>().gameObject;
         followMouse = buttonMotif.GetComponent<FollowMouse>();
         cam = FindAnyObjectByType<Camera>();
@@ -43,11 +45,12 @@ public class NPCBehav : MonoBehaviour
         {
             faceCamera.Camera = cam;
         }
-        buttonMotif.SetActive(false);
+        
 
         if (followMouse != null)
         {
             followMouse.OnMouseDroppedRight += HandleDroppedRight;
+            followMouse.OnMouseDroppedWrong += HandleDroppedWrong;
         }
 
 
@@ -55,11 +58,19 @@ public class NPCBehav : MonoBehaviour
 
     private void HandleDroppedRight()
     {
-        isEventTriggered = true;
+        isEventRightTriggered = true;
+    }
+    private void HandleDroppedWrong()
+    {
+        isEventWrongTriggered = true;
     }
     private void HandleWorkspaceCompleted()
     {
         isEventWorkspaceTriggered = true;
+    }
+    private void HandleDrawingCompleted()
+    {
+        isEventDrawingTriggered = true;
     }
 
     private void Update()
@@ -71,21 +82,31 @@ public class NPCBehav : MonoBehaviour
             if (isWaitTimeActive)
             {
                 elapsedTime += Time.deltaTime;
-
-                if (isEventTriggered)
+                if (isEventRightTriggered)
                 {
+                    drawing = FindAnyObjectByType<Drawing>();
+
                     if (currentWorkspace != null)
                     {
                         currentWorkspace.OnWorkspaceCompleted += HandleWorkspaceCompleted;
                     }
+                    
+                    if (drawing != null)
+                    {
+                        drawing.OnDrawingCompleted += HandleDrawingCompleted;
+                    }
                     Debug.Log("Tunggu workspace selesai");
-                    if (isEventWorkspaceTriggered)
+                    if (isEventWorkspaceTriggered || isEventDrawingTriggered)
                     {
                         StopWaiting();
                     }
 
                     // isEventTriggered = false;
                     // StopWaiting();
+                }
+                else if(isEventWrongTriggered)
+                {
+                    StopWaiting();
                 }
                 else if (elapsedTime >= 10f)
                 {
@@ -150,8 +171,10 @@ public class NPCBehav : MonoBehaviour
     private void StartWaiting()
     {
         isWaiting = true;
-        buttonMotif.SetActive(true);
         elapsedTime = 0f;
+        buttonMotif.SetActive(true);
+        
+        
         isWaitTimeActive = true;
     }
 
@@ -159,6 +182,10 @@ public class NPCBehav : MonoBehaviour
     {
         isWaiting = false;
         isWaitTimeActive = false;
+        if(buttonMotif != null)
+        {
+            buttonMotif.SetActive(false);
+        }
         isReversing = !isReversing;
     }
 
