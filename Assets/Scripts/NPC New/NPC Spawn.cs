@@ -25,11 +25,13 @@ public class NPCSpawn : MonoBehaviour
     [Header("References")]
     DayManager dayManager;
     private bool isSpawning;
+    [SerializeField]Tutorial tutorial;
 
     private List<NPCBehav> activeNPCs = new List<NPCBehav>();
 
     void Start()
     {
+        tutorial = FindAnyObjectByType<Tutorial>();
         // StartCoroutine(SpawnNPCsInBatches());
         dayManager = FindAnyObjectByType<DayManager>();
         waypointOptions.Add(waypoints1);
@@ -40,11 +42,18 @@ public class NPCSpawn : MonoBehaviour
 
     private void Update()
     {
+        if(tutorial.isStartTutor && tutorial.isNpcIn)
+        {
+            Debug.Log("test");
+            SpawnNPC();
+            tutorial.isNpcIn = false;
+        }
+
         if (dayManager.dayIsStarted)
         {
             if (!isSpawning)
             {
-                totalNPC = 30 + ((dayManager.day - 1) / 2) * 5;
+                totalNPC = 10 + ((dayManager.day - 1) / 2) * 5;
                 isSpawning = true;
                 StartCoroutine(SpawnNPCsInBatches());
             }
@@ -60,6 +69,8 @@ public class NPCSpawn : MonoBehaviour
         {
             StopCoroutine(SpawnNPCsInBatches());
         }
+        
+        
 
     }
 
@@ -100,7 +111,12 @@ public class NPCSpawn : MonoBehaviour
 
         activeNPCs.Add(npcBehav);
         npcBehav.OnNPCReturned += HandleNPCReturned;
-        totalNPC--;
+
+        if(!tutorial.isStartTutor)
+        {
+            totalNPC--;
+        }
+        
     }
 
     void HandleNPCReturned(NPCBehav npc)

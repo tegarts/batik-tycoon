@@ -29,6 +29,7 @@ public class FollowMouse : MonoBehaviour
     DrawingManager drawingManager;
     CameraRotation cameraRotation;
     DayManager dayManager;
+    Tutorial tutorial;
     [SerializeField] NPCBehav nPCBehavParent;
 
 
@@ -48,6 +49,7 @@ public class FollowMouse : MonoBehaviour
         drawingManager = FindAnyObjectByType<DrawingManager>();
         cameraRotation = FindAnyObjectByType<CameraRotation>();
         dayManager = FindAnyObjectByType<DayManager>();
+        tutorial = FindAnyObjectByType<Tutorial>();
 
         for (int i = 0; i < workspaceAutomation.Length; i++)
         {
@@ -91,8 +93,17 @@ public class FollowMouse : MonoBehaviour
     {
         if (dayManager.day < 3)
         {
-            randomIndex = UnityEngine.Random.Range(0, motifNames.Length - 3);
-            namaMotif = motifNames[randomIndex];
+            if(tutorial.isStartTutor)
+            {
+                namaMotif = "kawung";
+            }
+            else
+            {
+                randomIndex = UnityEngine.Random.Range(0, motifNames.Length - 3);
+                namaMotif = motifNames[randomIndex];
+            }
+
+            
         }
         else if (dayManager.day < 5)
         {
@@ -146,7 +157,11 @@ public class FollowMouse : MonoBehaviour
         {
             if (workspaceArea[0].bounds.Contains(imageRectTransform.position))
             {
-                if (workspaceAutomation[0].isOnProgress == false)
+                if(tutorial.isStartTutor && tutorial.isStepDone[1] == false)
+                {
+                    Debug.Log("tutor manual dulu");
+                }
+                else if (workspaceAutomation[0].isOnProgress == false)
                 {
                     nPCBehavParent.currentWorkspace = workspaceAutomation[0];
                     Destroy(instantiatedImage);
@@ -178,13 +193,21 @@ public class FollowMouse : MonoBehaviour
             }
             else if (playerArea.bounds.Contains(imageRectTransform.position))
             {
-                Destroy(instantiatedImage);
+                if(tutorial.isStartTutor && tutorial.isStepDone[1] == true)
+                {
+                    Debug.Log("tutor auto jangan manual");
+                }
+                else
+                {
+                    Destroy(instantiatedImage);
                 isDragging = false;
                 cameraRotation.RotateToB(0.5f);
                 drawingManager.CanvasController(true);
                 drawingManager.MatchMotifKawung();
                 OnMouseDroppedRight?.Invoke();
                 Destroy(gameObject);
+                }
+                
             }
         }
         else if (namaMotif == "megamendung")

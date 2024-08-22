@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEditor;
 
 public class Tutorial : MonoBehaviour
 {
@@ -17,12 +18,16 @@ public class Tutorial : MonoBehaviour
     public GameObject panelTutorial;
     [SerializeField] GameObject panelSkipConfirmation;
     public bool[] isStepDone;
+    public bool isNpcIn;
 
     [Header("References")]
     DrawingManager drawingManager;
     [SerializeField] Workspace workspace;
     WorkspaceManager workspaceManager;
     public int index;
+    [Header("UI References")]
+    [SerializeField] GameObject PlayerArea;
+    [SerializeField] GameObject WorkerArea;
 
     private void Start()
     {
@@ -38,6 +43,8 @@ public class Tutorial : MonoBehaviour
         {
             isStartTutor = true;
             panelTutorial.SetActive(true);
+            PlayerArea.GetComponent<Image>().enabled = false;
+            WorkerArea.GetComponent<Image>().enabled = false;;
         }
         else
         {
@@ -83,6 +90,10 @@ public class Tutorial : MonoBehaviour
                 textComponent.text = string.Empty;
                 StartCoroutine(TypeLine());
                 isStepDone[1] = true;
+                isNpcIn = true;
+                PlayerArea.GetComponent<Image>().enabled = false;
+                WorkerArea.GetComponent<Image>().enabled = true;
+                
             }
             else if (workspace.isDone && !isStepDone[2])
             {
@@ -90,6 +101,7 @@ public class Tutorial : MonoBehaviour
                 textComponent.text = string.Empty;
                 StartCoroutine(TypeLine());
                 isStepDone[2] = true;
+                PlayerArea.GetComponent<Image>().enabled = true;
             }
 
             if (workspaceManager.motifUnlocked == 1 && !isStepDone[3])
@@ -129,6 +141,7 @@ public class Tutorial : MonoBehaviour
         else if (index == 2)
         {
             Debug.Log("NPC Pembeli Masuk");
+            isNpcIn = true;
             index++;
             textComponent.text = string.Empty;
             StartCoroutine(TypeLine());
@@ -138,6 +151,13 @@ public class Tutorial : MonoBehaviour
             index++;
             textComponent.text = string.Empty;
             StartCoroutine(TypeLine());
+            
+        }
+        else if(index == 4)
+        {
+            index++;
+            PlayerArea.GetComponent<Image>().enabled = true;
+            panelTutorial.SetActive(false);
         }
         else if (index <= 6)
         {
@@ -159,6 +179,8 @@ public class Tutorial : MonoBehaviour
         else if (index == 9)
         {
             panelTutorial.SetActive(false);
+            isAlreadyTutor = true;
+            isStartTutor = false;
         }
         // else if (index == 5)
         // {

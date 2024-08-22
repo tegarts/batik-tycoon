@@ -120,6 +120,7 @@ public class Drawing : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
             }
             Debug.Log("Score Canting: " + scoreCanting);
             money.AddMoney(scoreCanting * 6000);
+            Daily.instance.IncreaseProgress(10f);
             scoreCanting = 0;
         }
 

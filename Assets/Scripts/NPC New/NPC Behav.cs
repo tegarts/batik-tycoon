@@ -26,6 +26,7 @@ public class NPCBehav : MonoBehaviour
     private bool isWaitTimeActive = false;
     public Workspace currentWorkspace;
     [SerializeField] Drawing drawing;
+    Tutorial tutorial;
     [Header("UI Related")]
     [SerializeField] private GameObject buttonMotif;
     [SerializeField] private Camera cam;
@@ -33,7 +34,7 @@ public class NPCBehav : MonoBehaviour
 
     void Start()
     {
-
+        tutorial = FindAnyObjectByType<Tutorial>();
         anim = GetComponent<Animator>();
         spawnPoint = transform.position;
         buttonMotif = GetComponentInChildren<FollowMouse>().gameObject;
@@ -52,7 +53,7 @@ public class NPCBehav : MonoBehaviour
             followMouse.OnMouseDroppedRight += HandleDroppedRight;
             followMouse.OnMouseDroppedWrong += HandleDroppedWrong;
         }
-
+        buttonMotif.SetActive(false);
 
     }
 
@@ -108,7 +109,7 @@ public class NPCBehav : MonoBehaviour
                 {
                     StopWaiting();
                 }
-                else if (elapsedTime >= 10f)
+                else if (elapsedTime >= 10f && !tutorial.isStartTutor)
                 {
                     Debug.Log("Waktu tunggu habis, melanjutkan perjalanan...");
                     StopWaiting();

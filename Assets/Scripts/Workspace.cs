@@ -59,6 +59,7 @@ public class Workspace: MonoBehaviour
         OnWorkspaceCompleted?.Invoke();
         isDone = true;
         isOnProgress = false;
+        Daily.instance.IncreaseProgress(10f);
         money.AddMoney(400000);
     }
 
