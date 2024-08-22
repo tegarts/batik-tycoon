@@ -13,6 +13,11 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
     [SerializeField] GameObject[] workspaces;
     [SerializeField] int[] workspacePrice;
 
+    [Header("Upgrade Settings")]
+    [SerializeField] private int maxUpgradeLevel = 5;
+    [SerializeField] private float[] timePerLevel;
+    private int[] currentUpgradeLevel;
+
     [Header("Reference")]
     Money money;
 
@@ -26,19 +31,15 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
         data.motifUnlocked = motifUnlocked;
     }
 
-
     private void Start()
     {
         money = FindAnyObjectByType<Money>();
+        currentUpgradeLevel = new int[workspaces.Length]; // Inisialisasi level upgrade
         EnableWorkspace();
     }
 
     private void EnableWorkspace()
     {
-        // for (int i = 0; i < workspaces.Length; i++)
-        // {
-        //     workspaces[i].SetActive(false);
-        // }
         for (int i = 0; i < motifUnlocked + 1; i++)
         {
             workspaces[i].SetActive(true);
@@ -63,13 +64,11 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                 {
                     Debug.Log("Uang kurang");
                 }
-
             }
             else
             {
-                Debug.Log("set button uninteracable atau semacamnya,karna player udah unlock motif ini");
+                Debug.Log("Set button uninteracable atau semacamnya, karena player sudah unlock motif ini");
             }
-
         }
         else if (level == 3)
         {
@@ -88,11 +87,10 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
             }
             else
             {
-                Debug.Log("set button uninteracable atau semacamnya,karna player udah unlock motif ini");
+                Debug.Log("Set button uninteracable atau semacamnya, karena player sudah unlock motif ini");
             }
-
         }
-        if (level == 4)
+        else if (level == 4)
         {
             if (motifUnlocked == 2)
             {
@@ -109,9 +107,8 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
             }
             else
             {
-                Debug.Log("set button uninteracable atau semacamnya,karna player udah unlock motif ini");
+                Debug.Log("Set button uninteracable atau semacamnya, karena player sudah unlock motif ini");
             }
-
         }
         if (level == 5)
         {
@@ -130,10 +127,34 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
             }
             else
             {
-                Debug.Log("set button uninteracable atau semacamnya,karna player udah unlock motif ini");
+                Debug.Log("Set button uninteracable atau semacamnya, karena player sudah unlock motif ini");
             }
-
         }
+    }
 
+    public void UpgradeWorkspace(int workspaceIndex)
+    {
+        if (workspaceIndex >= 0 && workspaceIndex < workspaces.Length)
+        {
+            Workspace workspace = workspaces[workspaceIndex].GetComponent<Workspace>();
+            int upgradeLevel = currentUpgradeLevel[workspaceIndex] + 1;
+
+            if (upgradeLevel <= maxUpgradeLevel)
+            {
+                int newProgresTime = Mathf.RoundToInt(timePerLevel[upgradeLevel - 1]);
+                workspace.UpdateProgresTime(newProgresTime);
+                currentUpgradeLevel[workspaceIndex] = upgradeLevel;
+
+                Debug.Log($"Workspace {workspaceIndex + 1} upgraded to level {upgradeLevel} with new progress time: {newProgresTime} seconds.");
+            }
+            else
+            {
+                Debug.LogWarning("Max upgrade level reached.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Invalid workspace index.");
+        }
     }
 }

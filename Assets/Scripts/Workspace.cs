@@ -1,10 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Workspace: MonoBehaviour
+public class Workspace : MonoBehaviour
 {
     public int progresTime;
     public bool isStartAuto;
@@ -12,9 +11,11 @@ public class Workspace: MonoBehaviour
     public bool isDone;
     public Slider progresBar;
     public GameObject AssignArea;
+    public int level_workspace = 1;
+
     private void Start()
     {
-        if(progresBar == null)
+        if (progresBar == null)
         {
             Debug.LogError("Progres Bar di Workernya kosong coi");
         }
@@ -23,15 +24,14 @@ public class Workspace: MonoBehaviour
             progresBar.gameObject.SetActive(false);
         }
     }
+
     private void Update()
     {
-        
-            if(isStartAuto)
-            {
-                isStartAuto = false;
-                StartCoroutine(StartAutomation());
-            }
-           
+        if (isStartAuto)
+        {
+            isStartAuto = false;
+            StartCoroutine(StartAutomation());
+        }
     }    
 
     IEnumerator StartAutomation()
@@ -43,7 +43,7 @@ public class Workspace: MonoBehaviour
         progresBar.value = 0f;
         progresBar.gameObject.SetActive(true);
 
-        while(elapsedTime < waitTime)
+        while (elapsedTime < waitTime)
         {
             elapsedTime += Time.deltaTime;
             progresBar.value = Mathf.Clamp01(elapsedTime / waitTime);
@@ -58,7 +58,7 @@ public class Workspace: MonoBehaviour
     public void SetupProgresBar(Canvas canvas, Camera camera)
     {
         progresBar.transform.SetParent(canvas.transform);
-        if(progresBar.TryGetComponent<FaceCamera>(out FaceCamera faceCamera))
+        if (progresBar.TryGetComponent<FaceCamera>(out FaceCamera faceCamera))
         {
             faceCamera.Camera = camera;
         }
@@ -67,10 +67,14 @@ public class Workspace: MonoBehaviour
     public void SetupAssignArea(Canvas canvas, Camera camera)
     {
         AssignArea.transform.SetParent(canvas.transform);
-        if(AssignArea.TryGetComponent<FaceCamera>(out FaceCamera faceCamera))
+        if (AssignArea.TryGetComponent<FaceCamera>(out FaceCamera faceCamera))
         {
             faceCamera.Camera = camera;
         }
     }
 
+    public void UpdateProgresTime(int newProgresTime)
+    {
+        progresTime = newProgresTime;
+    }
 }
