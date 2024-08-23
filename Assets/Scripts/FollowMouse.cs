@@ -14,7 +14,7 @@ public class FollowMouse : MonoBehaviour
     [SerializeField] Workspace[] workspaceAutomation;
     public Collider[] workspaceArea;
     public Collider playerArea;
-    private GameObject instantiatedImage;
+    public GameObject instantiatedImage;
     private RectTransform imageRectTransform;
     public bool isDragging;
     [SerializeField] string[] motifNames;
@@ -53,7 +53,7 @@ public class FollowMouse : MonoBehaviour
 
         for (int i = 0; i < workspaceAutomation.Length; i++)
         {
-            string workspaceName = "Workspace Motif " + (i + 1);
+            string workspaceName = "Workspace Pegawai " + (i + 1);
             Workspace workspaceComponent = GameObject.Find(workspaceName)?.GetComponent<Workspace>();
             if (workspaceComponent != null)
             {

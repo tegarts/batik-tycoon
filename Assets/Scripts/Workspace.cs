@@ -20,7 +20,7 @@ public class Workspace : MonoBehaviour
     {
         if (progresBar == null)
         {
-            Debug.LogError("Progres Bar di Workernya kosong coi");
+            // Debug.LogError("Progres Bar di Workernya kosong coi");
         }
         else
         {

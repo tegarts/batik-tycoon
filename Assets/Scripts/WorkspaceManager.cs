@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class WorkspaceManager : MonoBehaviour, IDataPersistence
@@ -17,6 +18,11 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
     [SerializeField] private int maxUpgradeLevel = 5;
     [SerializeField] private float[] timePerLevel;
     private int[] currentUpgradeLevel;
+    [SerializeField] private int[] upgradePrice1;
+    [SerializeField] private int[] upgradePrice2;
+    [SerializeField] private int[] upgradePrice3;
+    [SerializeField] private int[] upgradePrice4;
+    [SerializeField] private int[] upgradePrice5;
 
     [Header("Reference")]
     Money money;
@@ -34,12 +40,20 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
     private void Start()
     {
         money = FindAnyObjectByType<Money>();
-        currentUpgradeLevel = new int[workspaces.Length]; // Inisialisasi level upgrade
+        currentUpgradeLevel = new int[workspaces.Length];
+        for (int i = 0; i < currentUpgradeLevel.Length; i++)
+        {
+            currentUpgradeLevel[i] = 1; // TODO - Nanti ganti ambil data dari datapersistence
+        }
         EnableWorkspace();
     }
 
     private void EnableWorkspace()
     {
+        for (int i = 0; i < workspaces.Length; i++)
+        {
+            workspaces[i].SetActive(false);
+        }
         for (int i = 0; i < motifUnlocked + 1; i++)
         {
             workspaces[i].SetActive(true);
@@ -141,11 +155,108 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
 
             if (upgradeLevel <= maxUpgradeLevel)
             {
-                int newProgresTime = Mathf.RoundToInt(timePerLevel[upgradeLevel - 1]);
-                workspace.UpdateProgresTime(newProgresTime);
-                currentUpgradeLevel[workspaceIndex] = upgradeLevel;
-
-                Debug.Log($"Workspace {workspaceIndex + 1} upgraded to level {upgradeLevel} with new progress time: {newProgresTime} seconds.");
+                if (workspaceIndex == 0)
+                {
+                    if (money.CanAfford(upgradePrice1[upgradeLevel - 1]))
+                    {
+                        money.ReduceMoney(upgradePrice1[upgradeLevel - 1]);
+                        int newProgresTime = Mathf.RoundToInt(timePerLevel[upgradeLevel - 1]);
+                        workspace.UpdateProgresTime(newProgresTime);
+                        currentUpgradeLevel[workspaceIndex] = upgradeLevel;
+                        workspace.level_workspace = upgradeLevel;
+                        Debug.Log($"Workspace {workspaceIndex + 1} upgraded to level {upgradeLevel} with new progress time: {newProgresTime} seconds.");
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Not enough money to upgrade workspace.");
+                        return;
+                    }
+                }
+                else if(workspaceIndex == 1)
+                {
+                    if (money.CanAfford(upgradePrice2[upgradeLevel - 1]))
+                    {
+                        money.ReduceMoney(upgradePrice2[upgradeLevel - 1]);
+                        int newProgresTime = Mathf.RoundToInt(timePerLevel[upgradeLevel - 1]);
+                        workspace.UpdateProgresTime(newProgresTime);
+                        currentUpgradeLevel[workspaceIndex] = upgradeLevel;
+                        workspace.level_workspace = upgradeLevel;
+                        Debug.Log($"Workspace {workspaceIndex + 1} upgraded to level {upgradeLevel} with new progress time: {newProgresTime} seconds.");
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Not enough money to upgrade workspace.");
+                        return;
+                    }
+                }
+                else if(workspaceIndex == 1)
+                {
+                    if (money.CanAfford(upgradePrice2[upgradeLevel - 1]))
+                    {
+                        money.ReduceMoney(upgradePrice2[upgradeLevel - 1]);
+                        int newProgresTime = Mathf.RoundToInt(timePerLevel[upgradeLevel - 1]);
+                        workspace.UpdateProgresTime(newProgresTime);
+                        currentUpgradeLevel[workspaceIndex] = upgradeLevel;
+                        workspace.level_workspace = upgradeLevel;
+                        Debug.Log($"Workspace {workspaceIndex + 1} upgraded to level {upgradeLevel} with new progress time: {newProgresTime} seconds.");
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Not enough money to upgrade workspace.");
+                        return;
+                    }
+                }
+                else if(workspaceIndex == 2)
+                {
+                    if (money.CanAfford(upgradePrice3[upgradeLevel - 1]))
+                    {
+                        money.ReduceMoney(upgradePrice3[upgradeLevel - 1]);
+                        int newProgresTime = Mathf.RoundToInt(timePerLevel[upgradeLevel - 1]);
+                        workspace.UpdateProgresTime(newProgresTime);
+                        currentUpgradeLevel[workspaceIndex] = upgradeLevel;
+                        workspace.level_workspace = upgradeLevel;
+                        Debug.Log($"Workspace {workspaceIndex + 1} upgraded to level {upgradeLevel} with new progress time: {newProgresTime} seconds.");
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Not enough money to upgrade workspace.");
+                        return;
+                    }
+                }
+                else if(workspaceIndex == 3)
+                {
+                    if (money.CanAfford(upgradePrice4[upgradeLevel - 1]))
+                    {
+                        money.ReduceMoney(upgradePrice4[upgradeLevel - 1]);
+                        int newProgresTime = Mathf.RoundToInt(timePerLevel[upgradeLevel - 1]);
+                        workspace.UpdateProgresTime(newProgresTime);
+                        currentUpgradeLevel[workspaceIndex] = upgradeLevel;
+                        workspace.level_workspace = upgradeLevel;
+                        Debug.Log($"Workspace {workspaceIndex + 1} upgraded to level {upgradeLevel} with new progress time: {newProgresTime} seconds.");
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Not enough money to upgrade workspace.");
+                        return;
+                    }
+                }
+                else if(workspaceIndex == 4)
+                {
+                    if (money.CanAfford(upgradePrice5[upgradeLevel - 1]))
+                    {
+                        money.ReduceMoney(upgradePrice5[upgradeLevel - 1]);
+                        int newProgresTime = Mathf.RoundToInt(timePerLevel[upgradeLevel - 1]);
+                        workspace.UpdateProgresTime(newProgresTime);
+                        currentUpgradeLevel[workspaceIndex] = upgradeLevel;
+                        workspace.level_workspace = upgradeLevel;
+                        Debug.Log($"Workspace {workspaceIndex + 1} upgraded to level {upgradeLevel} with new progress time: {newProgresTime} seconds.");
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Not enough money to upgrade workspace.");
+                        return;
+                    }
+                }
             }
             else
             {

@@ -17,18 +17,23 @@ public class NPCBehav : MonoBehaviour
     private Animator anim;
     private bool isReversing;
     [SerializeField] FollowMouse followMouse;
+    [SerializeField] GameObject instantiatedImage;
     public event Action<NPCBehav> OnNPCReturned;
     [SerializeField] bool isEventRightTriggered = false;
     [SerializeField] bool isEventWrongTriggered = false;
     [SerializeField] bool isEventWorkspaceTriggered = false;
     [SerializeField] bool isEventDrawingTriggered = false;
     private float elapsedTime = 0f;
+    private float timePassed = 0f;
+    private bool isTimePassed;
     private bool isWaitTimeActive = false;
     public Workspace currentWorkspace;
     [SerializeField] Drawing drawing;
     Tutorial tutorial;
     [Header("UI Related")]
     [SerializeField] private GameObject buttonMotif;
+    [SerializeField] private GameObject reactionBubble;
+    [SerializeField] Sprite[] reactions;
     [SerializeField] private Camera cam;
     [SerializeField] private Canvas canvasWorldSpace;
 
@@ -46,6 +51,11 @@ public class NPCBehav : MonoBehaviour
         {
             faceCamera.Camera = cam;
         }
+        reactionBubble.transform.SetParent(canvasWorldSpace.transform);
+        if (reactionBubble.TryGetComponent<FaceCamera>(out FaceCamera faceCam))
+        {
+            faceCam.Camera = cam;
+        }
         
 
         if (followMouse != null)
@@ -54,6 +64,7 @@ public class NPCBehav : MonoBehaviour
             followMouse.OnMouseDroppedWrong += HandleDroppedWrong;
         }
         buttonMotif.SetActive(false);
+        reactionBubble.SetActive(false);
 
     }
 
@@ -76,16 +87,29 @@ public class NPCBehav : MonoBehaviour
 
     private void Update()
     {
-
+        Debug.Log(timePassed);
         if (isWaiting)
         {
             anim.SetBool("IsWalking", false);
             if (isWaitTimeActive)
             {
                 elapsedTime += Time.deltaTime;
+
+                if(followMouse.instantiatedImage != null)
+                {
+                    instantiatedImage = followMouse.instantiatedImage;
+                } 
+
                 if (isEventRightTriggered)
                 {
                     drawing = FindAnyObjectByType<Drawing>();
+
+                    
+                    if(isTimePassed == false)
+                    {
+                        timePassed = elapsedTime;
+                        isTimePassed = true;
+                    }
 
                     if (currentWorkspace != null)
                     {
@@ -100,6 +124,18 @@ public class NPCBehav : MonoBehaviour
                     if (isEventWorkspaceTriggered || isEventDrawingTriggered)
                     {
                         StopWaiting();
+                        if(timePassed >= 10f)
+                        {
+                            Debug.Log(timePassed);
+                            reactionBubble.GetComponent<Image>().sprite = reactions[1];
+                            reactionBubble.SetActive(true);
+                        }
+                        else
+                        {
+                            Debug.Log(timePassed);
+                            reactionBubble.GetComponent<Image>().sprite = reactions[0];
+                            reactionBubble.SetActive(true);
+                        }
                     }
 
                     // isEventTriggered = false;
@@ -108,11 +144,15 @@ public class NPCBehav : MonoBehaviour
                 else if(isEventWrongTriggered)
                 {
                     StopWaiting();
+                    reactionBubble.GetComponent<Image>().sprite = reactions[2];
+                            reactionBubble.SetActive(true);
                 }
-                else if (elapsedTime >= 10f && !tutorial.isStartTutor)
+                else if (elapsedTime >= 15f && !tutorial.isStartTutor)
                 {
                     Debug.Log("Waktu tunggu habis, melanjutkan perjalanan...");
                     StopWaiting();
+                    reactionBubble.GetComponent<Image>().sprite = reactions[2];
+                            reactionBubble.SetActive(true);
                 }
             }
             return;
@@ -186,6 +226,10 @@ public class NPCBehav : MonoBehaviour
         if(buttonMotif != null)
         {
             buttonMotif.SetActive(false);
+        }
+        if(instantiatedImage != null)
+        {
+            Destroy(instantiatedImage);
         }
         isReversing = !isReversing;
     }

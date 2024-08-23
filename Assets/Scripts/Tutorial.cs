@@ -28,6 +28,7 @@ public class Tutorial : MonoBehaviour
     [Header("UI References")]
     [SerializeField] GameObject PlayerArea;
     [SerializeField] GameObject WorkerArea;
+    [SerializeField] GameObject workerChildArea;
 
     private void Start()
     {
@@ -45,10 +46,11 @@ public class Tutorial : MonoBehaviour
             panelTutorial.SetActive(true);
             PlayerArea.GetComponent<Image>().enabled = false;
             WorkerArea.GetComponent<Image>().enabled = false;;
+            workerChildArea.GetComponent<Image>().enabled = false;
         }
         else
         {
-
+            
         }
         textComponent.text = string.Empty;
         StartDialogue();
@@ -93,6 +95,7 @@ public class Tutorial : MonoBehaviour
                 isNpcIn = true;
                 PlayerArea.GetComponent<Image>().enabled = false;
                 WorkerArea.GetComponent<Image>().enabled = true;
+                workerChildArea.GetComponent<Image>().enabled = true;
                 
             }
             else if (workspace.isDone && !isStepDone[2])
@@ -234,6 +237,9 @@ public class Tutorial : MonoBehaviour
     {
         panelTutorial.SetActive(false);
         panelSkipConfirmation.SetActive(false);
+        PlayerArea.GetComponent<Image>().enabled = true;
+        WorkerArea.GetComponent<Image>().enabled = true;
+        workerChildArea.GetComponent<Image>().enabled = true;
         isStartTutor = false;
         isAlreadyTutor = true;
     }
