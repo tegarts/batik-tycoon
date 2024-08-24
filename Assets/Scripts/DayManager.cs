@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class DayManager : MonoBehaviour, IDataPersistence
@@ -10,6 +11,9 @@ public class DayManager : MonoBehaviour, IDataPersistence
 
     [Header("UI Related")]
     [SerializeField] GameObject bookMenuButton;
+    [SerializeField] GameObject dayBoxHUD;
+    [SerializeField] TMP_Text dayTextHUD;
+
     [Header("References")]
     BookMenu bookMenu;
     Tutorial tutorial;
@@ -28,6 +32,8 @@ public class DayManager : MonoBehaviour, IDataPersistence
     {
         bookMenu = FindAnyObjectByType<BookMenu>();
         tutorial = FindAnyObjectByType<Tutorial>();
+
+        dayBoxHUD.SetActive(false);
     }
 
     private void Update() 
@@ -36,6 +42,8 @@ public class DayManager : MonoBehaviour, IDataPersistence
         {
             bookMenuButton.SetActive(false);
             bookMenu.bookPanel.SetActive(false);
+            dayBoxHUD.SetActive(true);
+            dayTextHUD.text = "Hari ke-" + day;
         }
         else
         {

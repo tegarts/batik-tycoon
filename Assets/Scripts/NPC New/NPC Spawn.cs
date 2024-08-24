@@ -12,11 +12,14 @@ public class NPCSpawn : MonoBehaviour
     public Transform[] waypoints2;
     public Transform[] waypoints3;
     public Transform[] waypoints4;
+    public Transform[] waypoints5;
     private List<Transform[]> waypointOptions = new List<Transform[]>();
     private Transform[] lastWaypoints;
     public float waitTime = 10f; // Waktu berhenti di waypoint
     public int npcCount = 5;
     [SerializeField] int totalNPC;
+    public int initializeNPC;
+    private bool isInitialized;
     public float spawnInterval = 3f;
 
     [Header("UI Related")]
@@ -25,7 +28,7 @@ public class NPCSpawn : MonoBehaviour
     [Header("References")]
     DayManager dayManager;
     private bool isSpawning;
-    [SerializeField]Tutorial tutorial;
+    [SerializeField] Tutorial tutorial;
 
     private List<NPCBehav> activeNPCs = new List<NPCBehav>();
 
@@ -38,11 +41,12 @@ public class NPCSpawn : MonoBehaviour
         waypointOptions.Add(waypoints2);
         waypointOptions.Add(waypoints3);
         waypointOptions.Add(waypoints4);
+        waypointOptions.Add(waypoints5);
     }
 
     private void Update()
     {
-        if(tutorial.isStartTutor && tutorial.isNpcIn)
+        if (tutorial.isStartTutor && tutorial.isNpcIn)
         {
             Debug.Log("test");
             SpawnNPC();
@@ -55,12 +59,18 @@ public class NPCSpawn : MonoBehaviour
             {
                 totalNPC = 10 + ((dayManager.day - 1) / 2) * 5;
                 isSpawning = true;
+                if (!isInitialized)
+                {
+                    initializeNPC = totalNPC;
+                    isInitialized = true;
+                }
                 StartCoroutine(SpawnNPCsInBatches());
             }
             else if (isSpawning == true && totalNPC <= 0)
             {
                 isSpawning = false;
                 dayManager.dayIsStarted = false;
+                isInitialized = false;
             }
 
             npcCountText.text = totalNPC + " Pembeli";
@@ -69,8 +79,8 @@ public class NPCSpawn : MonoBehaviour
         {
             StopCoroutine(SpawnNPCsInBatches());
         }
-        
-        
+
+
 
     }
 
@@ -93,30 +103,30 @@ public class NPCSpawn : MonoBehaviour
     {
         int randomIndex = Random.Range(0, npcPrefabs.Length);
         npcPrefab = npcPrefabs[randomIndex];
-        GameObject npcObject = Instantiate(npcPrefab, transform.position, Quaternion.identity);
+        GameObject npcObject = Instantiate(npcPrefab, transform.position, Quaternion.Euler(0, 180, 0));
         NPCBehav npcBehav = npcObject.GetComponent<NPCBehav>();
 
-         List<Transform[]> availableWaypoints = new List<Transform[]>(waypointOptions);
+        List<Transform[]> availableWaypoints = new List<Transform[]>(waypointOptions);
         if (lastWaypoints != null)
         {
             availableWaypoints.Remove(lastWaypoints);
         }
 
-         int waypointSetIndex = Random.Range(0, availableWaypoints.Count);
+        int waypointSetIndex = Random.Range(0, availableWaypoints.Count);
         Transform[] selectedWaypoints = availableWaypoints[waypointSetIndex];
 
-        lastWaypoints = selectedWaypoints; 
+        lastWaypoints = selectedWaypoints;
         npcBehav.waypoints = selectedWaypoints;
         npcBehav.waitTime = waitTime;
 
         activeNPCs.Add(npcBehav);
         npcBehav.OnNPCReturned += HandleNPCReturned;
 
-        if(!tutorial.isStartTutor)
+        if (!tutorial.isStartTutor)
         {
             totalNPC--;
         }
-        
+
     }
 
     void HandleNPCReturned(NPCBehav npc)

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -20,6 +21,8 @@ public class Drawing : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
     Money money;
     public delegate void DrawingEvent();
     public event DrawingEvent OnDrawingCompleted;
+    public delegate void DrawingScoreEvent(int score);
+    public DrawingScoreEvent OnDrawingScore;
 
     [Header("UI Related")]
     [SerializeField] private Canvas canvas;
@@ -29,6 +32,8 @@ public class Drawing : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
     private RectTransform rectTransform;
     [SerializeField] RectTransform parentRectTransform;
     [SerializeField] Image filledImage;
+    [SerializeField] TMP_Text moneyText;
+    [SerializeField] TMP_Text accuracyText;
 
 
     private void OnEnable()
@@ -119,9 +124,13 @@ public class Drawing : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
                 scoreCanting = 0;
             }
             Debug.Log("Score Canting: " + scoreCanting);
-            money.AddMoney(scoreCanting * 6000);
-            Daily.instance.IncreaseProgress(10f);
-            scoreCanting = 0;
+            OnDrawingScore?.Invoke(scoreCanting);
+            
+            for(int i = 0; i < checkpoints.Length; i++)
+            {
+                checkpoints[i] = false;
+            }
+            isFinish = false;
         }
 
         if (other.gameObject.CompareTag("cp1"))
@@ -129,6 +138,7 @@ public class Drawing : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
             if (checkpoints[0] == false)
             {
                 checkpoints[0] = true;
+                Debug.Log("cp1");
                 scoreCanting += 10;
             }
         }
@@ -137,6 +147,7 @@ public class Drawing : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
             if (checkpoints[1] == false)
             {
                 checkpoints[1] = true;
+                Debug.Log("cp2");
                 scoreCanting += 10;
             }
         }
@@ -230,14 +241,19 @@ public class Drawing : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
         filledImage.fillAmount = 1;
 
         panelAfterCanting.SetActive(true);
+        moneyText.text = "Rp " + (scoreCanting * 6000).ToString();
+        accuracyText.text = "Akurasi: " + scoreCanting.ToString() + "%";
     }
 
     public void ButtonExitFromPanel()
     {
         OnDrawingCompleted?.Invoke();
+        money.AddMoney(scoreCanting * 6000);
+        scoreCanting = 0;
         panelAfterCanting.SetActive(false);
         drawingManager.CanvasController(false);
-        cameraRotation.RotateToA(0.5f);
+        cameraRotation.RotateToA(0f);
+        
     }
 
 }

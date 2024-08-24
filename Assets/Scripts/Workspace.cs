@@ -9,8 +9,8 @@ public class Workspace : MonoBehaviour
     public bool isStartAuto;
     public bool isOnProgress;
     public bool isDone;
-    public Slider progresBar;
     public GameObject AssignArea;
+    public GameObject progresImage;
     Money money;
     public delegate void WorkspaceEvent();
     public event WorkspaceEvent OnWorkspaceCompleted;
@@ -18,13 +18,9 @@ public class Workspace : MonoBehaviour
 
     private void Start()
     {
-        if (progresBar == null)
+        if(progresImage != null)
         {
-            // Debug.LogError("Progres Bar di Workernya kosong coi");
-        }
-        else
-        {
-            progresBar.gameObject.SetActive(false);
+            progresImage.SetActive(false);
         }
 
         money = FindObjectOfType<Money>();
@@ -45,32 +41,21 @@ public class Workspace : MonoBehaviour
         isOnProgress = true;
         float waitTime = progresTime;
         float elapsedTime = 0f;
-
-        progresBar.value = 0f;
-        progresBar.gameObject.SetActive(true);
+        progresImage.GetComponent<Image>().fillAmount = 1;
+        progresImage.SetActive(true);
 
         while (elapsedTime < waitTime)
         {
             elapsedTime += Time.deltaTime;
-            progresBar.value = Mathf.Clamp01(elapsedTime / waitTime);
+            progresImage.GetComponent<Image>().fillAmount = Mathf.Clamp01(1 - (elapsedTime / waitTime));
             yield return null;
         }
         Debug.Log("done bang");
-        progresBar.gameObject.SetActive(false);
+        progresImage.SetActive(false);
         OnWorkspaceCompleted?.Invoke();
         isDone = true;
         isOnProgress = false;
-        Daily.instance.IncreaseProgress(10f);
         money.AddMoney(400000);
-    }
-
-    public void SetupProgresBar(Canvas canvas, Camera camera)
-    {
-        progresBar.transform.SetParent(canvas.transform);
-        if (progresBar.TryGetComponent<FaceCamera>(out FaceCamera faceCamera))
-        {
-            faceCamera.Camera = camera;
-        }
     }
 
     public void SetupAssignArea(Canvas canvas, Camera camera)

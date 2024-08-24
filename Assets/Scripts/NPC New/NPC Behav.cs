@@ -23,6 +23,8 @@ public class NPCBehav : MonoBehaviour
     [SerializeField] bool isEventWrongTriggered = false;
     [SerializeField] bool isEventWorkspaceTriggered = false;
     [SerializeField] bool isEventDrawingTriggered = false;
+    private int scoreCanting;
+    [SerializeField] bool isAddAngryReaction, isAddFlatReaction, isAddHappyReaction;
     private float elapsedTime = 0f;
     private float timePassed = 0f;
     private bool isTimePassed;
@@ -56,7 +58,7 @@ public class NPCBehav : MonoBehaviour
         {
             faceCam.Camera = cam;
         }
-        
+
 
         if (followMouse != null)
         {
@@ -85,9 +87,13 @@ public class NPCBehav : MonoBehaviour
         isEventDrawingTriggered = true;
     }
 
+    private void OnScoreGained(int score)
+    {
+        scoreCanting = score;
+    }
+
     private void Update()
     {
-        Debug.Log(timePassed);
         if (isWaiting)
         {
             anim.SetBool("IsWalking", false);
@@ -95,17 +101,17 @@ public class NPCBehav : MonoBehaviour
             {
                 elapsedTime += Time.deltaTime;
 
-                if(followMouse.instantiatedImage != null)
+                if (followMouse.instantiatedImage != null)
                 {
                     instantiatedImage = followMouse.instantiatedImage;
-                } 
+                }
 
                 if (isEventRightTriggered)
                 {
                     drawing = FindAnyObjectByType<Drawing>();
 
-                    
-                    if(isTimePassed == false)
+
+                    if (isTimePassed == false)
                     {
                         timePassed = elapsedTime;
                         isTimePassed = true;
@@ -115,44 +121,100 @@ public class NPCBehav : MonoBehaviour
                     {
                         currentWorkspace.OnWorkspaceCompleted += HandleWorkspaceCompleted;
                     }
-                    
+
                     if (drawing != null)
                     {
                         drawing.OnDrawingCompleted += HandleDrawingCompleted;
+                        drawing.OnDrawingScore += OnScoreGained;
                     }
-                    Debug.Log("Tunggu workspace selesai");
-                    if (isEventWorkspaceTriggered || isEventDrawingTriggered)
+                    if (isEventWorkspaceTriggered)
                     {
                         StopWaiting();
-                        if(timePassed >= 10f)
+                        if (timePassed >= 10f)
                         {
-                            Debug.Log(timePassed);
                             reactionBubble.GetComponent<Image>().sprite = reactions[1];
                             reactionBubble.SetActive(true);
+                            if (!isAddFlatReaction)
+                            {
+                                Daily.instance.IncreaseProgress(15);
+                                Daily.instance.flatReaction++;
+                                isAddFlatReaction = true;
+                            }
                         }
                         else
                         {
-                            Debug.Log(timePassed);
                             reactionBubble.GetComponent<Image>().sprite = reactions[0];
                             reactionBubble.SetActive(true);
+                            if (!isAddHappyReaction)
+                            {
+                                Daily.instance.IncreaseProgress(20);
+                                Daily.instance.happyReaction++;
+                                isAddHappyReaction = true;
+                            }
                         }
+                    }
+                    else if (isEventDrawingTriggered)
+                    {
+                        if (scoreCanting >= 80)
+                        {
+                            reactionBubble.GetComponent<Image>().sprite = reactions[0];
+                            reactionBubble.SetActive(true);
+                            if (!isAddHappyReaction)
+                            {
+                                Daily.instance.IncreaseProgress(25);
+                                Daily.instance.happyReaction++;
+                                isAddHappyReaction = true;
+                            }
+                        }
+                        else if (scoreCanting >= 60)
+                        {
+                            reactionBubble.GetComponent<Image>().sprite = reactions[1];
+                            reactionBubble.SetActive(true);
+                            if (!isAddFlatReaction)
+                            {
+                                Daily.instance.IncreaseProgress(20);
+                                Daily.instance.flatReaction++;
+                                isAddFlatReaction = true;
+                            }
+                        }
+                        else
+                        {
+                            reactionBubble.GetComponent<Image>().sprite = reactions[2];
+                            reactionBubble.SetActive(true);
+                            if (!isAddAngryReaction)
+                            {
+                                Daily.instance.angryReaction++;
+                                isAddAngryReaction = true;
+                            }
+                        }
+                        StopWaiting();
                     }
 
                     // isEventTriggered = false;
                     // StopWaiting();
                 }
-                else if(isEventWrongTriggered)
+                else if (isEventWrongTriggered)
                 {
                     StopWaiting();
                     reactionBubble.GetComponent<Image>().sprite = reactions[2];
-                            reactionBubble.SetActive(true);
+                    reactionBubble.SetActive(true);
+                    if (!isAddAngryReaction)
+                    {
+                        Daily.instance.angryReaction++;
+                        isAddAngryReaction = true;
+                    }
                 }
                 else if (elapsedTime >= 15f && !tutorial.isStartTutor)
                 {
                     Debug.Log("Waktu tunggu habis, melanjutkan perjalanan...");
                     StopWaiting();
                     reactionBubble.GetComponent<Image>().sprite = reactions[2];
-                            reactionBubble.SetActive(true);
+                    reactionBubble.SetActive(true);
+                    if (!isAddAngryReaction)
+                    {
+                        Daily.instance.angryReaction++;
+                        isAddAngryReaction = true;
+                    }
                 }
             }
             return;
@@ -214,8 +276,8 @@ public class NPCBehav : MonoBehaviour
         isWaiting = true;
         elapsedTime = 0f;
         buttonMotif.SetActive(true);
-        
-        
+
+
         isWaitTimeActive = true;
     }
 
@@ -223,11 +285,11 @@ public class NPCBehav : MonoBehaviour
     {
         isWaiting = false;
         isWaitTimeActive = false;
-        if(buttonMotif != null)
+        if (buttonMotif != null)
         {
             buttonMotif.SetActive(false);
         }
-        if(instantiatedImage != null)
+        if (instantiatedImage != null)
         {
             Destroy(instantiatedImage);
         }

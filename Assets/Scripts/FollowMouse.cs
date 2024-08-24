@@ -33,12 +33,12 @@ public class FollowMouse : MonoBehaviour
     [SerializeField] NPCBehav nPCBehavParent;
 
 
-    private void Awake() 
+    private void Awake()
     {
-        if(gameObject.transform.parent.GetComponent<NPCBehav>() != null)
+        if (gameObject.transform.parent.GetComponent<NPCBehav>() != null)
         {
             nPCBehavParent = gameObject.transform.parent.GetComponent<NPCBehav>();
-        }     
+        }
     }
     void Start()
     {
@@ -93,31 +93,31 @@ public class FollowMouse : MonoBehaviour
     {
         if (dayManager.day < 3)
         {
-            if(tutorial.isStartTutor)
+            if (tutorial.isStartTutor)
             {
                 namaMotif = "kawung";
             }
             else
             {
-                randomIndex = UnityEngine.Random.Range(0, motifNames.Length - 3);
+                randomIndex = Random.Range(0, motifNames.Length - 3);
                 namaMotif = motifNames[randomIndex];
             }
 
-            
+
         }
         else if (dayManager.day < 5)
         {
-            randomIndex = UnityEngine.Random.Range(0, motifNames.Length - 2);
+            randomIndex = Random.Range(0, motifNames.Length - 2);
             namaMotif = motifNames[randomIndex];
         }
         else if (dayManager.day < 7)
         {
-            randomIndex = UnityEngine.Random.Range(0, motifNames.Length - 1);
+            randomIndex = Random.Range(0, motifNames.Length - 1);
             namaMotif = motifNames[randomIndex];
         }
         else if (dayManager.day >= 7)
         {
-            randomIndex = UnityEngine.Random.Range(0, motifNames.Length);
+            randomIndex = Random.Range(0, motifNames.Length);
             namaMotif = motifNames[randomIndex];
         }
 
@@ -157,7 +157,7 @@ public class FollowMouse : MonoBehaviour
         {
             if (workspaceArea[0].bounds.Contains(imageRectTransform.position))
             {
-                if(tutorial.isStartTutor && tutorial.isStepDone[1] == false)
+                if (tutorial.isStartTutor && tutorial.isStepDone[1] == false)
                 {
                     Debug.Log("tutor manual dulu");
                 }
@@ -184,7 +184,6 @@ public class FollowMouse : MonoBehaviour
             workspaceArea[3] != null && workspaceArea[3].bounds.Contains(imageRectTransform.position) ||
             workspaceArea[4] != null && workspaceArea[4].bounds.Contains(imageRectTransform.position))
             {
-                // TODO - Tambah kondisi pembeli marah / gak jadi beli
                 Destroy(instantiatedImage);
                 isDragging = false;
                 Debug.Log("Salah alat");
@@ -193,43 +192,50 @@ public class FollowMouse : MonoBehaviour
             }
             else if (playerArea.bounds.Contains(imageRectTransform.position))
             {
-                if(tutorial.isStartTutor && tutorial.isStepDone[1] == true)
+                if (tutorial.isStartTutor && tutorial.isStepDone[1] == true)
                 {
                     Debug.Log("tutor auto jangan manual");
                 }
                 else
                 {
                     Destroy(instantiatedImage);
-                isDragging = false;
-                cameraRotation.RotateToB(0.5f);
-                drawingManager.CanvasController(true);
-                drawingManager.MatchMotifKawung();
-                OnMouseDroppedRight?.Invoke();
-                Destroy(gameObject);
+                    isDragging = false;
+                    cameraRotation.RotateToB(0f);
+                    drawingManager.CanvasController(true);
+                    drawingManager.MatchMotifKawung();
+                    OnMouseDroppedRight?.Invoke();
+                    Destroy(gameObject);
                 }
-                
+
             }
         }
         else if (namaMotif == "megamendung")
         {
             if (workspaceArea[1] != null && workspaceArea[1].bounds.Contains(imageRectTransform.position))
             {
-                nPCBehavParent.currentWorkspace = workspaceAutomation[1];
-                Destroy(instantiatedImage);
-                isDragging = false;
-                if (!workspaceAutomation[1].isStartAuto)
+                if (workspaceAutomation[1].isOnProgress == false)
                 {
-                    workspaceAutomation[1].isStartAuto = true;
+                    nPCBehavParent.currentWorkspace = workspaceAutomation[1];
+                    Destroy(instantiatedImage);
+                    isDragging = false;
+                    if (!workspaceAutomation[1].isStartAuto)
+                    {
+                        workspaceAutomation[1].isStartAuto = true;
+                    }
+                    OnMouseDroppedRight?.Invoke();
+                    Destroy(gameObject);
                 }
-                OnMouseDroppedRight?.Invoke();
-                Destroy(gameObject);
+                else
+                {
+                    Debug.Log("Proses belom selese");
+                }
+
             }
             else if (workspaceArea[0] != null && workspaceArea[0].bounds.Contains(imageRectTransform.position) ||
             workspaceArea[2] != null && workspaceArea[2].bounds.Contains(imageRectTransform.position) ||
             workspaceArea[3] != null && workspaceArea[3].bounds.Contains(imageRectTransform.position) ||
             workspaceArea[4] != null && workspaceArea[4].bounds.Contains(imageRectTransform.position))
             {
-                // TODO - Tambah kondisi pembeli marah / gak jadi beli
                 Destroy(instantiatedImage);
                 isDragging = false;
                 Debug.Log("Salah alat");
@@ -240,12 +246,144 @@ public class FollowMouse : MonoBehaviour
             {
                 Destroy(instantiatedImage);
                 isDragging = false;
+                cameraRotation.RotateToB(0f);
                 drawingManager.CanvasController(true);
                 drawingManager.MatchMotifMega();
                 OnMouseDroppedRight?.Invoke();
                 Destroy(gameObject);
             }
         }
+        else if (namaMotif == "truntum")
+        {
+            if (workspaceArea[2] != null && workspaceArea[2].bounds.Contains(imageRectTransform.position))
+            {
+                if (workspaceAutomation[2].isOnProgress == false)
+                {
+                    nPCBehavParent.currentWorkspace = workspaceAutomation[2];
+                    Destroy(instantiatedImage);
+                    isDragging = false;
+                    if (!workspaceAutomation[2].isStartAuto)
+                    {
+                        workspaceAutomation[2].isStartAuto = true;
+                    }
+                    OnMouseDroppedRight?.Invoke();
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    Debug.Log("Proses belom selese");
+                }
 
+            }
+            else if (workspaceArea[0] != null && workspaceArea[0].bounds.Contains(imageRectTransform.position) ||
+            workspaceArea[1] != null && workspaceArea[1].bounds.Contains(imageRectTransform.position) ||
+            workspaceArea[3] != null && workspaceArea[3].bounds.Contains(imageRectTransform.position) ||
+            workspaceArea[4] != null && workspaceArea[4].bounds.Contains(imageRectTransform.position))
+            {
+                Destroy(instantiatedImage);
+                isDragging = false;
+                Debug.Log("Salah alat");
+                OnMouseDroppedWrong?.Invoke();
+                Destroy(gameObject);
+            }
+            else if (playerArea.bounds.Contains(imageRectTransform.position))
+            {
+                Destroy(instantiatedImage);
+                isDragging = false;
+                cameraRotation.RotateToB(0f);
+                drawingManager.CanvasController(true);
+                drawingManager.MatchMotifTruntum();
+                OnMouseDroppedRight?.Invoke();
+                Destroy(gameObject);
+            }
+        }
+        else if (namaMotif == "parang")
+        {
+            if (workspaceArea[3] != null && workspaceArea[3].bounds.Contains(imageRectTransform.position))
+            {
+                if (workspaceAutomation[3].isOnProgress == false)
+                {
+                    nPCBehavParent.currentWorkspace = workspaceAutomation[3];
+                    Destroy(instantiatedImage);
+                    isDragging = false;
+                    if (!workspaceAutomation[3].isStartAuto)
+                    {
+                        workspaceAutomation[3].isStartAuto = true;
+                    }
+                    OnMouseDroppedRight?.Invoke();
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    Debug.Log("Proses belom selese");
+                }
+
+            }
+            else if (workspaceArea[0] != null && workspaceArea[0].bounds.Contains(imageRectTransform.position) ||
+            workspaceArea[1] != null && workspaceArea[1].bounds.Contains(imageRectTransform.position) ||
+            workspaceArea[2] != null && workspaceArea[2].bounds.Contains(imageRectTransform.position) ||
+            workspaceArea[4] != null && workspaceArea[4].bounds.Contains(imageRectTransform.position))
+            {
+                Destroy(instantiatedImage);
+                isDragging = false;
+                Debug.Log("Salah alat");
+                OnMouseDroppedWrong?.Invoke();
+                Destroy(gameObject);
+            }
+            else if (playerArea.bounds.Contains(imageRectTransform.position))
+            {
+                Destroy(instantiatedImage);
+                isDragging = false;
+                cameraRotation.RotateToB(0f);
+                drawingManager.CanvasController(true);
+                drawingManager.MatchMotifParang();
+                OnMouseDroppedRight?.Invoke();
+                Destroy(gameObject);
+            }
+        }
+        else if (namaMotif == "simbut")
+        {
+            if (workspaceArea[4] != null && workspaceArea[4].bounds.Contains(imageRectTransform.position))
+            {
+                if (workspaceAutomation[4].isOnProgress == false)
+                {
+                    nPCBehavParent.currentWorkspace = workspaceAutomation[4];
+                    Destroy(instantiatedImage);
+                    isDragging = false;
+                    if (!workspaceAutomation[4].isStartAuto)
+                    {
+                        workspaceAutomation[4].isStartAuto = true;
+                    }
+                    OnMouseDroppedRight?.Invoke();
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    Debug.Log("Proses belom selese");
+                }
+
+            }
+            else if (workspaceArea[0] != null && workspaceArea[0].bounds.Contains(imageRectTransform.position) ||
+            workspaceArea[1] != null && workspaceArea[1].bounds.Contains(imageRectTransform.position) ||
+            workspaceArea[2] != null && workspaceArea[2].bounds.Contains(imageRectTransform.position) ||
+            workspaceArea[3] != null && workspaceArea[3].bounds.Contains(imageRectTransform.position))
+            {
+                Destroy(instantiatedImage);
+                isDragging = false;
+                Debug.Log("Salah alat");
+                OnMouseDroppedWrong?.Invoke();
+                Destroy(gameObject);
+            }
+            else if (playerArea.bounds.Contains(imageRectTransform.position))
+            {
+                Destroy(instantiatedImage);
+                isDragging = false;
+                cameraRotation.RotateToB(0f);
+                drawingManager.CanvasController(true);
+                drawingManager.MatchMotifSimbut();
+                OnMouseDroppedRight?.Invoke();
+                Destroy(gameObject);
+            }
+        }
     }
 }
