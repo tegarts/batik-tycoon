@@ -52,6 +52,7 @@ public class Daily : MonoBehaviour
         {
             // TODO - BUat kondisi nampilin daily report dulu nilai progres hariannya
             progress = 0;
+            progressBar.value = progress;
         }    
     }
     

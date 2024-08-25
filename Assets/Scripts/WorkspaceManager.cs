@@ -8,6 +8,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
     [Header("User Interface")]
     [SerializeField] private Camera cam;
     [SerializeField] private Canvas canvasWorldSpace;
+    [SerializeField] GameObject bookPanel;
 
     [Header("General")]
     public int motifUnlocked;
@@ -72,6 +73,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                     money.ReduceMoney(workspacePrice[0]);
                     motifUnlocked = 1;
                     EnableWorkspace();
+                    CloseBookPanel();
                 }
                 else
                 {
@@ -92,6 +94,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                     money.ReduceMoney(workspacePrice[1]);
                     motifUnlocked = 2;
                     EnableWorkspace();
+                    CloseBookPanel();
                 }
                 else
                 {
@@ -112,6 +115,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                     money.ReduceMoney(workspacePrice[2]);
                     motifUnlocked = 3;
                     EnableWorkspace();
+                    CloseBookPanel();
                 }
                 else
                 {
@@ -132,6 +136,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                     money.ReduceMoney(workspacePrice[3]);
                     motifUnlocked = 4;
                     EnableWorkspace();
+                    CloseBookPanel();
                 }
                 else
                 {
@@ -164,6 +169,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                         currentUpgradeLevel[workspaceIndex] = upgradeLevel;
                         workspace.level_workspace = upgradeLevel;
                         Debug.Log($"Workspace {workspaceIndex + 1} upgraded to level {upgradeLevel} with new progress time: {newProgresTime} seconds.");
+                        CloseBookPanel();
                     }
                     else
                     {
@@ -181,6 +187,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                         currentUpgradeLevel[workspaceIndex] = upgradeLevel;
                         workspace.level_workspace = upgradeLevel;
                         Debug.Log($"Workspace {workspaceIndex + 1} upgraded to level {upgradeLevel} with new progress time: {newProgresTime} seconds.");
+                        CloseBookPanel();
                     }
                     else
                     {
@@ -198,6 +205,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                         currentUpgradeLevel[workspaceIndex] = upgradeLevel;
                         workspace.level_workspace = upgradeLevel;
                         Debug.Log($"Workspace {workspaceIndex + 1} upgraded to level {upgradeLevel} with new progress time: {newProgresTime} seconds.");
+                        CloseBookPanel();
                     }
                     else
                     {
@@ -215,6 +223,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                         currentUpgradeLevel[workspaceIndex] = upgradeLevel;
                         workspace.level_workspace = upgradeLevel;
                         Debug.Log($"Workspace {workspaceIndex + 1} upgraded to level {upgradeLevel} with new progress time: {newProgresTime} seconds.");
+                        CloseBookPanel();
                     }
                     else
                     {
@@ -232,6 +241,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                         currentUpgradeLevel[workspaceIndex] = upgradeLevel;
                         workspace.level_workspace = upgradeLevel;
                         Debug.Log($"Workspace {workspaceIndex + 1} upgraded to level {upgradeLevel} with new progress time: {newProgresTime} seconds.");
+                        CloseBookPanel();
                     }
                     else
                     {
@@ -249,6 +259,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                         currentUpgradeLevel[workspaceIndex] = upgradeLevel;
                         workspace.level_workspace = upgradeLevel;
                         Debug.Log($"Workspace {workspaceIndex + 1} upgraded to level {upgradeLevel} with new progress time: {newProgresTime} seconds.");
+                        CloseBookPanel();
                     }
                     else
                     {
@@ -266,5 +277,10 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
         {
             Debug.LogWarning("Invalid workspace index.");
         }
+    }
+
+    private void CloseBookPanel()
+    {
+        bookPanel.SetActive(false);
     }
 }

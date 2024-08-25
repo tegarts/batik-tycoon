@@ -66,12 +66,6 @@ public class NPCSpawn : MonoBehaviour
                 }
                 StartCoroutine(SpawnNPCsInBatches());
             }
-            else if (isSpawning == true && totalNPC <= 0)
-            {
-                isSpawning = false;
-                dayManager.dayIsStarted = false;
-                isInitialized = false;
-            }
 
             npcCountText.text = totalNPC + " Pembeli";
         }
@@ -88,15 +82,18 @@ public class NPCSpawn : MonoBehaviour
     {
         while (totalNPC > 0)
         {
-            // Spawn 5 NPC
-            for (int i = 0; i < npcCount; i++)
+            int currentBatchCount = Mathf.Min(npcCount, totalNPC);
+            for (int i = 0; i < currentBatchCount; i++)
             {
                 SpawnNPC();
                 yield return new WaitForSeconds(spawnInterval);
             }
-
+            totalNPC -= currentBatchCount;
             yield return StartCoroutine(WaitForAllNPCsToReturn());
         }
+        isSpawning = false;
+        dayManager.dayIsStarted = false;
+        isInitialized = false;
     }
 
     void SpawnNPC()
@@ -122,10 +119,10 @@ public class NPCSpawn : MonoBehaviour
         activeNPCs.Add(npcBehav);
         npcBehav.OnNPCReturned += HandleNPCReturned;
 
-        if (!tutorial.isStartTutor)
-        {
-            totalNPC--;
-        }
+        // if (!tutorial.isStartTutor)
+        // {
+        //     totalNPC--;
+        // }
 
     }
 

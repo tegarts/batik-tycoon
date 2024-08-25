@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.ComponentModel;
+using System.Diagnostics;
 using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,7 +20,8 @@ public class NPCBehav : MonoBehaviour
     [SerializeField] FollowMouse followMouse;
     [SerializeField] GameObject instantiatedImage;
     public event Action<NPCBehav> OnNPCReturned;
-    [SerializeField] bool isEventRightTriggered = false;
+    [SerializeField] bool isEventRightAutoTriggered = false;
+    [SerializeField] bool isEventRightManualTriggered = false;
     [SerializeField] bool isEventWrongTriggered = false;
     [SerializeField] bool isEventWorkspaceTriggered = false;
     [SerializeField] bool isEventDrawingTriggered = false;
@@ -62,7 +64,8 @@ public class NPCBehav : MonoBehaviour
 
         if (followMouse != null)
         {
-            followMouse.OnMouseDroppedRight += HandleDroppedRight;
+            followMouse.OnMouseDroppedRightAuto += HandleDroppedRightAuto;
+            followMouse.OnMouseDroppedRightManual += HandleDroppedRightManual;
             followMouse.OnMouseDroppedWrong += HandleDroppedWrong;
         }
         buttonMotif.SetActive(false);
@@ -70,9 +73,13 @@ public class NPCBehav : MonoBehaviour
 
     }
 
-    private void HandleDroppedRight()
+    private void HandleDroppedRightAuto()
     {
-        isEventRightTriggered = true;
+        isEventRightAutoTriggered = true;
+    }
+    private void HandleDroppedRightManual()
+    {
+        isEventRightManualTriggered = true;
     }
     private void HandleDroppedWrong()
     {
@@ -106,11 +113,8 @@ public class NPCBehav : MonoBehaviour
                     instantiatedImage = followMouse.instantiatedImage;
                 }
 
-                if (isEventRightTriggered)
+                if (isEventRightAutoTriggered)
                 {
-                    drawing = FindAnyObjectByType<Drawing>();
-
-
                     if (isTimePassed == false)
                     {
                         timePassed = elapsedTime;
@@ -122,38 +126,98 @@ public class NPCBehav : MonoBehaviour
                         currentWorkspace.OnWorkspaceCompleted += HandleWorkspaceCompleted;
                     }
 
-                    if (drawing != null)
-                    {
-                        drawing.OnDrawingCompleted += HandleDrawingCompleted;
-                        drawing.OnDrawingScore += OnScoreGained;
-                    }
+                    // if (drawing != null)
+                    // {
+                    //     drawing.OnDrawingCompleted += HandleDrawingCompleted;
+                    //     drawing.OnDrawingScore += OnScoreGained;
+                    // }
                     if (isEventWorkspaceTriggered)
                     {
-                        StopWaiting();
+                        
                         if (timePassed >= 10f)
                         {
+                            
                             reactionBubble.GetComponent<Image>().sprite = reactions[1];
                             reactionBubble.SetActive(true);
                             if (!isAddFlatReaction)
                             {
                                 Daily.instance.IncreaseProgress(15);
                                 Daily.instance.flatReaction++;
+                                anim.SetBool("IsFlat", true);
+                            StartCoroutine(DisplayReaction("IsFlat"));
                                 isAddFlatReaction = true;
                             }
                         }
                         else
                         {
+                         
                             reactionBubble.GetComponent<Image>().sprite = reactions[0];
                             reactionBubble.SetActive(true);
                             if (!isAddHappyReaction)
                             {
                                 Daily.instance.IncreaseProgress(20);
                                 Daily.instance.happyReaction++;
+                                   anim.SetBool("IsHappy", true);
+                            StartCoroutine(DisplayReaction("IsHappy"));
                                 isAddHappyReaction = true;
                             }
                         }
                     }
-                    else if (isEventDrawingTriggered)
+                    // else if (isEventDrawingTriggered)
+                    // {
+                    //     if (scoreCanting >= 80)
+                    //     {
+                    //         reactionBubble.GetComponent<Image>().sprite = reactions[0];
+                    //         reactionBubble.SetActive(true);
+                    //         if (!isAddHappyReaction)
+                    //         {
+                    //             Daily.instance.IncreaseProgress(25);
+                    //             Daily.instance.happyReaction++;
+                    //             anim.SetBool("IsHappy", true);
+                    //             StartCoroutine(DisplayReaction("IsHappy"));
+                    //             isAddHappyReaction = true;
+                    //         }
+                    //     }
+                    //     else if (scoreCanting >= 60)
+                    //     {
+                    //         reactionBubble.GetComponent<Image>().sprite = reactions[1];
+                    //         reactionBubble.SetActive(true);
+                    //         if (!isAddFlatReaction)
+                    //         {
+                    //             Daily.instance.IncreaseProgress(20);
+                    //             Daily.instance.flatReaction++;
+                    //             anim.SetBool("IsFlat", true);
+                    //             StartCoroutine(DisplayReaction("IsFlat"));
+                    //             isAddFlatReaction = true;
+                    //         }
+                    //     }
+                    //     else
+                    //     {
+                    //         reactionBubble.GetComponent<Image>().sprite = reactions[2];
+                    //         reactionBubble.SetActive(true);
+                    //         if (!isAddAngryReaction)
+                    //         {
+                    //             Daily.instance.angryReaction++;
+                    //             anim.SetBool("IsAngry", true);
+                    //             StartCoroutine(DisplayReaction("IsAngry"));
+                    //             isAddAngryReaction = true;
+                    //         }
+                    //     }
+                    // }
+
+                    // isEventTriggered = false;
+                    // StopWaiting();
+                }
+                else if(isEventRightManualTriggered)
+                {
+                    drawing = FindAnyObjectByType<Drawing>();
+                    if (drawing != null)
+                    {
+                        drawing.OnDrawingCompleted += HandleDrawingCompleted;
+                        drawing.OnDrawingScore += OnScoreGained;
+                    }
+
+                    if (isEventDrawingTriggered)
                     {
                         if (scoreCanting >= 80)
                         {
@@ -163,6 +227,8 @@ public class NPCBehav : MonoBehaviour
                             {
                                 Daily.instance.IncreaseProgress(25);
                                 Daily.instance.happyReaction++;
+                                anim.SetBool("IsHappy", true);
+                                StartCoroutine(DisplayReaction("IsHappy"));
                                 isAddHappyReaction = true;
                             }
                         }
@@ -174,6 +240,8 @@ public class NPCBehav : MonoBehaviour
                             {
                                 Daily.instance.IncreaseProgress(20);
                                 Daily.instance.flatReaction++;
+                                anim.SetBool("IsFlat", true);
+                                StartCoroutine(DisplayReaction("IsFlat"));
                                 isAddFlatReaction = true;
                             }
                         }
@@ -184,35 +252,37 @@ public class NPCBehav : MonoBehaviour
                             if (!isAddAngryReaction)
                             {
                                 Daily.instance.angryReaction++;
+                                anim.SetBool("IsAngry", true);
+                                StartCoroutine(DisplayReaction("IsAngry"));
                                 isAddAngryReaction = true;
                             }
                         }
-                        StopWaiting();
                     }
-
-                    // isEventTriggered = false;
-                    // StopWaiting();
+                    
                 }
                 else if (isEventWrongTriggered)
                 {
-                    StopWaiting();
+                   
                     reactionBubble.GetComponent<Image>().sprite = reactions[2];
                     reactionBubble.SetActive(true);
                     if (!isAddAngryReaction)
                     {
                         Daily.instance.angryReaction++;
+                         anim.SetBool("IsAngry", true);
+                    StartCoroutine(DisplayReaction("IsAngry"));
                         isAddAngryReaction = true;
                     }
                 }
                 else if (elapsedTime >= 15f && !tutorial.isStartTutor)
                 {
-                    Debug.Log("Waktu tunggu habis, melanjutkan perjalanan...");
-                    StopWaiting();
+                    UnityEngine.Debug.Log("Waktu tunggu habis, melanjutkan perjalanan...");
                     reactionBubble.GetComponent<Image>().sprite = reactions[2];
                     reactionBubble.SetActive(true);
                     if (!isAddAngryReaction)
                     {
                         Daily.instance.angryReaction++;
+                        anim.SetBool("IsAngry", true);
+                    StartCoroutine(DisplayReaction("IsAngry"));
                         isAddAngryReaction = true;
                     }
                 }
@@ -269,6 +339,18 @@ public class NPCBehav : MonoBehaviour
             }
         }
 
+    }
+
+    IEnumerator DisplayReaction(string animBool)
+    {
+        Animator animator = anim;
+        // AnimatorStateInfo animState = animator.GetCurrentAnimatorStateInfo(0);
+        // UnityEngine.Debug.Log(animator.GetCurrentAnimatorStateInfo(0));
+        // yield return new WaitUntil(() => animState.normalizedTime >= 1f && !animator.IsInTransition(0));
+        yield return new WaitForSeconds(1.6f);
+        animator.SetBool(animBool, false);
+
+        StopWaiting();
     }
 
     private void StartWaiting()

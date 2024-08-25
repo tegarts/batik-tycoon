@@ -24,6 +24,26 @@ public class Workspace : MonoBehaviour
         }
 
         money = FindObjectOfType<Money>();
+        if(level_workspace == 1)
+        {
+            progresTime = 15;
+        }
+        else if(level_workspace == 2)
+        {
+            progresTime = 13;
+        }
+        else if(level_workspace == 3)
+        {
+            progresTime = 11;
+        }
+        else if(level_workspace == 4)
+        {
+            progresTime = 9;
+        }
+        else if(level_workspace == 5)
+        {
+            progresTime = 7;
+        }
     }
 
     private void Update()

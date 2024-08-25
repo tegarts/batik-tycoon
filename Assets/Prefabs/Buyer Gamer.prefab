@@ -2653,7 +2653,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints: []
   index: 0
-  speed: 5
+  speed: 4
   waitTime: 2
   isWaiting: 0
   followMouse: {fileID: 0}

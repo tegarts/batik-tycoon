@@ -23,7 +23,8 @@ public class FollowMouse : MonoBehaviour
     private int randomIndex;
     public delegate void MouseDroppedRight();
     public delegate void MouseDroppedWrong();
-    public event MouseDroppedRight OnMouseDroppedRight;
+    public event MouseDroppedRight OnMouseDroppedRightAuto;
+    public event MouseDroppedRight OnMouseDroppedRightManual;
     public event MouseDroppedWrong OnMouseDroppedWrong;
     [Header("References")]
     DrawingManager drawingManager;
@@ -170,7 +171,7 @@ public class FollowMouse : MonoBehaviour
                     {
                         workspaceAutomation[0].isStartAuto = true;
                     }
-                    OnMouseDroppedRight?.Invoke();
+                    OnMouseDroppedRightAuto?.Invoke();
                     Destroy(gameObject);
                 }
                 else
@@ -203,7 +204,7 @@ public class FollowMouse : MonoBehaviour
                     cameraRotation.RotateToB(0f);
                     drawingManager.CanvasController(true);
                     drawingManager.MatchMotifKawung();
-                    OnMouseDroppedRight?.Invoke();
+                    OnMouseDroppedRightManual?.Invoke();
                     Destroy(gameObject);
                 }
 
@@ -222,7 +223,7 @@ public class FollowMouse : MonoBehaviour
                     {
                         workspaceAutomation[1].isStartAuto = true;
                     }
-                    OnMouseDroppedRight?.Invoke();
+                    OnMouseDroppedRightAuto?.Invoke();
                     Destroy(gameObject);
                 }
                 else
@@ -249,7 +250,7 @@ public class FollowMouse : MonoBehaviour
                 cameraRotation.RotateToB(0f);
                 drawingManager.CanvasController(true);
                 drawingManager.MatchMotifMega();
-                OnMouseDroppedRight?.Invoke();
+                OnMouseDroppedRightManual?.Invoke();
                 Destroy(gameObject);
             }
         }
@@ -266,7 +267,7 @@ public class FollowMouse : MonoBehaviour
                     {
                         workspaceAutomation[2].isStartAuto = true;
                     }
-                    OnMouseDroppedRight?.Invoke();
+                    OnMouseDroppedRightAuto?.Invoke();
                     Destroy(gameObject);
                 }
                 else
@@ -293,7 +294,7 @@ public class FollowMouse : MonoBehaviour
                 cameraRotation.RotateToB(0f);
                 drawingManager.CanvasController(true);
                 drawingManager.MatchMotifTruntum();
-                OnMouseDroppedRight?.Invoke();
+                OnMouseDroppedRightManual?.Invoke();
                 Destroy(gameObject);
             }
         }
@@ -310,7 +311,7 @@ public class FollowMouse : MonoBehaviour
                     {
                         workspaceAutomation[3].isStartAuto = true;
                     }
-                    OnMouseDroppedRight?.Invoke();
+                    OnMouseDroppedRightAuto?.Invoke();
                     Destroy(gameObject);
                 }
                 else
@@ -337,7 +338,7 @@ public class FollowMouse : MonoBehaviour
                 cameraRotation.RotateToB(0f);
                 drawingManager.CanvasController(true);
                 drawingManager.MatchMotifParang();
-                OnMouseDroppedRight?.Invoke();
+                OnMouseDroppedRightManual?.Invoke();
                 Destroy(gameObject);
             }
         }
@@ -354,7 +355,7 @@ public class FollowMouse : MonoBehaviour
                     {
                         workspaceAutomation[4].isStartAuto = true;
                     }
-                    OnMouseDroppedRight?.Invoke();
+                    OnMouseDroppedRightAuto?.Invoke();
                     Destroy(gameObject);
                 }
                 else
@@ -381,7 +382,7 @@ public class FollowMouse : MonoBehaviour
                 cameraRotation.RotateToB(0f);
                 drawingManager.CanvasController(true);
                 drawingManager.MatchMotifSimbut();
-                OnMouseDroppedRight?.Invoke();
+                OnMouseDroppedRightManual?.Invoke();
                 Destroy(gameObject);
             }
         }
