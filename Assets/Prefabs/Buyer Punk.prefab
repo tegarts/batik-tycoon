@@ -519,7 +519,8 @@ MonoBehaviour:
   isWaiting: 0
   followMouse: {fileID: 0}
   instantiatedImage: {fileID: 0}
-  isEventRightTriggered: 0
+  isEventRightAutoTriggered: 0
+  isEventRightManualTriggered: 0
   isEventWrongTriggered: 0
   isEventWorkspaceTriggered: 0
   isEventDrawingTriggered: 0
@@ -2290,11 +2291,11 @@ MonoBehaviour:
   imagePrefab: {fileID: 0}
   imageMotif: {fileID: 351641888657710940}
   spriteMotif:
-  - {fileID: 21300000, guid: b15499d0d9106074394d54c6f6b33671, type: 3}
-  - {fileID: 21300000, guid: 4c4c5e5b2ce7a434a8686fd9a1837886, type: 3}
+  - {fileID: 21300000, guid: e53e0e376eaea62a19a009826620bdec, type: 3}
+  - {fileID: 21300000, guid: dc285f690c9f3b9b4a7393cd844d130d, type: 3}
+  - {fileID: 21300000, guid: f2c5484cd55a7f6b59682aa4d6fa249e, type: 3}
   - {fileID: 21300000, guid: 7d5a6e71f6270cd4999cedcc2ed3702a, type: 3}
-  - {fileID: 21300000, guid: d0ff50ba44723274c88831a65b4e3733, type: 3}
-  - {fileID: 21300000, guid: e7c18fee4a708874d9714d47f7602c3a, type: 3}
+  - {fileID: 21300000, guid: b40849b2200f18d7a8ccdc29fcb1d9b4, type: 3}
   workspaceAutomation:
   - {fileID: 0}
   - {fileID: 0}

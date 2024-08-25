@@ -27,6 +27,7 @@ public class NPCSpawn : MonoBehaviour
 
     [Header("References")]
     DayManager dayManager;
+    BookMenu bookMenu;
     private bool isSpawning;
     [SerializeField] Tutorial tutorial;
 
@@ -34,6 +35,7 @@ public class NPCSpawn : MonoBehaviour
 
     void Start()
     {
+        bookMenu = FindAnyObjectByType<BookMenu>();
         tutorial = FindAnyObjectByType<Tutorial>();
         // StartCoroutine(SpawnNPCsInBatches());
         dayManager = FindAnyObjectByType<DayManager>();
@@ -57,7 +59,7 @@ public class NPCSpawn : MonoBehaviour
         {
             if (!isSpawning)
             {
-                totalNPC = 10 + ((dayManager.day - 1) / 2) * 5;
+                totalNPC = 2 + ((dayManager.day - 1) / 2) * 5;
                 isSpawning = true;
                 if (!isInitialized)
                 {
@@ -67,7 +69,6 @@ public class NPCSpawn : MonoBehaviour
                 StartCoroutine(SpawnNPCsInBatches());
             }
 
-            npcCountText.text = totalNPC + " Pembeli";
         }
         else if (!dayManager.dayIsStarted)
         {
@@ -85,15 +86,17 @@ public class NPCSpawn : MonoBehaviour
             int currentBatchCount = Mathf.Min(npcCount, totalNPC);
             for (int i = 0; i < currentBatchCount; i++)
             {
+                totalNPC--;
                 SpawnNPC();
                 yield return new WaitForSeconds(spawnInterval);
             }
-            totalNPC -= currentBatchCount;
+            // totalNPC -= currentBatchCount;
             yield return StartCoroutine(WaitForAllNPCsToReturn());
         }
         isSpawning = false;
         dayManager.dayIsStarted = false;
         isInitialized = false;
+        bookMenu.bookPanel.SetActive(true);
     }
 
     void SpawnNPC()
@@ -118,6 +121,8 @@ public class NPCSpawn : MonoBehaviour
 
         activeNPCs.Add(npcBehav);
         npcBehav.OnNPCReturned += HandleNPCReturned;
+
+        npcCountText.text = totalNPC + " Pembeli";
 
         // if (!tutorial.isStartTutor)
         // {
