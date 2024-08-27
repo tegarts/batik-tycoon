@@ -7436,6 +7436,8 @@ MonoBehaviour:
   imagePrefabs: []
   imagePrefab: {fileID: 8976735257323102302, guid: e15d6a100f75d254392ca0ff09dc1a04,
     type: 3}
+  imageMotif: {fileID: 0}
+  spriteMotif: []
   workspaceAutomation: []
   workspaceArea:
   - {fileID: 1601870099}
@@ -7444,8 +7446,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   playerArea: {fileID: 1834603550}
+  instantiatedImage: {fileID: 0}
+  isDragging: 0
   motifNames: []
   namaMotif: kawung
+  onProgress: 0
+  nPCBehavParent: {fileID: 0}
 --- !u!114 &295727075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10079,6 +10085,8 @@ MonoBehaviour:
   imagePrefabs: []
   imagePrefab: {fileID: 8976735257323102302, guid: e15d6a100f75d254392ca0ff09dc1a04,
     type: 3}
+  imageMotif: {fileID: 0}
+  spriteMotif: []
   workspaceAutomation:
   - {fileID: 919132149264263165}
   - {fileID: 1647990110}
@@ -10092,8 +10100,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   playerArea: {fileID: 1834603550}
+  instantiatedImage: {fileID: 0}
+  isDragging: 0
   motifNames: []
   namaMotif: kawung
+  onProgress: 0
+  nPCBehavParent: {fileID: 0}
 --- !u!1 &392136624
 GameObject:
   m_ObjectHideFlags: 0
@@ -12818,12 +12830,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   progresTime: 1
+  batikPrice: 0
   isStartAuto: 0
   isOnProgress: 0
   isDone: 0
-  progresBar: {fileID: 1861205730}
   AssignArea: {fileID: 960897353}
+  progresImage: {fileID: 0}
   level_workspace: 1
+  vfx_workspace: []
 --- !u!4 &551751569
 Transform:
   m_ObjectHideFlags: 0
@@ -13822,6 +13836,8 @@ MonoBehaviour:
   jalurTinta: {fileID: 2143932013}
   parentRectTransform: {fileID: 1933574602}
   filledImage: {fileID: 1993726279}
+  moneyText: {fileID: 0}
+  accuracyText: {fileID: 0}
 --- !u!50 &569944937
 Rigidbody2D:
   serializedVersion: 4
@@ -15833,6 +15849,8 @@ MonoBehaviour:
   jalurTinta: {fileID: 501464411}
   parentRectTransform: {fileID: 1012137575}
   filledImage: {fileID: 204796263}
+  moneyText: {fileID: 0}
+  accuracyText: {fileID: 0}
 --- !u!50 &619399228
 Rigidbody2D:
   serializedVersion: 4
@@ -18584,6 +18602,8 @@ MonoBehaviour:
   jalurTinta: {fileID: 1865631202}
   parentRectTransform: {fileID: 1924007821}
   filledImage: {fileID: 1601363050}
+  moneyText: {fileID: 0}
+  accuracyText: {fileID: 0}
 --- !u!50 &716082702
 Rigidbody2D:
   serializedVersion: 4
@@ -19397,6 +19417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a0825c0bd6f6c74e90d4edaa67ed3e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npcPrefabs: []
   npcPrefab: {fileID: 8316263683333738344, guid: f1fcf67e49b1d8c41b225b6494b2195e,
     type: 3}
   waypoints:
@@ -19404,10 +19425,19 @@ MonoBehaviour:
   - {fileID: 960619095}
   - {fileID: 2086081546}
   - {fileID: 2031975332}
+  waypoints1: []
+  waypoints2: []
+  waypoints3: []
+  waypoints4: []
+  waypoints5: []
   waitTime: 15
   npcCount: 2
+  npcDayOne: 0
   totalNPC: 0
+  initializeNPC: 0
   spawnInterval: 3
+  npcCountText: {fileID: 0}
+  tutorial: {fileID: 0}
 --- !u!1 &771101346
 GameObject:
   m_ObjectHideFlags: 0
@@ -21278,6 +21308,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasCanting: {fileID: 1259818452}
+  motifPanelKawungs: []
+  motifPanelMegas: []
+  motifPanelParangs: []
+  motifPanelTruntums: []
+  motifPanelSimbuts: []
 --- !u!4 &838838414
 Transform:
   m_ObjectHideFlags: 0
@@ -23894,12 +23929,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   progresTime: 1
+  batikPrice: 0
   isStartAuto: 0
   isOnProgress: 0
   isDone: 0
-  progresBar: {fileID: 1854854008}
   AssignArea: {fileID: 598641306}
+  progresImage: {fileID: 0}
   level_workspace: 1
+  vfx_workspace: []
 --- !u!4 &967657472
 Transform:
   m_ObjectHideFlags: 0
@@ -24860,6 +24897,8 @@ MonoBehaviour:
   jalurTinta: {fileID: 783122988}
   parentRectTransform: {fileID: 1702666485}
   filledImage: {fileID: 1762775154}
+  moneyText: {fileID: 0}
+  accuracyText: {fileID: 0}
 --- !u!50 &1006026944
 Rigidbody2D:
   serializedVersion: 4
@@ -31167,12 +31206,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   progresTime: 1
+  batikPrice: 0
   isStartAuto: 0
   isOnProgress: 0
   isDone: 0
-  progresBar: {fileID: 380954849}
   AssignArea: {fileID: 1551402567}
+  progresImage: {fileID: 0}
   level_workspace: 1
+  vfx_workspace: []
 --- !u!4 &1274953971
 Transform:
   m_ObjectHideFlags: 0
@@ -32852,6 +32893,7 @@ MonoBehaviour:
   day: 0
   dayIsStarted: 0
   bookMenuButton: {fileID: 1409562517}
+  dayTextHUD: {fileID: 0}
 --- !u!1 &1353438698
 GameObject:
   m_ObjectHideFlags: 0
@@ -33112,8 +33154,13 @@ MonoBehaviour:
   panelTutorial: {fileID: 123814427}
   panelSkipConfirmation: {fileID: 1535470590}
   isStepDone: 0000000000
+  isNpcIn: 0
   workspace: {fileID: 919132149264263165}
   index: 0
+  PlayerArea: {fileID: 0}
+  playerChildArea: {fileID: 0}
+  WorkerArea: {fileID: 0}
+  workerChildArea: {fileID: 0}
 --- !u!1 &1365495984
 GameObject:
   m_ObjectHideFlags: 0
@@ -35056,6 +35103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 336404851}
   canvasWorldSpace: {fileID: 1595417120}
+  bookPanel: {fileID: 0}
   motifUnlocked: 0
   workspaces:
   - {fileID: 919132149264263164}
@@ -35071,6 +35119,11 @@ MonoBehaviour:
   - 11
   - 9
   - 7
+  upgradePrice1: 
+  upgradePrice2: 
+  upgradePrice3: 
+  upgradePrice4: 
+  upgradePrice5: 
 --- !u!1 &1447704806
 GameObject:
   m_ObjectHideFlags: 0
@@ -40707,12 +40760,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   progresTime: 1
+  batikPrice: 0
   isStartAuto: 0
   isOnProgress: 0
   isDone: 0
-  progresBar: {fileID: 1158558804}
   AssignArea: {fileID: 539938602}
+  progresImage: {fileID: 0}
   level_workspace: 1
+  vfx_workspace: []
 --- !u!4 &1647990111
 Transform:
   m_ObjectHideFlags: 0
@@ -52002,12 +52057,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1895856854}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 6.487, y: 2.925, z: -0.801}
-  m_LocalScale: {x: 0.23986, y: 0.23986, z: 0.23986}
+  m_LocalRotation: {x: -0.5, y: -0.5, z: -0.5, w: 0.5}
+  m_LocalPosition: {x: -2.5490003, y: 1.2550001, z: 1.3569996}
+  m_LocalScale: {x: 0.23985997, y: 0.23986, z: 0.23986003}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 543450653456465222}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &1896143120
 GameObject:
@@ -54965,6 +55020,8 @@ MonoBehaviour:
   jalurTinta: {fileID: 2117532938}
   parentRectTransform: {fileID: 1434155418}
   filledImage: {fileID: 478772487}
+  moneyText: {fileID: 0}
+  accuracyText: {fileID: 0}
 --- !u!114 &2028883449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55972,6 +56029,8 @@ MonoBehaviour:
   buttonReportPanel: {fileID: 687712955}
   buttonUnlockPanel: {fileID: 951799963}
   buttonUpgradePanel: {fileID: 869812806}
+  moneyBox: {fileID: 0}
+  animBook: {fileID: 0}
 --- !u!4 &2058812122
 Transform:
   m_ObjectHideFlags: 0
@@ -56376,6 +56435,8 @@ MonoBehaviour:
   jalurTinta: {fileID: 1453078136}
   parentRectTransform: {fileID: 159162252}
   filledImage: {fileID: 1178917851}
+  moneyText: {fileID: 0}
+  accuracyText: {fileID: 0}
 --- !u!50 &2084655593
 Rigidbody2D:
   serializedVersion: 4
@@ -58069,6 +58130,8 @@ MonoBehaviour:
   jalurTinta: {fileID: 776586768}
   parentRectTransform: {fileID: 1919169598}
   filledImage: {fileID: 1491155288}
+  moneyText: {fileID: 0}
+  accuracyText: {fileID: 0}
 --- !u!50 &2143789444
 Rigidbody2D:
   serializedVersion: 4
@@ -58854,6 +58917,7 @@ Transform:
   - {fileID: 5127251164938653498}
   - {fileID: 3493442496383168837}
   - {fileID: 5197901906370494696}
+  - {fileID: 1895856857}
   m_Father: {fileID: 337181476}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &832149484288256201
@@ -58963,12 +59027,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   progresTime: 7
+  batikPrice: 0
   isStartAuto: 0
   isOnProgress: 0
   isDone: 0
-  progresBar: {fileID: 2113251794}
   AssignArea: {fileID: 1601870094}
+  progresImage: {fileID: 0}
   level_workspace: 1
+  vfx_workspace:
+  - {fileID: 1895856854}
 --- !u!1 &1053100508007329294
 GameObject:
   m_ObjectHideFlags: 0
@@ -62314,4 +62381,3 @@ SceneRoots:
   - {fileID: 337181476}
   - {fileID: 549836016}
   - {fileID: 337228373}
-  - {fileID: 1895856857}
