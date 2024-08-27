@@ -17,6 +17,7 @@ public class NPCSpawn : MonoBehaviour
     private Transform[] lastWaypoints;
     public float waitTime = 10f; // Waktu berhenti di waypoint
     public int npcCount = 5;
+    [SerializeField] int npcDayOne;
     [SerializeField] int totalNPC;
     public int initializeNPC;
     private bool isInitialized;
@@ -59,7 +60,7 @@ public class NPCSpawn : MonoBehaviour
         {
             if (!isSpawning)
             {
-                totalNPC = 2 + ((dayManager.day - 1) / 2) * 5;
+                totalNPC = npcDayOne + ((dayManager.day - 1) / 2) * 5;
                 isSpawning = true;
                 if (!isInitialized)
                 {

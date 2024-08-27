@@ -39,6 +39,7 @@ public class DrawingManager : MonoBehaviour
     public void CanvasController(bool condition)
     {
         canvasCanting.SetActive(condition);
+        Daily.instance.isPanelOn = condition;
 
         if(!condition)
         {

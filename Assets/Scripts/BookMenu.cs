@@ -11,6 +11,8 @@ public class BookMenu : MonoBehaviour
     [SerializeField] GameObject buttonReportPanel;
     [SerializeField] GameObject buttonUnlockPanel;
     [SerializeField] GameObject buttonUpgradePanel;
+    [SerializeField] GameObject moneyBox;
+    public Animator animBook;
 
     private void Start() 
     {
@@ -23,52 +25,65 @@ public class BookMenu : MonoBehaviour
     {
         bookPanel.SetActive(true);
         reportPanel.SetActive(true);
-        buttonReportPanel.SetActive(true);
+        buttonReportPanel.SetActive(false);
 
         unlockPanel.SetActive(false);
+        buttonUnlockPanel.SetActive(true);
         upgradePanel.SetActive(false);
+        buttonUpgradePanel.SetActive(true);
+        moneyBox.SetActive(false);
     }
 
     public void CloseBook()
     {
-        bookPanel.SetActive(false);
-        reportPanel.SetActive(false);
+        StartCoroutine(CloseBookDelay());
     }
 
     public void OpenReport()
     {
         reportPanel.SetActive(true);
-        buttonReportPanel.SetActive(true);
+        buttonReportPanel.SetActive(false);
 
         unlockPanel.SetActive(false);
         upgradePanel.SetActive(false);
 
-        buttonUnlockPanel.SetActive(false);
-        buttonUpgradePanel.SetActive(false);
+        buttonUnlockPanel.SetActive(true);
+        buttonUpgradePanel.SetActive(true);
+        moneyBox.SetActive(false);
     }
 
     public void OpenUnlock()
     {
         unlockPanel.SetActive(true);
-        buttonUnlockPanel.SetActive(true);
+        buttonUnlockPanel.SetActive(false);
 
         reportPanel.SetActive(false);
         upgradePanel.SetActive(false);
 
-        buttonReportPanel.SetActive(false);
-        buttonUpgradePanel.SetActive(false);
+        buttonReportPanel.SetActive(true);
+        buttonUpgradePanel.SetActive(true);
+        moneyBox.SetActive(true);
     }
 
     public void OpenUpgrade()
     {
         upgradePanel.SetActive(true);
-        buttonUpgradePanel.SetActive(true);
+        buttonUpgradePanel.SetActive(false);
 
         unlockPanel.SetActive(false);
         reportPanel.SetActive(false);
 
-        buttonReportPanel.SetActive(false);
-        buttonUnlockPanel.SetActive(false);
+        buttonReportPanel.SetActive(true);
+        buttonUnlockPanel.SetActive(true);
+        moneyBox.SetActive(true);
+    }
+
+    IEnumerator CloseBookDelay()
+    {
+        animBook.SetTrigger("IsEnd");
+        yield return new WaitForSeconds(0.25f);
+        bookPanel.SetActive(false);
+        reportPanel.SetActive(false);
     }
     
 }

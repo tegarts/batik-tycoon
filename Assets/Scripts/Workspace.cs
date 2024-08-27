@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Workspace : MonoBehaviour
 {
     public int progresTime;
+    [SerializeField] int batikPrice;
     public bool isStartAuto;
     public bool isOnProgress;
     public bool isDone;
@@ -75,7 +76,8 @@ public class Workspace : MonoBehaviour
         OnWorkspaceCompleted?.Invoke();
         isDone = true;
         isOnProgress = false;
-        money.AddMoney(400000);
+        money.AddMoney(batikPrice);
+        Daily.instance.dailyIncome += batikPrice;
     }
 
     public void SetupAssignArea(Canvas canvas, Camera camera)

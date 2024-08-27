@@ -50,8 +50,16 @@ public class Money : MonoBehaviour, IDataPersistence
     {
         if (moneyTextInsideBook != null && moneyTextHUD != null)
         {
-            moneyTextInsideBook.text = moneyValue.ToString("N0");
-            moneyTextHUD.text = moneyValue.ToString("N0");
+            if(moneyValue < 1000)
+            {
+                moneyTextInsideBook.text = moneyValue.ToString("0.#")+"rb";
+                moneyTextHUD.text = moneyValue.ToString("0.#")+"rb";
+            }
+            else
+            {
+                moneyTextInsideBook.text = ((float)moneyValue/1000f).ToString("0.##")+"jt";
+                moneyTextHUD.text = ((float)moneyValue/1000f).ToString("0.##")+"jt";
+            }
         }
     }
 }

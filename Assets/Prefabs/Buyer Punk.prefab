@@ -97,7 +97,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4c4c5e5b2ce7a434a8686fd9a1837886, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2288,6 +2288,9 @@ MonoBehaviour:
   imagePrefabs:
   - {fileID: 8976735257323102302, guid: e15d6a100f75d254392ca0ff09dc1a04, type: 3}
   - {fileID: 8976735257323102302, guid: 81f5cac8d5ac9b94897071d230dfa24d, type: 3}
+  - {fileID: 8976735257323102302, guid: 4881518bbe81e9d328486da1d3e879aa, type: 3}
+  - {fileID: 8976735257323102302, guid: 7f1568f8e4139bcbe9d133eb817c3287, type: 3}
+  - {fileID: 8976735257323102302, guid: 508b50a0632971525ab5b7f8ea1f1326, type: 3}
   imagePrefab: {fileID: 0}
   imageMotif: {fileID: 351641888657710940}
   spriteMotif:

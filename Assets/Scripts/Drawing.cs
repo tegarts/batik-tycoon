@@ -241,14 +241,15 @@ public class Drawing : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
         filledImage.fillAmount = 1;
 
         panelAfterCanting.SetActive(true);
-        moneyText.text = "Rp " + (scoreCanting * 6000).ToString();
+        moneyText.text = "Rp " + (scoreCanting * 6) +"rb";
         accuracyText.text = "Akurasi: " + scoreCanting.ToString() + "%";
     }
 
     public void ButtonExitFromPanel()
     {
         OnDrawingCompleted?.Invoke();
-        money.AddMoney(scoreCanting * 6000);
+        money.AddMoney(scoreCanting * 6);
+        Daily.instance.dailyIncome += scoreCanting * 6;
         scoreCanting = 0;
         panelAfterCanting.SetActive(false);
         drawingManager.CanvasController(false);

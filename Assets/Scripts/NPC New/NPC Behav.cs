@@ -163,50 +163,7 @@ public class NPCBehav : MonoBehaviour
                             }
                         }
                     }
-                    // else if (isEventDrawingTriggered)
-                    // {
-                    //     if (scoreCanting >= 80)
-                    //     {
-                    //         reactionBubble.GetComponent<Image>().sprite = reactions[0];
-                    //         reactionBubble.SetActive(true);
-                    //         if (!isAddHappyReaction)
-                    //         {
-                    //             Daily.instance.IncreaseProgress(25);
-                    //             Daily.instance.happyReaction++;
-                    //             anim.SetBool("IsHappy", true);
-                    //             StartCoroutine(DisplayReaction("IsHappy"));
-                    //             isAddHappyReaction = true;
-                    //         }
-                    //     }
-                    //     else if (scoreCanting >= 60)
-                    //     {
-                    //         reactionBubble.GetComponent<Image>().sprite = reactions[1];
-                    //         reactionBubble.SetActive(true);
-                    //         if (!isAddFlatReaction)
-                    //         {
-                    //             Daily.instance.IncreaseProgress(20);
-                    //             Daily.instance.flatReaction++;
-                    //             anim.SetBool("IsFlat", true);
-                    //             StartCoroutine(DisplayReaction("IsFlat"));
-                    //             isAddFlatReaction = true;
-                    //         }
-                    //     }
-                    //     else
-                    //     {
-                    //         reactionBubble.GetComponent<Image>().sprite = reactions[2];
-                    //         reactionBubble.SetActive(true);
-                    //         if (!isAddAngryReaction)
-                    //         {
-                    //             Daily.instance.angryReaction++;
-                    //             anim.SetBool("IsAngry", true);
-                    //             StartCoroutine(DisplayReaction("IsAngry"));
-                    //             isAddAngryReaction = true;
-                    //         }
-                    //     }
-                    // }
-
-                    // isEventTriggered = false;
-                    // StopWaiting();
+                    
                 }
                 else if(isEventRightManualTriggered)
                 {
@@ -323,6 +280,7 @@ public class NPCBehav : MonoBehaviour
             }
             else
             {
+                FaceLastWaypointOnXAxis();
                 StartWaiting();
             }
         }
@@ -344,9 +302,6 @@ public class NPCBehav : MonoBehaviour
     IEnumerator DisplayReaction(string animBool)
     {
         Animator animator = anim;
-        // AnimatorStateInfo animState = animator.GetCurrentAnimatorStateInfo(0);
-        // UnityEngine.Debug.Log(animator.GetCurrentAnimatorStateInfo(0));
-        // yield return new WaitUntil(() => animState.normalizedTime >= 1f && !animator.IsInTransition(0));
         yield return new WaitForSeconds(1.6f);
         animator.SetBool(animBool, false);
 
@@ -378,25 +333,16 @@ public class NPCBehav : MonoBehaviour
         isReversing = !isReversing;
     }
 
-    // private IEnumerator WaitAtWaypoint()
-    // {
-    //     isWaiting = true;
+    private void FaceLastWaypointOnXAxis()
+{
+    Vector3 lastWaypointPosition = waypoints[waypoints.Length - 1].position;
+    Vector3 directionToFace = lastWaypointPosition - transform.position;
+    directionToFace.y = 0;
 
-    //     yield return new WaitForSeconds(1f);
-    //     buttonMotif.SetActive(true);
-
-    //     Debug.Log("NPC sedang menunggu dengan tenang selama 5 detik...");
-
-    //     yield return new WaitForSeconds(5f);
-
-    //     Debug.Log("NPC mulai marah! Menunggu selama 5 detik terakhir...");
-
-    //     yield return new WaitForSeconds(5f);
-
-    //     Debug.Log("NPC selesai marah dan akan kembali ke titik spawn.");
-
-    //     isReversing = !isReversing;
-
-    //     isWaiting = false;
-    // }
+    if (directionToFace != Vector3.zero)
+    {
+        Quaternion targetRotation = Quaternion.LookRotation(directionToFace);
+        transform.rotation = targetRotation;
+    }
+}
 }

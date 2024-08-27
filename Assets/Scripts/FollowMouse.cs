@@ -103,8 +103,6 @@ public class FollowMouse : MonoBehaviour
                 randomIndex = Random.Range(0, motifNames.Length - 3);
                 namaMotif = motifNames[randomIndex];
             }
-
-
         }
         else if (dayManager.day < 5)
         {
@@ -131,6 +129,21 @@ public class FollowMouse : MonoBehaviour
         {
             imagePrefab = imagePrefabs[1];
             imageMotif.GetComponent<Image>().sprite = spriteMotif[1];
+        }
+        else if (namaMotif == "truntum")
+        {
+            imagePrefab = imagePrefabs[2];
+            imageMotif.GetComponent<Image>().sprite = spriteMotif[2];
+        }
+        else if (namaMotif == "parang")
+        {
+            imagePrefab = imagePrefabs[3];
+            imageMotif.GetComponent<Image>().sprite = spriteMotif[3];
+        }
+        else if (namaMotif == "simbut")
+        {
+            imagePrefab = imagePrefabs[4];
+            imageMotif.GetComponent<Image>().sprite = spriteMotif[4];
         }
     }
 

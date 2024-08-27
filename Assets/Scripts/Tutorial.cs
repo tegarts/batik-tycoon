@@ -27,6 +27,7 @@ public class Tutorial : MonoBehaviour
     public int index;
     [Header("UI References")]
     [SerializeField] GameObject PlayerArea;
+    [SerializeField] GameObject playerChildArea;
     [SerializeField] GameObject WorkerArea;
     [SerializeField] GameObject workerChildArea;
 
@@ -45,7 +46,8 @@ public class Tutorial : MonoBehaviour
             isStartTutor = true;
             panelTutorial.SetActive(true);
             PlayerArea.GetComponent<Image>().enabled = false;
-            WorkerArea.GetComponent<Image>().enabled = false;;
+            playerChildArea.GetComponent<Image>().enabled = false;
+            WorkerArea.GetComponent<Image>().enabled = false;
             workerChildArea.GetComponent<Image>().enabled = false;
         }
         else
@@ -94,6 +96,7 @@ public class Tutorial : MonoBehaviour
                 isStepDone[1] = true;
                 isNpcIn = true;
                 PlayerArea.GetComponent<Image>().enabled = false;
+                playerChildArea.GetComponent<Image>().enabled = false;
                 WorkerArea.GetComponent<Image>().enabled = true;
                 workerChildArea.GetComponent<Image>().enabled = true;
                 
@@ -105,6 +108,7 @@ public class Tutorial : MonoBehaviour
                 StartCoroutine(TypeLine());
                 isStepDone[2] = true;
                 PlayerArea.GetComponent<Image>().enabled = true;
+                playerChildArea.GetComponent<Image>().enabled = true;
             }
 
             if (workspaceManager.motifUnlocked == 1 && !isStepDone[3])
@@ -160,6 +164,7 @@ public class Tutorial : MonoBehaviour
         {
             index++;
             PlayerArea.GetComponent<Image>().enabled = true;
+            playerChildArea.GetComponent<Image>().enabled = true;
             panelTutorial.SetActive(false);
         }
         else if (index <= 6)
@@ -238,6 +243,7 @@ public class Tutorial : MonoBehaviour
         panelTutorial.SetActive(false);
         panelSkipConfirmation.SetActive(false);
         PlayerArea.GetComponent<Image>().enabled = true;
+        playerChildArea.GetComponent<Image>().enabled = true;
         WorkerArea.GetComponent<Image>().enabled = true;
         workerChildArea.GetComponent<Image>().enabled = true;
         isStartTutor = false;

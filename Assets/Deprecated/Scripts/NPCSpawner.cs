@@ -10,8 +10,7 @@ public class NPCSpawner : MonoBehaviour
     AdvertisingManager advertisingManager;
 
     private Coroutine spawnCoroutine;
-    private int lastHour;
-    private int lastMinute;
+
     private int lastSpawnTimeInMinutes;
     AudioManager audioManager;
 
@@ -20,8 +19,8 @@ public class NPCSpawner : MonoBehaviour
         timeManager = FindAnyObjectByType<TimeManager>();
         advertisingManager = FindAnyObjectByType<AdvertisingManager>();
         audioManager = FindAnyObjectByType<AudioManager>();
-        lastHour = 8;
-        lastMinute = 0;
+        // lastHour = 8;
+        // lastMinute = 0;
         lastSpawnTimeInMinutes = 8 * 60;
     }
 
@@ -90,7 +89,7 @@ public class NPCSpawner : MonoBehaviour
         }
         else
         {
-            lastHour = 8;
+            // lastHour = 8;
             lastSpawnTimeInMinutes = 8 * 60;
         }
 
