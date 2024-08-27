@@ -38,7 +38,7 @@ public class DayManager : MonoBehaviour, IDataPersistence
         if(dayIsStarted)
         {
             bookMenuButton.SetActive(false);
-            bookMenu.bookPanel.SetActive(false);
+            bookMenu.CloseBook();
             dayTextHUD.text = "Hari ke-" + day;
         }
         else
