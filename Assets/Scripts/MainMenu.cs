@@ -114,6 +114,7 @@ public class MainMenu : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         Debug.Log("Ganti Scene");
+        SceneManager.LoadScene("New Mechanic");
     }
 
     private IEnumerator SFXLight(float delay)
