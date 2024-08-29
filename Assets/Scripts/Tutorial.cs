@@ -30,6 +30,9 @@ public class Tutorial : MonoBehaviour
     [SerializeField] GameObject playerChildArea;
     [SerializeField] GameObject WorkerArea;
     [SerializeField] GameObject workerChildArea;
+    [SerializeField] Animator animPanelTutor;
+    [SerializeField] Animator animPopUp;
+    [SerializeField] GameObject buttonStartDay;
 
     private void Start()
     {
@@ -141,6 +144,7 @@ public class Tutorial : MonoBehaviour
     {
         if (index < 2)
         {
+            buttonStartDay.SetActive(false);
             index++;
             textComponent.text = string.Empty;
             StartCoroutine(TypeLine());
@@ -165,12 +169,12 @@ public class Tutorial : MonoBehaviour
             index++;
             PlayerArea.GetComponent<Image>().enabled = true;
             playerChildArea.GetComponent<Image>().enabled = true;
-            panelTutorial.SetActive(false);
+            CloseTutorial();
         }
         else if (index <= 6)
         {
             index++;
-            panelTutorial.SetActive(false);
+            CloseTutorial();
         }
         else if (index == 7)
         {
@@ -181,51 +185,17 @@ public class Tutorial : MonoBehaviour
         else if (index == 8)
         {
             index++;
-            panelTutorial.SetActive(false);
+            CloseTutorial();
             isStepDone[4] = true;
         }
         else if (index == 9)
         {
-            panelTutorial.SetActive(false);
+            CloseTutorial();
+            buttonStartDay.SetActive(true);
             isAlreadyTutor = true;
             isStartTutor = false;
         }
-        // else if (index == 5)
-        // {
-        //     index++;
-        //     panelTutorial.SetActive(false);
-        // }
-        // else if(index == 6)
-        // {
-        //     index++;
-        //     panelTutorial.SetActive(false);
-        // }
-        // else if(index == 6)
-        // {
-        //     index++;
-        //     textComponent.text = string.Empty;
-        //     indicatorMoney.SetActive(false);
-        //     indicatorUpgrade.SetActive(true);
-        //     isOpenUpgrade = true;
-        //     StartCoroutine(TypeLine());
-        // }
-        // else if(index == 7)
-        // {
-        //     index++;
-        //     gameObject.SetActive(false);
-        // }
-        // else if(index == 8)
-        // {
-        //     index++;
-        //     textComponent.text = string.Empty;
-        //     StartCoroutine(TypeLine());
-
-        // }
-        // else if(index == 9)
-        // {
-        //     gameObject.SetActive(false);
-        //     isStartTutor = false;
-        // }
+        
     }
 
     public void SkipOpenConfirmation()
@@ -235,18 +205,38 @@ public class Tutorial : MonoBehaviour
 
     public void SkipCloseConfirmation()
     {
-        panelSkipConfirmation.SetActive(false);
+        buttonStartDay.SetActive(true);
+        StartCoroutine(ClosePopUp());
     }
 
     public void SkipTutorial()
     {
-        panelTutorial.SetActive(false);
-        panelSkipConfirmation.SetActive(false);
+        SkipCloseConfirmation();
+        CloseTutorial();
         PlayerArea.GetComponent<Image>().enabled = true;
         playerChildArea.GetComponent<Image>().enabled = true;
         WorkerArea.GetComponent<Image>().enabled = true;
         workerChildArea.GetComponent<Image>().enabled = true;
         isStartTutor = false;
         isAlreadyTutor = true;
+    }
+
+    private void CloseTutorial()
+    {
+        StartCoroutine(CloseTutorialAnim());
+    }
+
+    IEnumerator CloseTutorialAnim()
+    {
+        animPanelTutor.SetTrigger("IsEnd");
+        yield return new WaitForSeconds(0.25f);
+        panelTutorial.SetActive(false);
+    }
+
+    IEnumerator ClosePopUp()
+    {
+        animPopUp.SetTrigger("IsEnd");
+        yield return new WaitForSeconds(0.25f);
+        panelSkipConfirmation.SetActive(false);
     }
 }
