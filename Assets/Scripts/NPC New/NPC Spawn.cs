@@ -97,7 +97,7 @@ public class NPCSpawn : MonoBehaviour
         isSpawning = false;
         dayManager.dayIsStarted = false;
         isInitialized = false;
-        bookMenu.bookPanel.SetActive(true);
+        bookMenu.OpenBook();
     }
 
     void SpawnNPC()
@@ -123,7 +123,7 @@ public class NPCSpawn : MonoBehaviour
         activeNPCs.Add(npcBehav);
         npcBehav.OnNPCReturned += HandleNPCReturned;
 
-        npcCountText.text = totalNPC + " Pembeli";
+        npcCountText.text = totalNPC.ToString();
 
         // if (!tutorial.isStartTutor)
         // {

@@ -16,46 +16,49 @@ public class Workspace : MonoBehaviour
     public delegate void WorkspaceEvent();
     public event WorkspaceEvent OnWorkspaceCompleted;
     public int level_workspace = 1;
+    [SerializeField] GameObject vfx_workspace;
 
     private void Start()
     {
-        if(progresImage != null)
+        if (progresImage != null)
         {
             progresImage.SetActive(false);
         }
 
         money = FindObjectOfType<Money>();
-        if(level_workspace == 1)
+        if (level_workspace == 1)
         {
             progresTime = 15;
         }
-        else if(level_workspace == 2)
+        else if (level_workspace == 2)
         {
             progresTime = 13;
         }
-        else if(level_workspace == 3)
+        else if (level_workspace == 3)
         {
             progresTime = 11;
         }
-        else if(level_workspace == 4)
+        else if (level_workspace == 4)
         {
             progresTime = 9;
         }
-        else if(level_workspace == 5)
+        else if (level_workspace == 5)
         {
             progresTime = 7;
         }
+
+        vfx_workspace.SetActive(false);
     }
 
     private void Update()
     {
-            if(isStartAuto)
-            {
-                isStartAuto = false;
-                StartCoroutine(StartAutomation());
-            }
-            
-    }    
+        if (isStartAuto)
+        {
+            isStartAuto = false;
+            StartCoroutine(StartAutomation());
+        }
+
+    }
 
     IEnumerator StartAutomation()
     {
@@ -64,6 +67,8 @@ public class Workspace : MonoBehaviour
         float elapsedTime = 0f;
         progresImage.GetComponent<Image>().fillAmount = 1;
         progresImage.SetActive(true);
+
+        vfx_workspace.SetActive(true);
 
         while (elapsedTime < waitTime)
         {
@@ -78,6 +83,8 @@ public class Workspace : MonoBehaviour
         isOnProgress = false;
         money.AddMoney(batikPrice);
         Daily.instance.dailyIncome += batikPrice;
+
+        vfx_workspace.SetActive(false);
     }
 
     public void SetupAssignArea(Canvas canvas, Camera camera)

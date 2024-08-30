@@ -182,6 +182,11 @@ public class Daily : MonoBehaviour
             animReaction.gameObject.SetActive(true);
             animReaction.SetBool("IsStart", true);
         }
+        else
+        {
+            animReaction.gameObject.SetActive(true);
+            animReaction.SetBool("IsStart", true);
+        }
 
     }
 

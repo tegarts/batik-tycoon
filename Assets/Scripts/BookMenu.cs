@@ -14,7 +14,7 @@ public class BookMenu : MonoBehaviour
     [SerializeField] GameObject moneyBox;
     public Animator animBook;
 
-    private void Start() 
+    private void Start()
     {
         bookPanel.SetActive(false);
         buttonReportPanel.SetActive(false);
@@ -23,6 +23,7 @@ public class BookMenu : MonoBehaviour
     }
     public void OpenBook()
     {
+        Debug.Log("test");
         bookPanel.SetActive(true);
         reportPanel.SetActive(true);
         buttonReportPanel.SetActive(false);
@@ -80,10 +81,11 @@ public class BookMenu : MonoBehaviour
 
     IEnumerator CloseBookDelay()
     {
+        Debug.Log("belum mulai");
         animBook.SetTrigger("IsEnd");
         yield return new WaitForSeconds(0.25f);
         bookPanel.SetActive(false);
-        reportPanel.SetActive(false);
+        Debug.Log("selesai");
     }
-    
+
 }

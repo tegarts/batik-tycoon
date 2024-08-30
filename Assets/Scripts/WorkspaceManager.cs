@@ -1,14 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WorkspaceManager : MonoBehaviour, IDataPersistence
 {
     [Header("User Interface")]
     [SerializeField] private Camera cam;
     [SerializeField] private Canvas canvasWorldSpace;
-    [SerializeField] GameObject bookPanel;
+    [SerializeField] Button[] unlocks;
+    [SerializeField] GameObject[] textUnlocks;
+    [SerializeField] GameObject[] textOwned;
+    [SerializeField] GameObject panelNotif;
+    [SerializeField] Animator animNotif;
+    [SerializeField] TMP_Text notifText;
+
 
     [Header("General")]
     public int motifUnlocked;
@@ -27,6 +35,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
 
     [Header("Reference")]
     Money money;
+    BookMenu bookMenu;
 
     public void LoadData(GameData data)
     {
@@ -47,6 +56,79 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
             currentUpgradeLevel[i] = 1; // TODO - Nanti ganti ambil data dari datapersistence
         }
         EnableWorkspace();
+
+        bookMenu = FindAnyObjectByType<BookMenu>();
+
+        if (motifUnlocked == 0)
+        {
+            for (int i = 0; i < unlocks.Length; i++)
+            {
+                unlocks[i].interactable = true;
+                textUnlocks[i].SetActive(true);
+                textOwned[i].SetActive(false);
+
+                textUnlocks[i].GetComponentInChildren<TMP_Text>().text = PriceCount(workspacePrice[i]);
+            }
+        }
+        else if (motifUnlocked == 1)
+        {
+            unlocks[0].interactable = false;
+            textUnlocks[0].SetActive(false);
+            textOwned[0].SetActive(true);
+
+            for (int i = 1; i < unlocks.Length; i++)
+            {
+                unlocks[i].interactable = true;
+                textUnlocks[i].SetActive(true);
+                textOwned[i].SetActive(false);
+
+                textUnlocks[i].GetComponentInChildren<TMP_Text>().text = PriceCount(workspacePrice[i]);
+            }
+        }
+        else if (motifUnlocked == 2)
+        {
+            unlocks[0].interactable = false;
+            textUnlocks[0].SetActive(false);
+            textOwned[0].SetActive(true);
+            unlocks[1].interactable = false;
+            textUnlocks[1].SetActive(false);
+            textOwned[1].SetActive(true);
+
+            for (int i = 2; i < unlocks.Length; i++)
+            {
+                unlocks[i].interactable = true;
+                textUnlocks[i].SetActive(true);
+                textOwned[i].SetActive(false);
+
+                textUnlocks[i].GetComponentInChildren<TMP_Text>().text = PriceCount(workspacePrice[i]);
+            }
+        }
+        else if (motifUnlocked == 3)
+        {
+            unlocks[0].interactable = false;
+            textUnlocks[0].SetActive(false);
+            textOwned[0].SetActive(true);
+            unlocks[1].interactable = false;
+            textUnlocks[1].SetActive(false);
+            textOwned[1].SetActive(true);
+            unlocks[2].interactable = false;
+            textUnlocks[2].SetActive(false);
+            textOwned[2].SetActive(true);
+
+            unlocks[4].interactable = true;
+            textUnlocks[4].SetActive(true);
+            textOwned[4].SetActive(false);
+            textUnlocks[4].GetComponentInChildren<TMP_Text>().text = PriceCount(workspacePrice[4]);
+        }
+        else if (motifUnlocked == 4)
+        {
+            for (int i = 0; i < unlocks.Length; i++)
+            {
+                unlocks[i].interactable = false;
+                textUnlocks[i].SetActive(false);
+                textOwned[i].SetActive(true);
+            }
+        }
     }
 
     private void EnableWorkspace()
@@ -70,19 +152,25 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
             {
                 if (money.CanAfford(workspacePrice[0]))
                 {
+                    unlocks[0].interactable = false;
+                    textUnlocks[0].SetActive(false);
+                    textOwned[0].SetActive(true);
+
                     money.ReduceMoney(workspacePrice[0]);
                     motifUnlocked = 1;
                     EnableWorkspace();
-                    CloseBookPanel();
+                    bookMenu.CloseBook();
                 }
                 else
                 {
-                    Debug.Log("Uang kurang");
+                    notifText.text = "Uang tidak cukup untuk melakukan unlock workspace motif megamendung";
+                    ShowNotif();
                 }
             }
             else
             {
-                Debug.Log("Set button uninteracable atau semacamnya, karena player sudah unlock motif ini");
+                notifText.text = "Unlock workspace motif sebelumnya terlebih dahulu";
+                ShowNotif();
             }
         }
         else if (level == 3)
@@ -91,19 +179,25 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
             {
                 if (money.CanAfford(workspacePrice[1]))
                 {
+                    unlocks[1].interactable = false;
+                    textUnlocks[1].SetActive(false);
+                    textOwned[1].SetActive(true);
+
                     money.ReduceMoney(workspacePrice[1]);
                     motifUnlocked = 2;
                     EnableWorkspace();
-                    CloseBookPanel();
+                    bookMenu.CloseBook();
                 }
                 else
                 {
-                    Debug.Log("Uang kurang");
+                    notifText.text = "Uang tidak cukup untuk melakukan unlock workspace motif truntum";
+                    ShowNotif();
                 }
             }
             else
             {
-                Debug.Log("Set button uninteracable atau semacamnya, karena player sudah unlock motif ini");
+                notifText.text = "Unlock workspace motif sebelumnya terlebih dahulu";
+                ShowNotif();
             }
         }
         else if (level == 4)
@@ -112,19 +206,25 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
             {
                 if (money.CanAfford(workspacePrice[2]))
                 {
+                    unlocks[2].interactable = false;
+                    textUnlocks[2].SetActive(false);
+                    textOwned[2].SetActive(true);
+
                     money.ReduceMoney(workspacePrice[2]);
                     motifUnlocked = 3;
                     EnableWorkspace();
-                    CloseBookPanel();
+                    bookMenu.CloseBook();
                 }
                 else
                 {
-                    Debug.Log("Uang kurang");
+                    notifText.text = "Uang tidak cukup untuk melakukan unlock workspace motif parang";
+                    ShowNotif();
                 }
             }
             else
             {
-                Debug.Log("Set button uninteracable atau semacamnya, karena player sudah unlock motif ini");
+                notifText.text = "Unlock workspace motif sebelumnya terlebih dahulu";
+                ShowNotif();
             }
         }
         if (level == 5)
@@ -133,19 +233,25 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
             {
                 if (money.CanAfford(workspacePrice[3]))
                 {
+                    unlocks[3].interactable = false;
+                    textUnlocks[3].SetActive(false);
+                    textOwned[3].SetActive(true);
+
                     money.ReduceMoney(workspacePrice[3]);
                     motifUnlocked = 4;
                     EnableWorkspace();
-                    CloseBookPanel();
+                    bookMenu.CloseBook();
                 }
                 else
                 {
-                    Debug.Log("Uang kurang");
+                    notifText.text = "Uang tidak cukup untuk melakukan unlock workspace motif simbut";
+                    ShowNotif();
                 }
             }
             else
             {
-                Debug.Log("Set button uninteracable atau semacamnya, karena player sudah unlock motif ini");
+                notifText.text = "Unlock workspace motif sebelumnya terlebih dahulu";
+                ShowNotif();
             }
         }
     }
@@ -169,15 +275,15 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                         currentUpgradeLevel[workspaceIndex] = upgradeLevel;
                         workspace.level_workspace = upgradeLevel;
                         Debug.Log($"Workspace {workspaceIndex + 1} upgraded to level {upgradeLevel} with new progress time: {newProgresTime} seconds.");
-                        CloseBookPanel();
+                        bookMenu.CloseBook();
                     }
                     else
                     {
-                        Debug.LogWarning("Not enough money to upgrade workspace.");
+                        ShowNotif();
                         return;
                     }
                 }
-                else if(workspaceIndex == 1)
+                else if (workspaceIndex == 1)
                 {
                     if (money.CanAfford(upgradePrice2[upgradeLevel - 1]))
                     {
@@ -187,15 +293,15 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                         currentUpgradeLevel[workspaceIndex] = upgradeLevel;
                         workspace.level_workspace = upgradeLevel;
                         Debug.Log($"Workspace {workspaceIndex + 1} upgraded to level {upgradeLevel} with new progress time: {newProgresTime} seconds.");
-                        CloseBookPanel();
+                        bookMenu.CloseBook();
                     }
                     else
                     {
-                        Debug.LogWarning("Not enough money to upgrade workspace.");
+                        ShowNotif();
                         return;
                     }
                 }
-                else if(workspaceIndex == 1)
+                else if (workspaceIndex == 1)
                 {
                     if (money.CanAfford(upgradePrice2[upgradeLevel - 1]))
                     {
@@ -205,15 +311,15 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                         currentUpgradeLevel[workspaceIndex] = upgradeLevel;
                         workspace.level_workspace = upgradeLevel;
                         Debug.Log($"Workspace {workspaceIndex + 1} upgraded to level {upgradeLevel} with new progress time: {newProgresTime} seconds.");
-                        CloseBookPanel();
+                        bookMenu.CloseBook();
                     }
                     else
                     {
-                        Debug.LogWarning("Not enough money to upgrade workspace.");
+                        ShowNotif();
                         return;
                     }
                 }
-                else if(workspaceIndex == 2)
+                else if (workspaceIndex == 2)
                 {
                     if (money.CanAfford(upgradePrice3[upgradeLevel - 1]))
                     {
@@ -223,15 +329,15 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                         currentUpgradeLevel[workspaceIndex] = upgradeLevel;
                         workspace.level_workspace = upgradeLevel;
                         Debug.Log($"Workspace {workspaceIndex + 1} upgraded to level {upgradeLevel} with new progress time: {newProgresTime} seconds.");
-                        CloseBookPanel();
+                        bookMenu.CloseBook();
                     }
                     else
                     {
-                        Debug.LogWarning("Not enough money to upgrade workspace.");
+                        ShowNotif();
                         return;
                     }
                 }
-                else if(workspaceIndex == 3)
+                else if (workspaceIndex == 3)
                 {
                     if (money.CanAfford(upgradePrice4[upgradeLevel - 1]))
                     {
@@ -241,15 +347,15 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                         currentUpgradeLevel[workspaceIndex] = upgradeLevel;
                         workspace.level_workspace = upgradeLevel;
                         Debug.Log($"Workspace {workspaceIndex + 1} upgraded to level {upgradeLevel} with new progress time: {newProgresTime} seconds.");
-                        CloseBookPanel();
+                        bookMenu.CloseBook();
                     }
                     else
                     {
-                        Debug.LogWarning("Not enough money to upgrade workspace.");
+                        ShowNotif();
                         return;
                     }
                 }
-                else if(workspaceIndex == 4)
+                else if (workspaceIndex == 4)
                 {
                     if (money.CanAfford(upgradePrice5[upgradeLevel - 1]))
                     {
@@ -259,11 +365,11 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                         currentUpgradeLevel[workspaceIndex] = upgradeLevel;
                         workspace.level_workspace = upgradeLevel;
                         Debug.Log($"Workspace {workspaceIndex + 1} upgraded to level {upgradeLevel} with new progress time: {newProgresTime} seconds.");
-                        CloseBookPanel();
+                        bookMenu.CloseBook();
                     }
                     else
                     {
-                        Debug.LogWarning("Not enough money to upgrade workspace.");
+                        ShowNotif();
                         return;
                     }
                 }
@@ -279,8 +385,29 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
         }
     }
 
-    private void CloseBookPanel()
+    private string PriceCount(int price)
     {
-        bookPanel.SetActive(false);
+        if (price < 1000)
+        {
+            return ((int)price).ToString() + "rb";
+        }
+        else
+        {
+            return ((float)price / 1000f).ToString("0.##") + "Jt";
+        }
+    }
+
+    public void ShowNotif()
+    {
+        StartCoroutine(ShowNotifDelay());
+    }
+
+    IEnumerator ShowNotifDelay()
+    {
+        panelNotif.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        animNotif.SetTrigger("IsEnd");
+        yield return new WaitForSeconds(0.5f);
+        panelNotif.SetActive(false);
     }
 }
