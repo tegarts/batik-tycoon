@@ -22,6 +22,7 @@ public class Workspace : MonoBehaviour, IDataPersistence
     public int level_workspace; // TODO - baca dari data player
     [SerializeField] GameObject vfx_workspace;
     Tutorial tutorial;
+    [SerializeField] GameObject[] workers;
 
     public void LoadData(GameData data)
     {
@@ -83,6 +84,13 @@ public class Workspace : MonoBehaviour, IDataPersistence
             level_workspace = 1;
         }
 
+        for(int i = 0; i < workers.Length; i++)
+        {
+            workers[i].SetActive(false);
+        }
+
+        workers[0].SetActive(true);
+
         money = FindObjectOfType<Money>();
         if (level_workspace == 1)
         {
@@ -141,6 +149,42 @@ public class Workspace : MonoBehaviour, IDataPersistence
 
         while (elapsedTime < waitTime)
         {
+            float enableNPC = waitTime / 5;
+            float enableNPC1 = enableNPC * 2;
+            float enableNPC2 = enableNPC * 3;
+            float enableNPC3 = enableNPC * 4;
+
+            if(elapsedTime < enableNPC)
+            {
+                workers[0].SetActive(false);
+                workers[1].SetActive(true);
+            }
+            else if(elapsedTime < enableNPC1) // 3+
+            {
+                workers[1].SetActive(false);
+                workers[2].SetActive(true);
+            }
+            else if(elapsedTime < enableNPC2) // 6+
+            {
+                workers[2].SetActive(false);
+                workers[3].SetActive(true);
+            }
+            else if(elapsedTime < enableNPC3) // 9+
+            {
+                workers[3].SetActive(false);
+                workers[4].SetActive(true);
+            }
+            else if(elapsedTime >= enableNPC3 && elapsedTime <= waitTime) // 12
+            {
+                workers[4].SetActive(false);
+                workers[5].SetActive(true);
+            }
+            else
+            {
+                workers[5].SetActive(false);
+                workers[0].SetActive(true);
+            }
+
             elapsedTime += Time.deltaTime;
             progresImage.GetComponent<Image>().fillAmount = Mathf.Clamp01(1 - (elapsedTime / waitTime));
             yield return null;
@@ -152,6 +196,9 @@ public class Workspace : MonoBehaviour, IDataPersistence
         isOnProgress = false;
         money.AddMoney(batikPrice);
         Daily.instance.dailyIncome += batikPrice;
+
+        workers[5].SetActive(false);
+        workers[0].SetActive(true);
 
         vfx_workspace.SetActive(false);
     }

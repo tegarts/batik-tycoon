@@ -8,6 +8,7 @@ using Image = UnityEngine.UI.Image;
 
 public class NPCBehav : MonoBehaviour
 {
+    [SerializeField] int indexKarakter;
     public Transform[] waypoints;
     [SerializeField] int index = 0;
     public float speed;
@@ -132,10 +133,10 @@ public class NPCBehav : MonoBehaviour
                     // }
                     if (isEventWorkspaceTriggered)
                     {
-                        
+
                         if (timePassed >= 10f)
                         {
-                            
+
                             reactionBubble.GetComponent<Image>().sprite = reactions[1];
                             reactionBubble.SetActive(true);
                             if (!isAddFlatReaction)
@@ -143,28 +144,42 @@ public class NPCBehav : MonoBehaviour
                                 Daily.instance.IncreaseProgress(15);
                                 Daily.instance.flatReaction++;
                                 anim.SetBool("IsFlat", true);
-                            StartCoroutine(DisplayReaction("IsFlat"));
+                                StartCoroutine(DisplayReaction("IsFlat"));
                                 isAddFlatReaction = true;
                             }
                         }
                         else
                         {
-                         
+
                             reactionBubble.GetComponent<Image>().sprite = reactions[0];
                             reactionBubble.SetActive(true);
                             if (!isAddHappyReaction)
                             {
                                 Daily.instance.IncreaseProgress(20);
                                 Daily.instance.happyReaction++;
-                                   anim.SetBool("IsHappy", true);
-                            StartCoroutine(DisplayReaction("IsHappy"));
+                                if(indexKarakter == 1)
+                                {
+                                    anim.SetBool("IsHappyPunk", true);
+                                    StartCoroutine(DisplayReaction("IsHappyPunk"));
+                                }
+                                else if(indexKarakter == 2)
+                                {
+                                    anim.SetBool("IsHappyMan", true);
+                                    StartCoroutine(DisplayReaction("IsHappyMan"));
+                                }
+                                else
+                                {
+                                    anim.SetBool("IsHappy", true);
+                                    StartCoroutine(DisplayReaction("IsHappy"));
+                                }
+                                
                                 isAddHappyReaction = true;
                             }
                         }
                     }
-                    
+
                 }
-                else if(isEventRightManualTriggered)
+                else if (isEventRightManualTriggered)
                 {
                     drawing = FindAnyObjectByType<Drawing>();
                     if (drawing != null)
@@ -183,8 +198,22 @@ public class NPCBehav : MonoBehaviour
                             {
                                 Daily.instance.IncreaseProgress(25);
                                 Daily.instance.happyReaction++;
-                                anim.SetBool("IsHappy", true);
-                                StartCoroutine(DisplayReaction("IsHappy"));
+                                if(indexKarakter == 1)
+                                {
+                                    anim.SetBool("IsHappyPunk", true);
+                                    StartCoroutine(DisplayReaction("IsHappyPunk"));
+                                }
+                                else if(indexKarakter == 2)
+                                {
+                                    anim.SetBool("IsHappyMan", true);
+                                    StartCoroutine(DisplayReaction("IsHappyMan"));
+                                }
+                                else
+                                {
+                                    anim.SetBool("IsHappy", true);
+                                    StartCoroutine(DisplayReaction("IsHappy"));
+                                }
+
                                 isAddHappyReaction = true;
                             }
                         }
@@ -208,24 +237,42 @@ public class NPCBehav : MonoBehaviour
                             if (!isAddAngryReaction)
                             {
                                 Daily.instance.angryReaction++;
-                                anim.SetBool("IsAngry", true);
-                                StartCoroutine(DisplayReaction("IsAngry"));
+                                if (indexKarakter == 0)
+                                {
+                                    anim.SetBool("IsAngryGirl", true);
+                                    StartCoroutine(DisplayReaction("IsAngryGirl"));
+                                }
+                                else
+                                {
+                                    anim.SetBool("IsAngry", true);
+                                    StartCoroutine(DisplayReaction("IsAngry"));
+                                }
+
                                 isAddAngryReaction = true;
                             }
                         }
                     }
-                    
+
                 }
                 else if (isEventWrongTriggered)
                 {
-                   
+
                     reactionBubble.GetComponent<Image>().sprite = reactions[2];
                     reactionBubble.SetActive(true);
                     if (!isAddAngryReaction)
                     {
                         Daily.instance.angryReaction++;
-                         anim.SetBool("IsAngry", true);
-                    StartCoroutine(DisplayReaction("IsAngry"));
+                        if (indexKarakter == 0)
+                        {
+                            anim.SetBool("IsAngryGirl", true);
+                            StartCoroutine(DisplayReaction("IsAngryGirl"));
+                        }
+                        else
+                        {
+                            anim.SetBool("IsAngry", true);
+                            StartCoroutine(DisplayReaction("IsAngry"));
+                        }
+                        
                         isAddAngryReaction = true;
                     }
                 }
@@ -237,8 +284,17 @@ public class NPCBehav : MonoBehaviour
                     if (!isAddAngryReaction)
                     {
                         Daily.instance.angryReaction++;
-                        anim.SetBool("IsAngry", true);
-                    StartCoroutine(DisplayReaction("IsAngry"));
+                        if (indexKarakter == 0)
+                        {
+                            anim.SetBool("IsAngryGirl", true);
+                            StartCoroutine(DisplayReaction("IsAngryGirl"));
+                        }
+                        else
+                        {
+                            anim.SetBool("IsAngry", true);
+                            StartCoroutine(DisplayReaction("IsAngry"));
+                        }
+                        
                         isAddAngryReaction = true;
                     }
                 }
@@ -308,7 +364,7 @@ public class NPCBehav : MonoBehaviour
         {
             Destroy(instantiatedImage);
         }
-        
+
         Animator animator = anim;
         yield return new WaitForSeconds(1.6f);
         animator.SetBool(animBool, false);
@@ -330,20 +386,20 @@ public class NPCBehav : MonoBehaviour
     {
         isWaiting = false;
         isWaitTimeActive = false;
-        
+
         isReversing = !isReversing;
     }
 
     private void FaceLastWaypointOnXAxis()
-{
-    Vector3 lastWaypointPosition = waypoints[waypoints.Length - 1].position;
-    Vector3 directionToFace = lastWaypointPosition - transform.position;
-    directionToFace.y = 0;
-
-    if (directionToFace != Vector3.zero)
     {
-        Quaternion targetRotation = Quaternion.LookRotation(directionToFace);
-        transform.rotation = targetRotation;
+        Vector3 lastWaypointPosition = waypoints[waypoints.Length - 1].position;
+        Vector3 directionToFace = lastWaypointPosition - transform.position;
+        directionToFace.y = 0;
+
+        if (directionToFace != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(directionToFace);
+            transform.rotation = targetRotation;
+        }
     }
-}
 }
