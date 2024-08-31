@@ -22,6 +22,7 @@ public class NPCSpawn : MonoBehaviour
     public int initializeNPC;
     private bool isInitialized;
     public float spawnInterval = 3f;
+    AudioSource bellSpawn;
 
     [Header("UI Related")]
     [SerializeField] TMP_Text npcCountText;
@@ -38,6 +39,7 @@ public class NPCSpawn : MonoBehaviour
     {
         bookMenu = FindAnyObjectByType<BookMenu>();
         tutorial = FindAnyObjectByType<Tutorial>();
+        bellSpawn = this.GetComponent<AudioSource>();
         // StartCoroutine(SpawnNPCsInBatches());
         dayManager = FindAnyObjectByType<DayManager>();
         waypointOptions.Add(waypoints1);
@@ -106,6 +108,7 @@ public class NPCSpawn : MonoBehaviour
         npcPrefab = npcPrefabs[randomIndex];
         GameObject npcObject = Instantiate(npcPrefab, transform.position, Quaternion.Euler(0, 180, 0));
         NPCBehav npcBehav = npcObject.GetComponent<NPCBehav>();
+        bellSpawn.Play();
 
         List<Transform[]> availableWaypoints = new List<Transform[]>(waypointOptions);
         if (lastWaypoints != null)

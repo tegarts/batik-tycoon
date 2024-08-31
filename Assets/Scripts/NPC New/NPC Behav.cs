@@ -41,6 +41,13 @@ public class NPCBehav : MonoBehaviour
     [SerializeField] private Camera cam;
     [SerializeField] private Canvas canvasWorldSpace;
 
+    [Header("SFX & VFX")]
+    [SerializeField] ParticleSystem[] vfxreactions;
+    [SerializeField] AudioSource npcVoice;
+    [SerializeField] private AudioClip happyVoice;
+    [SerializeField] private AudioClip flatVoice;
+    [SerializeField] private AudioClip angryVoice;
+
     void Start()
     {
         tutorial = FindAnyObjectByType<Tutorial>();
@@ -70,6 +77,10 @@ public class NPCBehav : MonoBehaviour
         }
         buttonMotif.SetActive(false);
         reactionBubble.SetActive(false);
+        vfxreactions[0].Stop();
+        vfxreactions[1].Stop();
+        vfxreactions[2].Stop();
+        npcVoice = this.GetComponent<AudioSource>();
 
     }
 
@@ -146,6 +157,8 @@ public class NPCBehav : MonoBehaviour
                                 anim.SetBool("IsFlat", true);
                             StartCoroutine(DisplayReaction("IsFlat"));
                                 isAddFlatReaction = true;
+                                npcVoice.clip = flatVoice;
+                                npcVoice.Play();
                             }
                         }
                         else
@@ -160,6 +173,9 @@ public class NPCBehav : MonoBehaviour
                                    anim.SetBool("IsHappy", true);
                             StartCoroutine(DisplayReaction("IsHappy"));
                                 isAddHappyReaction = true;
+                                vfxreactions[0].Play();
+                                npcVoice.clip = happyVoice;
+                                npcVoice.Play();
                             }
                         }
                     }
@@ -187,6 +203,9 @@ public class NPCBehav : MonoBehaviour
                                 anim.SetBool("IsHappy", true);
                                 StartCoroutine(DisplayReaction("IsHappy"));
                                 isAddHappyReaction = true;
+                                vfxreactions[0].Play();
+                                npcVoice.clip = happyVoice;
+                                npcVoice.Play();
                             }
                         }
                         else if (scoreCanting >= 60)
@@ -200,6 +219,8 @@ public class NPCBehav : MonoBehaviour
                                 anim.SetBool("IsFlat", true);
                                 StartCoroutine(DisplayReaction("IsFlat"));
                                 isAddFlatReaction = true;
+                                npcVoice.clip = flatVoice;
+                                npcVoice.Play();
                             }
                         }
                         else
@@ -212,6 +233,9 @@ public class NPCBehav : MonoBehaviour
                                 anim.SetBool("IsAngry", true);
                                 StartCoroutine(DisplayReaction("IsAngry"));
                                 isAddAngryReaction = true;
+                                vfxreactions[2].Play();
+                                npcVoice.clip = angryVoice;
+                                npcVoice.Play();
                             }
                         }
                     }
@@ -228,6 +252,9 @@ public class NPCBehav : MonoBehaviour
                          anim.SetBool("IsAngry", true);
                     StartCoroutine(DisplayReaction("IsAngry"));
                         isAddAngryReaction = true;
+                        vfxreactions[2].Play();
+                        npcVoice.clip = angryVoice;
+                        npcVoice.Play();
                     }
                 }
                 else if (elapsedTime >= 15f && !tutorial.isStartTutor)
@@ -241,6 +268,9 @@ public class NPCBehav : MonoBehaviour
                         anim.SetBool("IsAngry", true);
                     StartCoroutine(DisplayReaction("IsAngry"));
                         isAddAngryReaction = true;
+                        vfxreactions[2].Play();
+                        npcVoice.clip = angryVoice;
+                        npcVoice.Play();
                     }
                 }
             }
