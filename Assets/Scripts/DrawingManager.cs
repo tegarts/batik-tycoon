@@ -10,6 +10,7 @@ public class DrawingManager : MonoBehaviour
     [SerializeField] GameObject[] motifPanelParangs;
     [SerializeField] GameObject[] motifPanelTruntums;
     [SerializeField] GameObject[] motifPanelSimbuts;
+    [SerializeField] Animator animCanting;
 
     private void Start() 
     {
@@ -38,11 +39,16 @@ public class DrawingManager : MonoBehaviour
 
     public void CanvasController(bool condition)
     {
-        canvasCanting.SetActive(condition);
         Daily.instance.isPanelOn = condition;
 
+        if(condition)
+        {
+            canvasCanting.SetActive(condition);
+        }
         if(!condition)
         {
+            StartCoroutine(CloseCanvasDelay());
+
             for (int i = 0; i < motifPanelKawungs.Length; i++)
             {
                 motifPanelKawungs[i].SetActive(false);
@@ -94,5 +100,14 @@ public class DrawingManager : MonoBehaviour
     {
         int randomIndex = Random.Range(0, motifPanelSimbuts.Length);
         motifPanelSimbuts[randomIndex].SetActive(true);
+    }
+
+    IEnumerator CloseCanvasDelay()
+    {
+        Debug.Log("test sebelum close");
+        animCanting.SetTrigger("IsEnd");
+        yield return new WaitForSeconds(0.15f);
+        canvasCanting.SetActive(false);
+        Debug.Log("test sesudah close");
     }
 }

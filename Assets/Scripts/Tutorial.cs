@@ -4,21 +4,23 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEditor;
+using Unity.VisualScripting;
 
-public class Tutorial : MonoBehaviour
+public class Tutorial : MonoBehaviour, IDataPersistence
 {
     public TextMeshProUGUI textComponent;
     public string[] lines;
     public float textSpeed;
     public bool isStartTutor;
     public bool isOpenUpgrade;
-    public bool isAlreadyTutor; // TODO - tambahin idatapersistence buat simpen ini
+    public bool isAlreadyTutor;
     public GameObject indicatorUpgrade;
     [SerializeField] GameObject indicatorMoney;
     public GameObject panelTutorial;
     [SerializeField] GameObject panelSkipConfirmation;
     public bool[] isStepDone;
     public bool isNpcIn;
+    bool isTyping;
 
     [Header("References")]
     DrawingManager drawingManager;
@@ -33,6 +35,18 @@ public class Tutorial : MonoBehaviour
     [SerializeField] Animator animPanelTutor;
     [SerializeField] Animator animPopUp;
     [SerializeField] GameObject buttonStartDay;
+    [SerializeField] GameObject imagePortrait;
+    [SerializeField] Sprite[] spritePortrait;
+
+    public void LoadData(GameData data)
+    {
+        isAlreadyTutor = data.isAlreadyTutor;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.isAlreadyTutor = isAlreadyTutor;
+    }
 
     private void Start()
     {
@@ -69,15 +83,26 @@ public class Tutorial : MonoBehaviour
             {
                 if (!panelSkipConfirmation.activeSelf)
                 {
-                    if (textComponent.text == lines[index])
-                    {
-                        NextLine();
-                    }
-                    else
+                    if(isTyping)
                     {
                         StopAllCoroutines();
                         textComponent.text = lines[index];
+                        isTyping = false; 
                     }
+                    else
+                    {
+                        NextLine();
+                    }
+                    // if (textComponent.text == lines[index])
+                    // {
+                    //     NextLine();
+                    // }
+                    // else
+                    // {
+                    //     StopAllCoroutines();
+                    //     textComponent.text = lines[index];
+                    //     isInputNotAllowed = false;
+                    // }
                 }
             }
         }
@@ -86,6 +111,7 @@ public class Tutorial : MonoBehaviour
         {
             if (drawingManager.canvasCanting.activeSelf && !isStepDone[0])
             {
+                index = 5;
                 panelTutorial.SetActive(true);
                 textComponent.text = string.Empty;
                 StartCoroutine(TypeLine());
@@ -133,17 +159,29 @@ public class Tutorial : MonoBehaviour
 
     IEnumerator TypeLine()
     {
+        isTyping = true;
         foreach (char c in lines[index].ToCharArray())
         {
             textComponent.text += c;
             yield return new WaitForSeconds(textSpeed);
         }
+        isTyping = false;
     }
 
     void NextLine()
     {
+
         if (index < 2)
         {
+            if(index == 0)
+            {
+                StartCoroutine(ChangeSprite(2));
+            }
+            else if(index == 1)
+            {
+                StartCoroutine(ChangeSprite(1));
+            }
+
             buttonStartDay.SetActive(false);
             index++;
             textComponent.text = string.Empty;
@@ -151,6 +189,7 @@ public class Tutorial : MonoBehaviour
         }
         else if (index == 2)
         {
+            StartCoroutine(ChangeSprite(3));
             Debug.Log("NPC Pembeli Masuk");
             isNpcIn = true;
             index++;
@@ -159,6 +198,7 @@ public class Tutorial : MonoBehaviour
         }
         else if (index == 3)
         {
+            StartCoroutine(ChangeSprite(2));
             index++;
             textComponent.text = string.Empty;
             StartCoroutine(TypeLine());
@@ -166,6 +206,7 @@ public class Tutorial : MonoBehaviour
         }
         else if(index == 4)
         {
+            StartCoroutine(ChangeSprite(5));
             index++;
             PlayerArea.GetComponent<Image>().enabled = true;
             playerChildArea.GetComponent<Image>().enabled = true;
@@ -173,17 +214,27 @@ public class Tutorial : MonoBehaviour
         }
         else if (index <= 6)
         {
+            if(index == 5)
+            {
+                StartCoroutine(ChangeSprite(4));
+            }
+            else if(index == 6)
+            {
+                StartCoroutine(ChangeSprite(1));
+            }
             index++;
             CloseTutorial();
         }
         else if (index == 7)
         {
+            StartCoroutine(ChangeSprite(2));
             index++;
             textComponent.text = string.Empty;
             StartCoroutine(TypeLine());
         }
         else if (index == 8)
         {
+            StartCoroutine(ChangeSprite(4));
             index++;
             CloseTutorial();
             isStepDone[4] = true;
@@ -196,6 +247,13 @@ public class Tutorial : MonoBehaviour
             isStartTutor = false;
         }
         
+    }
+
+    IEnumerator ChangeSprite(int dex)
+    {
+        animPanelTutor.SetTrigger("IsPortrait");
+        yield return new WaitForSeconds(0.25f);
+        imagePortrait.GetComponent<Image>().sprite = spritePortrait[dex];
     }
 
     public void SkipOpenConfirmation()

@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.ComponentModel;
 using System.Diagnostics;
-using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.UI;
 using Image = UnityEngine.UI.Image;
@@ -301,6 +300,15 @@ public class NPCBehav : MonoBehaviour
 
     IEnumerator DisplayReaction(string animBool)
     {
+        if (buttonMotif != null)
+        {
+            buttonMotif.SetActive(false);
+        }
+        if (instantiatedImage != null)
+        {
+            Destroy(instantiatedImage);
+        }
+        
         Animator animator = anim;
         yield return new WaitForSeconds(1.6f);
         animator.SetBool(animBool, false);
@@ -322,14 +330,7 @@ public class NPCBehav : MonoBehaviour
     {
         isWaiting = false;
         isWaitTimeActive = false;
-        if (buttonMotif != null)
-        {
-            buttonMotif.SetActive(false);
-        }
-        if (instantiatedImage != null)
-        {
-            Destroy(instantiatedImage);
-        }
+        
         isReversing = !isReversing;
     }
 
