@@ -16,6 +16,30 @@ public class AudioSetter : MonoBehaviour
     public AudioClip cursorArea;
     public AudioClip openedDoor;
     public AudioClip lightSpread;
+
+    [Header("Audio Clip NPC")]
+    public AudioClip npcHappyGirl;
+    public AudioClip npcFlatGirl;
+    public AudioClip npcAngryGirl;
+    public AudioClip npcHappyBoy;
+    public AudioClip npcFlatBoy;
+    public AudioClip npcAngryBoy;
+    public AudioClip bellEntrance;
+    [Header("Audio Clip Workspace")]
+    public AudioClip desain;
+    public AudioClip canting;
+    public AudioClip mewarnai;
+    public AudioClip menjemur;
+    public AudioClip lorod;
+    public AudioClip angin;
+
+    [Header("Audio Clip Game Result")]
+    public AudioClip gameResult;
+    public AudioClip numberCounter;
+    public AudioClip star;
+    public AudioClip reactions;
+
+    [Header("Other")]
     public static AudioSetter instance;
 
     private void Awake()

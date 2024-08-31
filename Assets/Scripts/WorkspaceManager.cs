@@ -12,7 +12,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
     [SerializeField] private Canvas canvasWorldSpace;
     [SerializeField] GameObject panelNotif;
     [SerializeField] Animator animNotif;
-    [SerializeField] TMP_Text notifText;
+    public TMP_Text notifText;
 
     [Header("Unlock")]
     [SerializeField] Button[] unlocks;

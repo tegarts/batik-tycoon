@@ -42,6 +42,15 @@ public class Daily : MonoBehaviour
     public GameObject panelHUD;
     public bool isPanelOn;
     [SerializeField] Animator animHUD;
+    [SerializeField] Animator animBook;
+    [Header("Audio")]
+    AudioSetter audioSetter;
+
+    private void Awake()
+    {
+        audioSetter = GameObject.FindWithTag("Audio").GetComponent<AudioSetter>();
+    }
+
 
     private void Start()
     {
@@ -137,6 +146,7 @@ public class Daily : MonoBehaviour
     {
         for (int i = 0; i < starCount; i++)
         {
+            audioSetter.PlaySFX(audioSetter.star);
             stars[i].SetActive(true);
             stars[i].GetComponent<Star>().isStarted = true;
             yield return new WaitForSeconds(0.5f);
@@ -151,6 +161,7 @@ public class Daily : MonoBehaviour
         animFontIncome.SetBool("IsStart", true);
         float startValue = 0f;
         float elapsedTime = 0f;
+        audioSetter.PlaySFX(audioSetter.numberCounter);
 
         while (elapsedTime < duration)
         {
@@ -161,13 +172,14 @@ public class Daily : MonoBehaviour
         }
 
         dailyIncomeText.text = FormatMoney(targetValue);
-
+        audioSetter.StopSFX();
         if (progress >= progress80)
         {
             StartCoroutine(ActivateStarsWithDelay(3));
             yield return new WaitForSeconds(1.5f);
             animReaction.gameObject.SetActive(true);
             animReaction.SetBool("IsStart", true);
+            StartCoroutine(StartSFXReaction());
         }
         else if (progress >= progress60)
         {
@@ -175,6 +187,7 @@ public class Daily : MonoBehaviour
             yield return new WaitForSeconds(1f);
             animReaction.gameObject.SetActive(true);
             animReaction.SetBool("IsStart", true);
+            StartCoroutine(StartSFXReaction());
         }
         else if (progress >= progress40)
         {
@@ -182,12 +195,15 @@ public class Daily : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             animReaction.gameObject.SetActive(true);
             animReaction.SetBool("IsStart", true);
+            StartCoroutine(StartSFXReaction());
         }
         else
         {
             animReaction.gameObject.SetActive(true);
             animReaction.SetBool("IsStart", true);
+            StartCoroutine(StartSFXReaction());
         }
+
 
     }
 
@@ -214,6 +230,18 @@ public class Daily : MonoBehaviour
         animHUD.SetTrigger("IsEnd");
         yield return new WaitForSeconds(0.5f);
         panelHUD.SetActive(false);
+    }
+
+    IEnumerator StartSFXReaction()
+    {
+        yield return new WaitForSeconds(0.21f);
+        audioSetter.PlaySFX(audioSetter.reactions);
+        yield return new WaitForSeconds(0.66f);
+        audioSetter.PlaySFX(audioSetter.reactions);
+        yield return new WaitForSeconds(0.66f);
+        audioSetter.PlaySFX(audioSetter.reactions);
+        yield return new WaitForSeconds(0.5f);
+        audioSetter.PlaySFX(audioSetter.gameResult);
     }
 
 }
