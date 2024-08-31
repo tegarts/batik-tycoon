@@ -34,15 +34,21 @@ public class Drawing : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
     [SerializeField] Image filledImage;
     [SerializeField] TMP_Text moneyText;
     [SerializeField] TMP_Text accuracyText;
+    [SerializeField] GameObject canting2D;
+    [SerializeField] GameObject cantingImage;
+    [SerializeField] GameObject blink;
 
 
     private void OnEnable()
     {
         gameObject.GetComponent<Image>().enabled = true;
         gameObject.GetComponent<LineRenderer>().enabled = true;
+        canting2D.SetActive(true);
+        cantingImage.SetActive(true);
         jalurTinta.SetActive(true);
         filledImage.fillAmount = 0;
         isFinish = false;
+        blink.SetActive(false);
     }
     private void Start()
     {
@@ -106,6 +112,7 @@ public class Drawing : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
         {
             Debug.Log("diluar gan");
             scoreCanting -= 5;
+            StartCoroutine(Blink());
         }
         else if (other.gameObject.CompareTag("target"))
         {
@@ -117,6 +124,8 @@ public class Drawing : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
             lineRenderer.SetPosition(0, defalutPosForLineRenderer);
             gameObject.GetComponent<Image>().enabled = false;
             gameObject.GetComponent<LineRenderer>().enabled = false;
+            canting2D.SetActive(false);
+            cantingImage.SetActive(false);
             StartCoroutine(ImageFilled(1.5f));
 
             if (scoreCanting < 0)
@@ -241,8 +250,8 @@ public class Drawing : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
         filledImage.fillAmount = 1;
 
         panelAfterCanting.SetActive(true);
-        moneyText.text = "Rp " + (scoreCanting * 6) +"rb";
-        accuracyText.text = "Akurasi: " + scoreCanting.ToString() + "%";
+        moneyText.text = "Rp " + (scoreCanting * 5) +"rb";
+        accuracyText.text = scoreCanting + "%";
     }
 
     public void ButtonExitFromPanel()
@@ -254,7 +263,14 @@ public class Drawing : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
         panelAfterCanting.SetActive(false);
         drawingManager.CanvasController(false);
         cameraRotation.RotateToA(0f);
-        
+    }
+
+    IEnumerator Blink()
+    {
+        Debug.Log("BLINK");
+        blink.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        blink.SetActive(false);
     }
 
 }

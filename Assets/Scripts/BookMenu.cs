@@ -8,9 +8,11 @@ public class BookMenu : MonoBehaviour
     [SerializeField] GameObject reportPanel;
     [SerializeField] GameObject unlockPanel;
     [SerializeField] GameObject upgradePanel;
+    [SerializeField] GameObject pediaPanel;
     [SerializeField] GameObject buttonReportPanel;
     [SerializeField] GameObject buttonUnlockPanel;
     [SerializeField] GameObject buttonUpgradePanel;
+    [SerializeField] GameObject buttonPediaPanel;
     [SerializeField] GameObject moneyBox;
     public Animator animBook;
 
@@ -20,6 +22,7 @@ public class BookMenu : MonoBehaviour
         buttonReportPanel.SetActive(false);
         buttonUnlockPanel.SetActive(false);
         buttonUpgradePanel.SetActive(false);
+        buttonPediaPanel.SetActive(false);
     }
     public void OpenBook()
     {
@@ -32,6 +35,8 @@ public class BookMenu : MonoBehaviour
         buttonUnlockPanel.SetActive(true);
         upgradePanel.SetActive(false);
         buttonUpgradePanel.SetActive(true);
+        pediaPanel.SetActive(false);
+        buttonPediaPanel.SetActive(true);
         moneyBox.SetActive(false);
     }
 
@@ -47,9 +52,11 @@ public class BookMenu : MonoBehaviour
 
         unlockPanel.SetActive(false);
         upgradePanel.SetActive(false);
+        pediaPanel.SetActive(false);
 
         buttonUnlockPanel.SetActive(true);
         buttonUpgradePanel.SetActive(true);
+        buttonPediaPanel.SetActive(true);
         moneyBox.SetActive(false);
     }
 
@@ -60,9 +67,11 @@ public class BookMenu : MonoBehaviour
 
         reportPanel.SetActive(false);
         upgradePanel.SetActive(false);
+        pediaPanel.SetActive(false);
 
         buttonReportPanel.SetActive(true);
         buttonUpgradePanel.SetActive(true);
+        buttonPediaPanel.SetActive(true);
         moneyBox.SetActive(true);
     }
 
@@ -73,10 +82,27 @@ public class BookMenu : MonoBehaviour
 
         unlockPanel.SetActive(false);
         reportPanel.SetActive(false);
+        pediaPanel.SetActive(false);
 
         buttonReportPanel.SetActive(true);
         buttonUnlockPanel.SetActive(true);
+        buttonPediaPanel.SetActive(true);
         moneyBox.SetActive(true);
+    }
+
+    public void OpenPedia()
+    {
+        pediaPanel.SetActive(true);
+        buttonPediaPanel.SetActive(false);
+
+        unlockPanel.SetActive(false);
+        upgradePanel.SetActive(false);
+        reportPanel.SetActive(false);
+
+        buttonReportPanel.SetActive(true);
+        buttonUnlockPanel.SetActive(true);
+        buttonUpgradePanel.SetActive(true);
+        moneyBox.SetActive(false);
     }
 
     IEnumerator CloseBookDelay()

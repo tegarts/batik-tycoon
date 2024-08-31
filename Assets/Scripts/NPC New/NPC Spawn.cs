@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 
 public class NPCSpawn : MonoBehaviour
 {
@@ -54,7 +55,7 @@ public class NPCSpawn : MonoBehaviour
         if (tutorial.isStartTutor && tutorial.isNpcIn)
         {
             Debug.Log("test");
-            SpawnNPC();
+            SpawnNPCForTutor();
             tutorial.isNpcIn = false;
         }
 
@@ -84,25 +85,49 @@ public class NPCSpawn : MonoBehaviour
 
     IEnumerator SpawnNPCsInBatches()
     {
-        while (totalNPC > 0)
+        // while (totalNPC > 0)
+        // {
+        //     int currentBatchCount = Mathf.Min(npcCount, totalNPC);
+        //     for (int i = 0; i < currentBatchCount; i++)
+        //     {
+        //         totalNPC--;
+        //         SpawnNPC();
+        //         yield return new WaitForSeconds(spawnInterval);
+        //     }
+        //     // totalNPC -= currentBatchCount;
+        //     yield return StartCoroutine(WaitForAllNPCsToReturn());
+        // }
+        // isSpawning = false;
+        // dayManager.dayIsStarted = false;
+        // isInitialized = false;
+        // bookMenu.OpenBook();
+
+        while(totalNPC > 0)
         {
             int currentBatchCount = Mathf.Min(npcCount, totalNPC);
-            for (int i = 0; i < currentBatchCount; i++)
+            List<Transform[]> availableWaypoints = new List<Transform[]>(waypointOptions);
+
+            for(int i = 0; i < currentBatchCount; i++)
             {
+                if(availableWaypoints.Count == 0)
+                {
+                    availableWaypoints = new List<Transform[]>(waypointOptions);
+                }
+
                 totalNPC--;
-                SpawnNPC();
+                SpawnNPC(availableWaypoints);
                 yield return new WaitForSeconds(spawnInterval);
             }
-            // totalNPC -= currentBatchCount;
             yield return StartCoroutine(WaitForAllNPCsToReturn());
         }
+
         isSpawning = false;
         dayManager.dayIsStarted = false;
         isInitialized = false;
         bookMenu.OpenBook();
     }
 
-    void SpawnNPC()
+    void SpawnNPC(List<Transform[]> availableWaypoints)
     {
         int randomIndex = Random.Range(0, npcPrefabs.Length);
         npcPrefab = npcPrefabs[randomIndex];
@@ -110,16 +135,18 @@ public class NPCSpawn : MonoBehaviour
         NPCBehav npcBehav = npcObject.GetComponent<NPCBehav>();
         bellSpawn.Play();
 
-        List<Transform[]> availableWaypoints = new List<Transform[]>(waypointOptions);
-        if (lastWaypoints != null)
-        {
-            availableWaypoints.Remove(lastWaypoints);
-        }
+        // List<Transform[]> availableWaypoints = new List<Transform[]>(waypointOptions);
+        // if (lastWaypoints != null)
+        // {
+        //     availableWaypoints.Remove(lastWaypoints);
+        // }
 
         int waypointSetIndex = Random.Range(0, availableWaypoints.Count);
         Transform[] selectedWaypoints = availableWaypoints[waypointSetIndex];
 
-        lastWaypoints = selectedWaypoints;
+        availableWaypoints.RemoveAt(waypointSetIndex);
+
+        // lastWaypoints = selectedWaypoints;
         npcBehav.waypoints = selectedWaypoints;
         npcBehav.waitTime = waitTime;
 
@@ -133,6 +160,22 @@ public class NPCSpawn : MonoBehaviour
         //     totalNPC--;
         // }
 
+    }
+
+    void SpawnNPCForTutor()
+    {
+        int randomIndex = Random.Range(0, npcPrefabs.Length);
+        npcPrefab = npcPrefabs[randomIndex];
+        GameObject npcObject = Instantiate(npcPrefab, transform.position, Quaternion.Euler(0, 180, 0));
+        NPCBehav npcBehav = npcObject.GetComponent<NPCBehav>();
+
+        npcBehav.waypoints = waypoints1;
+        npcBehav.waitTime = waitTime;
+
+        activeNPCs.Add(npcBehav);
+        npcBehav.OnNPCReturned += HandleNPCReturned;
+
+        npcCountText.text = totalNPC.ToString();
     }
 
     void HandleNPCReturned(NPCBehav npc)

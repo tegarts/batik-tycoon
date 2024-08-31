@@ -41,6 +41,7 @@ public class Daily : MonoBehaviour
     [Header("UI")]
     public GameObject panelHUD;
     public bool isPanelOn;
+    [SerializeField] Animator animHUD;
 
     private void Start()
     {
@@ -102,13 +103,13 @@ public class Daily : MonoBehaviour
             }
             else
             {
-                panelHUD.SetActive(false);
+                closePanelHUD();
             }
 
         }
         else if (!dayManager.dayIsStarted)
         {
-            panelHUD.SetActive(false);
+            // panelHUD.SetActive(false);
             if (dayManager.day == 0)
             {
                 for (int i = 0; i < stars.Length; i++)
@@ -125,7 +126,7 @@ public class Daily : MonoBehaviour
                 happyCount.text = happyReaction.ToString();
                 flatCount.text = flatReaction.ToString();
                 angryCount.text = angryReaction.ToString();
-
+                closePanelHUD();
 
             }
             isStarted = false;
@@ -200,6 +201,19 @@ public class Daily : MonoBehaviour
         {
             return ((float)amount / 1000f).ToString("0.##") + "jt";
         }
+    }
+
+    private void closePanelHUD()
+    {
+        StartCoroutine(ClosePanelHUDDelay());
+    }
+
+    IEnumerator ClosePanelHUDDelay()
+    {
+        Debug.Log("TEST PANEL HUD");
+        animHUD.SetTrigger("IsEnd");
+        yield return new WaitForSeconds(0.5f);
+        panelHUD.SetActive(false);
     }
 
 }

@@ -819,6 +819,7 @@ GameObject:
   - component: {fileID: 1519238909317523975}
   - component: {fileID: 4598059168218562409}
   - component: {fileID: 3190461061797583004}
+  - component: {fileID: 3762458038474388651}
   m_Layer: 5
   m_Name: Chat Bubble
   m_TagString: Untagged
@@ -912,6 +913,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
   Offset: {x: 1, y: 2.7, z: 0}
+--- !u!95 &3762458038474388651
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3474771046596312360}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f845d9c7c339f3a6b8c8025f48e67e61, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3743045761735690072
 GameObject:
   m_ObjectHideFlags: 0
@@ -1779,7 +1801,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e53e0e376eaea62a19a009826620bdec, type: 3}
   - {fileID: 21300000, guid: dc285f690c9f3b9b4a7393cd844d130d, type: 3}
   - {fileID: 21300000, guid: f2c5484cd55a7f6b59682aa4d6fa249e, type: 3}
-  - {fileID: 21300000, guid: d0ff50ba44723274c88831a65b4e3733, type: 3}
+  - {fileID: 21300000, guid: 7d5a6e71f6270cd4999cedcc2ed3702a, type: 3}
   - {fileID: 21300000, guid: b40849b2200f18d7a8ccdc29fcb1d9b4, type: 3}
   workspaceAutomation:
   - {fileID: 0}
@@ -2677,9 +2699,9 @@ MonoBehaviour:
   buttonMotif: {fileID: 0}
   reactionBubble: {fileID: 3474771046596312360}
   reactions:
-  - {fileID: 21300000, guid: 467b48228a11cdf4c86099bac655daf8, type: 3}
-  - {fileID: 21300000, guid: 194016d2b0fcd4300afb851258e74e70, type: 3}
-  - {fileID: 21300000, guid: ff347779afc15e6058f6f4951d7d4200, type: 3}
+  - {fileID: 21300000, guid: 0d93650bb15cd99899874a57e622cd42, type: 3}
+  - {fileID: 21300000, guid: b558bc9a9d0d47f9899a981be7d82454, type: 3}
+  - {fileID: 21300000, guid: 546bb7e0279524426990b96faddd1da7, type: 3}
   cam: {fileID: 0}
   canvasWorldSpace: {fileID: 0}
   vfxreactions:

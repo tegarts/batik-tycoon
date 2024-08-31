@@ -14,6 +14,7 @@ public class DayManager : MonoBehaviour, IDataPersistence
     [SerializeField] GameObject bookMenuButton;
     [SerializeField] TMP_Text dayTextHUD;
     [SerializeField] Animator animBookButton;
+    [SerializeField] TMP_Text buttonText;
 
     [Header("References")]
     BookMenu bookMenu;
@@ -33,6 +34,7 @@ public class DayManager : MonoBehaviour, IDataPersistence
     {
         bookMenu = FindAnyObjectByType<BookMenu>();
         tutorial = FindAnyObjectByType<Tutorial>();
+        buttonText.text = "Mulai Hari ke-" + (day + 1);
     }
 
     private void Update()
@@ -59,6 +61,7 @@ public class DayManager : MonoBehaviour, IDataPersistence
             else
             {
                 bookMenuButton.SetActive(true);
+                buttonText.text = "Mulai hari ke-" + (day + 1);
             }
         }
     }
