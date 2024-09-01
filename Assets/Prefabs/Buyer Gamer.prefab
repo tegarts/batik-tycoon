@@ -1823,7 +1823,7 @@ MonoBehaviour:
   - megamendung
   - truntum
   - parang
-  - sim
+  - simbu
   namaMotif: 
   onProgress: 0
   nPCBehavParent: {fileID: 0}
@@ -2708,10 +2708,6 @@ MonoBehaviour:
   - {fileID: 2970852978960018677}
   - {fileID: 2970852978960018677}
   - {fileID: 19800006, guid: bcaff8fc36e95584bb27cc3cf7c6cb14, type: 3}
-  npcVoice: {fileID: 0}
-  happyVoice: {fileID: 8300000, guid: 4d75bef3e67ecf64985c9045f2274048, type: 3}
-  flatVoice: {fileID: 8300000, guid: eeb9d7dedad36cd4290fbb664e49107a, type: 3}
-  angryVoice: {fileID: 8300000, guid: 3befa307e514f924b9971d9eeb7099cb, type: 3}
 --- !u!1 &8327149905078273513
 GameObject:
   m_ObjectHideFlags: 0

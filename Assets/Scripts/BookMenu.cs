@@ -172,6 +172,10 @@ public class BookMenu : MonoBehaviour
             }
             else
             {
+                detailBatikpedia.SetActive(true);
+                pediaPanel.SetActive(false);
+                imageBatikHeader.sprite = batikHeaders[2];
+                imageBatikInGame.sprite = batikInGame[2];
                 namaBatik.text = "Batik Truntum";
                 detail1.text = "Asal Kota: Surakarta, \n Jawa Tengah, Indonesia";
                 detail2.text = "Batik Truntum melambangkan simbol kasih sayang, kesetiaan, dan keharmonisan. Diciptakan oleh Ratu Kencana pada abad ke-18, motif ini menggambarkan bunga tanjung dan bintang di langit malam sebagai ekspresi cinta yang bersemi kembali setelah diabaikan oleh Sunan Pakubuwana III. Batik Truntum sering digunakan dalam pernikahan Jawa, melambangkan hubungan yang harmonis dan spiritual.";

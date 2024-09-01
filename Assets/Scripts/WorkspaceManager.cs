@@ -654,7 +654,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
         if (workspaceIndex >= 0 && workspaceIndex < workspaces.Length)
         {
             Workspace workspace = workspaces[workspaceIndex].GetComponent<Workspace>();
-            int upgradeLevel = currentUpgradeLevel[workspaceIndex] + 1;
+            int upgradeLevel = (currentUpgradeLevel[workspaceIndex]) + 1;
 
             if (upgradeLevel <= maxUpgradeLevel)
             {

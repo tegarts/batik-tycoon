@@ -5,8 +5,12 @@ using UnityEngine;
 public class CameraRotation : MonoBehaviour
 {
     private Quaternion rotationA = Quaternion.Euler(44.81f, -47f, 0f);
-    private Quaternion rotationB = Quaternion.Euler(0f, 0f, 0f);
+    private Quaternion rotationB = Quaternion.Euler(0f, -180f, 0f);
     private Coroutine rotationCoroutine;
+
+    private void Start() {
+        transform.rotation = rotationA;
+    }
 
     public void RotateToA(float duration)
     {

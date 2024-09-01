@@ -231,7 +231,7 @@ public class Drawing : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
         pointIndex++;
         lineRenderer.positionCount = pointIndex + 1;
         Vector3 currentPos = rectTransform.position;
-        currentPos.z = rectTransform.position.z - 0.1f;
+        currentPos.z = rectTransform.position.z + 0.1f;
 
         lineRenderer.SetPosition(pointIndex, currentPos);
     }

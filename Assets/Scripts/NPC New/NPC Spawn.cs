@@ -33,7 +33,7 @@ public class NPCSpawn : MonoBehaviour
     private bool isSpawning;
     [SerializeField] Tutorial tutorial;
 
-    private List<NPCBehav> activeNPCs = new List<NPCBehav>();
+    [SerializeField] private List<NPCBehav> activeNPCs = new List<NPCBehav>();
     AudioSetter audioSetter;
 
     private void Awake()
@@ -68,6 +68,18 @@ public class NPCSpawn : MonoBehaviour
             if (!isSpawning)
             {
                 totalNPC = npcDayOne + ((dayManager.day - 1) / 2) * 5;
+                if(dayManager.day < 3)
+                {
+                    npcCount = 3;
+                }
+                else if(dayManager.day < 7)
+                {
+                    npcCount = 4;
+                }
+                else
+                {
+                    npcCount = 5;
+                }
                 isSpawning = true;
                 if (!isInitialized)
                 {
@@ -122,6 +134,7 @@ public class NPCSpawn : MonoBehaviour
                 SpawnNPC(availableWaypoints);
                 yield return new WaitForSeconds(spawnInterval);
             }
+
             yield return StartCoroutine(WaitForAllNPCsToReturn());
         }
 
