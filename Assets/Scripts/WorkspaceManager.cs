@@ -23,6 +23,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
     [SerializeField] GameObject[] textUnlocks;
     [SerializeField] GameObject[] textOwned;
     [SerializeField] GameObject[] slotKosong;
+    [SerializeField] GameObject[] vfxUnlock;
 
     [Header("Upgrade")]
     [SerializeField] Button[] upgrades;
@@ -567,6 +568,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                     slotKosong[0].SetActive(false);
                     EnableWorkspace();
                     bookMenu.CloseBook();
+                    StartCoroutine(ShowVfx(1));
 
                     upgrades[1].interactable = true;
                     textUpgrades[1].SetActive(true);
@@ -609,6 +611,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                     slotKosong[1].SetActive(false);
                     EnableWorkspace();
                     bookMenu.CloseBook();
+                    StartCoroutine(ShowVfx(2));
 
                     upgrades[2].interactable = true;
                     textUpgrades[2].SetActive(true);
@@ -649,6 +652,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                     slotKosong[2].SetActive(false);
                     EnableWorkspace();
                     bookMenu.CloseBook();
+                    StartCoroutine(ShowVfx(3));
 
                     upgrades[3].interactable = true;
                     textUpgrades[3].SetActive(true);
@@ -689,6 +693,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                     slotKosong[3].SetActive(false);
                     EnableWorkspace();
                     bookMenu.CloseBook();
+                    StartCoroutine(ShowVfx(4));
 
                     upgrades[4].interactable = true;
                     textUpgrades[4].SetActive(true);
@@ -760,6 +765,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                         }
 
                         bookMenu.CloseBook();
+                        StartCoroutine(ShowVfx(0));
                     }
                     else
                     {
@@ -809,6 +815,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                         }
 
                         bookMenu.CloseBook();
+                        StartCoroutine(ShowVfx(1));
                     }
                     else
                     {
@@ -858,6 +865,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                         }
 
                         bookMenu.CloseBook();
+                        StartCoroutine(ShowVfx(2));
                     }
                     else
                     {
@@ -907,6 +915,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                         }
 
                         bookMenu.CloseBook();
+                        StartCoroutine(ShowVfx(3));
                     }
                     else
                     {
@@ -956,6 +965,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                         }
 
                         bookMenu.CloseBook();
+                        StartCoroutine(ShowVfx(4));
                     }
                     else
                     {
@@ -1001,5 +1011,12 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
         animNotif.SetTrigger("IsEnd");
         yield return new WaitForSeconds(0.5f);
         panelNotif.SetActive(false);
+    }
+
+    IEnumerator ShowVfx(int index)
+    {
+        vfxUnlock[index].SetActive(true);
+        yield return new WaitForSeconds(1f);
+        vfxUnlock[index].SetActive(false);
     }
 }
