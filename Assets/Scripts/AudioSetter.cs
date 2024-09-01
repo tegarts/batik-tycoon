@@ -37,6 +37,11 @@ public class AudioSetter : MonoBehaviour
     public AudioClip menjemur;
     public AudioClip lorod;
     public AudioClip angin;
+    [Header("Audio Clip Notif")]
+    public AudioClip notif;
+    public AudioClip gameOver;
+    public AudioClip afterCanting;
+    public AudioClip error;
 
     [Header("Audio Clip Game Result")]
     public AudioClip gameResult;

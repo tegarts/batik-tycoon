@@ -9,7 +9,7 @@ public class FollowMouse : MonoBehaviour
     public Canvas worldSpaceCanvas;
     public GameObject[] imagePrefabs;
     [SerializeField] GameObject imagePrefab;
-    [SerializeField] GameObject imageMotif;
+    public GameObject imageMotif;
     [SerializeField] Sprite[] spriteMotif;
     [SerializeField] Workspace[] workspaceAutomation;
     public Collider[] workspaceArea;
@@ -32,6 +32,7 @@ public class FollowMouse : MonoBehaviour
     DayManager dayManager;
     Tutorial tutorial;
     [SerializeField] NPCBehav nPCBehavParent;
+    AudioSetter audioSetter;
 
 
     private void Awake()
@@ -40,6 +41,8 @@ public class FollowMouse : MonoBehaviour
         {
             nPCBehavParent = gameObject.transform.parent.GetComponent<NPCBehav>();
         }
+
+        audioSetter = GameObject.FindWithTag("Audio").GetComponent<AudioSetter>();
     }
     void Start()
     {
@@ -151,6 +154,7 @@ public class FollowMouse : MonoBehaviour
     {
         instantiatedImage = Instantiate(imagePrefab, worldSpaceCanvas.transform);
         imageRectTransform = instantiatedImage.GetComponent<RectTransform>();
+        audioSetter.PlaySFX(audioSetter.OpenPanel);
     }
 
     void FollowTheMouse()

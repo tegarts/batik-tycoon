@@ -37,6 +37,7 @@ public class Drawing : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
     [SerializeField] GameObject canting2D;
     [SerializeField] GameObject cantingImage;
     [SerializeField] GameObject blink;
+    AudioSetter audioSetter;
 
 
     private void OnEnable()
@@ -49,6 +50,7 @@ public class Drawing : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
         filledImage.fillAmount = 0;
         isFinish = false;
         blink.SetActive(false);
+        audioSetter = GameObject.FindWithTag("Audio").GetComponent<AudioSetter>();
     }
     private void Start()
     {
@@ -110,6 +112,7 @@ public class Drawing : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
     {
         if (other.gameObject.CompareTag("Boundary"))
         {
+            audioSetter.PlaySFX(audioSetter.error);
             Debug.Log("diluar gan");
             scoreCanting -= 5;
             StartCoroutine(Blink());
@@ -238,6 +241,7 @@ public class Drawing : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
 
     IEnumerator ImageFilled(float duration)
     {
+        audioSetter.PlaySFX(audioSetter.canting);
         float startTime = Time.time;
         while (Time.time - startTime < duration)
         {
@@ -247,15 +251,18 @@ public class Drawing : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ID
             filledImage.fillAmount = percentageCompleted;
             yield return null;
         }
+        audioSetter.StopSFX();
         filledImage.fillAmount = 1;
 
         panelAfterCanting.SetActive(true);
+        audioSetter.PlaySFX(audioSetter.afterCanting);
         moneyText.text = "Rp " + (scoreCanting * 5) +"rb";
         accuracyText.text = scoreCanting + "%";
     }
 
     public void ButtonExitFromPanel()
     {
+        audioSetter.PlaySFX(audioSetter.OpenPanel);
         OnDrawingCompleted?.Invoke();
         money.AddMoney(scoreCanting * 6);
         Daily.instance.dailyIncome += scoreCanting * 6;

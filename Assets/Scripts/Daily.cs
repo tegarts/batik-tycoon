@@ -18,7 +18,7 @@ public class Daily : MonoBehaviour, IDataPersistence
     public float progress40;
     float progress60;
     float progress80;
-    [SerializeField] int totalStars;
+    public int totalStars;
 
     [Header("Reaction")]
     public int happyReaction;

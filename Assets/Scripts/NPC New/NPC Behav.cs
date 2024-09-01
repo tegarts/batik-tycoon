@@ -34,6 +34,9 @@ public class NPCBehav : MonoBehaviour
     public Workspace currentWorkspace;
     [SerializeField] Drawing drawing;
     Tutorial tutorial;
+
+    public float blinkTimer;
+    private bool isIndicatorVisible;
     [Header("UI Related")]
     [SerializeField] private GameObject buttonMotif;
     [SerializeField] private GameObject reactionBubble;
@@ -159,8 +162,8 @@ public class NPCBehav : MonoBehaviour
                                 anim.SetBool("IsFlat", true);
                                 StartCoroutine(DisplayReaction("IsFlat"));
                                 isAddFlatReaction = true;
-                                
-                                if(indexKarakter == 0)
+
+                                if (indexKarakter == 0)
                                 {
                                     audioSetter.PlaySFX(audioSetter.npcFlatGirl);
                                 }
@@ -182,13 +185,13 @@ public class NPCBehav : MonoBehaviour
                             {
                                 Daily.instance.IncreaseProgress(20);
                                 Daily.instance.happyReaction++;
-                                if(indexKarakter == 1)
+                                if (indexKarakter == 1)
                                 {
                                     anim.SetBool("IsHappyPunk", true);
                                     StartCoroutine(DisplayReaction("IsHappyPunk"));
                                     audioSetter.PlaySFX(audioSetter.npcHappyBoy);
                                 }
-                                else if(indexKarakter == 2)
+                                else if (indexKarakter == 2)
                                 {
                                     anim.SetBool("IsHappyMan", true);
                                     StartCoroutine(DisplayReaction("IsHappyMan"));
@@ -200,7 +203,7 @@ public class NPCBehav : MonoBehaviour
                                     StartCoroutine(DisplayReaction("IsHappy"));
                                     audioSetter.PlaySFX(audioSetter.npcHappyGirl);
                                 }
-                                
+
                                 isAddHappyReaction = true;
                                 vfxreactions[0].Play();
                                 vfxreactions[1].Stop();
@@ -229,13 +232,13 @@ public class NPCBehav : MonoBehaviour
                             {
                                 Daily.instance.IncreaseProgress(25);
                                 Daily.instance.happyReaction++;
-                                if(indexKarakter == 1)
+                                if (indexKarakter == 1)
                                 {
                                     anim.SetBool("IsHappyPunk", true);
                                     StartCoroutine(DisplayReaction("IsHappyPunk"));
                                     audioSetter.PlaySFX(audioSetter.npcHappyBoy);
                                 }
-                                else if(indexKarakter == 2)
+                                else if (indexKarakter == 2)
                                 {
                                     anim.SetBool("IsHappyMan", true);
                                     StartCoroutine(DisplayReaction("IsHappyMan"));
@@ -266,7 +269,7 @@ public class NPCBehav : MonoBehaviour
                                 anim.SetBool("IsFlat", true);
                                 StartCoroutine(DisplayReaction("IsFlat"));
                                 isAddFlatReaction = true;
-                                if(indexKarakter == 0)
+                                if (indexKarakter == 0)
                                 {
                                     audioSetter.PlaySFX(audioSetter.npcFlatGirl);
                                 }
@@ -329,11 +332,31 @@ public class NPCBehav : MonoBehaviour
                             StartCoroutine(DisplayReaction("IsAngry"));
                             audioSetter.PlaySFX(audioSetter.npcAngryBoy);
                         }
-                        
+
                         isAddAngryReaction = true;
                         vfxreactions[1].Play();
                         vfxreactions[0].Stop();
                         vfxreactions[2].Stop();
+                    }
+                }
+                else if (elapsedTime > 10f && elapsedTime < 15f)
+                {
+                    blinkTimer += Time.deltaTime;
+
+                    if (blinkTimer >= 0.5f)
+                    {
+                        isIndicatorVisible = !isIndicatorVisible;
+
+                        Color buttonColor = buttonMotif.GetComponent<Image>().color;
+                        Color motifColor = buttonMotif.GetComponent<FollowMouse>().imageMotif.GetComponent<Image>().color;
+
+                        buttonColor.a = isIndicatorVisible ? 100f / 255f : 0f; 
+                        motifColor.a = isIndicatorVisible ? 1f : 0f;
+
+                        buttonMotif.GetComponent<Image>().color = buttonColor;
+                        buttonMotif.GetComponent<FollowMouse>().imageMotif.GetComponent<Image>().color = motifColor;
+
+                        blinkTimer = 0f;
                     }
                 }
                 else if (elapsedTime >= 15f && !tutorial.isStartTutor)
@@ -356,7 +379,7 @@ public class NPCBehav : MonoBehaviour
                             StartCoroutine(DisplayReaction("IsAngry"));
                             audioSetter.PlaySFX(audioSetter.npcAngryBoy);
                         }
-                        
+
                         isAddAngryReaction = true;
                         vfxreactions[1].Play();
                         vfxreactions[0].Stop();

@@ -155,6 +155,7 @@ public class BookMenu : MonoBehaviour
 
         if (index == 0)
         {
+            audioSetter.PlaySFX(audioSetter.OpenPanel);
             detailBatikpedia.SetActive(true);
             pediaPanel.SetActive(false);
             imageBatikHeader.sprite = batikHeaders[0];
@@ -167,11 +168,14 @@ public class BookMenu : MonoBehaviour
         {
             if (workspaceManager.motifUnlocked < 1)
             {
+                workspaceManager.notifText.text = "<color=#9E3535>Buka Workspace Batik Megamendung terlebih dahulu/color>";
+                workspaceManager.imageWarning.GetComponent<Image>().sprite = workspaceManager.images[0];
                 workspaceManager.ShowNotif();
-                workspaceManager.notifText.text = "Buka Workspace Batik Megamendung terlebih dahulu";
+                audioSetter.PlaySFX(audioSetter.notif);
             }
             else
             {
+                audioSetter.PlaySFX(audioSetter.OpenPanel);
                 detailBatikpedia.SetActive(true);
                 pediaPanel.SetActive(false);
                 imageBatikHeader.sprite = batikHeaders[1];
@@ -186,11 +190,14 @@ public class BookMenu : MonoBehaviour
         {
             if (workspaceManager.motifUnlocked < 2)
             {
+                workspaceManager.notifText.text = "<color=#9E3535>Buka Workspace Batik Truntum terlebih dahulu/color>";
+                workspaceManager.imageWarning.GetComponent<Image>().sprite = workspaceManager.images[0];
                 workspaceManager.ShowNotif();
-                workspaceManager.notifText.text = "Buka Workspace Batik Truntum terlebih dahulu";
+                audioSetter.PlaySFX(audioSetter.notif);
             }
             else
             {
+                audioSetter.PlaySFX(audioSetter.OpenPanel);
                 detailBatikpedia.SetActive(true);
                 pediaPanel.SetActive(false);
                 imageBatikHeader.sprite = batikHeaders[2];
@@ -204,11 +211,14 @@ public class BookMenu : MonoBehaviour
         {
             if (workspaceManager.motifUnlocked < 3)
             {
+                workspaceManager.notifText.text = "<color=#9E3535>Buka Workspace Batik Parang terlebih dahulu/color>";
+                workspaceManager.imageWarning.GetComponent<Image>().sprite = workspaceManager.images[0];
                 workspaceManager.ShowNotif();
-                workspaceManager.notifText.text = "Buka Workspace Batik Parang terlebih dahulu";
+                audioSetter.PlaySFX(audioSetter.notif);
             }
             else
             {
+                audioSetter.PlaySFX(audioSetter.OpenPanel);
                 detailBatikpedia.SetActive(true);
                 pediaPanel.SetActive(false);
                 imageBatikHeader.sprite = batikHeaders[3];
@@ -222,11 +232,14 @@ public class BookMenu : MonoBehaviour
         {
             if (workspaceManager.motifUnlocked < 4)
             {
+                workspaceManager.notifText.text = "<color=#9E3535>Buka Workspace Batik Simbut terlebih dahulu/color>";
+                workspaceManager.imageWarning.GetComponent<Image>().sprite = workspaceManager.images[0];
                 workspaceManager.ShowNotif();
-                workspaceManager.notifText.text = "Buka Workspace Batik Simbut terlebih dahulu";
+                audioSetter.PlaySFX(audioSetter.notif);
             }
             else
             {
+                audioSetter.PlaySFX(audioSetter.OpenPanel);
                 detailBatikpedia.SetActive(true);
                 pediaPanel.SetActive(false);
                 imageBatikHeader.sprite = batikHeaders[4];
@@ -242,6 +255,7 @@ public class BookMenu : MonoBehaviour
 
     public void BackBatikPedia()
     {
+        audioSetter.PlaySFX(audioSetter.OpenPanel);
         detailBatikpedia.SetActive(false);
         pediaPanel.SetActive(true);
     }

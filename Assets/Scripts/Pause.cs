@@ -36,16 +36,12 @@ public class Pause : MonoBehaviour
 
     public void MainMenu()
     {
+        audioSetter.PlaySFX(audioSetter.OpenPanel);
         Time.timeScale = 1;
         UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
     }
 
-    public void GameOver()
-    {
-        Time.timeScale = 1;
-        DataPersistenceManager.instance.NewGame();
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
-    }
+    
 
     private void Update()
     {

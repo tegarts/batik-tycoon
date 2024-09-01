@@ -148,6 +148,7 @@ public class NPCSpawn : MonoBehaviour
         else
         {
             Daily.instance.panelGameOver.SetActive(true);
+            audioSetter.PlaySFX(audioSetter.gameOver);
         }
     }
 

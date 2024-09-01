@@ -12,8 +12,8 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
     [SerializeField] private Canvas canvasWorldSpace;
     [SerializeField] GameObject panelNotif;
     [SerializeField] Animator animNotif;
-    [SerializeField] GameObject imageWarning;
-    [SerializeField] Sprite[] images;
+    public GameObject imageWarning;
+    public Sprite[] images;
     public TMP_Text notifText;
 
 
@@ -589,6 +589,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                     imageWarning.GetComponent<Image>().sprite = images[0];
 
                     ShowNotif();
+                    audioSetter.PlaySFX(audioSetter.notif);
                 }
             }
             else
@@ -596,6 +597,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                 notifText.text = "<color=#9E3535>Unlock workspace motif sebelumnya terlebih dahulu</color>";
                 imageWarning.GetComponent<Image>().sprite = images[0];
                 ShowNotif();
+                audioSetter.PlaySFX(audioSetter.notif);
             }
         }
         else if (level == 3)
@@ -631,6 +633,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                     notifText.text = "<color=#9E3535>Uang tidak cukup untuk melakukan unlock workspace motif truntum</color>";
                     imageWarning.GetComponent<Image>().sprite = images[0];
                     ShowNotif();
+                    audioSetter.PlaySFX(audioSetter.notif);
                 }
             }
             else
@@ -638,6 +641,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                 notifText.text = "<color=#9E3535>Unlock workspace motif sebelumnya terlebih dahulu</color>";
                 imageWarning.GetComponent<Image>().sprite = images[0];
                 ShowNotif();
+                audioSetter.PlaySFX(audioSetter.notif);
             }
         }
         else if (level == 4)
@@ -673,6 +677,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                     notifText.text = "<color=#9E3535>Uang tidak cukup untuk melakukan unlock workspace motif parang</color>";
                     imageWarning.GetComponent<Image>().sprite = images[0];
                     ShowNotif();
+                    audioSetter.PlaySFX(audioSetter.notif);
                 }
             }
             else
@@ -680,6 +685,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                 notifText.text = "<color=#9E3535>Unlock workspace motif sebelumnya terlebih dahulu</color>";
                 imageWarning.GetComponent<Image>().sprite = images[0];
                 ShowNotif();
+                audioSetter.PlaySFX(audioSetter.notif);
             }
         }
         if (level == 5)
@@ -715,6 +721,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                     notifText.text = "<color=#9E3535>Uang tidak cukup untuk melakukan unlock workspace motif simbut</color>";
                     imageWarning.GetComponent<Image>().sprite = images[0];
                     ShowNotif();
+                    audioSetter.PlaySFX(audioSetter.notif);
                 }
             }
             else
@@ -722,6 +729,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                 notifText.text = "<color=#9E3535>Unlock workspace motif sebelumnya terlebih dahulu</color>";
                 imageWarning.GetComponent<Image>().sprite = images[0];
                 ShowNotif();
+                audioSetter.PlaySFX(audioSetter.notif);
             }
         }
     }
@@ -783,6 +791,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                         notifText.text = "<color=#9E3535>Uang tidak cukup untuk melakukan upgrade workspace motif kawung</color>";
                         imageWarning.GetComponent<Image>().sprite = images[0];
                         ShowNotif();
+                        audioSetter.PlaySFX(audioSetter.notif);
                         return;
                     }
                 }
@@ -834,6 +843,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                         notifText.text = "<color=#9E3535>Uang tidak cukup untuk melakukan upgrade workspace motif megamendung</color>";
                         imageWarning.GetComponent<Image>().sprite = images[0];
                         ShowNotif();
+                        audioSetter.PlaySFX(audioSetter.notif);
                         return;
                     }
                 }
@@ -885,6 +895,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                         notifText.text = "<color=#9E3535>Uang tidak cukup untuk melakukan upgrade workspace motif truntum</color>";
                         imageWarning.GetComponent<Image>().sprite = images[0];
                         ShowNotif();
+                        audioSetter.PlaySFX(audioSetter.notif);
                         return;
                     }
                 }
@@ -936,6 +947,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                         notifText.text = "<color=#9E3535>Uang tidak cukup untuk melakukan upgrade workspace motif parang</color>";
                         imageWarning.GetComponent<Image>().sprite = images[0];
                         ShowNotif();
+                        audioSetter.PlaySFX(audioSetter.notif);
                         return;
                     }
                 }
@@ -987,6 +999,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                         notifText.text = "<color=#9E3535>Uang tidak cukup untuk melakukan upgrade workspace motif simbut</color>";
                         imageWarning.GetComponent<Image>().sprite = images[0];
                         ShowNotif();
+                        audioSetter.PlaySFX(audioSetter.notif);
                         return;
                     }
                 }
