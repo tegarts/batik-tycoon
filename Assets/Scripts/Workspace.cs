@@ -36,22 +36,47 @@ public class Workspace : MonoBehaviour, IDataPersistence
     {
         if (workspaceNumber == 1)
         {
+            if(data.level_workspace[0] == 0)
+            {
+                data.level_workspace[0] = 1;
+            }
+
             level_workspace = data.level_workspace[0];
         }
         else if (workspaceNumber == 2)
         {
+            if(data.level_workspace[1] == 0)
+            {
+                data.level_workspace[1] = 1;
+            }
+
             level_workspace = data.level_workspace[1];
         }
         else if (workspaceNumber == 3)
         {
+            if(data.level_workspace[2] == 0)
+            {
+                data.level_workspace[2] = 1;
+            }
+
             level_workspace = data.level_workspace[2];
         }
         else if (workspaceNumber == 4)
         {
+            if(data.level_workspace[3] == 0)
+            {
+                data.level_workspace[3] = 1;
+            }
+
             level_workspace = data.level_workspace[3];
         }
         else if (workspaceNumber == 5)
         {
+            if(data.level_workspace[4] == 0)
+            {
+                data.level_workspace[4] = 1;
+            }
+
             level_workspace = data.level_workspace[4];
         }
     }
@@ -80,17 +105,14 @@ public class Workspace : MonoBehaviour, IDataPersistence
         }
     }
 
+
     private void Start()
     {
         if (progresImage != null)
         {
             progresImage.SetActive(false);
         }
-
-        if (level_workspace == 0)
-        {
-            level_workspace = 1;
-        }
+        
 
         for (int i = 0; i < workers.Length; i++)
         {
@@ -105,23 +127,23 @@ public class Workspace : MonoBehaviour, IDataPersistence
         money = FindObjectOfType<Money>();
         if (level_workspace == 1)
         {
-            progresTime = 14;
+            progresTime = 12;
         }
         else if (level_workspace == 2)
         {
-            progresTime = 12;
+            progresTime = 10;
         }
         else if (level_workspace == 3)
         {
-            progresTime = 10;
+            progresTime = 8;
         }
         else if (level_workspace == 4)
         {
-            progresTime = 8;
+            progresTime = 6;
         }
         else if (level_workspace == 5)
         {
-            progresTime = 6;
+            progresTime = 4;
         }
 
         vfx_workspace.SetActive(false);

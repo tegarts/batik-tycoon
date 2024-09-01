@@ -140,7 +140,7 @@ public class FollowMouse : MonoBehaviour
             imagePrefab = imagePrefabs[3];
             imageMotif.GetComponent<Image>().sprite = spriteMotif[3];
         }
-        else if (namaMotif == "simbut")
+        else if (namaMotif == "simbut" || namaMotif == "simbu" || namaMotif == "simb" || namaMotif == "sim")
         {
             imagePrefab = imagePrefabs[4];
             imageMotif.GetComponent<Image>().sprite = spriteMotif[4];

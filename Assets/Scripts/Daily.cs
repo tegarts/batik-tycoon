@@ -156,6 +156,9 @@ public class Daily : MonoBehaviour
 
     private IEnumerator CountIncome(float targetValue, float duration)
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
         yield return new WaitForSeconds(0.3f);
 
         animFontIncome.SetBool("IsStart", true);
@@ -242,6 +245,8 @@ public class Daily : MonoBehaviour
         audioSetter.PlaySFX(audioSetter.reactions);
         yield return new WaitForSeconds(0.5f);
         audioSetter.PlaySFX(audioSetter.gameResult);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
 }

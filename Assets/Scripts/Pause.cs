@@ -8,7 +8,7 @@ public class Pause : MonoBehaviour
     DayManager dayManager;
     [SerializeField] Animator pauseAnim;
 
-    private void Start() 
+    private void Start()
     {
         dayManager = FindAnyObjectByType<DayManager>();
         pauseAnim.updateMode = AnimatorUpdateMode.UnscaledTime;
@@ -32,21 +32,20 @@ public class Pause : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
     }
 
-    private void Update() 
+    private void Update()
     {
-        if(dayManager.dayIsStarted)
+
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(Input.GetKeyDown(KeyCode.Escape))
+            if (panelPause.activeSelf)
             {
-                if(panelPause.activeSelf)
-                {
-                    ResumeGame();
-                }
-                else
-                {
-                    PauseGame();
-                }
+                ResumeGame();
+            }
+            else
+            {
+                PauseGame();
             }
         }
+
     }
 }
