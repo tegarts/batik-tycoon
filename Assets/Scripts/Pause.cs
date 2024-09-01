@@ -8,20 +8,28 @@ public class Pause : MonoBehaviour
     DayManager dayManager;
     [SerializeField] Animator pauseAnim;
 
+    [Header("Audio")]
+    AudioSetter audioSetter;
     private void Start()
     {
         dayManager = FindAnyObjectByType<DayManager>();
         pauseAnim.updateMode = AnimatorUpdateMode.UnscaledTime;
     }
+    private void Awake()
+    {
+        audioSetter = GameObject.FindWithTag("Audio").GetComponent<AudioSetter>();
+    }
 
     public void PauseGame()
     {
+        audioSetter.PlaySFX(audioSetter.OpenPanel);
         panelPause.SetActive(true);
         Time.timeScale = 0;
     }
 
     public void ResumeGame()
     {
+        audioSetter.PlaySFX(audioSetter.ClosePanel);
         Time.timeScale = 1;
         panelPause.SetActive(false);
     }
@@ -29,6 +37,13 @@ public class Pause : MonoBehaviour
     public void MainMenu()
     {
         Time.timeScale = 1;
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
+    }
+
+    public void GameOver()
+    {
+        Time.timeScale = 1;
+        DataPersistenceManager.instance.NewGame();
         UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
     }
 

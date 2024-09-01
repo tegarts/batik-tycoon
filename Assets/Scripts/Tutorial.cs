@@ -37,6 +37,12 @@ public class Tutorial : MonoBehaviour, IDataPersistence
     [SerializeField] GameObject buttonStartDay;
     [SerializeField] GameObject imagePortrait;
     [SerializeField] Sprite[] spritePortrait;
+    [Header("Audio")]
+    AudioSetter audioSetter;
+    private void Awake()
+    {
+        audioSetter = GameObject.FindWithTag("Audio").GetComponent<AudioSetter>();
+    }
 
     public void LoadData(GameData data)
     {
@@ -258,6 +264,7 @@ public class Tutorial : MonoBehaviour, IDataPersistence
 
     public void SkipOpenConfirmation()
     {
+        audioSetter.PlaySFX(audioSetter.OpenPanel);
         panelSkipConfirmation.SetActive(true);
     }
 
@@ -281,6 +288,7 @@ public class Tutorial : MonoBehaviour, IDataPersistence
 
     private void CloseTutorial()
     {
+        audioSetter.PlaySFX(audioSetter.ClosePanel);
         StartCoroutine(CloseTutorialAnim());
     }
 

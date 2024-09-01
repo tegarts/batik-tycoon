@@ -13,6 +13,7 @@ public class GameData
     public int day;
     public int motifUnlocked;
     public int[] level_workspace;
+    public int totalStars;
     public GameData()
     {
         this.tools1 = false;
@@ -33,5 +34,6 @@ public class GameData
         
         motifUnlocked = 0;
         level_workspace = new int[5];
+        totalStars = 0;
     }
 }

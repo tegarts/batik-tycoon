@@ -25,18 +25,21 @@ public class Workspace : MonoBehaviour, IDataPersistence
     [SerializeField] GameObject[] workers;
     [SerializeField] GameObject[] vfxAngin;
     private bool[] isAnginEnabled;
+    DayManager dayManager;
+    bool isStartDay;
     AudioSetter audioSetter;
 
     private void Awake()
     {
         audioSetter = GameObject.FindWithTag("Audio").GetComponent<AudioSetter>();
+        dayManager = FindObjectOfType<DayManager>();
     }
 
     public void LoadData(GameData data)
     {
         if (workspaceNumber == 1)
         {
-            if(data.level_workspace[0] == 0)
+            if (data.level_workspace[0] == 0)
             {
                 data.level_workspace[0] = 1;
             }
@@ -45,7 +48,7 @@ public class Workspace : MonoBehaviour, IDataPersistence
         }
         else if (workspaceNumber == 2)
         {
-            if(data.level_workspace[1] == 0)
+            if (data.level_workspace[1] == 0)
             {
                 data.level_workspace[1] = 1;
             }
@@ -54,7 +57,7 @@ public class Workspace : MonoBehaviour, IDataPersistence
         }
         else if (workspaceNumber == 3)
         {
-            if(data.level_workspace[2] == 0)
+            if (data.level_workspace[2] == 0)
             {
                 data.level_workspace[2] = 1;
             }
@@ -63,7 +66,7 @@ public class Workspace : MonoBehaviour, IDataPersistence
         }
         else if (workspaceNumber == 4)
         {
-            if(data.level_workspace[3] == 0)
+            if (data.level_workspace[3] == 0)
             {
                 data.level_workspace[3] = 1;
             }
@@ -72,7 +75,7 @@ public class Workspace : MonoBehaviour, IDataPersistence
         }
         else if (workspaceNumber == 5)
         {
-            if(data.level_workspace[4] == 0)
+            if (data.level_workspace[4] == 0)
             {
                 data.level_workspace[4] = 1;
             }
@@ -112,7 +115,7 @@ public class Workspace : MonoBehaviour, IDataPersistence
         {
             progresImage.SetActive(false);
         }
-        
+
 
         for (int i = 0; i < workers.Length; i++)
         {
@@ -160,6 +163,26 @@ public class Workspace : MonoBehaviour, IDataPersistence
             StartCoroutine(StartAutomation());
         }
 
+        if (!dayManager.dayIsStarted)
+        {
+            if (!tutorial.isStartTutor)
+            {
+                workers[0].SetActive(false);
+                isStartDay = false;
+                AssignArea.SetActive(false);
+            }
+
+        }
+        else
+        {
+            if (!isStartDay)
+            {
+                workers[0].SetActive(true);
+                AssignArea.SetActive(true);
+                isStartDay = true;
+            }
+        }
+
     }
 
     IEnumerator StartAutomation()
@@ -198,7 +221,7 @@ public class Workspace : MonoBehaviour, IDataPersistence
                     audioSetter.PlaySFX(audioSetter.desain);
                 }
                 workers[1].SetActive(true);
-                
+
             }
             else if (elapsedTime < enableNPC1) // 3+
             {
@@ -212,7 +235,7 @@ public class Workspace : MonoBehaviour, IDataPersistence
                     audioSetter.PlaySFX(audioSetter.canting);
                 }
                 workers[2].SetActive(true);
-                
+
             }
             else if (elapsedTime < enableNPC2) // 6+
             {
@@ -226,7 +249,7 @@ public class Workspace : MonoBehaviour, IDataPersistence
                     audioSetter.PlaySFX(audioSetter.mewarnai);
                 }
                 workers[3].SetActive(true);
-                
+
             }
             else if (elapsedTime < enableNPC3) // 9+
             {
@@ -240,7 +263,7 @@ public class Workspace : MonoBehaviour, IDataPersistence
                     audioSetter.PlaySFX(audioSetter.menjemur);
                 }
                 workers[4].SetActive(true);
-                
+
             }
             else if (elapsedTime >= enableNPC3 && elapsedTime <= waitTime) // 12
             {
@@ -254,7 +277,7 @@ public class Workspace : MonoBehaviour, IDataPersistence
                     audioSetter.PlaySFX(audioSetter.lorod);
                 }
                 workers[5].SetActive(true);
-                
+
             }
             else
             {
@@ -290,7 +313,7 @@ public class Workspace : MonoBehaviour, IDataPersistence
             isAnginEnabled[5] = true;
         }
 
-        for(int i = 0; i < isAnginEnabled.Length; i++)
+        for (int i = 0; i < isAnginEnabled.Length; i++)
         {
             isAnginEnabled[i] = false;
         }

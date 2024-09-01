@@ -4,19 +4,21 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Daily : MonoBehaviour
+public class Daily : MonoBehaviour, IDataPersistence
 {
     public static Daily instance { get; private set; }
     bool isStarted;
+    // public bool isGameOver;
     [Header("Progress Bar")]
     [SerializeField] Slider progressBar;
-    [SerializeField] float progress = 0;
+    public float progress = 0;
     [Header("Rating")]
     public GameObject[] stars;
     float maxProgress;
-    float progress40;
+    public float progress40;
     float progress60;
     float progress80;
+    [SerializeField] int totalStars;
 
     [Header("Reaction")]
     public int happyReaction;
@@ -43,8 +45,21 @@ public class Daily : MonoBehaviour
     public bool isPanelOn;
     [SerializeField] Animator animHUD;
     [SerializeField] Animator animBook;
+    public GameObject panelGameOver;
+    public TMP_Text totalStarsText;
+    public TMP_Text dayText;
     [Header("Audio")]
     AudioSetter audioSetter;
+
+    public void LoadData(GameData data)
+    {
+        totalStars = data.totalStars;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.totalStars = totalStars;
+    }
 
     private void Awake()
     {
@@ -129,16 +144,31 @@ public class Daily : MonoBehaviour
             }
             else if (isStarted)
             {
-                StartCoroutine(CountIncome(dailyIncome, durationCounting));
+                if (progress > progress40)
+                {
+                    StartCoroutine(CountIncome(dailyIncome, durationCounting));
 
 
-                happyCount.text = happyReaction.ToString();
-                flatCount.text = flatReaction.ToString();
-                angryCount.text = angryReaction.ToString();
-                closePanelHUD();
+                    happyCount.text = happyReaction.ToString();
+                    flatCount.text = flatReaction.ToString();
+                    angryCount.text = angryReaction.ToString();
+                    closePanelHUD();
+                }
+                // else
+                // {
+                //     isGameOver = true;
+                //     panelGameOver.SetActive(true);
+                // }
+
 
             }
             isStarted = false;
+        }
+
+        if(panelGameOver.activeSelf)
+        {
+            dayText.text = "Hari " + dayManager.day;
+            totalStarsText.text = totalStars.ToString();
         }
     }
 
@@ -156,6 +186,8 @@ public class Daily : MonoBehaviour
 
     private IEnumerator CountIncome(float targetValue, float duration)
     {
+        dayManager.directionalLight.intensity = 0.2f;
+
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -178,6 +210,7 @@ public class Daily : MonoBehaviour
         audioSetter.StopSFX();
         if (progress >= progress80)
         {
+            totalStars += 3;
             StartCoroutine(ActivateStarsWithDelay(3));
             yield return new WaitForSeconds(1.5f);
             animReaction.gameObject.SetActive(true);
@@ -186,6 +219,7 @@ public class Daily : MonoBehaviour
         }
         else if (progress >= progress60)
         {
+            totalStars += 2;
             StartCoroutine(ActivateStarsWithDelay(2));
             yield return new WaitForSeconds(1f);
             animReaction.gameObject.SetActive(true);
@@ -194,6 +228,7 @@ public class Daily : MonoBehaviour
         }
         else if (progress >= progress40)
         {
+            totalStars += 1;
             StartCoroutine(ActivateStarsWithDelay(1));
             yield return new WaitForSeconds(0.5f);
             animReaction.gameObject.SetActive(true);

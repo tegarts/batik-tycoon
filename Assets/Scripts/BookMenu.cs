@@ -29,6 +29,9 @@ public class BookMenu : MonoBehaviour
     [SerializeField] Sprite[] batikInGame;
     WorkspaceManager workspaceManager;
 
+    [Header("Audio")]
+    AudioSetter audioSetter;
+
     private void Start()
     {
         workspaceManager = FindAnyObjectByType<WorkspaceManager>();
@@ -38,8 +41,14 @@ public class BookMenu : MonoBehaviour
         buttonUpgradePanel.SetActive(false);
         buttonPediaPanel.SetActive(false);
     }
+
+    private void Awake()
+    {
+        audioSetter = GameObject.FindWithTag("Audio").GetComponent<AudioSetter>();
+    }
     public void OpenBook()
     {
+        audioSetter.PlaySFX(audioSetter.OpenPanel);
         bookPanel.SetActive(true);
         reportPanel.SetActive(true);
         buttonReportPanel.SetActive(false);
@@ -56,11 +65,13 @@ public class BookMenu : MonoBehaviour
 
     public void CloseBook()
     {
+        audioSetter.PlaySFX(audioSetter.ClosePanel);
         StartCoroutine(CloseBookDelay());
     }
 
     public void OpenReport()
     {
+        audioSetter.PlaySFX(audioSetter.OpenPanel);
         reportPanel.SetActive(true);
         buttonReportPanel.SetActive(false);
 
@@ -77,6 +88,7 @@ public class BookMenu : MonoBehaviour
 
     public void OpenUnlock()
     {
+        audioSetter.PlaySFX(audioSetter.OpenPanel);
         unlockPanel.SetActive(true);
         buttonUnlockPanel.SetActive(false);
 
@@ -93,6 +105,7 @@ public class BookMenu : MonoBehaviour
 
     public void OpenUpgrade()
     {
+        audioSetter.PlaySFX(audioSetter.OpenPanel);
         upgradePanel.SetActive(true);
         buttonUpgradePanel.SetActive(false);
 
@@ -109,6 +122,7 @@ public class BookMenu : MonoBehaviour
 
     public void OpenPedia()
     {
+        audioSetter.PlaySFX(audioSetter.OpenPanel);
         pediaPanel.SetActive(true);
         buttonPediaPanel.SetActive(false);
 

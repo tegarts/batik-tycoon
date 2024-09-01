@@ -16,11 +16,14 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
     [SerializeField] Sprite[] images;
     public TMP_Text notifText;
 
+
+
     [Header("Unlock")]
     [SerializeField] Button[] unlocks;
     [SerializeField] GameObject[] textUnlocks;
     [SerializeField] GameObject[] textOwned;
     [SerializeField] GameObject[] slotKosong;
+    [SerializeField] GameObject[] vfxUnlock;
 
     [Header("Upgrade")]
     [SerializeField] Button[] upgrades;
@@ -28,6 +31,13 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
     [SerializeField] GameObject[] textNoImage;
     [SerializeField] TMP_Text[] textHeadName;
     [SerializeField] TMP_Text[] textDesc;
+
+    [Header("Change Workspace")]
+    [SerializeField] GameObject[] workspaceColor1;
+    [SerializeField] GameObject[] workspaceColor2;
+    [SerializeField] GameObject[] workspaceColor3;
+    [SerializeField] GameObject[] workspaceColor4;
+    [SerializeField] GameObject[] workspaceColor5;
 
     [Header("General")]
     public int motifUnlocked;
@@ -48,6 +58,12 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
     Money money;
     BookMenu bookMenu;
 
+    [Header("Audio")]
+    AudioSetter audioSetter;
+    private void Awake()
+    {
+        audioSetter = GameObject.FindWithTag("Audio").GetComponent<AudioSetter>();
+    }
     public void LoadData(GameData data)
     {
         motifUnlocked = data.motifUnlocked;
@@ -160,6 +176,24 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
         }
 
         DisableButtonUpgrade();
+        UpdateWorkspaceColors();
+    }
+
+    void SetWorkspaceColors(GameObject[] workspaceColors, int level)
+    {
+        for (int i = 0; i < workspaceColors.Length; i++)
+        {
+            workspaceColors[i].SetActive(i == level - 1);
+        }
+    }
+
+    void UpdateWorkspaceColors()
+    {
+        SetWorkspaceColors(workspaceColor1, workspaces[0].GetComponent<Workspace>().level_workspace);
+        SetWorkspaceColors(workspaceColor2, workspaces[1].GetComponent<Workspace>().level_workspace);
+        SetWorkspaceColors(workspaceColor3, workspaces[2].GetComponent<Workspace>().level_workspace);
+        SetWorkspaceColors(workspaceColor4, workspaces[3].GetComponent<Workspace>().level_workspace);
+        SetWorkspaceColors(workspaceColor5, workspaces[4].GetComponent<Workspace>().level_workspace);
     }
 
     private void DisableButtonUpgrade()
@@ -526,6 +560,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
             {
                 if (money.CanAfford(workspacePrice[0]))
                 {
+                    audioSetter.PlaySFX(audioSetter.UnlockWS);
                     unlocks[0].interactable = false;
                     textUnlocks[0].SetActive(false);
                     textOwned[0].SetActive(true);
@@ -540,6 +575,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                     slotKosong[0].SetActive(false);
                     EnableWorkspace();
                     bookMenu.CloseBook();
+                    StartCoroutine(ShowVfx(1));
 
                     upgrades[1].interactable = true;
                     textUpgrades[1].SetActive(true);
@@ -568,6 +604,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
             {
                 if (money.CanAfford(workspacePrice[1]))
                 {
+                    audioSetter.PlaySFX(audioSetter.UnlockWS);
                     unlocks[1].interactable = false;
                     textUnlocks[1].SetActive(false);
                     textOwned[1].SetActive(true);
@@ -582,6 +619,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                     slotKosong[1].SetActive(false);
                     EnableWorkspace();
                     bookMenu.CloseBook();
+                    StartCoroutine(ShowVfx(2));
 
                     upgrades[2].interactable = true;
                     textUpgrades[2].SetActive(true);
@@ -608,6 +646,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
             {
                 if (money.CanAfford(workspacePrice[2]))
                 {
+                    audioSetter.PlaySFX(audioSetter.UnlockWS);
                     unlocks[2].interactable = false;
                     textUnlocks[2].SetActive(false);
                     textOwned[2].SetActive(true);
@@ -622,6 +661,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                     slotKosong[2].SetActive(false);
                     EnableWorkspace();
                     bookMenu.CloseBook();
+                    StartCoroutine(ShowVfx(3));
 
                     upgrades[3].interactable = true;
                     textUpgrades[3].SetActive(true);
@@ -648,6 +688,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
             {
                 if (money.CanAfford(workspacePrice[3]))
                 {
+                    audioSetter.PlaySFX(audioSetter.UnlockWS);
                     unlocks[3].interactable = false;
                     textUnlocks[3].SetActive(false);
                     textOwned[3].SetActive(true);
@@ -662,6 +703,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                     slotKosong[3].SetActive(false);
                     EnableWorkspace();
                     bookMenu.CloseBook();
+                    StartCoroutine(ShowVfx(4));
 
                     upgrades[4].interactable = true;
                     textUpgrades[4].SetActive(true);
@@ -697,6 +739,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                 {
                     if (money.CanAfford(upgradePrice1[upgradeLevel - 2]))
                     {
+                        audioSetter.PlaySFX(audioSetter.UpgradeWS);
                         money.ReduceMoney(upgradePrice1[upgradeLevel - 2]);
                         int newProgresTime = Mathf.RoundToInt(timePerLevel[upgradeLevel - 1]);
                         workspace.UpdateProgresTime(newProgresTime);
@@ -708,6 +751,8 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                         imageWarning.GetComponent<Image>().sprite = images[1];
 
                         ShowNotif();
+
+                        SetWorkspaceColors(workspaceColor1, workspaces[0].GetComponent<Workspace>().level_workspace);
 
                         if (upgradeLevel == 5)
                         {
@@ -731,6 +776,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                         }
 
                         bookMenu.CloseBook();
+                        StartCoroutine(ShowVfx(0));
                     }
                     else
                     {
@@ -744,6 +790,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                 {
                     if (money.CanAfford(upgradePrice2[upgradeLevel - 2]))
                     {
+                        audioSetter.PlaySFX(audioSetter.UpgradeWS);
                         money.ReduceMoney(upgradePrice2[upgradeLevel - 2]);
                         int newProgresTime = Mathf.RoundToInt(timePerLevel[upgradeLevel - 1]);
                         workspace.UpdateProgresTime(newProgresTime);
@@ -755,6 +802,8 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                         imageWarning.GetComponent<Image>().sprite = images[1];
 
                         ShowNotif();
+
+                        SetWorkspaceColors(workspaceColor2, workspaces[1].GetComponent<Workspace>().level_workspace);
 
                         if (upgradeLevel == 5)
                         {
@@ -778,6 +827,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                         }
 
                         bookMenu.CloseBook();
+                        StartCoroutine(ShowVfx(1));
                     }
                     else
                     {
@@ -791,6 +841,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                 {
                     if (money.CanAfford(upgradePrice3[upgradeLevel - 2]))
                     {
+                        audioSetter.PlaySFX(audioSetter.UpgradeWS);
                         money.ReduceMoney(upgradePrice3[upgradeLevel - 2]);
                         int newProgresTime = Mathf.RoundToInt(timePerLevel[upgradeLevel - 1]);
                         workspace.UpdateProgresTime(newProgresTime);
@@ -802,6 +853,8 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                         imageWarning.GetComponent<Image>().sprite = images[1];
 
                         ShowNotif();
+
+                        SetWorkspaceColors(workspaceColor3, workspaces[2].GetComponent<Workspace>().level_workspace);
 
                         if (upgradeLevel == 5)
                         {
@@ -825,6 +878,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                         }
 
                         bookMenu.CloseBook();
+                        StartCoroutine(ShowVfx(2));
                     }
                     else
                     {
@@ -838,6 +892,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                 {
                     if (money.CanAfford(upgradePrice4[upgradeLevel - 2]))
                     {
+                        audioSetter.PlaySFX(audioSetter.UpgradeWS);
                         money.ReduceMoney(upgradePrice4[upgradeLevel - 2]);
                         int newProgresTime = Mathf.RoundToInt(timePerLevel[upgradeLevel - 1]);
                         workspace.UpdateProgresTime(newProgresTime);
@@ -849,6 +904,8 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                         imageWarning.GetComponent<Image>().sprite = images[1];
 
                         ShowNotif();
+
+                        SetWorkspaceColors(workspaceColor4, workspaces[3].GetComponent<Workspace>().level_workspace);
 
                         if (upgradeLevel == 5)
                         {
@@ -872,6 +929,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                         }
 
                         bookMenu.CloseBook();
+                        StartCoroutine(ShowVfx(3));
                     }
                     else
                     {
@@ -885,6 +943,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                 {
                     if (money.CanAfford(upgradePrice5[upgradeLevel - 2]))
                     {
+                        audioSetter.PlaySFX(audioSetter.UpgradeWS);
                         money.ReduceMoney(upgradePrice5[upgradeLevel - 2]);
                         int newProgresTime = Mathf.RoundToInt(timePerLevel[upgradeLevel - 1]);
                         workspace.UpdateProgresTime(newProgresTime);
@@ -896,6 +955,8 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                         imageWarning.GetComponent<Image>().sprite = images[1];
 
                         ShowNotif();
+
+                        SetWorkspaceColors(workspaceColor5, workspaces[4].GetComponent<Workspace>().level_workspace);
 
                         if (upgradeLevel == 5)
                         {
@@ -919,6 +980,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                         }
 
                         bookMenu.CloseBook();
+                        StartCoroutine(ShowVfx(4));
                     }
                     else
                     {
@@ -964,5 +1026,12 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
         animNotif.SetTrigger("IsEnd");
         yield return new WaitForSeconds(0.5f);
         panelNotif.SetActive(false);
+    }
+
+    IEnumerator ShowVfx(int index)
+    {
+        vfxUnlock[index].SetActive(true);
+        yield return new WaitForSeconds(1f);
+        vfxUnlock[index].SetActive(false);
     }
 }

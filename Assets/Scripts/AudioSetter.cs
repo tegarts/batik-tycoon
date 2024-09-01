@@ -16,6 +16,8 @@ public class AudioSetter : MonoBehaviour
     public AudioClip cursorArea;
     public AudioClip openedDoor;
     public AudioClip lightSpread;
+    public AudioClip OpenPanel;
+    public AudioClip ClosePanel;
 
     [Header("Audio Clip NPC")]
     public AudioClip npcHappyGirl;
@@ -25,7 +27,10 @@ public class AudioSetter : MonoBehaviour
     public AudioClip npcFlatBoy;
     public AudioClip npcAngryBoy;
     public AudioClip bellEntrance;
+
     [Header("Audio Clip Workspace")]
+    public AudioClip UnlockWS;
+    public AudioClip UpgradeWS;
     public AudioClip desain;
     public AudioClip canting;
     public AudioClip mewarnai;
