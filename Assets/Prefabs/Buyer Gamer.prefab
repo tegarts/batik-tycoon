@@ -2706,8 +2706,7 @@ MonoBehaviour:
   canvasWorldSpace: {fileID: 0}
   vfxreactions:
   - {fileID: 2970852978960018677}
-  - {fileID: 2970852978960018677}
-  - {fileID: 19800006, guid: bcaff8fc36e95584bb27cc3cf7c6cb14, type: 3}
+  - {fileID: 599960195714626438}
 --- !u!1 &8327149905078273513
 GameObject:
   m_ObjectHideFlags: 0
@@ -2823,7 +2822,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: bcaff8fc36e95584bb27cc3cf7c6cb14, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0.38
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: bcaff8fc36e95584bb27cc3cf7c6cb14, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2862,6 +2861,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcaff8fc36e95584bb27cc3cf7c6cb14, type: 3}
+--- !u!198 &599960195714626438 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 19800006, guid: bcaff8fc36e95584bb27cc3cf7c6cb14,
+    type: 3}
+  m_PrefabInstance: {fileID: 599960195730222144}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &599960195729831622 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400006, guid: bcaff8fc36e95584bb27cc3cf7c6cb14,
@@ -2987,6 +2992,18 @@ PrefabInstance:
     - target: {fileID: 19800004, guid: 3af6f68141914ca43ba39b2403757bd0, type: 3}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800004, guid: 3af6f68141914ca43ba39b2403757bd0, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.12641507
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800004, guid: 3af6f68141914ca43ba39b2403757bd0, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.12641507
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800004, guid: 3af6f68141914ca43ba39b2403757bd0, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19800004, guid: 3af6f68141914ca43ba39b2403757bd0, type: 3}
       propertyPath: ColorModule.gradient.maxGradient.atime0

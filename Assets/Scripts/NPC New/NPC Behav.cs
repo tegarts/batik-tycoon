@@ -81,7 +81,7 @@ public class NPCBehav : MonoBehaviour
         reactionBubble.SetActive(false);
         vfxreactions[0].Stop();
         vfxreactions[1].Stop();
-        vfxreactions[2].Stop();
+        
 
     }
 
@@ -167,7 +167,8 @@ public class NPCBehav : MonoBehaviour
                                 {
                                     audioSetter.PlaySFX(audioSetter.npcFlatBoy);
                                 }
-                                
+                                vfxreactions[0].Stop();
+                                vfxreactions[1].Stop();
                             }
                         }
                         else
@@ -200,6 +201,7 @@ public class NPCBehav : MonoBehaviour
                                 
                                 isAddHappyReaction = true;
                                 vfxreactions[0].Play();
+                                vfxreactions[1].Stop();
                             }
                         }
                     }
@@ -245,6 +247,8 @@ public class NPCBehav : MonoBehaviour
 
                                 isAddHappyReaction = true;
                                 vfxreactions[0].Play();
+                                vfxreactions[1].Stop();
+                                
                             }
                         }
                         else if (scoreCanting >= 60)
@@ -266,6 +270,8 @@ public class NPCBehav : MonoBehaviour
                                 {
                                     audioSetter.PlaySFX(audioSetter.npcFlatBoy);
                                 }
+                                vfxreactions[0].Stop();
+                                vfxreactions[1].Stop();
                             }
                         }
                         else
@@ -289,8 +295,9 @@ public class NPCBehav : MonoBehaviour
                                 }
 
                                 isAddAngryReaction = true;
-                                vfxreactions[2].Play();
-                                
+                                vfxreactions[1].Play();
+                                vfxreactions[0].Stop();
+
                             }
                         }
                     }
@@ -318,7 +325,8 @@ public class NPCBehav : MonoBehaviour
                         }
                         
                         isAddAngryReaction = true;
-                        vfxreactions[2].Play();
+                        vfxreactions[1].Play();
+                        vfxreactions[0].Stop();
                     }
                 }
                 else if (elapsedTime >= 15f && !tutorial.isStartTutor)
@@ -343,7 +351,8 @@ public class NPCBehav : MonoBehaviour
                         }
                         
                         isAddAngryReaction = true;
-                        vfxreactions[2].Play();
+                        vfxreactions[1].Play();
+                        vfxreactions[0].Stop();
                     }
                 }
             }
