@@ -540,12 +540,7 @@ MonoBehaviour:
   canvasWorldSpace: {fileID: 0}
   vfxreactions:
   - {fileID: 9044266704553048903}
-  - {fileID: 9044266704553048903}
   - {fileID: 2744483839609763614}
-  npcVoice: {fileID: 0}
-  happyVoice: {fileID: 8300000, guid: 188e750dc0dd4234ab9b18500f67d472, type: 3}
-  flatVoice: {fileID: 8300000, guid: 520398a85fe20e44bb0de2f33e6b7312, type: 3}
-  angryVoice: {fileID: 8300000, guid: f5798f9cfa232274db9d567262adda38, type: 3}
 --- !u!1 &1423995418599273970
 GameObject:
   m_ObjectHideFlags: 0
@@ -2911,7 +2906,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: bcaff8fc36e95584bb27cc3cf7c6cb14, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: bcaff8fc36e95584bb27cc3cf7c6cb14, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3013,6 +3008,18 @@ PrefabInstance:
     - target: {fileID: 400004, guid: 3af6f68141914ca43ba39b2403757bd0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800004, guid: 3af6f68141914ca43ba39b2403757bd0, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.14528298
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800004, guid: 3af6f68141914ca43ba39b2403757bd0, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.14528298
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800004, guid: 3af6f68141914ca43ba39b2403757bd0, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
