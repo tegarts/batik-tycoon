@@ -270,7 +270,6 @@ GameObject:
   - component: {fileID: 93403464}
   - component: {fileID: 93403463}
   - component: {fileID: 93403462}
-  - component: {fileID: 93403465}
   m_Layer: 5
   m_Name: Button Info
   m_TagString: Untagged
@@ -392,51 +391,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 93403460}
   m_CullTransparentMesh: 1
---- !u!114 &93403465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 93403460}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1829834681}
-          m_TargetAssemblyTypeName: AudioSetter, Assembly-CSharp
-          m_MethodName: SFX_ButtonCursorArea
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1829834681}
-          m_TargetAssemblyTypeName: AudioSetter, Assembly-CSharp
-          m_MethodName: SFX_ClickedButton
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &96639949
 GameObject:
   m_ObjectHideFlags: 0
@@ -576,7 +530,6 @@ GameObject:
   - component: {fileID: 157888689}
   - component: {fileID: 157888688}
   - component: {fileID: 157888687}
-  - component: {fileID: 157888690}
   m_Layer: 5
   m_Name: Button Load Game
   m_TagString: Untagged
@@ -699,51 +652,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 157888685}
   m_CullTransparentMesh: 1
---- !u!114 &157888690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 157888685}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1829834681}
-          m_TargetAssemblyTypeName: AudioSetter, Assembly-CSharp
-          m_MethodName: SFX_ButtonCursorArea
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1829834681}
-          m_TargetAssemblyTypeName: AudioSetter, Assembly-CSharp
-          m_MethodName: SFX_ClickedButton
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &175316701
 GameObject:
   m_ObjectHideFlags: 0
@@ -1846,7 +1754,6 @@ GameObject:
   - component: {fileID: 667869982}
   - component: {fileID: 667869981}
   - component: {fileID: 667869980}
-  - component: {fileID: 667869983}
   m_Layer: 5
   m_Name: Button Setting
   m_TagString: Untagged
@@ -1968,51 +1875,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 667869978}
   m_CullTransparentMesh: 1
---- !u!114 &667869983
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 667869978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1829834681}
-          m_TargetAssemblyTypeName: AudioSetter, Assembly-CSharp
-          m_MethodName: SFX_ButtonCursorArea
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1829834681}
-          m_TargetAssemblyTypeName: AudioSetter, Assembly-CSharp
-          m_MethodName: SFX_ClickedButton
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &681021115
 GameObject:
   m_ObjectHideFlags: 0
@@ -2100,7 +1962,6 @@ GameObject:
   - component: {fileID: 721237208}
   - component: {fileID: 721237207}
   - component: {fileID: 721237206}
-  - component: {fileID: 721237209}
   m_Layer: 5
   m_Name: Button Back
   m_TagString: Untagged
@@ -2221,51 +2082,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 721237204}
   m_CullTransparentMesh: 1
---- !u!114 &721237209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 721237204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1829834681}
-          m_TargetAssemblyTypeName: AudioSetter, Assembly-CSharp
-          m_MethodName: SFX_ButtonCursorArea
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1829834681}
-          m_TargetAssemblyTypeName: AudioSetter, Assembly-CSharp
-          m_MethodName: SFX_ClickedButton
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &776005270
 GameObject:
   m_ObjectHideFlags: 0
@@ -2694,7 +2510,6 @@ GameObject:
   - component: {fileID: 970961753}
   - component: {fileID: 970961752}
   - component: {fileID: 970961751}
-  - component: {fileID: 970961754}
   m_Layer: 5
   m_Name: Button Exit
   m_TagString: Untagged
@@ -2816,51 +2631,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 970961749}
   m_CullTransparentMesh: 1
---- !u!114 &970961754
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 970961749}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1829834681}
-          m_TargetAssemblyTypeName: AudioSetter, Assembly-CSharp
-          m_MethodName: SFX_ButtonCursorArea
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1829834681}
-          m_TargetAssemblyTypeName: AudioSetter, Assembly-CSharp
-          m_MethodName: SFX_ClickedButton
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &971418601
 GameObject:
   m_ObjectHideFlags: 0
@@ -4728,7 +4498,6 @@ GameObject:
   - component: {fileID: 1568203543}
   - component: {fileID: 1568203542}
   - component: {fileID: 1568203541}
-  - component: {fileID: 1568203544}
   m_Layer: 5
   m_Name: Button New Game
   m_TagString: Untagged
@@ -4851,51 +4620,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1568203539}
   m_CullTransparentMesh: 1
---- !u!114 &1568203544
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1568203539}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1829834681}
-          m_TargetAssemblyTypeName: AudioSetter, Assembly-CSharp
-          m_MethodName: SFX_ButtonCursorArea
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1829834681}
-          m_TargetAssemblyTypeName: AudioSetter, Assembly-CSharp
-          m_MethodName: SFX_ClickedButton
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &1694749941
 GameObject:
   m_ObjectHideFlags: 0
@@ -5093,8 +4817,8 @@ MonoBehaviour:
   SFXSource: {fileID: 905982090}
   bgMenu: {fileID: 8300000, guid: 71b2c9d343937fa418c1f99784dac204, type: 3}
   bgIngame: {fileID: 8300000, guid: fd17ffd01aaeec4449c62cfded5918da, type: 3}
-  clickedButton: {fileID: 8300000, guid: c393d1060f961404ca319de9be942f8e, type: 3}
-  cursorArea: {fileID: 8300000, guid: 591b98eb916f8f14ca0e843c1b682280, type: 3}
+  clickedButton: {fileID: 8300000, guid: 711cb21ef323b2f418dbcb16a0a53243, type: 3}
+  cursorArea: {fileID: 0}
   openedDoor: {fileID: 8300000, guid: 34b900298c243dc47a32355ae58702b3, type: 3}
   lightSpread: {fileID: 8300000, guid: 8485c91be8bae9544b674cca41a3b944, type: 3}
   OpenPanel: {fileID: 8300000, guid: 711cb21ef323b2f418dbcb16a0a53243, type: 3}
@@ -5128,7 +4852,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1837886641}
   - component: {fileID: 1837886645}
-  - component: {fileID: 1837886644}
   - component: {fileID: 1837886643}
   - component: {fileID: 1837886642}
   m_Layer: 5
@@ -5196,19 +4919,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1837886640}
   m_CullTransparentMesh: 1
---- !u!114 &1837886644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1837886640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates: []
 --- !u!114 &1837886645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5277,7 +4987,6 @@ GameObject:
   - component: {fileID: 1852512104}
   - component: {fileID: 1852512103}
   - component: {fileID: 1852512102}
-  - component: {fileID: 1852512105}
   m_Layer: 5
   m_Name: Button Back
   m_TagString: Untagged
@@ -5398,51 +5107,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1852512100}
   m_CullTransparentMesh: 1
---- !u!114 &1852512105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1852512100}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1829834681}
-          m_TargetAssemblyTypeName: AudioSetter, Assembly-CSharp
-          m_MethodName: SFX_ButtonCursorArea
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1829834681}
-          m_TargetAssemblyTypeName: AudioSetter, Assembly-CSharp
-          m_MethodName: SFX_ClickedButton
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &1856116609
 GameObject:
   m_ObjectHideFlags: 0
@@ -5999,7 +5663,6 @@ GameObject:
   - component: {fileID: 2094112221}
   - component: {fileID: 2094112220}
   - component: {fileID: 2094112219}
-  - component: {fileID: 2094112222}
   m_Layer: 5
   m_Name: Button Back
   m_TagString: Untagged
@@ -6120,51 +5783,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2094112217}
   m_CullTransparentMesh: 1
---- !u!114 &2094112222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2094112217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1829834681}
-          m_TargetAssemblyTypeName: AudioSetter, Assembly-CSharp
-          m_MethodName: SFX_ButtonCursorArea
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1829834681}
-          m_TargetAssemblyTypeName: AudioSetter, Assembly-CSharp
-          m_MethodName: SFX_ClickedButton
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &3112152934125785
 GameObject:
   m_ObjectHideFlags: 0

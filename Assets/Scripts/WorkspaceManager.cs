@@ -574,7 +574,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                     motifUnlocked = 1;
                     slotKosong[0].SetActive(false);
                     EnableWorkspace();
-                    bookMenu.CloseBook();
+                    bookMenu.CloseBookAfterUp();
                     StartCoroutine(ShowVfx(1));
 
                     upgrades[1].interactable = true;
@@ -618,7 +618,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                     motifUnlocked = 2;
                     slotKosong[1].SetActive(false);
                     EnableWorkspace();
-                    bookMenu.CloseBook();
+                    bookMenu.CloseBookAfterUp();
                     StartCoroutine(ShowVfx(2));
 
                     upgrades[2].interactable = true;
@@ -660,7 +660,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                     motifUnlocked = 3;
                     slotKosong[2].SetActive(false);
                     EnableWorkspace();
-                    bookMenu.CloseBook();
+                    bookMenu.CloseBookAfterUp();
                     StartCoroutine(ShowVfx(3));
 
                     upgrades[3].interactable = true;
@@ -702,7 +702,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                     motifUnlocked = 4;
                     slotKosong[3].SetActive(false);
                     EnableWorkspace();
-                    bookMenu.CloseBook();
+                    bookMenu.CloseBookAfterUp();
                     StartCoroutine(ShowVfx(4));
 
                     upgrades[4].interactable = true;
@@ -775,7 +775,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                             textDesc[workspaceIndex].text = "Meningkatkan kecepatan proses otomatis -2 detik menjadi " + newProgresTime + " detik";
                         }
 
-                        bookMenu.CloseBook();
+                        bookMenu.CloseBookAfterUp();
                         StartCoroutine(ShowVfx(0));
                     }
                     else
@@ -826,7 +826,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                             textDesc[workspaceIndex].text = "Meningkatkan kecepatan proses otomatis -2 detik menjadi " + newProgresTime + " detik";
                         }
 
-                        bookMenu.CloseBook();
+                        bookMenu.CloseBookAfterUp();
                         StartCoroutine(ShowVfx(1));
                     }
                     else
@@ -877,7 +877,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                             textDesc[workspaceIndex].text = "Meningkatkan kecepatan proses otomatis -2 detik menjadi " + newProgresTime + " detik";
                         }
 
-                        bookMenu.CloseBook();
+                        bookMenu.CloseBookAfterUp();
                         StartCoroutine(ShowVfx(2));
                     }
                     else
@@ -928,7 +928,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                             textDesc[workspaceIndex].text = "Meningkatkan kecepatan proses otomatis -2 detik menjadi " + newProgresTime + " detik";
                         }
 
-                        bookMenu.CloseBook();
+                        bookMenu.CloseBookAfterUp();
                         StartCoroutine(ShowVfx(3));
                     }
                     else
@@ -979,7 +979,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                             textDesc[workspaceIndex].text = "Meningkatkan kecepatan proses otomatis -2 detik menjadi " + newProgresTime + " detik";
                         }
 
-                        bookMenu.CloseBook();
+                        bookMenu.CloseBookAfterUp();
                         StartCoroutine(ShowVfx(4));
                     }
                     else

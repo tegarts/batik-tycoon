@@ -32,6 +32,7 @@ public class MainMenu : MonoBehaviour
 
     public void ButtonStart()
     {
+        audioSetter.PlaySFX(audioSetter.OpenPanel);
         if(DataPersistenceManager.instance.HasGameData())
         {
             popUpLoad.SetActive(true);
@@ -77,36 +78,42 @@ public class MainMenu : MonoBehaviour
 
     public void ButtonLoadExit()
     {
+        audioSetter.PlaySFX(audioSetter.ClosePanel);
         popUpLoad.SetActive(false);
         panelMainMenu.SetActive(true);
     }
 
     public void ButtonOption()
     {
+        audioSetter.PlaySFX(audioSetter.OpenPanel);
         panelMainMenu.SetActive(false);
         panelOption.SetActive(true);
     }
 
     public void ButtonOptionExit()
     {
+        audioSetter.PlaySFX(audioSetter.ClosePanel);
         panelOption.SetActive(false);
         panelMainMenu.SetActive(true);
     }
 
     public void ButtonInfo()
     {
+        audioSetter.PlaySFX(audioSetter.OpenPanel);
         panelMainMenu.SetActive(false);
         panelInfo.SetActive(true);
     }
 
     public void ButtonInfoExit()
     {
+        audioSetter.PlaySFX(audioSetter.ClosePanel);
         panelInfo.SetActive(false);
         panelMainMenu.SetActive(true);
     }
 
     public void ButtonQuit()
     {
+        audioSetter.PlaySFX(audioSetter.ClosePanel);
         Application.Quit();
     }
 

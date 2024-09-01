@@ -69,6 +69,11 @@ public class BookMenu : MonoBehaviour
         StartCoroutine(CloseBookDelay());
     }
 
+    public void CloseBookAfterUp()
+    {
+        StartCoroutine(CloseBookDelay());
+    }
+
     public void OpenReport()
     {
         audioSetter.PlaySFX(audioSetter.OpenPanel);
