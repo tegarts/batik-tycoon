@@ -2276,6 +2276,7 @@ GameObject:
   m_Component:
   - component: {fileID: 905982091}
   - component: {fileID: 905982090}
+  - component: {fileID: 905982092}
   m_Layer: 0
   m_Name: SFX
   m_TagString: Untagged
@@ -2395,6 +2396,103 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1829834680}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &905982092
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905982089}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 5870508100998067780, guid: 9025b80efc9598044b3da0746f1c30a2,
+    type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &958031526
 GameObject:
   m_ObjectHideFlags: 0
@@ -4708,6 +4806,23 @@ MonoBehaviour:
   cursorArea: {fileID: 8300000, guid: 591b98eb916f8f14ca0e843c1b682280, type: 3}
   openedDoor: {fileID: 8300000, guid: 34b900298c243dc47a32355ae58702b3, type: 3}
   lightSpread: {fileID: 8300000, guid: 8485c91be8bae9544b674cca41a3b944, type: 3}
+  npcHappyGirl: {fileID: 8300000, guid: 4d75bef3e67ecf64985c9045f2274048, type: 3}
+  npcFlatGirl: {fileID: 8300000, guid: eeb9d7dedad36cd4290fbb664e49107a, type: 3}
+  npcAngryGirl: {fileID: 8300000, guid: 3befa307e514f924b9971d9eeb7099cb, type: 3}
+  npcHappyBoy: {fileID: 8300000, guid: 188e750dc0dd4234ab9b18500f67d472, type: 3}
+  npcFlatBoy: {fileID: 8300000, guid: 520398a85fe20e44bb0de2f33e6b7312, type: 3}
+  npcAngryBoy: {fileID: 8300000, guid: f5798f9cfa232274db9d567262adda38, type: 3}
+  bellEntrance: {fileID: 8300000, guid: d1a9da4aa2ea7944eb3201c8b76ddf5d, type: 3}
+  desain: {fileID: 8300000, guid: 8e6296c2ea2e71f118033f89ef3696e7, type: 3}
+  canting: {fileID: 8300000, guid: 87d7cb719eff0836f833abae00664482, type: 3}
+  mewarnai: {fileID: 8300000, guid: aa0b3e76f3ae4dc19b437bfc40e7b9ba, type: 3}
+  menjemur: {fileID: 8300000, guid: 3915b49c65dc5b1a58aaa9adacaf1ea3, type: 3}
+  lorod: {fileID: 8300000, guid: 29aec538c6ddb15ba9f862d646c1b1bb, type: 3}
+  angin: {fileID: 8300000, guid: 50fcf5037a9891b0097f89ebf9da2868, type: 3}
+  gameResult: {fileID: 8300000, guid: 00aef5022ca01c449b61ca0cae746c81, type: 3}
+  numberCounter: {fileID: 8300000, guid: 4e149f5a0bb00fe45a55e9fa393c1821, type: 3}
+  star: {fileID: 8300000, guid: 0938592f3d2a02848b44cc82aa64560a, type: 3}
+  reactions: {fileID: 8300000, guid: 6cddf829712b0dfbb9484be495844b2f, type: 3}
 --- !u!1 &1837886640
 GameObject:
   m_ObjectHideFlags: 0

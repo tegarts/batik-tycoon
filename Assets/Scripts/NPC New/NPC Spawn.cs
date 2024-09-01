@@ -141,7 +141,14 @@ public class NPCSpawn : MonoBehaviour
         isSpawning = false;
         dayManager.dayIsStarted = false;
         isInitialized = false;
-        bookMenu.OpenBook();
+        if(Daily.instance.progress > Daily.instance.progress40)
+        {
+            bookMenu.OpenBook();
+        }
+        else
+        {
+            Daily.instance.panelGameOver.SetActive(true);
+        }
     }
 
     void SpawnNPC(List<Transform[]> availableWaypoints)

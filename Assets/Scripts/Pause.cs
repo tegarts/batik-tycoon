@@ -32,6 +32,13 @@ public class Pause : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
     }
 
+    public void GameOver()
+    {
+        Time.timeScale = 1;
+        DataPersistenceManager.instance.NewGame();
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
+    }
+
     private void Update()
     {
 

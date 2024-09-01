@@ -16,6 +16,8 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
     [SerializeField] Sprite[] images;
     public TMP_Text notifText;
 
+
+
     [Header("Unlock")]
     [SerializeField] Button[] unlocks;
     [SerializeField] GameObject[] textUnlocks;
@@ -28,6 +30,13 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
     [SerializeField] GameObject[] textNoImage;
     [SerializeField] TMP_Text[] textHeadName;
     [SerializeField] TMP_Text[] textDesc;
+
+    [Header("Change Workspace")]
+    [SerializeField] GameObject[] workspaceColor1;
+    [SerializeField] GameObject[] workspaceColor2;
+    [SerializeField] GameObject[] workspaceColor3;
+    [SerializeField] GameObject[] workspaceColor4;
+    [SerializeField] GameObject[] workspaceColor5;
 
     [Header("General")]
     public int motifUnlocked;
@@ -160,6 +169,24 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
         }
 
         DisableButtonUpgrade();
+        UpdateWorkspaceColors();
+    }
+
+    void SetWorkspaceColors(GameObject[] workspaceColors, int level)
+    {
+        for (int i = 0; i < workspaceColors.Length; i++)
+        {
+            workspaceColors[i].SetActive(i == level - 1);
+        }
+    }
+
+    void UpdateWorkspaceColors()
+    {
+        SetWorkspaceColors(workspaceColor1, workspaces[0].GetComponent<Workspace>().level_workspace);
+        SetWorkspaceColors(workspaceColor2, workspaces[1].GetComponent<Workspace>().level_workspace);
+        SetWorkspaceColors(workspaceColor3, workspaces[2].GetComponent<Workspace>().level_workspace);
+        SetWorkspaceColors(workspaceColor4, workspaces[3].GetComponent<Workspace>().level_workspace);
+        SetWorkspaceColors(workspaceColor5, workspaces[4].GetComponent<Workspace>().level_workspace);
     }
 
     private void DisableButtonUpgrade()
@@ -709,6 +736,8 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
 
                         ShowNotif();
 
+                        SetWorkspaceColors(workspaceColor1, workspaces[0].GetComponent<Workspace>().level_workspace);
+
                         if (upgradeLevel == 5)
                         {
                             upgrades[workspaceIndex].interactable = false;
@@ -755,6 +784,8 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                         imageWarning.GetComponent<Image>().sprite = images[1];
 
                         ShowNotif();
+
+                        SetWorkspaceColors(workspaceColor2, workspaces[1].GetComponent<Workspace>().level_workspace);
 
                         if (upgradeLevel == 5)
                         {
@@ -803,6 +834,8 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
 
                         ShowNotif();
 
+                        SetWorkspaceColors(workspaceColor3, workspaces[2].GetComponent<Workspace>().level_workspace);
+
                         if (upgradeLevel == 5)
                         {
                             upgrades[workspaceIndex].interactable = false;
@@ -850,6 +883,8 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
 
                         ShowNotif();
 
+                        SetWorkspaceColors(workspaceColor4, workspaces[3].GetComponent<Workspace>().level_workspace);
+
                         if (upgradeLevel == 5)
                         {
                             upgrades[workspaceIndex].interactable = false;
@@ -896,6 +931,8 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                         imageWarning.GetComponent<Image>().sprite = images[1];
 
                         ShowNotif();
+
+                        SetWorkspaceColors(workspaceColor5, workspaces[4].GetComponent<Workspace>().level_workspace);
 
                         if (upgradeLevel == 5)
                         {

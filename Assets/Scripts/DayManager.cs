@@ -9,6 +9,12 @@ public class DayManager : MonoBehaviour, IDataPersistence
     public int day;
     public bool dayIsStarted;
     bool isAlreadyStarted;
+    public GameObject[] doors;
+    public GameObject mainCharacter;
+    public GameObject assignAreaMC;
+
+    [Header("Lighting")]
+    public Light directionalLight;
 
     [Header("UI Related")]
     [SerializeField] GameObject bookMenuButton;
@@ -43,10 +49,15 @@ public class DayManager : MonoBehaviour, IDataPersistence
         {
             if (!isAlreadyStarted)
             {
+                directionalLight.intensity = 1.2f;
                 bookMenu.CloseBook();
                 dayTextHUD.text = day.ToString();
                 isAlreadyStarted = true;
                 CloseBookButton();
+                doors[0].SetActive(true);
+                doors[1].SetActive(false);
+                mainCharacter.SetActive(true);
+                assignAreaMC.SetActive(true);
             }
             // bookMenuButton.SetActive(false);
         }
@@ -63,6 +74,16 @@ public class DayManager : MonoBehaviour, IDataPersistence
                 bookMenuButton.SetActive(true);
                 buttonText.text = "Mulai hari ke-" + (day + 1);
             }
+
+            doors[0].SetActive(false);
+            doors[1].SetActive(true);
+
+            if(!tutorial.isStartTutor)
+            {
+                mainCharacter.SetActive(false);
+                assignAreaMC.SetActive(false);
+            }
+           
         }
     }
 
