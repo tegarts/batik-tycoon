@@ -58,6 +58,12 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
     Money money;
     BookMenu bookMenu;
 
+    [Header("Audio")]
+    AudioSetter audioSetter;
+    private void Awake()
+    {
+        audioSetter = GameObject.FindWithTag("Audio").GetComponent<AudioSetter>();
+    }
     public void LoadData(GameData data)
     {
         motifUnlocked = data.motifUnlocked;
@@ -554,6 +560,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
             {
                 if (money.CanAfford(workspacePrice[0]))
                 {
+                    audioSetter.PlaySFX(audioSetter.UnlockWS);
                     unlocks[0].interactable = false;
                     textUnlocks[0].SetActive(false);
                     textOwned[0].SetActive(true);
@@ -597,6 +604,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
             {
                 if (money.CanAfford(workspacePrice[1]))
                 {
+                    audioSetter.PlaySFX(audioSetter.UnlockWS);
                     unlocks[1].interactable = false;
                     textUnlocks[1].SetActive(false);
                     textOwned[1].SetActive(true);
@@ -638,6 +646,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
             {
                 if (money.CanAfford(workspacePrice[2]))
                 {
+                    audioSetter.PlaySFX(audioSetter.UnlockWS);
                     unlocks[2].interactable = false;
                     textUnlocks[2].SetActive(false);
                     textOwned[2].SetActive(true);
@@ -679,6 +688,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
             {
                 if (money.CanAfford(workspacePrice[3]))
                 {
+                    audioSetter.PlaySFX(audioSetter.UnlockWS);
                     unlocks[3].interactable = false;
                     textUnlocks[3].SetActive(false);
                     textOwned[3].SetActive(true);
@@ -729,6 +739,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                 {
                     if (money.CanAfford(upgradePrice1[upgradeLevel - 2]))
                     {
+                        audioSetter.PlaySFX(audioSetter.UpgradeWS);
                         money.ReduceMoney(upgradePrice1[upgradeLevel - 2]);
                         int newProgresTime = Mathf.RoundToInt(timePerLevel[upgradeLevel - 1]);
                         workspace.UpdateProgresTime(newProgresTime);
@@ -779,6 +790,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                 {
                     if (money.CanAfford(upgradePrice2[upgradeLevel - 2]))
                     {
+                        audioSetter.PlaySFX(audioSetter.UpgradeWS);
                         money.ReduceMoney(upgradePrice2[upgradeLevel - 2]);
                         int newProgresTime = Mathf.RoundToInt(timePerLevel[upgradeLevel - 1]);
                         workspace.UpdateProgresTime(newProgresTime);
@@ -829,6 +841,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                 {
                     if (money.CanAfford(upgradePrice3[upgradeLevel - 2]))
                     {
+                        audioSetter.PlaySFX(audioSetter.UpgradeWS);
                         money.ReduceMoney(upgradePrice3[upgradeLevel - 2]);
                         int newProgresTime = Mathf.RoundToInt(timePerLevel[upgradeLevel - 1]);
                         workspace.UpdateProgresTime(newProgresTime);
@@ -879,6 +892,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                 {
                     if (money.CanAfford(upgradePrice4[upgradeLevel - 2]))
                     {
+                        audioSetter.PlaySFX(audioSetter.UpgradeWS);
                         money.ReduceMoney(upgradePrice4[upgradeLevel - 2]);
                         int newProgresTime = Mathf.RoundToInt(timePerLevel[upgradeLevel - 1]);
                         workspace.UpdateProgresTime(newProgresTime);
@@ -929,6 +943,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                 {
                     if (money.CanAfford(upgradePrice5[upgradeLevel - 2]))
                     {
+                        audioSetter.PlaySFX(audioSetter.UpgradeWS);
                         money.ReduceMoney(upgradePrice5[upgradeLevel - 2]);
                         int newProgresTime = Mathf.RoundToInt(timePerLevel[upgradeLevel - 1]);
                         workspace.UpdateProgresTime(newProgresTime);

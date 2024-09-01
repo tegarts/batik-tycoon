@@ -5097,6 +5097,8 @@ MonoBehaviour:
   cursorArea: {fileID: 8300000, guid: 591b98eb916f8f14ca0e843c1b682280, type: 3}
   openedDoor: {fileID: 8300000, guid: 34b900298c243dc47a32355ae58702b3, type: 3}
   lightSpread: {fileID: 8300000, guid: 8485c91be8bae9544b674cca41a3b944, type: 3}
+  OpenPanel: {fileID: 8300000, guid: 711cb21ef323b2f418dbcb16a0a53243, type: 3}
+  ClosePanel: {fileID: 8300000, guid: 9be75d9103ae5d34f9bedf124771ec70, type: 3}
   npcHappyGirl: {fileID: 0}
   npcFlatGirl: {fileID: 0}
   npcAngryGirl: {fileID: 0}
@@ -5104,6 +5106,8 @@ MonoBehaviour:
   npcFlatBoy: {fileID: 0}
   npcAngryBoy: {fileID: 0}
   bellEntrance: {fileID: 0}
+  UnlockWS: {fileID: 8300000, guid: 033bafe13e3945942ac58aa53ae10618, type: 3}
+  UpgradeWS: {fileID: 8300000, guid: 7d1b937e3064e334cb6b0d57f563f72b, type: 3}
   desain: {fileID: 0}
   canting: {fileID: 0}
   mewarnai: {fileID: 0}
