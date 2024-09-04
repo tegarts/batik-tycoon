@@ -42,6 +42,7 @@ public class AudioSetter : MonoBehaviour
     public AudioClip gameOver;
     public AudioClip afterCanting;
     public AudioClip error;
+    public AudioClip tutor;
 
     [Header("Audio Clip Game Result")]
     public AudioClip gameResult;

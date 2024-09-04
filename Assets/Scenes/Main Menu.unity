@@ -4842,6 +4842,7 @@ MonoBehaviour:
   gameOver: {fileID: 8300000, guid: e38fcee30687f27a3b959ada1ffa48fd, type: 3}
   afterCanting: {fileID: 8300000, guid: 5598e40054a8524ba87d32946b7090ea, type: 3}
   error: {fileID: 8300000, guid: 258b5cb98118d04ec8ad380f1a4c069d, type: 3}
+  tutor: {fileID: 8300000, guid: 98546052ebed1f4708caab9f30b8b6c7, type: 3}
   gameResult: {fileID: 8300000, guid: 00aef5022ca01c449b61ca0cae746c81, type: 3}
   numberCounter: {fileID: 8300000, guid: 4e149f5a0bb00fe45a55e9fa393c1821, type: 3}
   star: {fileID: 8300000, guid: 0938592f3d2a02848b44cc82aa64560a, type: 3}

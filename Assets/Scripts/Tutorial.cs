@@ -259,6 +259,7 @@ public class Tutorial : MonoBehaviour, IDataPersistence
     {
         animPanelTutor.SetTrigger("IsPortrait");
         yield return new WaitForSeconds(0.25f);
+        audioSetter.PlaySFX(audioSetter.tutor);
         imagePortrait.GetComponent<Image>().sprite = spritePortrait[dex];
     }
 
