@@ -1640,6 +1640,8 @@ GameObject:
   - component: {fileID: 6061904639485336863}
   - component: {fileID: 4864375187046772590}
   - component: {fileID: 6928232173241415441}
+  - component: {fileID: 4489876081055031300}
+  - component: {fileID: 328084217239567777}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -1828,6 +1830,41 @@ MonoBehaviour:
   namaMotif: 
   onProgress: 0
   nPCBehavParent: {fileID: 0}
+--- !u!95 &4489876081055031300
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5543724110538885951}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 423217b4acbd2da29ab85407a4a27b05, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &328084217239567777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5543724110538885951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f830b91bc8b2c46b68cb17f2c0751855, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 1
+  anim: {fileID: 4489876081055031300}
 --- !u!1 &5720116839192591337
 GameObject:
   m_ObjectHideFlags: 0
@@ -2697,6 +2734,7 @@ MonoBehaviour:
   isAddHappyReaction: 0
   currentWorkspace: {fileID: 0}
   drawing: {fileID: 0}
+  blinkTimer: 0
   buttonMotif: {fileID: 0}
   reactionBubble: {fileID: 3474771046596312360}
   reactions:

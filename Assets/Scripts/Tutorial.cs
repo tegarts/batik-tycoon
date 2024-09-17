@@ -26,6 +26,8 @@ public class Tutorial : MonoBehaviour, IDataPersistence
     DrawingManager drawingManager;
     [SerializeField] Workspace workspace;
     WorkspaceManager workspaceManager;
+    BookMenu bookMenu;
+    DayManager dayManager;
     public int index;
     [Header("UI References")]
     [SerializeField] GameObject PlayerArea;
@@ -37,6 +39,11 @@ public class Tutorial : MonoBehaviour, IDataPersistence
     [SerializeField] GameObject buttonStartDay;
     [SerializeField] GameObject imagePortrait;
     [SerializeField] Sprite[] spritePortrait;
+
+    [SerializeField] GameObject highlightButtonBook;
+    [SerializeField] GameObject highlightButtonUnlock;
+    [SerializeField] GameObject highlightButtonWS;
+    [SerializeField] GameObject highlightButtonStartDay;
     [Header("Audio")]
     AudioSetter audioSetter;
     private void Awake()
@@ -56,11 +63,17 @@ public class Tutorial : MonoBehaviour, IDataPersistence
 
     private void Start()
     {
+        highlightButtonBook.SetActive(false);
+        highlightButtonUnlock.SetActive(false);
+        highlightButtonWS.SetActive(false);
+        highlightButtonStartDay.SetActive(false);
         // indicatorUpgrade.SetActive(false);
         // indicatorMoney.SetActive(false);
 
         drawingManager = FindAnyObjectByType<DrawingManager>();
         workspaceManager = FindAnyObjectByType<WorkspaceManager>();
+        bookMenu = FindAnyObjectByType<BookMenu>();
+        dayManager = FindAnyObjectByType<DayManager>();
 
         panelSkipConfirmation.SetActive(false);
 
@@ -75,7 +88,7 @@ public class Tutorial : MonoBehaviour, IDataPersistence
         }
         else
         {
-            
+
         }
         textComponent.text = string.Empty;
         StartDialogue();
@@ -89,11 +102,11 @@ public class Tutorial : MonoBehaviour, IDataPersistence
             {
                 if (!panelSkipConfirmation.activeSelf)
                 {
-                    if(isTyping)
+                    if (isTyping)
                     {
                         StopAllCoroutines();
                         textComponent.text = lines[index];
-                        isTyping = false; 
+                        isTyping = false;
                     }
                     else
                     {
@@ -134,7 +147,7 @@ public class Tutorial : MonoBehaviour, IDataPersistence
                 playerChildArea.GetComponent<Image>().enabled = false;
                 WorkerArea.GetComponent<Image>().enabled = true;
                 workerChildArea.GetComponent<Image>().enabled = true;
-                
+
             }
             else if (workspace.isDone && !isStepDone[2])
             {
@@ -153,6 +166,41 @@ public class Tutorial : MonoBehaviour, IDataPersistence
                 StartCoroutine(TypeLine());
                 isStepDone[3] = true;
             }
+        }
+
+        if (isStartTutor)
+        {
+            if (index == 9)
+            {
+                if (bookMenu.bookPanel.activeSelf && !bookMenu.unlockPanel.activeSelf)
+                {
+                    Debug.Log("SANTOEHUNATOEHUSNAEOU");
+                    highlightButtonBook.SetActive(false);
+                    highlightButtonUnlock.SetActive(true);
+                }
+                if (bookMenu.unlockPanel.activeSelf)
+                {
+                    Debug.Log("ZZZZZZZZZZZZZZZZZZz");
+                    highlightButtonUnlock.SetActive(false);
+                    highlightButtonWS.SetActive(true);
+                }
+            }
+        }
+        else if(isAlreadyTutor && dayManager.day == 0)
+        {
+            if(!bookMenu.bookPanel.activeSelf)
+            {
+                highlightButtonBook.SetActive(true);
+            }
+            else
+            {
+                highlightButtonStartDay.SetActive(true);
+                highlightButtonBook.SetActive(false);
+            }
+        }
+        else
+        {
+            highlightButtonWS.SetActive(false);
         }
     }
 
@@ -179,11 +227,11 @@ public class Tutorial : MonoBehaviour, IDataPersistence
 
         if (index < 2)
         {
-            if(index == 0)
+            if (index == 0)
             {
                 StartCoroutine(ChangeSprite(2));
             }
-            else if(index == 1)
+            else if (index == 1)
             {
                 StartCoroutine(ChangeSprite(1));
             }
@@ -208,9 +256,9 @@ public class Tutorial : MonoBehaviour, IDataPersistence
             index++;
             textComponent.text = string.Empty;
             StartCoroutine(TypeLine());
-            
+
         }
-        else if(index == 4)
+        else if (index == 4)
         {
             StartCoroutine(ChangeSprite(5));
             index++;
@@ -220,11 +268,11 @@ public class Tutorial : MonoBehaviour, IDataPersistence
         }
         else if (index <= 6)
         {
-            if(index == 5)
+            if (index == 5)
             {
                 StartCoroutine(ChangeSprite(4));
             }
-            else if(index == 6)
+            else if (index == 6)
             {
                 StartCoroutine(ChangeSprite(1));
             }
@@ -243,6 +291,8 @@ public class Tutorial : MonoBehaviour, IDataPersistence
             StartCoroutine(ChangeSprite(4));
             index++;
             CloseTutorial();
+            highlightButtonBook.SetActive(true);
+
             isStepDone[4] = true;
         }
         else if (index == 9)
@@ -252,7 +302,7 @@ public class Tutorial : MonoBehaviour, IDataPersistence
             isAlreadyTutor = true;
             isStartTutor = false;
         }
-        
+
     }
 
     IEnumerator ChangeSprite(int dex)

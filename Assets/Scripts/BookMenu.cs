@@ -8,7 +8,7 @@ public class BookMenu : MonoBehaviour
 {
     public GameObject bookPanel;
     [SerializeField] GameObject reportPanel;
-    [SerializeField] GameObject unlockPanel;
+    public GameObject unlockPanel;
     [SerializeField] GameObject upgradePanel;
     [SerializeField] GameObject pediaPanel;
     [SerializeField] GameObject buttonReportPanel;

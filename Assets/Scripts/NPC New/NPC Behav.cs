@@ -8,7 +8,7 @@ using Image = UnityEngine.UI.Image;
 
 public class NPCBehav : MonoBehaviour
 {
-    [SerializeField] int indexKarakter;
+    public int indexKarakter;
     public Transform[] waypoints;
     [SerializeField] int index = 0;
     public float speed;
@@ -27,8 +27,8 @@ public class NPCBehav : MonoBehaviour
     [SerializeField] bool isEventDrawingTriggered = false;
     private int scoreCanting;
     [SerializeField] bool isAddAngryReaction, isAddFlatReaction, isAddHappyReaction;
-    private float elapsedTime = 0f;
-    private float timePassed = 0f;
+    public float elapsedTime = 0f;
+    public float timePassed = 0f;
     private bool isTimePassed;
     private bool isWaitTimeActive = false;
     public Workspace currentWorkspace;

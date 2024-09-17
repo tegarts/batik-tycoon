@@ -33,7 +33,7 @@ public class NPCSpawn : MonoBehaviour
     private bool isSpawning;
     [SerializeField] Tutorial tutorial;
 
-    [SerializeField] private List<NPCBehav> activeNPCs = new List<NPCBehav>();
+    public List<NPCBehav> activeNPCs = new List<NPCBehav>();
     AudioSetter audioSetter;
 
     private void Awake()

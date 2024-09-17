@@ -218,8 +218,8 @@ public class FollowMouse : MonoBehaviour
                 {
                     Destroy(instantiatedImage);
                     isDragging = false;
-                    cameraRotation.RotateToB(0f);
-                    drawingManager.CanvasController(true);
+                    cameraRotation.RotateToC(0.1f, 1, 0.6f);
+                    // drawingManager.CanvasController(true);
                     drawingManager.MatchMotifKawung();
                     OnMouseDroppedRightManual?.Invoke();
                     Destroy(gameObject);
@@ -264,8 +264,7 @@ public class FollowMouse : MonoBehaviour
             {
                 Destroy(instantiatedImage);
                 isDragging = false;
-                cameraRotation.RotateToB(0f);
-                drawingManager.CanvasController(true);
+                cameraRotation.RotateToC(0.1f, 1, 0.6f);
                 drawingManager.MatchMotifMega();
                 OnMouseDroppedRightManual?.Invoke();
                 Destroy(gameObject);
@@ -308,8 +307,7 @@ public class FollowMouse : MonoBehaviour
             {
                 Destroy(instantiatedImage);
                 isDragging = false;
-                cameraRotation.RotateToB(0f);
-                drawingManager.CanvasController(true);
+                cameraRotation.RotateToC(0.1f, 1, 0.6f);
                 drawingManager.MatchMotifTruntum();
                 OnMouseDroppedRightManual?.Invoke();
                 Destroy(gameObject);
@@ -352,8 +350,7 @@ public class FollowMouse : MonoBehaviour
             {
                 Destroy(instantiatedImage);
                 isDragging = false;
-                cameraRotation.RotateToB(0f);
-                drawingManager.CanvasController(true);
+                cameraRotation.RotateToC(0.1f, 1, 0.6f);
                 drawingManager.MatchMotifParang();
                 OnMouseDroppedRightManual?.Invoke();
                 Destroy(gameObject);
@@ -396,8 +393,7 @@ public class FollowMouse : MonoBehaviour
             {
                 Destroy(instantiatedImage);
                 isDragging = false;
-                cameraRotation.RotateToB(0f);
-                drawingManager.CanvasController(true);
+                cameraRotation.RotateToC(0.1f, 1, 0.6f);
                 drawingManager.MatchMotifSimbut();
                 OnMouseDroppedRightManual?.Invoke();
                 Destroy(gameObject);
