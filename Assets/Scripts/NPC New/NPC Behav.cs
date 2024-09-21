@@ -85,8 +85,6 @@ public class NPCBehav : MonoBehaviour
         vfxreactions[0].Stop();
         vfxreactions[1].Stop();
         vfxreactions[2].Stop();
-
-
     }
 
     private void HandleDroppedRightAuto()
