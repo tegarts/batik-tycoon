@@ -6,7 +6,8 @@ using UnityEngine;
 public class Money : MonoBehaviour, IDataPersistence
 {
     public int moneyValue;
-    [SerializeField] TMP_Text moneyTextInsideBook;
+    [SerializeField] TMP_Text moneyTextUpgrade;
+    [SerializeField] TMP_Text moneyTextUnlock;
     [SerializeField] TMP_Text moneyTextHUD;
 
     public void LoadData(GameData data)
@@ -48,16 +49,18 @@ public class Money : MonoBehaviour, IDataPersistence
 
     private void UpdateMoneyText()
     {
-        if (moneyTextInsideBook != null && moneyTextHUD != null)
+        if (moneyTextUpgrade != null && moneyTextUnlock != null && moneyTextHUD != null)
         {
             if(moneyValue < 1000)
             {
-                moneyTextInsideBook.text = moneyValue.ToString("0.#")+"rb";
+                moneyTextUnlock.text = moneyValue.ToString("0.#")+"rb";
+                moneyTextUpgrade.text = moneyValue.ToString("0.#")+"rb";
                 moneyTextHUD.text = moneyValue.ToString("0.#")+"rb";
             }
             else
             {
-                moneyTextInsideBook.text = ((float)moneyValue/1000f).ToString("0.##")+"jt";
+                moneyTextUnlock.text = ((float)moneyValue/1000f).ToString("0.##")+"jt";
+                moneyTextUpgrade.text = ((float)moneyValue/1000f).ToString("0.##")+"jt";
                 moneyTextHUD.text = ((float)moneyValue/1000f).ToString("0.##")+"jt";
             }
         }

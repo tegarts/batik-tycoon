@@ -15,14 +15,25 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
     public GameObject imageWarning;
     public Sprite[] images;
     public TMP_Text notifText;
+    public GameObject panelUnlock;
+    public TMP_Text textMotifUnlock;
+    public int level;
+    public TMP_Text workspaceUnlockPrice;
 
-
+    public GameObject panelUpgrade;
+    public TMP_Text textMotifUpgrade;
+    public TMP_Text textUpgradeLevel;
+    public TMP_Text textUpgradePrice;
+    public int workspaceIndex;
+    public Animator animUnlock;
+    public Animator animUpgrade;
 
     [Header("Unlock")]
     [SerializeField] Button[] unlocks;
     [SerializeField] GameObject[] textUnlocks;
     [SerializeField] GameObject[] textOwned;
     [SerializeField] GameObject[] slotKosong;
+    [SerializeField] GameObject[] buttonUnlocks;
     [SerializeField] GameObject[] vfxUnlock;
 
     [Header("Upgrade")]
@@ -57,6 +68,8 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
     [Header("Reference")]
     Money money;
     BookMenu bookMenu;
+    Tutorial tutorial;
+    DayManager dayManager;
 
     [Header("Audio")]
     AudioSetter audioSetter;
@@ -76,7 +89,13 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
 
     private void Start()
     {
+        panelUnlock.SetActive(false);
+        panelUpgrade.SetActive(false);
+
         money = FindAnyObjectByType<Money>();
+        tutorial = FindAnyObjectByType<Tutorial>();
+        dayManager = FindAnyObjectByType<DayManager>();
+
         for (int i = 0; i < currentUpgradeLevel.Length; i++)
         {
             currentUpgradeLevel[i] = workspaces[i].GetComponent<Workspace>().level_workspace;
@@ -177,6 +196,34 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
 
         DisableButtonUpgrade();
         UpdateWorkspaceColors();
+    }
+
+    private void Update() 
+    {
+        if(tutorial.isStartTutor)
+        {
+            for (int i = 0; i < buttonUnlocks.Length; i++)
+            {
+                buttonUnlocks[i].SetActive(false);
+            }
+        }
+        else
+        {
+            if(dayManager.dayIsStarted)
+            {
+                for (int i = 0; i < buttonUnlocks.Length; i++)
+                {
+                    buttonUnlocks[i].SetActive(false);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < buttonUnlocks.Length; i++)
+                {
+                    buttonUnlocks[i].SetActive(true);
+                }
+            }
+        }    
     }
 
     void SetWorkspaceColors(GameObject[] workspaceColors, int level)
@@ -549,10 +596,11 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
         {
             workspaces[i].SetActive(true);
             workspaces[i].GetComponent<Workspace>().SetupAssignArea(canvasWorldSpace, cam);
+            workspaces[i].GetComponent<Workspace>().SetupUpgradeButton(canvasWorldSpace, cam);
         }
     }
 
-    public void UnlockWorkspace(int level)
+    public void UnlockWorkspace()
     {
         if (level == 2)
         {
@@ -574,7 +622,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                     motifUnlocked = 1;
                     slotKosong[0].SetActive(false);
                     EnableWorkspace();
-                    bookMenu.CloseBookAfterUp();
+                    CloseUpgradeUnlock();
                     StartCoroutine(ShowVfx(1));
 
                     upgrades[1].interactable = true;
@@ -620,7 +668,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                     motifUnlocked = 2;
                     slotKosong[1].SetActive(false);
                     EnableWorkspace();
-                    bookMenu.CloseBookAfterUp();
+                    CloseUpgradeUnlock();
                     StartCoroutine(ShowVfx(2));
 
                     upgrades[2].interactable = true;
@@ -664,7 +712,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                     motifUnlocked = 3;
                     slotKosong[2].SetActive(false);
                     EnableWorkspace();
-                    bookMenu.CloseBookAfterUp();
+                    CloseUpgradeUnlock();
                     StartCoroutine(ShowVfx(3));
 
                     upgrades[3].interactable = true;
@@ -708,7 +756,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                     motifUnlocked = 4;
                     slotKosong[3].SetActive(false);
                     EnableWorkspace();
-                    bookMenu.CloseBookAfterUp();
+                    CloseUpgradeUnlock();
                     StartCoroutine(ShowVfx(4));
 
                     upgrades[4].interactable = true;
@@ -734,7 +782,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
         }
     }
 
-    public void UpgradeWorkspace(int workspaceIndex)
+    public void UpgradeWorkspace()
     {
         if (workspaceIndex >= 0 && workspaceIndex < workspaces.Length)
         {
@@ -783,7 +831,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                             textDesc[workspaceIndex].text = "Meningkatkan kecepatan proses otomatis -2 detik menjadi " + newProgresTime + " detik";
                         }
 
-                        bookMenu.CloseBookAfterUp();
+                        CloseUpgradeUnlock();
                         StartCoroutine(ShowVfx(0));
                     }
                     else
@@ -835,7 +883,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                             textDesc[workspaceIndex].text = "Meningkatkan kecepatan proses otomatis -2 detik menjadi " + newProgresTime + " detik";
                         }
 
-                        bookMenu.CloseBookAfterUp();
+                        CloseUpgradeUnlock();
                         StartCoroutine(ShowVfx(1));
                     }
                     else
@@ -887,7 +935,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                             textDesc[workspaceIndex].text = "Meningkatkan kecepatan proses otomatis -2 detik menjadi " + newProgresTime + " detik";
                         }
 
-                        bookMenu.CloseBookAfterUp();
+                        CloseUpgradeUnlock();
                         StartCoroutine(ShowVfx(2));
                     }
                     else
@@ -939,7 +987,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                             textDesc[workspaceIndex].text = "Meningkatkan kecepatan proses otomatis -2 detik menjadi " + newProgresTime + " detik";
                         }
 
-                        bookMenu.CloseBookAfterUp();
+                        CloseUpgradeUnlock();
                         StartCoroutine(ShowVfx(3));
                     }
                     else
@@ -991,7 +1039,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                             textDesc[workspaceIndex].text = "Meningkatkan kecepatan proses otomatis -2 detik menjadi " + newProgresTime + " detik";
                         }
 
-                        bookMenu.CloseBookAfterUp();
+                        CloseUpgradeUnlock();
                         StartCoroutine(ShowVfx(4));
                     }
                     else
@@ -1047,4 +1095,128 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
         yield return new WaitForSeconds(1f);
         vfxUnlock[index].SetActive(false);
     }
+
+    public void OpenUnlock(int index)
+    {
+        panelUnlock.SetActive(true);
+
+        if(index == 0)
+        {
+            level = 2;
+            textMotifUnlock.text = "Unlock Workspace Motif Batik Megamendung?";
+            workspaceUnlockPrice.text = PriceCount(workspacePrice[0]);
+        }
+        else if(index == 1)
+        {
+            level = 3;
+            textMotifUnlock.text = "Unlock Workspace Motif Batik Truntum?";
+            workspaceUnlockPrice.text = PriceCount(workspacePrice[1]);
+        }
+        else if(index == 2)
+        {
+            level = 4;
+            textMotifUnlock.text = "Unlock Workspace Motif Batik Parang?";
+            workspaceUnlockPrice.text = PriceCount(workspacePrice[2]);
+        }
+        else if(index == 3)
+        {
+            level = 5;
+            textMotifUnlock.text = "Unlock Workspace Motif Batik Simbut?";
+            workspaceUnlockPrice.text = PriceCount(workspacePrice[3]);
+        }
+    }
+
+    public void CloseUnlock()
+    {
+        audioSetter.PlaySFX(audioSetter.ClosePanel);
+        StartCoroutine(CloseUnlockDelay());
+    }
+
+    public void OpenUpgrade(int index)
+    {
+        panelUpgrade.SetActive(true);
+
+        if(index == 0)
+        {
+            workspaceIndex = 0;
+            Workspace ws1 = workspaces[0].GetComponent<Workspace>();
+            textMotifUpgrade.text = "Upgrade Workspace Motif Batik Kawung ke";
+            textUpgradeLevel.text =  "Level " + (ws1.level_workspace + 1) + "?";
+            textUpgradePrice.text = PriceCount(upgradePrice1[ws1.level_workspace - 1]);
+        }
+        else if(index == 1)
+        {
+            workspaceIndex = 1;
+            Workspace ws2 = workspaces[1].GetComponent<Workspace>();
+            textMotifUpgrade.text = "Upgrade Workspace Motif Batik Megamendung ke";
+            textUpgradeLevel.text =  "Level " + (ws2.level_workspace + 1) + "?";
+            textUpgradePrice.text = PriceCount(upgradePrice2[ws2.level_workspace - 1]);
+        }
+        else if(index == 2)
+        {
+            workspaceIndex = 2;
+            Workspace ws3 = workspaces[2].GetComponent<Workspace>();
+            textMotifUpgrade.text = "Upgrade Workspace Motif Batik Truntum ke";
+            textUpgradeLevel.text =  "Level " + (ws3.level_workspace + 1) + "?";
+            textUpgradePrice.text = PriceCount(upgradePrice3[ws3.level_workspace - 1]);
+        }
+        else if(index == 3)
+        {
+            workspaceIndex = 3;
+            Workspace ws4 = workspaces[3].GetComponent<Workspace>();
+            textMotifUpgrade.text = "Upgrade Workspace Motif Batik Parang ke";
+            textUpgradeLevel.text =  "Level " + (ws4.level_workspace + 1) + "?";
+            textUpgradePrice.text = PriceCount(upgradePrice4[ws4.level_workspace - 1]);
+        }
+        else if(index == 4)
+        {
+            workspaceIndex = 4;
+            Workspace ws5 = workspaces[4].GetComponent<Workspace>();
+            textMotifUpgrade.text = "Upgrade Workspace Motif Batik Simbut ke";
+            textUpgradeLevel.text =  "Level " + (ws5.level_workspace + 1) + "?";
+            textUpgradePrice.text = PriceCount(upgradePrice5[ws5.level_workspace - 1]);
+        }
+    }
+
+    public void CloseUpgrade()
+    {
+        audioSetter.PlaySFX(audioSetter.ClosePanel);
+        StartCoroutine(CloseUpgradeDelay());
+    }
+
+    public void CloseUpgradeUnlock()
+    {
+        StartCoroutine(CloseUnlockUpgradeDelay());
+    }
+
+     IEnumerator CloseUnlockUpgradeDelay()
+    {
+        if(panelUnlock.activeSelf)
+        {
+            animUnlock.SetTrigger("IsEnd");
+            yield return new WaitForSeconds(0.25f);
+            panelUnlock.SetActive(false);
+        }
+        else if(panelUpgrade.activeSelf)
+        {
+            animUpgrade.SetTrigger("IsEnd");
+            yield return new WaitForSeconds(0.25f);
+            panelUpgrade.SetActive(false);
+        }
+    }
+
+    IEnumerator CloseUnlockDelay()
+    {
+        animUnlock.SetTrigger("IsEnd");
+        yield return new WaitForSeconds(0.25f);
+        panelUnlock.SetActive(false);
+    }
+
+    IEnumerator CloseUpgradeDelay()
+    {
+        animUpgrade.SetTrigger("IsEnd");
+        yield return new WaitForSeconds(0.25f);
+        panelUpgrade.SetActive(false);
+    }
+
 }

@@ -26,6 +26,7 @@ public class FollowMouse : MonoBehaviour
     public event MouseDroppedRight OnMouseDroppedRightAuto;
     public event MouseDroppedRight OnMouseDroppedRightManual;
     public event MouseDroppedWrong OnMouseDroppedWrong;
+
     [Header("References")]
     DrawingManager drawingManager;
     CameraRotation cameraRotation;
@@ -33,6 +34,8 @@ public class FollowMouse : MonoBehaviour
     Tutorial tutorial;
     [SerializeField] NPCBehav nPCBehavParent;
     AudioSetter audioSetter;
+    public Indicator indiManual;
+    public Indicator indiAuto;
 
 
     private void Awake()
@@ -54,6 +57,9 @@ public class FollowMouse : MonoBehaviour
         cameraRotation = FindAnyObjectByType<CameraRotation>();
         dayManager = FindAnyObjectByType<DayManager>();
         tutorial = FindAnyObjectByType<Tutorial>();
+
+        indiManual = GameObject.Find("Area Player").GetComponent<Indicator>();
+        indiAuto = GameObject.Find("Area Worker 1").GetComponent<Indicator>();
 
         for (int i = 0; i < workspaceAutomation.Length; i++)
         {
@@ -85,6 +91,14 @@ public class FollowMouse : MonoBehaviour
         if (instantiatedImage != null)
         {
             FollowTheMouse();
+            if(tutorial.isStartTutor && tutorial.index == 5)
+            {
+                indiManual.anim.SetBool("IsTutor", true);
+            }
+            else if(tutorial.isStartTutor && tutorial.index == 7)
+            {
+                indiAuto.anim.SetBool("IsTutor", true);
+            }
         }
 
         if (isDragging && Input.GetMouseButtonDown(0))

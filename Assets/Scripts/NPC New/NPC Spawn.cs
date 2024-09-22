@@ -29,7 +29,7 @@ public class NPCSpawn : MonoBehaviour
 
     [Header("References")]
     DayManager dayManager;
-    BookMenu bookMenu;
+    Daily daily;
     private bool isSpawning;
     [SerializeField] Tutorial tutorial;
 
@@ -43,7 +43,7 @@ public class NPCSpawn : MonoBehaviour
 
     void Start()
     {
-        bookMenu = FindAnyObjectByType<BookMenu>();
+        daily = FindAnyObjectByType<Daily>();
         tutorial = FindAnyObjectByType<Tutorial>();
         // StartCoroutine(SpawnNPCsInBatches());
         dayManager = FindAnyObjectByType<DayManager>();
@@ -143,7 +143,7 @@ public class NPCSpawn : MonoBehaviour
         isInitialized = false;
         if(Daily.instance.progress > Daily.instance.progress40)
         {
-            bookMenu.OpenBook();
+            daily.OpenDailyReport();
         }
         else
         {

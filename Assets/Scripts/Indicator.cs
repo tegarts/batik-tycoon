@@ -5,8 +5,9 @@ using UnityEngine;
 public class Indicator : MonoBehaviour
 {
     public int index;
-    [SerializeField] Animator anim;
+    public Animator anim;
     Tutorial tutorial;
+    FollowMouse followMouse;
 
     private void Start() 
     {
@@ -15,30 +16,30 @@ public class Indicator : MonoBehaviour
             anim = GetComponent<Animator>();
         }
         tutorial = FindObjectOfType<Tutorial>();
+        followMouse = GetComponent<FollowMouse>();
     }
 
     private void Update() 
     {
-        if(tutorial.isStartTutor && tutorial.index == 5 && index == 0)
-        {
-            anim.SetBool("IsTutor", true);
-        }
-        else if(tutorial.isStartTutor && tutorial.index != 5 && index == 0)
+        if(tutorial.isStartTutor && tutorial.index != 5 && index == 0)
         {
             anim.SetBool("IsTutor", false);
         }
-        else if(tutorial.isStartTutor && tutorial.index == 5 && index == 1)
-        {
-            Debug.Log("WOIII");
-            anim.SetBool("IsTutor", true);
-        }
-        else if(tutorial.isStartTutor && tutorial.index == 7 && index == 1)
+        else if(tutorial.isStartTutor && tutorial.index == 5 && index == 1 && followMouse.instantiatedImage == null)
         {
             anim.SetBool("IsTutor", true);
         }
-        else if(tutorial.isStartTutor && tutorial.index == 7 && index == 2)
+        else if(tutorial.isStartTutor && tutorial.index == 7 && index == 1 && followMouse.instantiatedImage == null)
         {
             anim.SetBool("IsTutor", true);
+        }
+        else if(tutorial.isStartTutor && tutorial.index == 5 && index == 1 && followMouse.instantiatedImage != null)
+        {
+            anim.SetBool("IsTutor", false);
+        }
+        else if(tutorial.isStartTutor && tutorial.index == 7 && index == 1 && followMouse.instantiatedImage != null)
+        {
+            anim.SetBool("IsTutor", false);
         }
         else if(tutorial.isStartTutor && tutorial.index != 7 && index == 2)
         {
