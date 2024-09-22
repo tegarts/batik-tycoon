@@ -3,7 +3,72 @@ guid: adc42e14cd02103e09ae4b1bb9fc9635
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Alis
+    second: {fileID: 2100000, guid: 17840545e33e4ffc3b2e221e7c945f11, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Baju
+    second: {fileID: 2100000, guid: e144568e4ccf644aea506fd3269a044f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Body
+    second: {fileID: 2100000, guid: ebc72aedfe64aadd8a915ebd980b166f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hitam.001
+    second: {fileID: 2100000, guid: 3274065a5623068bea7fb9aa9494fd4e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Jarik.001
+    second: {fileID: 2100000, guid: 146e0e78b2d1a7871bec57a5d420aaa3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: OH_Outline_Material
+    second: {fileID: 2100000, guid: 3e20441f2285473498a67d487df9d7b1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pakaian
+    second: {fileID: 2100000, guid: bfd49d11662d7347783a4b85a34bb99d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Texture.001
+    second: {fileID: 2100000, guid: 9f77abdff4ab6d2919a4514f4127f237, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Baju
+    second: {fileID: 2800000, guid: 997fbfa9c69ec8f708795c40fd95b70e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Body_texture
+    second: {fileID: 2800000, guid: b429683c082979d4b8efdb463682c6f0, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Lurik
+    second: {fileID: 2800000, guid: f07ff88fc097d790e859db28a4a9cfce, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Pallet warna
+    second: {fileID: 2800000, guid: 55f3c4b692e9b1981ad7267edc5844fe, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: batik_blangkon
+    second: {fileID: 2800000, guid: 67d3975ac3766adbf9e97f59f58987fa, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -35,7 +100,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.5
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -90,7 +155,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 0.5
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

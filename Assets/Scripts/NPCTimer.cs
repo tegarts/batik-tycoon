@@ -85,6 +85,10 @@ public class NPCTimer : MonoBehaviour
                     {
                         npcUsedFace[i].sprite = npcFaces[2];
                     }
+                    else if(nPCSpawn.activeNPCs[i].indexKarakter == 3)
+                    {
+                        npcUsedFace[i].sprite = npcFaces[3];
+                    }
                 }
                 else
                 {

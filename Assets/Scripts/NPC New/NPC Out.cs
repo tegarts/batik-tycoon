@@ -10,22 +10,40 @@ public class NPCOut : MonoBehaviour
     public float spawnInterval = 2f;
 
     private float spawnTimer = 0f;
+    [SerializeField] List<GameObject> activeNPC;
+    DayManager dayManager;
+
+    private void Start()
+    {
+        dayManager = FindAnyObjectByType<DayManager>();
+    }
 
     void Update()
     {
-        spawnTimer += Time.deltaTime;
-        if (spawnTimer >= spawnInterval && npcCount > 0)
+        if (dayManager.dayIsStarted)
         {
-            SpawnNPC();
-            spawnTimer = 0f;
-            npcCount--;
+            spawnTimer += Time.deltaTime;
+            if (spawnTimer >= spawnInterval && npcCount > 0)
+            {
+                SpawnNPC();
+                spawnTimer = 0f;
+                npcCount--;
+            }
         }
+        else
+        {
+            for(int i = 0; i < activeNPC.Count; i++)
+            {
+                Destroy(activeNPC[i]);
+            }
+        }
+
     }
 
     void SpawnNPC()
     {
         GameObject newNPC = Instantiate(npcPrefab, transform.position, Quaternion.identity);
-
+        activeNPC.Add(newNPC);
         NPCWarga patrolScript = newNPC.GetComponent<NPCWarga>();
         if (patrolScript != null)
         {

@@ -200,11 +200,18 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
 
     private void Update() 
     {
-        if(tutorial.isStartTutor)
+        if(tutorial.isStartTutor && tutorial.index != 9)
         {
             for (int i = 0; i < buttonUnlocks.Length; i++)
             {
                 buttonUnlocks[i].SetActive(false);
+            }
+        }
+        else if(tutorial.isStartTutor && tutorial.index == 9)
+        {
+            for (int i = 0; i < buttonUnlocks.Length; i++)
+            {
+                buttonUnlocks[i].SetActive(true);
             }
         }
         else

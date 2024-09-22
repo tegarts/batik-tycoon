@@ -5,7 +5,6 @@ using UnityEngine;
 public class CoinManager : MonoBehaviour
 {
     [SerializeField] GameObject coinPrefab;
-    [SerializeField] bool moveCoin = false;
 
     public Animator coin;
     AudioSetter coinEnter;

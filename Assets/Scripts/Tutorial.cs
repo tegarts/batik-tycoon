@@ -39,7 +39,6 @@ public class Tutorial : MonoBehaviour, IDataPersistence
     [SerializeField] GameObject imagePortrait;
     [SerializeField] Sprite[] spritePortrait;
 
-    [SerializeField] GameObject highlightButtonBook;
     [SerializeField] GameObject highlightButtonStartHUD;
     [SerializeField] GameObject highlightButtonUnlock;
     [SerializeField] GameObject highlightButtonWS;
@@ -63,7 +62,6 @@ public class Tutorial : MonoBehaviour, IDataPersistence
 
     private void Start()
     {
-        highlightButtonBook.SetActive(false);
         highlightButtonUnlock.SetActive(false);
         highlightButtonWS.SetActive(false);
         highlightButtonStartDay.SetActive(false);
@@ -173,13 +171,13 @@ public class Tutorial : MonoBehaviour, IDataPersistence
         {
             if (index == 9)
             {
-                if (bookMenu.bookPanel.activeSelf && !bookMenu.unlockPanel.activeSelf)
-                {
-                    Debug.Log("SANTOEHUNATOEHUSNAEOU");
-                    highlightButtonBook.SetActive(false);
-                    highlightButtonUnlock.SetActive(true);
-                }
-                if (bookMenu.unlockPanel.activeSelf)
+                // if (bookMenu.bookPanel.activeSelf && !bookMenu.unlockPanel.activeSelf)
+                // {
+                //     Debug.Log("SANTOEHUNATOEHUSNAEOU");
+                //     highlightButtonBook.SetActive(false);
+                //     highlightButtonUnlock.SetActive(true);
+                // }
+                if (workspaceManager.panelUnlock.activeSelf)
                 {
                     Debug.Log("ZZZZZZZZZZZZZZZZZZz");
                     highlightButtonUnlock.SetActive(false);
@@ -292,7 +290,7 @@ public class Tutorial : MonoBehaviour, IDataPersistence
             StartCoroutine(ChangeSprite(4));
             index++;
             CloseTutorial();
-            highlightButtonBook.SetActive(true);
+            highlightButtonUnlock.SetActive(true);
 
             isStepDone[4] = true;
         }

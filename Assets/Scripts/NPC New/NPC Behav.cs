@@ -208,7 +208,7 @@ public class NPCBehav : MonoBehaviour
                                     StartCoroutine(DisplayReaction("IsHappyPunk"));
                                     audioSetter.PlaySFX(audioSetter.npcHappyBoy);
                                 }
-                                else if (indexKarakter == 2)
+                                else if (indexKarakter == 2 || indexKarakter == 3)
                                 {
                                     anim.SetBool("IsHappyMan", true);
                                     StartCoroutine(DisplayReaction("IsHappyMan"));
@@ -256,7 +256,7 @@ public class NPCBehav : MonoBehaviour
                                     StartCoroutine(DisplayReaction("IsHappyPunk"));
                                     audioSetter.PlaySFX(audioSetter.npcHappyBoy);
                                 }
-                                else if (indexKarakter == 2)
+                                else if (indexKarakter == 2 || indexKarakter == 3)
                                 {
                                     anim.SetBool("IsHappyMan", true);
                                     StartCoroutine(DisplayReaction("IsHappyMan"));
