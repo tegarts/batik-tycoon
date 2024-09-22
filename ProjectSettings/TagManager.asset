@@ -29,6 +29,7 @@ TagManager:
   - area4
   - area5
   - areaplayer
+  - toCoins
   layers:
   - Default
   - TransparentFX

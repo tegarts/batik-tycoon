@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using UnityEngine;
@@ -46,7 +47,21 @@ public class NPCBehav : MonoBehaviour
 
     [Header("SFX & VFX")]
     [SerializeField] ParticleSystem[] vfxreactions;
+    //[SerializeField] GameObject coinPrefab;
+    //[SerializeField] GameObject target;
+    //[SerializeField] Vector3 startPosition;
+    //[SerializeField] float coinSpeed;
+    //[SerializeField] bool moveCoin;
+    //private bool coinMovingToTarget = false;
+    //private bool coinMovingBack = false;
+
+    //[SerializeField] float spawnRadius = 5f;
+    //[SerializeField] float spawnHeight = 1f;
+
+    //private List<GameObject> spawnedCoins = new List<GameObject>();
+
     AudioSetter audioSetter;
+    CoinManager coinSpawn;
 
     private void Awake()
     {
@@ -82,11 +97,12 @@ public class NPCBehav : MonoBehaviour
         }
         buttonMotif.SetActive(false);
         reactionBubble.SetActive(false);
+        //startPosition = transform.position;
+        //target = GameObject.FindWithTag("toCoins");
+        coinSpawn = FindAnyObjectByType<CoinManager>();
         vfxreactions[0].Stop();
         vfxreactions[1].Stop();
         vfxreactions[2].Stop();
-
-
     }
 
     private void HandleDroppedRightAuto()
@@ -162,6 +178,7 @@ public class NPCBehav : MonoBehaviour
                                 anim.SetBool("IsFlat", true);
                                 StartCoroutine(DisplayReaction("IsFlat"));
                                 isAddFlatReaction = true;
+                                coinSpawn.SpawnCoins();
 
                                 if (indexKarakter == 0)
                                 {
@@ -204,6 +221,7 @@ public class NPCBehav : MonoBehaviour
                                     audioSetter.PlaySFX(audioSetter.npcHappyGirl);
                                 }
 
+                                coinSpawn.SpawnCoins();
                                 isAddHappyReaction = true;
                                 vfxreactions[0].Play();
                                 vfxreactions[1].Stop();
@@ -251,6 +269,7 @@ public class NPCBehav : MonoBehaviour
                                     audioSetter.PlaySFX(audioSetter.npcHappyGirl);
                                 }
 
+                                coinSpawn.SpawnCoins();
                                 isAddHappyReaction = true;
                                 vfxreactions[0].Play();
                                 vfxreactions[1].Stop();
@@ -269,6 +288,8 @@ public class NPCBehav : MonoBehaviour
                                 anim.SetBool("IsFlat", true);
                                 StartCoroutine(DisplayReaction("IsFlat"));
                                 isAddFlatReaction = true;
+                                coinSpawn.SpawnCoins();
+
                                 if (indexKarakter == 0)
                                 {
                                     audioSetter.PlaySFX(audioSetter.npcFlatGirl);
@@ -302,6 +323,7 @@ public class NPCBehav : MonoBehaviour
                                     audioSetter.PlaySFX(audioSetter.npcAngryBoy);
                                 }
 
+                                coinSpawn.SpawnCoins();
                                 isAddAngryReaction = true;
                                 vfxreactions[1].Play();
                                 vfxreactions[0].Stop();
@@ -465,7 +487,6 @@ public class NPCBehav : MonoBehaviour
         isWaiting = true;
         elapsedTime = 0f;
         buttonMotif.SetActive(true);
-
 
         isWaitTimeActive = true;
     }
