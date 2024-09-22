@@ -69,7 +69,7 @@ public class NPCSpawn : MonoBehaviour
         {
             if (!isSpawning)
             {
-                totalNPC = npcDayOne + ((dayManager.day - 1) / 2) * 5;
+                totalNPC = npcDayOne + ((dayManager.day - 1) / 2) * 3;
                 if(totalNPC >= 15)
                 {
                     totalNPC = 15;

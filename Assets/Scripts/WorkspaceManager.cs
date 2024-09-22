@@ -23,7 +23,10 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
     public GameObject panelUpgrade;
     public TMP_Text textMotifUpgrade;
     public TMP_Text textUpgradeLevel;
+    public TMP_Text textUpgradeInfo;
     public TMP_Text textUpgradePrice;
+    public GameObject imageRP;
+    public GameObject buttonUpgrade;
     public int workspaceIndex;
     public Animator animUnlock;
     public Animator animUpgrade;
@@ -1105,6 +1108,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
 
     public void OpenUnlock(int index)
     {
+        audioSetter.PlaySFX(audioSetter.OpenPanel);
         panelUnlock.SetActive(true);
 
         if(index == 0)
@@ -1141,47 +1145,142 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
 
     public void OpenUpgrade(int index)
     {
+        audioSetter.PlaySFX(audioSetter.OpenPanel);
         panelUpgrade.SetActive(true);
 
         if(index == 0)
         {
             workspaceIndex = 0;
             Workspace ws1 = workspaces[0].GetComponent<Workspace>();
-            textMotifUpgrade.text = "Upgrade Workspace Motif Batik Kawung ke";
-            textUpgradeLevel.text =  "Level " + (ws1.level_workspace + 1) + "?";
-            textUpgradePrice.text = PriceCount(upgradePrice1[ws1.level_workspace - 1]);
+            if(ws1.level_workspace < 5)
+            {
+                textMotifUpgrade.text = "Upgrade Workspace Motif Batik Kawung ke";
+                textUpgradeLevel.text =  "Level " + (ws1.level_workspace + 1) + "?";
+                textUpgradePrice.text = PriceCount(upgradePrice1[ws1.level_workspace - 1]);
+                buttonUpgrade.SetActive(true);
+            }
+            else
+            {
+                textMotifUpgrade.text = "";
+                textUpgradeLevel.text =  "Max Level";
+                textUpgradePrice.text = "";
+                imageRP.SetActive(false);
+                buttonUpgrade.SetActive(false);
+            }
+
+            ReduceSpeed(ws1.level_workspace);
         }
         else if(index == 1)
         {
             workspaceIndex = 1;
             Workspace ws2 = workspaces[1].GetComponent<Workspace>();
-            textMotifUpgrade.text = "Upgrade Workspace Motif Batik Megamendung ke";
-            textUpgradeLevel.text =  "Level " + (ws2.level_workspace + 1) + "?";
-            textUpgradePrice.text = PriceCount(upgradePrice2[ws2.level_workspace - 1]);
+            if(ws2.level_workspace < 5)
+            {
+                textMotifUpgrade.text = "Upgrade Workspace Motif Batik Megamendung ke";
+                textUpgradeLevel.text =  "Level " + (ws2.level_workspace + 1) + "?";
+                textUpgradePrice.text = PriceCount(upgradePrice1[ws2.level_workspace - 1]);
+                buttonUpgrade.SetActive(true);
+            }
+            else
+            {
+                textMotifUpgrade.text = "";
+                textUpgradeLevel.text =  "Max Level";
+                textUpgradePrice.text = "";
+                imageRP.SetActive(false);
+                buttonUpgrade.SetActive(false);
+            }
+
+            ReduceSpeed(ws2.level_workspace);
         }
         else if(index == 2)
         {
             workspaceIndex = 2;
             Workspace ws3 = workspaces[2].GetComponent<Workspace>();
-            textMotifUpgrade.text = "Upgrade Workspace Motif Batik Truntum ke";
-            textUpgradeLevel.text =  "Level " + (ws3.level_workspace + 1) + "?";
-            textUpgradePrice.text = PriceCount(upgradePrice3[ws3.level_workspace - 1]);
+            if(ws3.level_workspace < 5)
+            {
+                textMotifUpgrade.text = "Upgrade Workspace Motif Batik Truntum ke";
+                textUpgradeLevel.text =  "Level " + (ws3.level_workspace + 1) + "?";
+                textUpgradePrice.text = PriceCount(upgradePrice1[ws3.level_workspace - 1]);
+                buttonUpgrade.SetActive(true);
+            }
+            else
+            {
+                textMotifUpgrade.text = "";
+                textUpgradeLevel.text =  "Max Level";
+                textUpgradePrice.text = "";
+                imageRP.SetActive(false);
+                buttonUpgrade.SetActive(false);
+            }
+
+            ReduceSpeed(ws3.level_workspace);
         }
         else if(index == 3)
         {
             workspaceIndex = 3;
             Workspace ws4 = workspaces[3].GetComponent<Workspace>();
-            textMotifUpgrade.text = "Upgrade Workspace Motif Batik Parang ke";
-            textUpgradeLevel.text =  "Level " + (ws4.level_workspace + 1) + "?";
-            textUpgradePrice.text = PriceCount(upgradePrice4[ws4.level_workspace - 1]);
+            if(ws4.level_workspace < 5)
+            {
+                textMotifUpgrade.text = "Upgrade Workspace Motif Batik Parang ke";
+                textUpgradeLevel.text =  "Level " + (ws4.level_workspace + 1) + "?";
+                textUpgradePrice.text = PriceCount(upgradePrice1[ws4.level_workspace - 1]);
+                buttonUpgrade.SetActive(true);
+            }
+            else
+            {
+                textMotifUpgrade.text = "";
+                textUpgradeLevel.text =  "Max Level";
+                textUpgradePrice.text = "";
+                imageRP.SetActive(false);
+                buttonUpgrade.SetActive(false);
+            }
+
+            ReduceSpeed(ws4.level_workspace);
         }
         else if(index == 4)
         {
             workspaceIndex = 4;
             Workspace ws5 = workspaces[4].GetComponent<Workspace>();
-            textMotifUpgrade.text = "Upgrade Workspace Motif Batik Simbut ke";
-            textUpgradeLevel.text =  "Level " + (ws5.level_workspace + 1) + "?";
-            textUpgradePrice.text = PriceCount(upgradePrice5[ws5.level_workspace - 1]);
+            if(ws5.level_workspace < 5)
+            {
+                textMotifUpgrade.text = "Upgrade Workspace Motif Batik Simbut ke";
+                textUpgradeLevel.text =  "Level " + (ws5.level_workspace + 1) + "?";
+                textUpgradePrice.text = PriceCount(upgradePrice1[ws5.level_workspace - 1]);
+                buttonUpgrade.SetActive(true);
+            }
+            else
+            {
+                textMotifUpgrade.text = "";
+                textUpgradeLevel.text =  "Max Level";
+                textUpgradePrice.text = "";
+                imageRP.SetActive(false);
+                buttonUpgrade.SetActive(false);
+            }
+
+            ReduceSpeed(ws5.level_workspace);
+        }
+    }
+
+    private void ReduceSpeed(int level)
+    {
+        if (level == 1)
+        {
+            textUpgradeInfo.text = "Meningkatkan kecepatan proses otomatis -2 detik menjadi 10 detik";
+        }
+        else if (level == 2)
+        {
+            textUpgradeInfo.text = "Meningkatkan kecepatan proses otomatis -2 detik menjadi 8 detik";
+        }
+        else if (level == 3)
+        {
+            textUpgradeInfo.text = "Meningkatkan kecepatan proses otomatis -2 detik menjadi 6 detik";
+        }
+        else if (level == 4)
+        {
+            textUpgradeInfo.text = "Meningkatkan kecepatan proses otomatis -2 detik menjadi 4 detik";
+        }
+        else if (level == 5)
+        {
+            textUpgradeInfo.text = "Kecepatan proses otomatis 4 detik (Max)";
         }
     }
 

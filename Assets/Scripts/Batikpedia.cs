@@ -18,15 +18,18 @@ public class Batikpedia : MonoBehaviour
     [SerializeField] Sprite[] batikInGame;
     WorkspaceManager workspaceManager;
     public Animator animBatikpedia;
+    AudioSetter audioSetter;
 
     private void Start() 
     {
         workspaceManager = FindObjectOfType<WorkspaceManager>();
         batikpediaPanel.SetActive(false);
+        audioSetter = GameObject.FindWithTag("Audio").GetComponent<AudioSetter>();
     }
 
     public void OpenBatikPedia()
     {
+        audioSetter.PlaySFX(audioSetter.OpenPanel);
         batikpediaPanel.SetActive(true);
         mainBatikpedia.SetActive(true);
         detailBatikpedia.SetActive(false);
@@ -34,7 +37,7 @@ public class Batikpedia : MonoBehaviour
 
     public void CloseBatikpedia()
     {
-        // audioSetter.PlaySFX(audioSetter.ClosePanel);
+        audioSetter.PlaySFX(audioSetter.ClosePanel);
         StartCoroutine(CloseBatikpediaDelay());
     }
 
@@ -51,7 +54,7 @@ public class Batikpedia : MonoBehaviour
 
         if (index == 0)
         {
-            // audioSetter.PlaySFX(audioSetter.OpenPanel);
+            audioSetter.PlaySFX(audioSetter.OpenPanel);
             detailBatikpedia.SetActive(true);
             mainBatikpedia.SetActive(false);
             imageBatikHeader.sprite = batikHeaders[0];
@@ -67,11 +70,11 @@ public class Batikpedia : MonoBehaviour
                 workspaceManager.notifText.text = "<color=#9E3535>Buka Workspace Batik Megamendung terlebih dahulu</color>";
                 workspaceManager.imageWarning.GetComponent<Image>().sprite = workspaceManager.images[0];
                 workspaceManager.ShowNotif();
-                // audioSetter.PlaySFX(audioSetter.notif);
+                audioSetter.PlaySFX(audioSetter.notif);
             }
             else
             {
-                // audioSetter.PlaySFX(audioSetter.OpenPanel);
+                audioSetter.PlaySFX(audioSetter.OpenPanel);
                 detailBatikpedia.SetActive(true);
                 mainBatikpedia.SetActive(false);
                 imageBatikHeader.sprite = batikHeaders[1];
@@ -89,11 +92,11 @@ public class Batikpedia : MonoBehaviour
                 workspaceManager.notifText.text = "<color=#9E3535>Buka Workspace Batik Truntum terlebih dahulu</color>";
                 workspaceManager.imageWarning.GetComponent<Image>().sprite = workspaceManager.images[0];
                 workspaceManager.ShowNotif();
-                // audioSetter.PlaySFX(audioSetter.notif);
+                audioSetter.PlaySFX(audioSetter.notif);
             }
             else
             {
-                // audioSetter.PlaySFX(audioSetter.OpenPanel);
+                audioSetter.PlaySFX(audioSetter.OpenPanel);
                 detailBatikpedia.SetActive(true);
                 mainBatikpedia.SetActive(false);
                 imageBatikHeader.sprite = batikHeaders[2];
@@ -110,11 +113,11 @@ public class Batikpedia : MonoBehaviour
                 workspaceManager.notifText.text = "<color=#9E3535>Buka Workspace Batik Parang terlebih dahulu</color>";
                 workspaceManager.imageWarning.GetComponent<Image>().sprite = workspaceManager.images[0];
                 workspaceManager.ShowNotif();
-                // audioSetter.PlaySFX(audioSetter.notif);
+                audioSetter.PlaySFX(audioSetter.notif);
             }
             else
             {
-                // audioSetter.PlaySFX(audioSetter.OpenPanel);
+                audioSetter.PlaySFX(audioSetter.OpenPanel);
                 detailBatikpedia.SetActive(true);
                 mainBatikpedia.SetActive(false);
                 imageBatikHeader.sprite = batikHeaders[3];
@@ -131,11 +134,11 @@ public class Batikpedia : MonoBehaviour
                 workspaceManager.notifText.text = "<color=#9E3535>Buka Workspace Batik Simbut terlebih dahulu</color>";
                 workspaceManager.imageWarning.GetComponent<Image>().sprite = workspaceManager.images[0];
                 workspaceManager.ShowNotif();
-                // audioSetter.PlaySFX(audioSetter.notif);
+                audioSetter.PlaySFX(audioSetter.notif);
             }
             else
             {
-                // audioSetter.PlaySFX(audioSetter.OpenPanel);
+                audioSetter.PlaySFX(audioSetter.OpenPanel);
                 detailBatikpedia.SetActive(true);
                 mainBatikpedia.SetActive(false);
                 imageBatikHeader.sprite = batikHeaders[4];
@@ -151,7 +154,7 @@ public class Batikpedia : MonoBehaviour
 
     public void BackBatikPedia()
     {
-        // audioSetter.PlaySFX(audioSetter.OpenPanel);
+        audioSetter.PlaySFX(audioSetter.OpenPanel);
         detailBatikpedia.SetActive(false);
         mainBatikpedia.SetActive(true);
     }

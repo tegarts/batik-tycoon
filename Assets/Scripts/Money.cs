@@ -9,6 +9,7 @@ public class Money : MonoBehaviour, IDataPersistence
     [SerializeField] TMP_Text moneyTextUpgrade;
     [SerializeField] TMP_Text moneyTextUnlock;
     [SerializeField] TMP_Text moneyTextHUD;
+    DayManager dayManager;
 
     public void LoadData(GameData data)
     {
@@ -17,11 +18,15 @@ public class Money : MonoBehaviour, IDataPersistence
 
     public void SaveData(ref GameData data)
     {
-        data.money = moneyValue;
+        if(!dayManager.dayIsStarted)
+        {
+            data.money = moneyValue;
+        }
     }
 
     private void Start() 
     {
+        dayManager = FindAnyObjectByType<DayManager>();
         UpdateMoneyText();
     }
 

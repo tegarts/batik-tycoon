@@ -36,7 +36,10 @@ public class DayManager : MonoBehaviour, IDataPersistence
 
     public void SaveData(ref GameData data)
     {
-        data.day = day;
+        if(!dayIsStarted)
+        {
+            data.day = day;
+        }
     }
 
     private void Start()
