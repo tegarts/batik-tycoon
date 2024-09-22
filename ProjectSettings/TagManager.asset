@@ -30,6 +30,7 @@ TagManager:
   - area5
   - areaplayer
   - toCoins
+  - Waypoint
   layers:
   - Default
   - TransparentFX
