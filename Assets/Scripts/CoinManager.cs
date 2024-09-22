@@ -29,9 +29,10 @@ public class CoinManager : MonoBehaviour
         coinPrefab.SetActive(true);
         coin.SetTrigger("MoveUp");
 
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(1.5f);
         coinEnter.PlaySFX(coinEnter.coinEnter);
 
+        yield return new WaitForSeconds(0.3f);
         coinPrefab.SetActive(false);
     }
 
