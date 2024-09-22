@@ -40,7 +40,7 @@ public class MainMenu : MonoBehaviour
         else
         {
             DataPersistenceManager.instance.NewGame();
-            SceneManager.LoadScene("New Mechanic"); // TODO - Ganti nama scene
+            SceneManager.LoadScene("New Mechanic 2"); // TODO - Ganti nama scene
         }
     }
 
@@ -121,7 +121,7 @@ public class MainMenu : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         Debug.Log("Ganti Scene");
-        SceneManager.LoadScene("New Mechanic");
+        SceneManager.LoadScene("New Mechanic 2");
     }
 
     private IEnumerator SFXLight(float delay)

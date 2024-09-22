@@ -94,9 +94,6 @@ public class NPCSpawn : MonoBehaviour
         {
             StopCoroutine(SpawnNPCsInBatches());
         }
-
-
-
     }
 
     IEnumerator SpawnNPCsInBatches()

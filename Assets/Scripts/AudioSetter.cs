@@ -27,6 +27,7 @@ public class AudioSetter : MonoBehaviour
     public AudioClip npcFlatBoy;
     public AudioClip npcAngryBoy;
     public AudioClip bellEntrance;
+    public AudioClip coinEnter;
 
     [Header("Audio Clip Workspace")]
     public AudioClip UnlockWS;

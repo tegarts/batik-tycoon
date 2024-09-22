@@ -4830,6 +4830,7 @@ MonoBehaviour:
   npcFlatBoy: {fileID: 8300000, guid: 520398a85fe20e44bb0de2f33e6b7312, type: 3}
   npcAngryBoy: {fileID: 8300000, guid: f5798f9cfa232274db9d567262adda38, type: 3}
   bellEntrance: {fileID: 8300000, guid: d1a9da4aa2ea7944eb3201c8b76ddf5d, type: 3}
+  coinEnter: {fileID: 8300000, guid: 2d0d06b88eae2794682166a9cca6cc0e, type: 3}
   UnlockWS: {fileID: 8300000, guid: 033bafe13e3945942ac58aa53ae10618, type: 3}
   UpgradeWS: {fileID: 8300000, guid: 7d1b937e3064e334cb6b0d57f563f72b, type: 3}
   desain: {fileID: 8300000, guid: 8e6296c2ea2e71f118033f89ef3696e7, type: 3}
