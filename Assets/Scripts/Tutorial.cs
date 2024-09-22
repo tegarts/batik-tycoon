@@ -14,8 +14,6 @@ public class Tutorial : MonoBehaviour, IDataPersistence
     public bool isStartTutor;
     public bool isOpenUpgrade;
     public bool isAlreadyTutor;
-    public GameObject indicatorUpgrade;
-    [SerializeField] GameObject indicatorMoney;
     public GameObject panelTutorial;
     [SerializeField] GameObject panelSkipConfirmation;
     public bool[] isStepDone;
@@ -28,6 +26,7 @@ public class Tutorial : MonoBehaviour, IDataPersistence
     WorkspaceManager workspaceManager;
     BookMenu bookMenu;
     DayManager dayManager;
+    StartDay startDay;
     public int index;
     [Header("UI References")]
     [SerializeField] GameObject PlayerArea;
@@ -41,6 +40,7 @@ public class Tutorial : MonoBehaviour, IDataPersistence
     [SerializeField] Sprite[] spritePortrait;
 
     [SerializeField] GameObject highlightButtonBook;
+    [SerializeField] GameObject highlightButtonStartHUD;
     [SerializeField] GameObject highlightButtonUnlock;
     [SerializeField] GameObject highlightButtonWS;
     [SerializeField] GameObject highlightButtonStartDay;
@@ -74,6 +74,7 @@ public class Tutorial : MonoBehaviour, IDataPersistence
         workspaceManager = FindAnyObjectByType<WorkspaceManager>();
         bookMenu = FindAnyObjectByType<BookMenu>();
         dayManager = FindAnyObjectByType<DayManager>();
+        startDay = FindAnyObjectByType<StartDay>();
 
         panelSkipConfirmation.SetActive(false);
 
@@ -188,14 +189,14 @@ public class Tutorial : MonoBehaviour, IDataPersistence
         }
         else if(isAlreadyTutor && dayManager.day == 0)
         {
-            if(!bookMenu.bookPanel.activeSelf)
+            if(!startDay.startDayPanel.activeSelf)
             {
-                highlightButtonBook.SetActive(true);
+                highlightButtonStartHUD.SetActive(true);
             }
             else
             {
                 highlightButtonStartDay.SetActive(true);
-                highlightButtonBook.SetActive(false);
+                highlightButtonStartHUD.SetActive(false);
             }
         }
         else

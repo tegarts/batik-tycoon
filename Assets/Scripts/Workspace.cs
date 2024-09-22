@@ -15,6 +15,7 @@ public class Workspace : MonoBehaviour, IDataPersistence
     public bool isOnProgress;
     public bool isDone;
     public GameObject AssignArea;
+    public GameObject upgradeButton;
     public GameObject progresImage;
     Money money;
     public delegate void WorkspaceEvent();
@@ -170,6 +171,11 @@ public class Workspace : MonoBehaviour, IDataPersistence
                 workers[0].SetActive(false);
                 isStartDay = false;
                 AssignArea.SetActive(false);
+                upgradeButton.SetActive(true);
+            }
+            else
+            {
+                upgradeButton.SetActive(false);
             }
 
         }
@@ -178,6 +184,7 @@ public class Workspace : MonoBehaviour, IDataPersistence
             if (!isStartDay)
             {
                 workers[0].SetActive(true);
+                upgradeButton.SetActive(false);
                 AssignArea.SetActive(true);
                 isStartDay = true;
             }
@@ -332,6 +339,15 @@ public class Workspace : MonoBehaviour, IDataPersistence
     {
         AssignArea.transform.SetParent(canvas.transform);
         if (AssignArea.TryGetComponent<FaceCamera>(out FaceCamera faceCamera))
+        {
+            faceCamera.Camera = camera;
+        }
+    }
+
+    public void SetupUpgradeButton(Canvas canvas, Camera camera)
+    {
+        upgradeButton.transform.SetParent(canvas.transform);
+        if (TryGetComponent<FaceCamera>(out FaceCamera faceCamera))
         {
             faceCamera.Camera = camera;
         }

@@ -38,7 +38,6 @@ public class Daily : MonoBehaviour, IDataPersistence
     [Header("References")]
     NPCSpawn nPCSpawn;
     DayManager dayManager;
-    BookMenu bookMenu;
 
     [Header("UI")]
     public GameObject panelHUD;
@@ -50,6 +49,7 @@ public class Daily : MonoBehaviour, IDataPersistence
     public TMP_Text dayText;
     [Header("Audio")]
     AudioSetter audioSetter;
+    public GameObject DailyReportPanel;
 
     public void LoadData(GameData data)
     {
@@ -79,7 +79,7 @@ public class Daily : MonoBehaviour, IDataPersistence
         }
         nPCSpawn = FindAnyObjectByType<NPCSpawn>();
         dayManager = FindAnyObjectByType<DayManager>();
-        bookMenu = FindAnyObjectByType<BookMenu>();
+        DailyReportPanel.SetActive(false);
 
         progressBar.value = progress;
         progressBar.maxValue = maxProgress;
@@ -121,14 +121,16 @@ public class Daily : MonoBehaviour, IDataPersistence
             progress60 = nPCSpawn.initializeNPC * 25 * 0.6f;
             progress80 = nPCSpawn.initializeNPC * 25 * 0.8f;
 
-            if (!isPanelOn)
-            {
-                panelHUD.SetActive(true);
-            }
-            else
-            {
-                closePanelHUD();
-            }
+            panelHUD.SetActive(true);
+
+            // if (!isPanelOn)
+            // {
+            //     panelHUD.SetActive(true);
+            // }
+            // else
+            // {
+            //     closePanelHUD();
+            // }
 
         }
         else if (!dayManager.dayIsStarted)
@@ -282,6 +284,25 @@ public class Daily : MonoBehaviour, IDataPersistence
         audioSetter.PlaySFX(audioSetter.gameResult);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void OpenDailyReport()
+    {
+        audioSetter.PlaySFX(audioSetter.OpenPanel);
+        DailyReportPanel.SetActive(true);
+    }
+
+    public void CloseDailyReport()
+    {
+        StartCoroutine(CloseDailyReportDelay());
+    }
+
+    IEnumerator CloseDailyReportDelay()
+    {
+        audioSetter.PlaySFX(audioSetter.ClosePanel);
+        DailyReportPanel.GetComponentInChildren<Animator>().SetTrigger("IsEnd");
+        yield return new WaitForSeconds(0.5f);
+        DailyReportPanel.SetActive(false);
     }
 
 }

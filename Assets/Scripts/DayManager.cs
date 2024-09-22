@@ -20,10 +20,13 @@ public class DayManager : MonoBehaviour, IDataPersistence
     [SerializeField] GameObject bookMenuButton;
     [SerializeField] TMP_Text dayTextHUD;
     [SerializeField] Animator animBookButton;
+    [SerializeField] Animator animStartDayButton;
     [SerializeField] TMP_Text buttonText;
+    [SerializeField] GameObject[] motifBatikStartDay;
 
     [Header("References")]
     BookMenu bookMenu;
+    StartDay startDay;
     Tutorial tutorial;
 
     public void LoadData(GameData data)
@@ -40,7 +43,13 @@ public class DayManager : MonoBehaviour, IDataPersistence
     {
         bookMenu = FindAnyObjectByType<BookMenu>();
         tutorial = FindAnyObjectByType<Tutorial>();
-        buttonText.text = "Mulai Hari ke-" + (day + 1);
+        startDay = FindAnyObjectByType<StartDay>();
+        buttonText.text = "Mulai Hari ke-" + (day + 1) + "?";
+
+        for(int i = 0; i < motifBatikStartDay.Length; i++)
+        {
+            motifBatikStartDay[i].SetActive(false);
+        }
     }
 
     private void Update()
@@ -50,10 +59,12 @@ public class DayManager : MonoBehaviour, IDataPersistence
             if (!isAlreadyStarted)
             {
                 directionalLight.intensity = 1.2f;
-                bookMenu.CloseBook();
+                // bookMenu.CloseBook();
+                startDay.CloseStartDayPanel();
                 dayTextHUD.text = day.ToString();
                 isAlreadyStarted = true;
                 CloseBookButton();
+                startDay.CloseStartDayButton();
                 doors[0].SetActive(true);
                 doors[1].SetActive(false);
                 mainCharacter.SetActive(true);
@@ -63,15 +74,48 @@ public class DayManager : MonoBehaviour, IDataPersistence
         }
         else
         {
-            if (tutorial.isStartTutor && !tutorial.isStepDone[4])
+
+            if(tutorial.isStartTutor)
             {
                 bookMenuButton.SetActive(false);
-                //CloseBookButton();
-
+                startDay.startDayButton.SetActive(false);
             }
             else
             {
+                startDay.startDayButton.SetActive(true);
                 bookMenuButton.SetActive(true);
+                if((day + 1) < 3)
+                {
+                    motifBatikStartDay[0].SetActive(true);
+                    motifBatikStartDay[1].SetActive(true);
+                    motifBatikStartDay[2].SetActive(false);
+                    motifBatikStartDay[3].SetActive(false);
+                    motifBatikStartDay[4].SetActive(false);
+                }
+                else if((day + 1) < 5)
+                {
+                    motifBatikStartDay[0].SetActive(true);
+                    motifBatikStartDay[1].SetActive(true);
+                    motifBatikStartDay[2].SetActive(true);
+                    motifBatikStartDay[3].SetActive(false);
+                    motifBatikStartDay[4].SetActive(false);
+                }
+                else if((day + 1) < 7)
+                {
+                    motifBatikStartDay[0].SetActive(true);
+                    motifBatikStartDay[1].SetActive(true);
+                    motifBatikStartDay[2].SetActive(true);
+                    motifBatikStartDay[3].SetActive(true);
+                    motifBatikStartDay[4].SetActive(false);
+                }
+                else
+                {
+                    motifBatikStartDay[0].SetActive(true);
+                    motifBatikStartDay[1].SetActive(true);
+                    motifBatikStartDay[2].SetActive(true);
+                    motifBatikStartDay[3].SetActive(true);
+                    motifBatikStartDay[4].SetActive(true);
+                }
                 buttonText.text = "Mulai hari ke-" + (day + 1);
             }
 
@@ -108,4 +152,5 @@ public class DayManager : MonoBehaviour, IDataPersistence
         yield return new WaitForSeconds(0.5f);
         bookMenuButton.SetActive(false);
     }
+
 }
