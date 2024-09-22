@@ -5,34 +5,30 @@ using UnityEngine;
 
 public class NPCWarga : MonoBehaviour
 {
-    public Transform[] waypoints;   // Array waypoint (bisa lebih dari 5)
-    public float speed = 2f;        // Kecepatan NPC
-    private int currentWaypointIndex = 0;  // Indeks waypoint saat ini
-    private Animator animator;      // Animator untuk animasi
+    public Transform[] waypoints;
+    public float speed = 2f;
+    private int currentWaypointIndex = 0;
+    private Animator animator;
 
     void Start()
     {
-        animator = GetComponent<Animator>();  // Dapatkan komponen Animator
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
         Patrol();
-        HandleAnimation(); // Handle animasi sesuai dengan status NPC
+        HandleAnimation();
     }
 
     void Patrol()
     {
-        // Jika waypoint kurang dari 2, hentikan proses
         if (waypoints.Length < 2) return;
 
-        // Dapatkan posisi waypoint saat ini
         Transform targetWaypoint = waypoints[currentWaypointIndex];
 
-        // Pindahkan NPC menuju waypoint
         transform.position = Vector3.MoveTowards(transform.position, targetWaypoint.position, speed * Time.deltaTime);
 
-        // Rotasi NPC agar menghadap arah gerakan
         Vector3 direction = targetWaypoint.position - transform.position;
         if (direction != Vector3.zero)
         {
@@ -40,36 +36,29 @@ public class NPCWarga : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, speed * Time.deltaTime);
         }
 
-        // Jika NPC sudah mencapai waypoint
         if (Vector3.Distance(transform.position, targetWaypoint.position) < 0.1f)
         {
-            // Pindah ke waypoint berikutnya
             currentWaypointIndex++;
 
-            // Jika sudah mencapai waypoint terakhir, kembali ke waypoint pertama
             if (currentWaypointIndex >= waypoints.Length)
             {
-                currentWaypointIndex = 0;  // Kembali ke waypoint pertama
+                currentWaypointIndex = 0;
             }
         }
     }
 
-
-    // Handle animasi berjalan
     void HandleAnimation()
     {
-        // Aktifkan animasi berjalan jika NPC bergerak
         if (Vector3.Distance(transform.position, waypoints[currentWaypointIndex].position) > 0.1f)
         {
-            animator.SetBool("IsWalking", true); // Set animasi berjalan
+            animator.SetBool("IsWalking", true);
         }
         else
         {
-            animator.SetBool("IsWalking", false); // Set animasi idle
+            animator.SetBool("IsWalking", false);
         }
     }
 
-    // Debugging untuk melihat jalur waypoint di Scene
     private void OnDrawGizmos()
     {
         if (waypoints.Length > 0)
