@@ -166,7 +166,7 @@ public class NPCBehav : MonoBehaviour
                     if (isEventWorkspaceTriggered)
                     {
 
-                        if (timePassed >= 10f)
+                        if (timePassed >= 15f)
                         {
 
                             reactionBubble.GetComponent<Image>().sprite = reactions[1];
@@ -361,7 +361,7 @@ public class NPCBehav : MonoBehaviour
                         vfxreactions[2].Stop();
                     }
                 }
-                else if (elapsedTime > 10f && elapsedTime < 15f)
+                else if (elapsedTime > 20f && elapsedTime < 25f)
                 {
                     blinkTimer += Time.deltaTime;
 
@@ -381,7 +381,7 @@ public class NPCBehav : MonoBehaviour
                         blinkTimer = 0f;
                     }
                 }
-                else if (elapsedTime >= 15f && !tutorial.isStartTutor)
+                else if (elapsedTime >= 25f && !tutorial.isStartTutor)
                 {
                     UnityEngine.Debug.Log("Waktu tunggu habis, melanjutkan perjalanan...");
                     reactionBubble.GetComponent<Image>().sprite = reactions[2];

@@ -30,6 +30,7 @@ public class NPCSpawn : MonoBehaviour
     [Header("References")]
     DayManager dayManager;
     Daily daily;
+    GameOver gameOver;
     private bool isSpawning;
     [SerializeField] Tutorial tutorial;
 
@@ -45,6 +46,7 @@ public class NPCSpawn : MonoBehaviour
     {
         daily = FindAnyObjectByType<Daily>();
         tutorial = FindAnyObjectByType<Tutorial>();
+        gameOver = FindAnyObjectByType<GameOver>();
         // StartCoroutine(SpawnNPCsInBatches());
         dayManager = FindAnyObjectByType<DayManager>();
         waypointOptions.Add(waypoints1);
@@ -68,6 +70,10 @@ public class NPCSpawn : MonoBehaviour
             if (!isSpawning)
             {
                 totalNPC = npcDayOne + ((dayManager.day - 1) / 2) * 5;
+                if(totalNPC >= 15)
+                {
+                    totalNPC = 15;
+                }
                 if(dayManager.day < 3)
                 {
                     npcCount = 3;
@@ -148,6 +154,7 @@ public class NPCSpawn : MonoBehaviour
             daily.totalStarsText.text = daily.totalStars.ToString();
             Daily.instance.panelGameOver.SetActive(true);
             audioSetter.PlaySFX(audioSetter.gameOver);
+            gameOver.GameOverShow();
         }
     }
 

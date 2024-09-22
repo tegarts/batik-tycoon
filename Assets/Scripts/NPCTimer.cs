@@ -70,7 +70,7 @@ public class NPCTimer : MonoBehaviour
                 {
                     npcs[i].SetActive(true);
 
-                    float countdown = Mathf.Max(0, 15 - nPCSpawn.activeNPCs[i].elapsedTime);
+                    float countdown = Mathf.Max(0, 25 - nPCSpawn.activeNPCs[i].elapsedTime);
                     npcTimerText[i].text = string.Format("00:{0:00}", countdown);
 
                     if(nPCSpawn.activeNPCs[i].indexKarakter == 0)

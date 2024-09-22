@@ -1830,6 +1830,8 @@ MonoBehaviour:
   namaMotif: 
   onProgress: 0
   nPCBehavParent: {fileID: 0}
+  indiManual: {fileID: 0}
+  indiAuto: {fileID: 0}
 --- !u!95 &4489876081055031300
 Animator:
   serializedVersion: 5
@@ -3735,6 +3737,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 245581523800709619, guid: 9442d241d2d8ecc47b49f256b55325c6,
         type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 245581523800709619, guid: 9442d241d2d8ecc47b49f256b55325c6,
+        type: 3}
       propertyPath: ColorModule.gradient.maxGradient.atime1
       value: 32768
       objectReference: {fileID: 0}
@@ -4594,15 +4601,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: fb08386053e6fec498b13960c193c937, type: 3}
       propertyPath: startDelay.scalar
-      value: 3
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 19800002, guid: fb08386053e6fec498b13960c193c937, type: 3}
       propertyPath: startDelay.scalar
-      value: 3
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800002, guid: fb08386053e6fec498b13960c193c937, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19800004, guid: fb08386053e6fec498b13960c193c937, type: 3}
       propertyPath: startDelay.scalar
-      value: 3
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800004, guid: fb08386053e6fec498b13960c193c937, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19800006, guid: fb08386053e6fec498b13960c193c937, type: 3}
       propertyPath: VelocityModule.enabled
@@ -4610,7 +4625,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19800006, guid: fb08386053e6fec498b13960c193c937, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
-      value: 3
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 19800006, guid: fb08386053e6fec498b13960c193c937, type: 3}
       propertyPath: ColorModule.gradient.maxGradient.atime0

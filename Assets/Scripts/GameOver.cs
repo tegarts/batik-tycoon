@@ -37,6 +37,11 @@ public class GameOver : MonoBehaviour
         {
             workspaces[i].level_workspace = 0;
         }
+        
+    }
+
+    public void GameOverButton()
+    {
         UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
     }
 }
