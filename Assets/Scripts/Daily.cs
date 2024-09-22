@@ -167,11 +167,11 @@ public class Daily : MonoBehaviour, IDataPersistence
             isStarted = false;
         }
 
-        if(panelGameOver.activeSelf)
-        {
-            dayText.text = "Hari " + dayManager.day;
-            totalStarsText.text = totalStars.ToString();
-        }
+        // if(panelGameOver.activeSelf)
+        // {
+        //     dayText.text = "Hari " + dayManager.day;
+        //     totalStarsText.text = totalStars.ToString();
+        // }
     }
 
     private IEnumerator ActivateStarsWithDelay(int starCount)

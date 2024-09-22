@@ -144,6 +144,8 @@ public class NPCSpawn : MonoBehaviour
         }
         else
         {
+            daily.dayText.text = "Hari " + dayManager.day;
+            daily.totalStarsText.text = daily.totalStars.ToString();
             Daily.instance.panelGameOver.SetActive(true);
             audioSetter.PlaySFX(audioSetter.gameOver);
         }
