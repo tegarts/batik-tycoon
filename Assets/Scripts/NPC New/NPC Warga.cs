@@ -5,70 +5,84 @@ using UnityEngine;
 
 public class NPCWarga : MonoBehaviour
 {
-    public Transform[] waypoints; // Array Waypoints yang ditentukan
-    public float speed = 5f; // Kecepatan pergerakan NPC
-    public float waitTime = 10f; // Waktu berhenti di waypoint
-    private Vector3 spawnPoint;
-    private bool isWaiting = false; // Menandai apakah NPC sedang menunggu
-    //private Animator anim;
-
-    public event Action<NPCWarga> OnNPCReturned;
+    public Transform[] waypoints;   // Array waypoint (bisa lebih dari 5)
+    public float speed = 2f;        // Kecepatan NPC
+    private int currentWaypointIndex = 0;  // Indeks waypoint saat ini
+    private Animator animator;      // Animator untuk animasi
 
     void Start()
     {
-        //anim = GetComponent<Animator>(); // Mendapatkan komponen Animator
-        spawnPoint = transform.position; // Menyimpan posisi awal (titik spawn)
-        StartCoroutine(MoveToWaypoints());
+        animator = GetComponent<Animator>();  // Dapatkan komponen Animator
     }
 
-    IEnumerator MoveToWaypoints()
+    void Update()
     {
-        while (true)
+        Patrol();
+        HandleAnimation(); // Handle animasi sesuai dengan status NPC
+    }
+
+    void Patrol()
+    {
+        // Jika waypoint kurang dari 2, hentikan proses
+        if (waypoints.Length < 2) return;
+
+        // Dapatkan posisi waypoint saat ini
+        Transform targetWaypoint = waypoints[currentWaypointIndex];
+
+        // Pindahkan NPC menuju waypoint
+        transform.position = Vector3.MoveTowards(transform.position, targetWaypoint.position, speed * Time.deltaTime);
+
+        // Rotasi NPC agar menghadap arah gerakan
+        Vector3 direction = targetWaypoint.position - transform.position;
+        if (direction != Vector3.zero)
         {
-            // Pilih waypoint acak
-            Transform targetWaypoint = waypoints[UnityEngine.Random.Range(0, waypoints.Length)];
-            isWaiting = false;
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, speed * Time.deltaTime);
+        }
 
-            while (Vector3.Distance(transform.position, targetWaypoint.position) > 0.1f)
+        // Jika NPC sudah mencapai waypoint
+        if (Vector3.Distance(transform.position, targetWaypoint.position) < 0.1f)
+        {
+            // Pindah ke waypoint berikutnya
+            currentWaypointIndex++;
+
+            // Jika sudah mencapai waypoint terakhir, kembali ke waypoint pertama
+            if (currentWaypointIndex >= waypoints.Length)
             {
-                // Vector3 direction = (targetWaypoint.position - transform.position).normalized;
-                Vector3 direction = targetWaypoint.transform.position;
-
-                Quaternion rotation = Quaternion.LookRotation(direction);
-                direction.y = targetWaypoint.transform.position.y;
-
-                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, speed * Time.deltaTime);
-
-                transform.position = Vector3.MoveTowards(transform.position, targetWaypoint.position, speed * Time.deltaTime);
-                //anim.SetBool("IsWalking", true);
-                yield return null;
+                currentWaypointIndex = 0;  // Kembali ke waypoint pertama
             }
-            //anim.SetBool("IsWalking", false);
-            isWaiting = true;
-            yield return new WaitForSeconds(waitTime);
+        }
+    }
 
-            // Setelah menunggu, kembali ke titik spawn
-            while (Vector3.Distance(transform.position, spawnPoint) > 0.1f)
+
+    // Handle animasi berjalan
+    void HandleAnimation()
+    {
+        // Aktifkan animasi berjalan jika NPC bergerak
+        if (Vector3.Distance(transform.position, waypoints[currentWaypointIndex].position) > 0.1f)
+        {
+            animator.SetBool("IsWalking", true); // Set animasi berjalan
+        }
+        else
+        {
+            animator.SetBool("IsWalking", false); // Set animasi idle
+        }
+    }
+
+    // Debugging untuk melihat jalur waypoint di Scene
+    private void OnDrawGizmos()
+    {
+        if (waypoints.Length > 0)
+        {
+            Gizmos.color = Color.red;
+            for (int i = 0; i < waypoints.Length; i++)
             {
-                Vector3 direction = (spawnPoint - transform.position).normalized;
-
-                Quaternion rotation = Quaternion.LookRotation(direction);
-                direction.y = spawnPoint.y;
-
-                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, speed * Time.deltaTime);
-
-                transform.position = Vector3.MoveTowards(transform.position, spawnPoint, speed * Time.deltaTime);
-                //anim.SetBool("IsWalking", true);
-                yield return null;
+                Gizmos.DrawSphere(waypoints[i].position, 0.2f);
+                if (i + 1 < waypoints.Length)
+                {
+                    Gizmos.DrawLine(waypoints[i].position, waypoints[i + 1].position);
+                }
             }
-
-            //anim.SetBool("IsWalking", false);
-
-            // Trigger event bahwa NPC telah kembali
-            OnNPCReturned?.Invoke(this);
-
-            // Hapus NPC setelah kembali ke titik spawn
-            Destroy(gameObject);
         }
     }
 }
