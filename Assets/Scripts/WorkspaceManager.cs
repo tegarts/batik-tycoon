@@ -57,6 +57,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
     public int motifUnlocked;
     [SerializeField] GameObject[] workspaces;
     [SerializeField] int[] workspacePrice;
+    private bool isNotifActive;
 
     [Header("Upgrade Settings")]
     [SerializeField] private int maxUpgradeLevel = 5;
@@ -1087,16 +1088,21 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
 
     public void ShowNotif()
     {
-        StartCoroutine(ShowNotifDelay());
+        if(!isNotifActive)
+        {
+            StartCoroutine(ShowNotifDelay());
+        }
     }
 
     IEnumerator ShowNotifDelay()
     {
+        isNotifActive = true;
         panelNotif.SetActive(true);
         yield return new WaitForSeconds(1f);
         animNotif.SetTrigger("IsEnd");
         yield return new WaitForSeconds(0.5f);
         panelNotif.SetActive(false);
+        isNotifActive = false;
     }
 
     IEnumerator ShowVfx(int index)

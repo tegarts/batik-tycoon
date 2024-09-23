@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -99,6 +100,12 @@ public class FollowMouse : MonoBehaviour
             {
                 indiAuto.anim.SetBool("IsTutor", true);
             }
+
+            if(Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                Destroy(instantiatedImage);
+                isDragging = false;
+            }
         }
 
         if (isDragging && Input.GetMouseButtonDown(0))
@@ -167,8 +174,9 @@ public class FollowMouse : MonoBehaviour
     void InstantiateImage()
     {
         instantiatedImage = Instantiate(imagePrefab, worldSpaceCanvas.transform);
-        imageRectTransform = instantiatedImage.GetComponent<RectTransform>();
-        audioSetter.PlaySFX(audioSetter.OpenPanel);
+            imageRectTransform = instantiatedImage.GetComponent<RectTransform>();
+            audioSetter.PlaySFX(audioSetter.OpenPanel);
+
     }
 
     void FollowTheMouse()
