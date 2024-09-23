@@ -35,6 +35,7 @@ public class NPCOut : MonoBehaviour
             for(int i = 0; i < activeNPC.Count; i++)
             {
                 Destroy(activeNPC[i]);
+                npcCount = 1;
             }
         }
 
