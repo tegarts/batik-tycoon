@@ -31,6 +31,10 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
     public Animator animUnlock;
     public Animator animUpgrade;
 
+    [Header("UI Assign")]
+    [SerializeField] Image[] assignAreaParent;
+    [SerializeField] Image[] assignAreaChild;
+
     [Header("Unlock")]
     [SerializeField] Button[] unlocks;
     [SerializeField] GameObject[] textUnlocks;
@@ -74,6 +78,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
     BookMenu bookMenu;
     Tutorial tutorial;
     DayManager dayManager;
+    DrawingManager drawingManager;
 
     [Header("Audio")]
     AudioSetter audioSetter;
@@ -99,6 +104,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
         money = FindAnyObjectByType<Money>();
         tutorial = FindAnyObjectByType<Tutorial>();
         dayManager = FindAnyObjectByType<DayManager>();
+        drawingManager = FindAnyObjectByType<DrawingManager>();
 
         for (int i = 0; i < currentUpgradeLevel.Length; i++)
         {
@@ -202,16 +208,16 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
         UpdateWorkspaceColors();
     }
 
-    private void Update() 
+    private void Update()
     {
-        if(tutorial.isStartTutor && tutorial.index != 9)
+        if (tutorial.isStartTutor && tutorial.index != 9)
         {
             for (int i = 0; i < buttonUnlocks.Length; i++)
             {
                 buttonUnlocks[i].SetActive(false);
             }
         }
-        else if(tutorial.isStartTutor && tutorial.index == 9)
+        else if (tutorial.isStartTutor && tutorial.index == 9)
         {
             for (int i = 0; i < buttonUnlocks.Length; i++)
             {
@@ -220,11 +226,28 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
         }
         else
         {
-            if(dayManager.dayIsStarted)
+            if (dayManager.dayIsStarted)
             {
                 for (int i = 0; i < buttonUnlocks.Length; i++)
                 {
                     buttonUnlocks[i].SetActive(false);
+                }
+
+                if(drawingManager.canvasCanting.activeSelf)
+                {
+                    for(int i = 0; i < motifUnlocked + 1; i++)
+                    {
+                        assignAreaParent[i].enabled = false;
+                        assignAreaChild[i].enabled = false;
+                    }
+                }
+                else
+                {
+                     for(int i = 0; i < motifUnlocked + 1; i++)
+                    {
+                       assignAreaParent[i].enabled = true;
+                        assignAreaChild[i].enabled = true;
+                    }
                 }
             }
             else
@@ -234,7 +257,9 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
                     buttonUnlocks[i].SetActive(true);
                 }
             }
-        }    
+        }
+
+
     }
 
     void SetWorkspaceColors(GameObject[] workspaceColors, int level)
@@ -1088,7 +1113,7 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
 
     public void ShowNotif()
     {
-        if(!isNotifActive)
+        if (!isNotifActive)
         {
             StartCoroutine(ShowNotifDelay());
         }
@@ -1117,25 +1142,25 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
         audioSetter.PlaySFX(audioSetter.OpenPanel);
         panelUnlock.SetActive(true);
 
-        if(index == 0)
+        if (index == 0)
         {
             level = 2;
             textMotifUnlock.text = "Unlock Workspace Motif Batik Megamendung?";
             workspaceUnlockPrice.text = PriceCount(workspacePrice[0]);
         }
-        else if(index == 1)
+        else if (index == 1)
         {
             level = 3;
             textMotifUnlock.text = "Unlock Workspace Motif Batik Truntum?";
             workspaceUnlockPrice.text = PriceCount(workspacePrice[1]);
         }
-        else if(index == 2)
+        else if (index == 2)
         {
             level = 4;
             textMotifUnlock.text = "Unlock Workspace Motif Batik Parang?";
             workspaceUnlockPrice.text = PriceCount(workspacePrice[2]);
         }
-        else if(index == 3)
+        else if (index == 3)
         {
             level = 5;
             textMotifUnlock.text = "Unlock Workspace Motif Batik Simbut?";
@@ -1154,21 +1179,21 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
         audioSetter.PlaySFX(audioSetter.OpenPanel);
         panelUpgrade.SetActive(true);
 
-        if(index == 0)
+        if (index == 0)
         {
             workspaceIndex = 0;
             Workspace ws1 = workspaces[0].GetComponent<Workspace>();
-            if(ws1.level_workspace < 5)
+            if (ws1.level_workspace < 5)
             {
                 textMotifUpgrade.text = "Upgrade Workspace Motif Batik Kawung ke";
-                textUpgradeLevel.text =  "Level " + (ws1.level_workspace + 1) + "?";
+                textUpgradeLevel.text = "Level " + (ws1.level_workspace + 1) + "?";
                 textUpgradePrice.text = PriceCount(upgradePrice1[ws1.level_workspace - 1]);
                 buttonUpgrade.SetActive(true);
             }
             else
             {
                 textMotifUpgrade.text = "";
-                textUpgradeLevel.text =  "Max Level";
+                textUpgradeLevel.text = "Max Level";
                 textUpgradePrice.text = "";
                 imageRP.SetActive(false);
                 buttonUpgrade.SetActive(false);
@@ -1176,21 +1201,21 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
 
             ReduceSpeed(ws1.level_workspace);
         }
-        else if(index == 1)
+        else if (index == 1)
         {
             workspaceIndex = 1;
             Workspace ws2 = workspaces[1].GetComponent<Workspace>();
-            if(ws2.level_workspace < 5)
+            if (ws2.level_workspace < 5)
             {
                 textMotifUpgrade.text = "Upgrade Workspace Motif Batik Megamendung ke";
-                textUpgradeLevel.text =  "Level " + (ws2.level_workspace + 1) + "?";
-                textUpgradePrice.text = PriceCount(upgradePrice1[ws2.level_workspace - 1]);
+                textUpgradeLevel.text = "Level " + (ws2.level_workspace + 1) + "?";
+                textUpgradePrice.text = PriceCount(upgradePrice2[ws2.level_workspace - 1]);
                 buttonUpgrade.SetActive(true);
             }
             else
             {
                 textMotifUpgrade.text = "";
-                textUpgradeLevel.text =  "Max Level";
+                textUpgradeLevel.text = "Max Level";
                 textUpgradePrice.text = "";
                 imageRP.SetActive(false);
                 buttonUpgrade.SetActive(false);
@@ -1198,21 +1223,21 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
 
             ReduceSpeed(ws2.level_workspace);
         }
-        else if(index == 2)
+        else if (index == 2)
         {
             workspaceIndex = 2;
             Workspace ws3 = workspaces[2].GetComponent<Workspace>();
-            if(ws3.level_workspace < 5)
+            if (ws3.level_workspace < 5)
             {
                 textMotifUpgrade.text = "Upgrade Workspace Motif Batik Truntum ke";
-                textUpgradeLevel.text =  "Level " + (ws3.level_workspace + 1) + "?";
-                textUpgradePrice.text = PriceCount(upgradePrice1[ws3.level_workspace - 1]);
+                textUpgradeLevel.text = "Level " + (ws3.level_workspace + 1) + "?";
+                textUpgradePrice.text = PriceCount(upgradePrice3[ws3.level_workspace - 1]);
                 buttonUpgrade.SetActive(true);
             }
             else
             {
                 textMotifUpgrade.text = "";
-                textUpgradeLevel.text =  "Max Level";
+                textUpgradeLevel.text = "Max Level";
                 textUpgradePrice.text = "";
                 imageRP.SetActive(false);
                 buttonUpgrade.SetActive(false);
@@ -1220,21 +1245,21 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
 
             ReduceSpeed(ws3.level_workspace);
         }
-        else if(index == 3)
+        else if (index == 3)
         {
             workspaceIndex = 3;
             Workspace ws4 = workspaces[3].GetComponent<Workspace>();
-            if(ws4.level_workspace < 5)
+            if (ws4.level_workspace < 5)
             {
                 textMotifUpgrade.text = "Upgrade Workspace Motif Batik Parang ke";
-                textUpgradeLevel.text =  "Level " + (ws4.level_workspace + 1) + "?";
-                textUpgradePrice.text = PriceCount(upgradePrice1[ws4.level_workspace - 1]);
+                textUpgradeLevel.text = "Level " + (ws4.level_workspace + 1) + "?";
+                textUpgradePrice.text = PriceCount(upgradePrice4[ws4.level_workspace - 1]);
                 buttonUpgrade.SetActive(true);
             }
             else
             {
                 textMotifUpgrade.text = "";
-                textUpgradeLevel.text =  "Max Level";
+                textUpgradeLevel.text = "Max Level";
                 textUpgradePrice.text = "";
                 imageRP.SetActive(false);
                 buttonUpgrade.SetActive(false);
@@ -1242,21 +1267,21 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
 
             ReduceSpeed(ws4.level_workspace);
         }
-        else if(index == 4)
+        else if (index == 4)
         {
             workspaceIndex = 4;
             Workspace ws5 = workspaces[4].GetComponent<Workspace>();
-            if(ws5.level_workspace < 5)
+            if (ws5.level_workspace < 5)
             {
                 textMotifUpgrade.text = "Upgrade Workspace Motif Batik Simbut ke";
-                textUpgradeLevel.text =  "Level " + (ws5.level_workspace + 1) + "?";
-                textUpgradePrice.text = PriceCount(upgradePrice1[ws5.level_workspace - 1]);
+                textUpgradeLevel.text = "Level " + (ws5.level_workspace + 1) + "?";
+                textUpgradePrice.text = PriceCount(upgradePrice5[ws5.level_workspace - 1]);
                 buttonUpgrade.SetActive(true);
             }
             else
             {
                 textMotifUpgrade.text = "";
-                textUpgradeLevel.text =  "Max Level";
+                textUpgradeLevel.text = "Max Level";
                 textUpgradePrice.text = "";
                 imageRP.SetActive(false);
                 buttonUpgrade.SetActive(false);
@@ -1301,15 +1326,15 @@ public class WorkspaceManager : MonoBehaviour, IDataPersistence
         StartCoroutine(CloseUnlockUpgradeDelay());
     }
 
-     IEnumerator CloseUnlockUpgradeDelay()
+    IEnumerator CloseUnlockUpgradeDelay()
     {
-        if(panelUnlock.activeSelf)
+        if (panelUnlock.activeSelf)
         {
             animUnlock.SetTrigger("IsEnd");
             yield return new WaitForSeconds(0.25f);
             panelUnlock.SetActive(false);
         }
-        else if(panelUpgrade.activeSelf)
+        else if (panelUpgrade.activeSelf)
         {
             animUpgrade.SetTrigger("IsEnd");
             yield return new WaitForSeconds(0.25f);

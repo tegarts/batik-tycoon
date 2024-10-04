@@ -12,6 +12,7 @@ public class DrawingManager : MonoBehaviour
     [SerializeField] GameObject[] motifPanelSimbuts;
     [SerializeField] Animator animCanting;
 
+
     private void Start() 
     {
         canvasCanting.SetActive(false);    
